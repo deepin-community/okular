@@ -1,0 +1,67 @@
+# Translation for org.kde.active.appdata.po to Euskara/Basque (eu).
+# Copyright (C) 2018, Free Software Foundation.
+# Copyright (C) 2019-2021, This file is copyright:
+# This file is distributed under the same license as the okular package.
+# KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>.
+#
+# Translators:
+# Iñigo Salvador Azurmendi <xalba@euskalnet.net>, 2018, 2019, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: okular\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"PO-Revision-Date: 2021-03-31 14:44+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 20.12.3\n"
+
+#: package/contents/ui/main.qml:22 package/contents/ui/main.qml:61
+msgid "Okular"
+msgstr "Okular"
+
+#: package/contents/ui/main.qml:39
+msgid "Open..."
+msgstr "Ireki..."
+
+#: package/contents/ui/main.qml:46
+msgid "About"
+msgstr "Honi buruz"
+
+#: package/contents/ui/MainView.qml:23
+msgid "Remove bookmark"
+msgstr "Kendu liburu-markak"
+
+#: package/contents/ui/MainView.qml:23
+msgid "Bookmark this page"
+msgstr "Sortu orri honen liburu-marka"
+
+#: package/contents/ui/MainView.qml:40
+msgid "No document open"
+msgstr "Ez dago dokumentu irekirik"
+
+#: package/contents/ui/OkularDrawer.qml:64
+msgid "Thumbnails"
+msgstr "Koadro txikiak"
+
+#: package/contents/ui/OkularDrawer.qml:78
+msgid "Table of contents"
+msgstr "Edukien aurkibidea"
+
+#: package/contents/ui/OkularDrawer.qml:92
+msgid "Bookmarks"
+msgstr "Laster-markak"
+
+#: package/contents/ui/TableOfContents.qml:21
+#: package/contents/ui/Thumbnails.qml:21
+msgid "Search..."
+msgstr "Bilatu..."
+
+#: package/contents/ui/ThumbnailsBase.qml:26
+msgid "No results found."
+msgstr "Ez da emaitzarik aurkitu."

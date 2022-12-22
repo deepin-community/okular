@@ -1,0 +1,89 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Jure Repinc <jlp@holodeck1.com>, 2013.
+# Andrej Mernik <andrejm@ubuntu.si>, 2013, 2016.
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2019, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"PO-Revision-Date: 2020-12-15 10:17+0100\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
+"X-Generator: Lokalize 20.08.1\n"
+
+#: package/contents/ui/main.qml:22 package/contents/ui/main.qml:61
+msgid "Okular"
+msgstr "Okular"
+
+#: package/contents/ui/main.qml:39
+msgid "Open..."
+msgstr "Odpri..."
+
+#: package/contents/ui/main.qml:46
+msgid "About"
+msgstr "O programu"
+
+#: package/contents/ui/MainView.qml:23
+msgid "Remove bookmark"
+msgstr "Odstrani zaznamek"
+
+#: package/contents/ui/MainView.qml:23
+msgid "Bookmark this page"
+msgstr "Zaznamuj to stran"
+
+#: package/contents/ui/MainView.qml:40
+msgid "No document open"
+msgstr "Ni odprtih dokumentov"
+
+#: package/contents/ui/OkularDrawer.qml:64
+msgid "Thumbnails"
+msgstr "Sličice"
+
+#: package/contents/ui/OkularDrawer.qml:78
+msgid "Table of contents"
+msgstr "Kazalo vsebine"
+
+#: package/contents/ui/OkularDrawer.qml:92
+msgid "Bookmarks"
+msgstr "Zaznamki"
+
+#: package/contents/ui/TableOfContents.qml:21
+#: package/contents/ui/Thumbnails.qml:21
+msgid "Search..."
+msgstr "Išči..."
+
+#: package/contents/ui/ThumbnailsBase.qml:26
+msgid "No results found."
+msgstr "Ni najdenih rezultatov."
+
+#~ msgid ""
+#~ "No Documents found. To start to read, put some files in the Documents "
+#~ "folder of your device."
+#~ msgstr ""
+#~ "Ni bilo najdenih dokumentov. Da začnete z branjem, prestavite nekaj "
+#~ "datotek v mapo Dokumenti na vaši napravi."
+
+#~ msgid "Document viewer for Plasma Active using Okular"
+#~ msgstr "Pregledovalnik dokumentov za Plasma Active, ki uporablja Okular"
+
+#~ msgid "Reader"
+#~ msgstr "Bralnik"
+
+#~ msgid "Copyright 2012 Marco Martin"
+#~ msgstr "Avtorske pravice © 2012 Marco Martin"
+
+#~ msgid "Marco Martin"
+#~ msgstr "Marco Martin"
+
+#~ msgid "URL of the file to open"
+#~ msgstr "Naslov URL datoteke za odprtje"
