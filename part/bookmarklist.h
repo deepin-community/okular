@@ -12,6 +12,8 @@
 #include "core/observer.h"
 
 class QAction;
+class QCheckBox;
+class QToolButton;
 class QTreeWidget;
 class QTreeWidgetItem;
 class KTreeWidgetSearchLine;
@@ -35,15 +37,17 @@ public:
     // inherited from DocumentObserver
     void notifySetup(const QVector<Okular::Page *> &pages, int setupFlags) override;
 
+    void setAddBookmarkAction(QAction *addBookmarkAction);
+
 private Q_SLOTS:
-    void slotFilterBookmarks(bool);
+    void slotShowAllBookmarks(bool);
     void slotExecuted(QTreeWidgetItem *item);
     void slotChanged(QTreeWidgetItem *item);
     void slotContextMenu(const QPoint p);
     void slotBookmarksChanged(const QUrl &url);
 
 private:
-    void rebuildTree(bool filter);
+    void rebuildTree(bool showAll);
     void goTo(BookmarkItem *item);
     void selectiveUrlUpdate(const QUrl &url, QTreeWidgetItem *&item);
     QTreeWidgetItem *itemForUrl(const QUrl &url) const;
@@ -53,8 +57,9 @@ private:
     Okular::Document *m_document;
     QTreeWidget *m_tree;
     KTreeWidgetSearchLine *m_searchLine;
-    QAction *m_showBoomarkOnlyAction;
+    QCheckBox *m_showForAllDocumentsCheckbox;
     QTreeWidgetItem *m_currentDocumentItem;
+    QToolButton *m_showAllToolButton;
 };
 
 #endif

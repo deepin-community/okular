@@ -42,6 +42,9 @@ public:
     void setTextToolsEnabled(bool on);
     void deselectAllAnnotationActions();
 
+private Q_SLOTS:
+    void slotAnnotationToolBarVisibilityChanged(bool visible);
+
 private:
     class AnnotationActionHandlerPrivate *d;
 };

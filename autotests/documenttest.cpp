@@ -26,9 +26,11 @@ class DocumentTest : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void testCloseDuringRotationJob();
     void testDocdataMigration();
+    void testDiff_data();
+    void testDiff();
 };
 
 // Test that we don't crash if the document is closed while a RotationJob
@@ -52,7 +54,7 @@ void DocumentTest::testCloseDuringRotationJob()
 
     // Request a pixmap. A RotationJob will be enqueued but not started
     Okular::PixmapRequest *pixmapReq = new Okular::PixmapRequest(dummyDocumentObserver, 0, 100, 100, qApp->devicePixelRatio(), 1, Okular::PixmapRequest::NoFeature);
-    m_document->requestPixmaps(QLinkedList<Okular::PixmapRequest *>() << pixmapReq);
+    m_document->requestPixmaps({pixmapReq});
 
     // Delete the document
     delete m_document;
@@ -72,14 +74,14 @@ void DocumentTest::testDocdataMigration()
 {
     Okular::SettingsCore::instance(QStringLiteral("documenttest"));
 
-    const QUrl testFileUrl = QUrl::fromLocalFile(KDESRCDIR "data/file1.pdf");
+    const QUrl testFileUrl = QUrl::fromLocalFile(QStringLiteral(KDESRCDIR "data/file1.pdf"));
     const QString testFilePath = testFileUrl.toLocalFile();
     const qint64 testFileSize = QFileInfo(testFilePath).size();
 
     // Copy XML file to the docdata/ directory
     const QString docDataPath = Okular::DocumentPrivate::docDataFileName(testFileUrl, testFileSize);
     QFile::remove(docDataPath);
-    QVERIFY(QFile::copy(KDESRCDIR "data/file1-docdata.xml", docDataPath));
+    QVERIFY(QFile::copy(QStringLiteral(KDESRCDIR "data/file1-docdata.xml"), docDataPath));
 
     // Open our document
     Okular::Document *m_document = new Okular::Document(nullptr);
@@ -124,6 +126,53 @@ void DocumentTest::testDocdataMigration()
     m_document->closeDocument();
 
     delete m_document;
+}
+
+void DocumentTest::testDiff_data()
+{
+    QTest::addColumn<QString>("oldVal");
+    QTest::addColumn<QString>("newVal");
+    QTest::addColumn<QString>("expectedDiff");
+
+    QTest::addRow("empty") << ""
+                           << ""
+                           << "";
+    QTest::addRow("a") << ""
+                       << "a"
+                       << "a";
+    QTest::addRow("ab") << "a"
+                        << "b"
+                        << "b";
+    QTest::addRow("ab2") << "a"
+                         << "ab"
+                         << "b";
+    QTest::addRow("kaesekuchen") << "Käse"
+                                 << "Käsekuchen"
+                                 << "kuchen";
+    QTest::addRow("replace") << "kuchen"
+                             << "wurst"
+                             << "wurst";
+    QTest::addRow("okular") << "Oku"
+                            << "Okular"
+                            << "lar";
+    QTest::addRow("removal1") << "a"
+                              << ""
+                              << "";
+    QTest::addRow("removal2") << "ab"
+                              << "a"
+                              << "";
+    QTest::addRow("unicode") << "☮🤌"
+                             << "☮🤌❤️"
+                             << "❤️";
+}
+
+void DocumentTest::testDiff()
+{
+    QFETCH(QString, oldVal);
+    QFETCH(QString, newVal);
+    QFETCH(QString, expectedDiff);
+
+    QCOMPARE(Okular::DocumentPrivate::diff(oldVal, newVal), expectedDiff);
 }
 
 QTEST_MAIN(DocumentTest)

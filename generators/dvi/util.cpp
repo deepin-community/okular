@@ -53,7 +53,7 @@
 
 void oops(const QString &message)
 {
-    qCCritical(OkularDviDebug) << "Fatal Error:" << message << endl;
+    qCCritical(OkularDviDebug) << "Fatal Error:" << message;
 
     KMessageBox::error(nullptr, i18n("Fatal error.\n\n") + message + i18n("\n\n\
 This probably means that either you found a bug in Okular,\n\
@@ -73,8 +73,9 @@ unsigned long num(FILE *fp, int size)
 {
     long x = 0;
 
-    while (size--)
+    while (size--) {
         x = (x << 8) | one(fp);
+    }
     return x;
 }
 
@@ -89,7 +90,8 @@ long snum(FILE *fp, int size)
     if (x & 0x80)
         x -= 0x100;
 #endif
-    while (--size)
+    while (--size) {
         x = (x << 8) | one(fp);
+    }
     return x;
 }

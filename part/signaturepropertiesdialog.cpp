@@ -13,7 +13,9 @@
 #include <QFormLayout>
 #include <QGroupBox>
 #include <QLabel>
+#include <QProcess>
 #include <QPushButton>
+#include <QStandardPaths>
 #include <QVBoxLayout>
 #include <QVector>
 
@@ -21,8 +23,8 @@
 #include "core/form.h"
 
 #include "certificateviewer.h"
+#include "gui/signatureguiutils.h"
 #include "revisionviewer.h"
-#include "signatureguiutils.h"
 
 static QString getValidDisplayString(const QString &str)
 {
@@ -37,29 +39,16 @@ SignaturePropertiesDialog::SignaturePropertiesDialog(Okular::Document *doc, cons
     setModal(true);
     setWindowTitle(i18n("Signature Properties"));
 
+    m_kleopatraPath = QStandardPaths::findExecutable(QStringLiteral("kleopatra"));
+
     const Okular::SignatureInfo &signatureInfo = form->signatureInfo();
     const Okular::SignatureInfo::SignatureStatus signatureStatus = signatureInfo.signatureStatus();
     const QString readableSignatureStatus = SignatureGuiUtils::getReadableSignatureStatus(signatureStatus);
+    const QString modificationSummary = SignatureGuiUtils::getReadableModificationSummary(signatureInfo);
     const QString signerName = getValidDisplayString(signatureInfo.signerName());
-    const QString signingTime = getValidDisplayString(signatureInfo.signingTime().toString(Qt::DefaultLocaleLongDate));
+    const QString signingTime = getValidDisplayString(QLocale().toString(signatureInfo.signingTime(), QLocale::LongFormat));
     const QString signingLocation = getValidDisplayString(signatureInfo.location());
     const QString signingReason = signatureInfo.reason();
-
-    // signature validation status
-    QString modificationSummary;
-    if (signatureStatus == Okular::SignatureInfo::SignatureValid) {
-        if (signatureInfo.signsTotalDocument()) {
-            modificationSummary = i18n("The document has not been modified since it was signed.");
-        } else {
-            modificationSummary = i18n(
-                "The revision of the document that was covered by this signature has not been modified;\n"
-                "however there have been subsequent changes to the document.");
-        }
-    } else if (signatureStatus == Okular::SignatureInfo::SignatureDigestMismatch) {
-        modificationSummary = i18n("The document has been modified in a way not permitted by a previous signer.");
-    } else {
-        modificationSummary = i18n("The document integrity verification could not be completed.");
-    }
 
     auto signatureStatusBox = new QGroupBox(i18n("Validity Status"));
     auto signatureStatusFormLayout = new QFormLayout(signatureStatusBox);
@@ -88,7 +77,7 @@ SignaturePropertiesDialog::SignaturePropertiesDialog(Okular::Document *doc, cons
     if (signatureStatus != Okular::SignatureInfo::SignatureStatusUnknown && !signatureInfo.signsTotalDocument()) {
         revisionBox = new QGroupBox(i18n("Document Version"));
         auto revisionLayout = new QHBoxLayout(revisionBox);
-        const QVector<const Okular::FormFieldSignature *> signatureFormFields = SignatureGuiUtils::getSignatureFormFields(m_doc, true, -1);
+        const QVector<const Okular::FormFieldSignature *> signatureFormFields = SignatureGuiUtils::getSignatureFormFields(m_doc);
         revisionLayout->addWidget(new QLabel(i18nc("Document Revision <current> of <total>", "Document Revision %1 of %2", signatureFormFields.indexOf(m_signatureForm) + 1, signatureFormFields.size())));
         revisionLayout->addStretch();
         auto revisionBtn = new QPushButton(i18n("View Signed Version..."));
@@ -100,9 +89,21 @@ SignaturePropertiesDialog::SignaturePropertiesDialog(Okular::Document *doc, cons
     auto btnBox = new QDialogButtonBox(QDialogButtonBox::Close, this);
     auto certPropBtn = new QPushButton(i18n("View Certificate..."));
     certPropBtn->setEnabled(!signatureInfo.certificateInfo().isNull());
+    auto certManagerBtn = new QPushButton(i18n("View in Certificate Manager"));
+    certManagerBtn->setVisible(signatureInfo.certificateInfo().backend() == Okular::CertificateInfo::Backend::Gpg);
+    certManagerBtn->setEnabled(!m_kleopatraPath.isEmpty());
+    if (m_kleopatraPath.isEmpty()) {
+        certManagerBtn->setToolTip(i18n("KDE Certificate Manager (kleopatra) not found"));
+    }
     btnBox->addButton(certPropBtn, QDialogButtonBox::ActionRole);
+    btnBox->addButton(certManagerBtn, QDialogButtonBox::ActionRole);
     connect(btnBox, &QDialogButtonBox::rejected, this, &SignaturePropertiesDialog::reject);
     connect(certPropBtn, &QPushButton::clicked, this, &SignaturePropertiesDialog::viewCertificateProperties);
+    connect(certManagerBtn, &QPushButton::clicked, this, [this]() {
+        QStringList args;
+        args << QStringLiteral("--parent-windowid") << QString::number(static_cast<qlonglong>(window()->winId())) << QStringLiteral("--query") << m_signatureForm->signatureInfo().certificateInfo().nickName();
+        QProcess::startDetached(m_kleopatraPath, args);
+    });
 
     auto mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(signatureStatusBox);

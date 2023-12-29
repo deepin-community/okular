@@ -31,7 +31,7 @@ Layers::Layers(QWidget *parent, Okular::Document *document)
     m_document->addObserver(this);
 
     KTitleWidget *titleWidget = new KTitleWidget(this);
-    titleWidget->setLevel(2);
+    titleWidget->setLevel(4);
     titleWidget->setText(i18n("Layers"));
     mainlay->addWidget(titleWidget);
     mainlay->setAlignment(titleWidget, Qt::AlignHCenter);
@@ -62,11 +62,11 @@ void Layers::notifySetup(const QVector<Okular::Page *> & /*pages*/, int /*setupF
     if (layersModel) {
         m_treeView->setModel(layersModel);
         m_searchLine->setTreeView(m_treeView);
-        emit hasLayers(true);
+        Q_EMIT hasLayers(true);
         connect(layersModel, &QAbstractItemModel::dataChanged, m_document, &Okular::Document::reloadDocument);
         connect(layersModel, &QAbstractItemModel::dataChanged, m_pageView, &PageView::reloadForms);
     } else {
-        emit hasLayers(false);
+        Q_EMIT hasLayers(false);
     }
 }
 

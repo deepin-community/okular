@@ -433,19 +433,9 @@ public:
      * @param viewport The document viewport.
      * @param excludeObserver The observer which shouldn't be effected by this change.
      * @param smoothMove Whether the move shall be animated smoothly.
-     */
-    void setViewport(const DocumentViewport &viewport, DocumentObserver *excludeObserver = nullptr, bool smoothMove = false);
-
-    /**
-     * Sets the current document viewport to the given @p viewport.
-     * BCI TODO: merge with setViewport, adding a parameter "bool updateHistory = true"
-     *
-     * @param viewport The document viewport.
-     * @param excludeObserver The observer which shouldn't be effected by this change.
-     * @param smoothMove Whether the move shall be animated smoothly.
      * @param updateHistory Whether to consider the change of viewport for the history navigation
      */
-    void setViewportWithHistory(const DocumentViewport &viewport, DocumentObserver *excludeObserver = nullptr, bool smoothMove = false, bool updateHistory = true);
+    void setViewport(const DocumentViewport &viewport, DocumentObserver *excludeObserver = nullptr, bool smoothMove = false, bool updateHistory = true);
 
     /**
      * Sets the current document viewport to the next viewport in the
@@ -489,8 +479,10 @@ public:
      * Sends @p requests for pixmap generation.
      *
      * The same as requestPixmaps( requests, RemoveAllPrevious );
+     *
+     * @since 22.08
      */
-    void requestPixmaps(const QLinkedList<PixmapRequest *> &requests);
+    void requestPixmaps(const QList<PixmapRequest *> &requests);
 
     /**
      * Sends @p requests for pixmap generation.
@@ -498,9 +490,9 @@ public:
      * @param requests the linked list of requests
      * @param reqOptions the options for the request
      *
-     * @since 0.7 (KDE 4.1)
+     * @since 22.08
      */
-    void requestPixmaps(const QLinkedList<PixmapRequest *> &requests, PixmapRequestFlags reqOptions);
+    void requestPixmaps(const QList<PixmapRequest *> &requests, PixmapRequestFlags reqOptions);
 
     /**
      * Sends a request for text page generation for the given page @p pageNumber.
@@ -627,12 +619,10 @@ public:
     /**
      * Describes how search ended
      */
-    // TODO remove EndOfDocumentReached when we break API
     enum SearchStatus {
-        MatchFound,          ///< Any match was found
-        NoMatchFound,        ///< No match was found
-        SearchCancelled,     ///< The search was cancelled
-        EndOfDocumentReached ///< This is not ever emitted since 1.3. The end of document was reached without any match @since 0.20 (KDE 4.14)
+        MatchFound,     ///< Any match was found
+        NoMatchFound,   ///< No match was found
+        SearchCancelled ///< The search was cancelled
     };
 
     /**
@@ -688,7 +678,15 @@ public:
      *
      * @since 1.9
      */
-    void processKeystrokeAction(const Action *action, Okular::FormFieldText *fft, bool &returnCode);
+    void processKeystrokeAction(const Action *action, Okular::FormFieldText *fft, const QVariant &newValue);
+
+    /**
+     * Processes the given keystroke @p action on @p fft.
+     * This will set event.willCommit=true
+     *
+     * @since 22.04
+     */
+    void processKeystrokeCommitAction(const Action *action, Okular::FormFieldText *fft);
 
     /**
      * Processes the given focus action on the field.
@@ -744,16 +742,29 @@ public:
      */
     bool supportsPrintToFile() const;
 
+    /// @since 22.04
+    enum PrintError {
+        NoPrintError, ///< Printing succeeded
+        UnknownPrintError,
+        TemporaryFileOpenPrintError,
+        FileConversionPrintError,
+        PrintingProcessCrashPrintError,
+        PrintingProcessStartPrintError,
+        PrintToFilePrintError,
+        InvalidPrinterStatePrintError,
+        UnableToFindFilePrintError,
+        NoFileToPrintError,
+        NoBinaryToPrintError,
+        InvalidPageSizePrintError
+    };
+
     /**
      * Prints the document to the given @p printer.
      */
-    bool print(QPrinter &printer);
+    Document::PrintError print(QPrinter &printer);
 
-    /**
-     * Returns the last print error in case print() failed
-     * @since 0.11 (KDE 4.5)
-     */
-    QString printError() const;
+    /// @since 22.04
+    static QString printErrorString(PrintError error);
 
     /**
      * Returns a custom printer configuration page or 0 if no
@@ -1005,6 +1016,21 @@ public:
      */
     CertificateStore *certificateStore() const;
 
+    /** sets the editor command to the command  \p editCmd, as
+     * given at the commandline.
+     *
+     * @since 22.04
+     */
+    void setEditorCommandOverride(const QString &editCmd);
+
+    /** returns the overriding editor command.
+     *
+     * If the editor command was not overriden, the string is empty.
+     *
+     * @since 22.04
+     */
+    QString editorCommandOverride() const;
+
 public Q_SLOTS:
     /**
      * This slot is called whenever the user changes the @p rotation of
@@ -1099,6 +1125,20 @@ Q_SIGNALS:
      * document close operation.
      */
     void close();
+
+    /**
+     * This signal is emitted whenever an action requests a
+     * document print operation.
+     * @since 22.04
+     */
+    void requestPrint();
+
+    /**
+     * This signal is emitted whenever an action requests a
+     * document save as operation.
+     * @since 22.04
+     */
+    void requestSaveAs();
 
     /**
      * This signal is emitted whenever an action requests an
@@ -1304,12 +1344,12 @@ public:
     /**
      * Creates a new viewport for the given page @p number.
      */
-    DocumentViewport(int number = -1);
+    explicit DocumentViewport(int number = -1);
 
     /**
      * Creates a new viewport from the given @p xmlDesc.
      */
-    DocumentViewport(const QString &xmlDesc);
+    explicit DocumentViewport(const QString &xmlDesc);
 
     /**
      * Returns the viewport as xml description.
@@ -1391,7 +1431,7 @@ public:
      * Creates a new document synopsis object with the given
      * @p document as parent node.
      */
-    DocumentSynopsis(const QDomDocument &document);
+    explicit DocumentSynopsis(const QDomDocument &document);
 };
 
 /**
@@ -1508,6 +1548,30 @@ public:
 
     NormalizedRect boundingRectangle() const;
     void setBoundingRectangle(const NormalizedRect &rect);
+
+    /// @since 22.04
+    QString documentPassword() const;
+
+    /// @since 22.04
+    void setDocumentPassword(const QString &password);
+
+    /// @since 23.08
+    QString reason() const;
+
+    /// @since 23.08
+    void setReason(const QString &reason);
+
+    /// @since 23.08
+    QString location() const;
+
+    /// @since 23.08
+    void setLocation(const QString &location);
+
+    /// @since 23.08
+    QString backgroundImagePath() const;
+
+    /// @since 23.08
+    void setBackgroundImagePath(const QString &path);
 
 private:
     NewSignatureDataPrivate *const d;

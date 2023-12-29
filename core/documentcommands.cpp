@@ -91,8 +91,9 @@ bool AddAnnotationCommand::refreshInternalPageReferences(const QVector<Okular::P
         // and thus doesn't need updating because it didn't change
         // because of the document reload
         auto a = newPagesVector[m_pageNumber]->annotation(m_annotation->uniqueName());
-        if (a)
+        if (a) {
             m_annotation = a;
+        }
     }
 
     return true;
@@ -136,8 +137,9 @@ bool RemoveAnnotationCommand::refreshInternalPageReferences(const QVector<Okular
         // a previous AddAnnotationCommand and thus doesn't need updating because it didn't change
         // because of the document reload
         auto a = newPagesVector[m_pageNumber]->annotation(m_annotation->uniqueName());
-        if (a)
+        if (a) {
             m_annotation = a;
+        }
     }
 
     return true;
@@ -171,8 +173,9 @@ bool ModifyAnnotationPropertiesCommand::refreshInternalPageReferences(const QVec
 {
     // Same reason for not unconditionally updating m_annotation, the annotation pointer can be stored in an add/Remove command
     auto a = newPagesVector[m_pageNumber]->annotation(m_annotation->uniqueName());
-    if (a)
+    if (a) {
         m_annotation = a;
+    }
 
     return true;
 }
@@ -210,8 +213,9 @@ bool TranslateAnnotationCommand::mergeWith(const QUndoCommand *uc)
 {
     TranslateAnnotationCommand *tuc = (TranslateAnnotationCommand *)uc;
 
-    if (tuc->m_annotation != m_annotation)
+    if (tuc->m_annotation != m_annotation) {
         return false;
+    }
 
     if (m_completeDrag) {
         return false;
@@ -229,20 +233,21 @@ Okular::NormalizedPoint TranslateAnnotationCommand::minusDelta()
 Okular::NormalizedRect TranslateAnnotationCommand::translateBoundingRectangle(const Okular::NormalizedPoint &delta)
 {
     Okular::NormalizedRect annotBoundingRect = m_annotation->boundingRectangle();
-    double left = qMin<double>(annotBoundingRect.left, annotBoundingRect.left + delta.x);
-    double right = qMax<double>(annotBoundingRect.right, annotBoundingRect.right + delta.x);
-    double top = qMin<double>(annotBoundingRect.top, annotBoundingRect.top + delta.y);
-    double bottom = qMax<double>(annotBoundingRect.bottom, annotBoundingRect.bottom + delta.y);
-    Okular::NormalizedRect boundingRect(left, top, right, bottom);
-    return boundingRect;
+    annotBoundingRect.left = annotBoundingRect.left + delta.x;
+    annotBoundingRect.right = annotBoundingRect.right + delta.x;
+    annotBoundingRect.top = annotBoundingRect.top + delta.y;
+    annotBoundingRect.bottom = annotBoundingRect.bottom + delta.y;
+
+    return annotBoundingRect;
 }
 
 bool TranslateAnnotationCommand::refreshInternalPageReferences(const QVector<Page *> &newPagesVector)
 {
     // Same reason for not unconditionally updating m_annotation, the annotation pointer can be stored in an add/Remove command
     auto a = newPagesVector[m_pageNumber]->annotation(m_annotation->uniqueName());
-    if (a)
+    if (a) {
         m_annotation = a;
+    }
 
     return true;
 }
@@ -283,8 +288,9 @@ bool AdjustAnnotationCommand::mergeWith(const QUndoCommand *uc)
 {
     AdjustAnnotationCommand *tuc = (AdjustAnnotationCommand *)uc;
 
-    if (tuc->m_annotation != m_annotation)
+    if (tuc->m_annotation != m_annotation) {
         return false;
+    }
 
     if (m_completeDrag) {
         return false;
@@ -297,20 +303,22 @@ bool AdjustAnnotationCommand::mergeWith(const QUndoCommand *uc)
 
 Okular::NormalizedRect AdjustAnnotationCommand::adjustBoundingRectangle(const Okular::NormalizedPoint &delta1, const Okular::NormalizedPoint &delta2)
 {
-    const Okular::NormalizedRect annotBoundingRect = m_annotation->boundingRectangle();
-    const double left = qMin<double>(annotBoundingRect.left, annotBoundingRect.left + delta1.x);
-    const double right = qMax<double>(annotBoundingRect.right, annotBoundingRect.right + delta2.x);
-    const double top = qMin<double>(annotBoundingRect.top, annotBoundingRect.top + delta1.y);
-    const double bottom = qMax<double>(annotBoundingRect.bottom, annotBoundingRect.bottom + delta2.y);
-    return Okular::NormalizedRect(left, top, right, bottom);
+    Okular::NormalizedRect annotBoundingRect = m_annotation->boundingRectangle();
+    annotBoundingRect.left = annotBoundingRect.left + delta1.x;
+    annotBoundingRect.right = annotBoundingRect.right + delta2.x;
+    annotBoundingRect.top = annotBoundingRect.top + delta1.y;
+    annotBoundingRect.bottom = annotBoundingRect.bottom + delta2.y;
+
+    return annotBoundingRect;
 }
 
 bool AdjustAnnotationCommand::refreshInternalPageReferences(const QVector<Page *> &newPagesVector)
 {
     // Same reason for not unconditionally updating m_annotation, the annotation pointer can be stored in an add/Remove command
     auto a = newPagesVector[m_pageNumber]->annotation(m_annotation->uniqueName());
-    if (a)
+    if (a) {
         m_annotation = a;
+    }
 
     return true;
 }
@@ -329,13 +337,14 @@ EditTextCommand::EditTextCommand(const QString &newContents, int newCursorPos, c
     if (m_prevCursorPos != m_prevAnchorPos) {
         qCDebug(OkularCoreDebug) << "OtherEdit, selection";
         m_editType = OtherEdit;
-    } else if (newContentsRightOfCursor() == oldContentsRightOfCursor() && newContentsLeftOfCursor() == oldContentsLeftOfCursor().left(oldContentsLeftOfCursor().length() - 1) && oldContentsLeftOfCursor().rightRef(1) != "\n") {
+    } else if (newContentsRightOfCursor() == oldContentsRightOfCursor() && newContentsLeftOfCursor() == oldContentsLeftOfCursor().left(oldContentsLeftOfCursor().length() - 1) && oldContentsLeftOfCursor().rightRef(1) != QLatin1Char('\n')) {
         qCDebug(OkularCoreDebug) << "CharBackspace";
         m_editType = CharBackspace;
-    } else if (newContentsLeftOfCursor() == oldContentsLeftOfCursor() && newContentsRightOfCursor() == oldContentsRightOfCursor().right(oldContentsRightOfCursor().length() - 1) && oldContentsRightOfCursor().leftRef(1) != "\n") {
+    } else if (newContentsLeftOfCursor() == oldContentsLeftOfCursor() && newContentsRightOfCursor() == oldContentsRightOfCursor().right(oldContentsRightOfCursor().length() - 1) &&
+               oldContentsRightOfCursor().leftRef(1) != QLatin1Char('\n')) {
         qCDebug(OkularCoreDebug) << "CharDelete";
         m_editType = CharDelete;
-    } else if (newContentsRightOfCursor() == oldContentsRightOfCursor() && newContentsLeftOfCursor().left(newContentsLeftOfCursor().length() - 1) == oldContentsLeftOfCursor() && newContentsLeftOfCursor().rightRef(1) != "\n") {
+    } else if (newContentsRightOfCursor() == oldContentsRightOfCursor() && newContentsLeftOfCursor().left(newContentsLeftOfCursor().length() - 1) == oldContentsLeftOfCursor() && newContentsLeftOfCursor().rightRef(1) != QLatin1Char('\n')) {
         qCDebug(OkularCoreDebug) << "CharInsert";
         m_editType = CharInsert;
     } else {
@@ -391,14 +400,14 @@ void EditAnnotationContentsCommand::undo()
 {
     moveViewportIfBoundingRectNotFullyVisible(m_annotation->boundingRectangle(), m_docPriv, m_pageNumber);
     m_docPriv->performSetAnnotationContents(m_prevContents, m_annotation, m_pageNumber);
-    emit m_docPriv->m_parent->annotationContentsChangedByUndoRedo(m_annotation, m_prevContents, m_prevCursorPos, m_prevAnchorPos);
+    Q_EMIT m_docPriv->m_parent->annotationContentsChangedByUndoRedo(m_annotation, m_prevContents, m_prevCursorPos, m_prevAnchorPos);
 }
 
 void EditAnnotationContentsCommand::redo()
 {
     moveViewportIfBoundingRectNotFullyVisible(m_annotation->boundingRectangle(), m_docPriv, m_pageNumber);
     m_docPriv->performSetAnnotationContents(m_newContents, m_annotation, m_pageNumber);
-    emit m_docPriv->m_parent->annotationContentsChangedByUndoRedo(m_annotation, m_newContents, m_newCursorPos, m_newCursorPos);
+    Q_EMIT m_docPriv->m_parent->annotationContentsChangedByUndoRedo(m_annotation, m_newContents, m_newCursorPos, m_newCursorPos);
 }
 
 int EditAnnotationContentsCommand::id() const
@@ -420,8 +429,9 @@ bool EditAnnotationContentsCommand::mergeWith(const QUndoCommand *uc)
 bool EditAnnotationContentsCommand::refreshInternalPageReferences(const QVector<Page *> &newPagesVector)
 {
     auto a = newPagesVector[m_pageNumber]->annotation(m_annotation->uniqueName());
-    if (a)
+    if (a) {
         m_annotation = a;
+    }
 
     return true;
 }
@@ -439,7 +449,7 @@ void EditFormTextCommand::undo()
 {
     moveViewportIfBoundingRectNotFullyVisible(m_form->rect(), m_docPriv, m_pageNumber);
     m_form->setText(m_prevContents);
-    emit m_docPriv->m_parent->formTextChangedByUndoRedo(m_pageNumber, m_form, m_prevContents, m_prevCursorPos, m_prevAnchorPos);
+    Q_EMIT m_docPriv->m_parent->formTextChangedByUndoRedo(m_pageNumber, m_form, m_prevContents, m_prevCursorPos, m_prevAnchorPos);
     m_docPriv->notifyFormChanges(m_pageNumber);
 }
 
@@ -447,7 +457,7 @@ void EditFormTextCommand::redo()
 {
     moveViewportIfBoundingRectNotFullyVisible(m_form->rect(), m_docPriv, m_pageNumber);
     m_form->setText(m_newContents);
-    emit m_docPriv->m_parent->formTextChangedByUndoRedo(m_pageNumber, m_form, m_newContents, m_newCursorPos, m_newCursorPos);
+    Q_EMIT m_docPriv->m_parent->formTextChangedByUndoRedo(m_pageNumber, m_form, m_newContents, m_newCursorPos, m_newCursorPos);
     m_docPriv->notifyFormChanges(m_pageNumber);
 }
 
@@ -488,7 +498,7 @@ void EditFormListCommand::undo()
 {
     moveViewportIfBoundingRectNotFullyVisible(m_form->rect(), m_docPriv, m_pageNumber);
     m_form->setCurrentChoices(m_prevChoices);
-    emit m_docPriv->m_parent->formListChangedByUndoRedo(m_pageNumber, m_form, m_prevChoices);
+    Q_EMIT m_docPriv->m_parent->formListChangedByUndoRedo(m_pageNumber, m_form, m_prevChoices);
     m_docPriv->notifyFormChanges(m_pageNumber);
 }
 
@@ -496,7 +506,7 @@ void EditFormListCommand::redo()
 {
     moveViewportIfBoundingRectNotFullyVisible(m_form->rect(), m_docPriv, m_pageNumber);
     m_form->setCurrentChoices(m_newChoices);
-    emit m_docPriv->m_parent->formListChangedByUndoRedo(m_pageNumber, m_form, m_newChoices);
+    Q_EMIT m_docPriv->m_parent->formListChangedByUndoRedo(m_pageNumber, m_form, m_newChoices);
     m_docPriv->notifyFormChanges(m_pageNumber);
 }
 
@@ -537,7 +547,7 @@ void EditFormComboCommand::undo()
         m_form->setEditChoice(m_prevContents);
     }
     moveViewportIfBoundingRectNotFullyVisible(m_form->rect(), m_docPriv, m_pageNumber);
-    emit m_docPriv->m_parent->formComboChangedByUndoRedo(m_pageNumber, m_form, m_prevContents, m_prevCursorPos, m_prevAnchorPos);
+    Q_EMIT m_docPriv->m_parent->formComboChangedByUndoRedo(m_pageNumber, m_form, m_prevContents, m_prevCursorPos, m_prevAnchorPos);
     m_docPriv->notifyFormChanges(m_pageNumber);
 }
 
@@ -549,7 +559,7 @@ void EditFormComboCommand::redo()
         m_form->setEditChoice(m_newContents);
     }
     moveViewportIfBoundingRectNotFullyVisible(m_form->rect(), m_docPriv, m_pageNumber);
-    emit m_docPriv->m_parent->formComboChangedByUndoRedo(m_pageNumber, m_form, m_newContents, m_newCursorPos, m_newCursorPos);
+    Q_EMIT m_docPriv->m_parent->formComboChangedByUndoRedo(m_pageNumber, m_form, m_newContents, m_newCursorPos, m_newCursorPos);
     m_docPriv->notifyFormChanges(m_pageNumber);
 }
 
@@ -598,13 +608,14 @@ void EditFormButtonsCommand::undo()
     clearFormButtonStates();
     for (int i = 0; i < m_formButtons.size(); i++) {
         bool checked = m_prevButtonStates.at(i);
-        if (checked)
+        if (checked) {
             m_formButtons.at(i)->setState(checked);
+        }
     }
 
     Okular::NormalizedRect boundingRect = buildBoundingRectangleForButtons(m_formButtons);
     moveViewportIfBoundingRectNotFullyVisible(boundingRect, m_docPriv, m_pageNumber);
-    emit m_docPriv->m_parent->formButtonsChangedByUndoRedo(m_pageNumber, m_formButtons);
+    Q_EMIT m_docPriv->m_parent->formButtonsChangedByUndoRedo(m_pageNumber, m_formButtons);
     m_docPriv->notifyFormChanges(m_pageNumber);
 }
 
@@ -613,13 +624,14 @@ void EditFormButtonsCommand::redo()
     clearFormButtonStates();
     for (int i = 0; i < m_formButtons.size(); i++) {
         bool checked = m_newButtonStates.at(i);
-        if (checked)
+        if (checked) {
             m_formButtons.at(i)->setState(checked);
+        }
     }
 
     Okular::NormalizedRect boundingRect = buildBoundingRectangleForButtons(m_formButtons);
     moveViewportIfBoundingRectNotFullyVisible(boundingRect, m_docPriv, m_pageNumber);
-    emit m_docPriv->m_parent->formButtonsChangedByUndoRedo(m_pageNumber, m_formButtons);
+    Q_EMIT m_docPriv->m_parent->formButtonsChangedByUndoRedo(m_pageNumber, m_formButtons);
     m_docPriv->notifyFormChanges(m_pageNumber);
 }
 
@@ -629,8 +641,9 @@ bool EditFormButtonsCommand::refreshInternalPageReferences(const QVector<Okular:
     m_formButtons.clear();
     for (FormFieldButton *oldFormButton : oldFormButtons) {
         FormFieldButton *button = dynamic_cast<FormFieldButton *>(Okular::PagePrivate::findEquivalentForm(newPagesVector[m_pageNumber], oldFormButton));
-        if (!button)
+        if (!button) {
             return false;
+        }
         m_formButtons << button;
     }
 

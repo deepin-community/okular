@@ -62,19 +62,22 @@ void DVIExport::start(const QString &command, const QStringList &args, const QSt
 
     *process_ << command << args;
 
-    if (!working_directory.isEmpty())
+    if (!working_directory.isEmpty()) {
         process_->setWorkingDirectory(working_directory);
+    }
 
     error_message_ = error_message;
 
     process_->start();
-    if (!process_->waitForStarted(-1))
-        qCCritical(OkularDviDebug) << command << " failed to start" << endl;
-    else
+    if (!process_->waitForStarted(-1)) {
+        qCCritical(OkularDviDebug) << command << " failed to start";
+    } else {
         started_ = true;
+    }
 
-    if (parent_->m_eventLoop)
+    if (parent_->m_eventLoop) {
         parent_->m_eventLoop->exec();
+    }
 }
 
 void DVIExport::abort_process_impl()
@@ -87,8 +90,9 @@ void DVIExport::abort_process_impl()
 
 void DVIExport::finished_impl(int exit_code)
 {
-    if (process_ && exit_code != 0)
-        emit error(error_message_, -1);
+    if (process_ && exit_code != 0) {
+        Q_EMIT error(error_message_, -1);
+    }
     // Remove this from the store of all export processes.
     parent_->m_eventLoop->exit(exit_code);
     parent_->export_finished(this);
@@ -105,29 +109,32 @@ DVIExportToPDF::DVIExportToPDF(dviRenderer &parent, const QString &output_name)
     : DVIExport(parent)
 {
     // Neither of these should happen. Paranoia checks.
-    if (!parent.dviFile)
+    if (!parent.dviFile) {
         return;
+    }
     const dvifile &dvi = *(parent.dviFile);
 
     const QFileInfo input(dvi.filename);
-    if (!input.exists() || !input.isReadable())
-        return;
-
-    if (QStandardPaths::findExecutable(QStringLiteral("dvipdfm")).isEmpty()) {
-        emit error(i18n("<qt><p>Okular could not locate the program <em>dvipdfm</em> on your computer. This program is "
-                        "essential for the export function to work. You can, however, convert "
-                        "the DVI-file to PDF using the print function of Okular, but that will often "
-                        "produce documents which print okay, but are of inferior quality if viewed in "
-                        "Acrobat Reader. It may be wise to upgrade to a more recent version of your "
-                        "TeX distribution which includes the <em>dvipdfm</em> program.</p>"
-                        "<p>Hint to the perplexed system administrator: Okular uses the PATH environment variable "
-                        "when looking for programs.</p></qt>"),
-                   -1);
+    if (!input.exists() || !input.isReadable()) {
         return;
     }
 
-    if (output_name.isEmpty())
+    if (QStandardPaths::findExecutable(QStringLiteral("dvipdfm")).isEmpty()) {
+        Q_EMIT error(i18n("<qt><p>Okular could not locate the program <em>dvipdfm</em> on your computer. This program is "
+                          "essential for the export function to work. You can, however, convert "
+                          "the DVI-file to PDF using the print function of Okular, but that will often "
+                          "produce documents which print okay, but are of inferior quality if viewed in "
+                          "Acrobat Reader. It may be wise to upgrade to a more recent version of your "
+                          "TeX distribution which includes the <em>dvipdfm</em> program.</p>"
+                          "<p>Hint to the perplexed system administrator: Okular uses the PATH environment variable "
+                          "when looking for programs.</p></qt>"),
+                     -1);
         return;
+    }
+
+    if (output_name.isEmpty()) {
+        return;
+    }
 
     start(QStringLiteral("dvipdfm"),
           QStringList() << QStringLiteral("-o") << output_name << dvi.filename,
@@ -143,36 +150,40 @@ DVIExportToPS::DVIExportToPS(dviRenderer &parent, const QString &output_name, co
     , orientation_(orientation)
 {
     // None of these should happen. Paranoia checks.
-    if (!parent.dviFile)
+    if (!parent.dviFile) {
         return;
+    }
     const dvifile &dvi = *(parent.dviFile);
 
     const QFileInfo input(dvi.filename);
-    if (!input.exists() || !input.isReadable())
+    if (!input.exists() || !input.isReadable()) {
         return;
+    }
 
-    if (dvi.page_offset.isEmpty())
+    if (dvi.page_offset.isEmpty()) {
         return;
+    }
 
     if (dvi.numberOfExternalNONPSFiles != 0) {
-        emit error(i18n("<qt>This DVI file refers to external graphic files which are not in PostScript format, and cannot be handled by the "
-                        "<em>dvips</em> program that Okular uses internally to print or to export to PostScript. The functionality that "
-                        "you require is therefore unavailable in this version of Okular.</qt>"),
-                   -1);
+        Q_EMIT error(i18n("<qt>This DVI file refers to external graphic files which are not in PostScript format, and cannot be handled by the "
+                          "<em>dvips</em> program that Okular uses internally to print or to export to PostScript. The functionality that "
+                          "you require is therefore unavailable in this version of Okular.</qt>"),
+                     -1);
         return;
     }
 
     if (QStandardPaths::findExecutable(QStringLiteral("dvips")).isEmpty()) {
-        emit error(i18n("<qt><p>Okular could not locate the program <em>dvips</em> on your computer. "
-                        "That program is essential for the export function to work.</p>"
-                        "<p>Hint to the perplexed system administrator: Okular uses the PATH environment "
-                        "variable when looking for programs.</p></qt>"),
-                   -1);
+        Q_EMIT error(i18n("<qt><p>Okular could not locate the program <em>dvips</em> on your computer. "
+                          "That program is essential for the export function to work.</p>"
+                          "<p>Hint to the perplexed system administrator: Okular uses the PATH environment "
+                          "variable when looking for programs.</p></qt>"),
+                     -1);
         return;
     }
 
-    if (output_name.isEmpty())
+    if (output_name.isEmpty()) {
         return;
+    }
 
     output_name_ = output_name;
 
@@ -242,12 +253,14 @@ DVIExportToPS::DVIExportToPS(dviRenderer &parent, const QString &output_name, co
     }
 
     QStringList args;
-    if (!printer)
+    if (!printer) {
         // Export hyperlinks
         args << QStringLiteral("-z");
+    }
 
-    if (!options.isEmpty())
+    if (!options.isEmpty()) {
         args += options;
+    }
 
     args << input_name << QStringLiteral("-o") << output_name_;
 

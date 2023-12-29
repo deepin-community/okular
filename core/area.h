@@ -138,8 +138,7 @@ public:
     NormalizedPoint &operator=(const NormalizedPoint &);
 
     NormalizedPoint(const NormalizedPoint &);
-    // TODO next ABI break, move the = default to here
-    ~NormalizedPoint(); // NOLINT(performance-trivially-destructible)
+    ~NormalizedPoint() = default;
 
     /**
      * Transforms the normalized point with the operations defined by @p matrix.
@@ -223,7 +222,7 @@ public:
      * You can use e. g. QRect::normalize() to ensure this.
      * At negative width or height the behaviour of some operations is undefined.
      */
-    NormalizedRect(const QRect &rectangle, double xScale, double yScale);
+    NormalizedRect(const QRect rectangle, double xScale, double yScale);
 
     /**
      * @internal
@@ -235,8 +234,7 @@ public:
      */
     NormalizedRect &operator=(const NormalizedRect &other);
 
-    // TODO next ABI break, move the = default to here
-    ~NormalizedRect(); // NOLINT(performance-trivially-destructible)
+    ~NormalizedRect() = default;
 
     /**
      * Build a normalized rect from a QRectF, which already has normalized coordinates.
@@ -283,6 +281,11 @@ public:
      * @since 0.14 (KDE 4.8)
      */
     QRect roundedGeometry(int xScale, int yScale) const;
+
+    /**
+     * Same functionality as geometry, but nothing is converted into int.
+     */
+    QRectF geometryF(float xScale, float yScale) const;
 
     /**
      * Returns the normalized bounding rectangle of the normalized rectangle
@@ -384,16 +387,18 @@ public:
     double distanceSqr(double x, double y, double xScale, double yScale) const
     {
         double distX = 0;
-        if (x < left)
+        if (x < left) {
             distX = left - x;
-        else if (x > right)
+        } else if (x > right) {
             distX = x - right;
+        }
 
         double distY = 0;
-        if (top > y)
+        if (top > y) {
             distY = top - y;
-        else if (bottom < y)
+        } else if (bottom < y) {
             distY = y - bottom;
+        }
         return pow(distX * xScale, 2) + pow(distY * yScale, 2);
     }
 
@@ -745,41 +750,49 @@ template<class NormalizedShape, class Shape> void RegularArea<NormalizedShape, S
 
 template<class NormalizedShape, class Shape> bool RegularArea<NormalizedShape, Shape>::isNull() const
 {
-    if (this->isEmpty())
+    if (this->isEmpty()) {
         return true;
+    }
 
     typename QList<NormalizedShape>::const_iterator it = this->begin(), itEnd = this->end();
-    for (; it != itEnd; ++it)
-        if (!givePtr(*it)->isNull())
+    for (; it != itEnd; ++it) {
+        if (!givePtr(*it)->isNull()) {
             return false;
+        }
+    }
 
     return true;
 }
 
 template<class NormalizedShape, class Shape> bool RegularArea<NormalizedShape, Shape>::intersects(const NormalizedShape &shape) const
 {
-    if (this->isEmpty())
+    if (this->isEmpty()) {
         return false;
+    }
 
     typename QList<NormalizedShape>::const_iterator it = this->begin(), itEnd = this->end();
-    for (; it != itEnd; ++it)
-        if (!givePtr(*it)->isNull() && givePtr(*it)->intersects(shape))
+    for (; it != itEnd; ++it) {
+        if (!givePtr(*it)->isNull() && givePtr(*it)->intersects(shape)) {
             return true;
+        }
+    }
 
     return false;
 }
 
 template<class NormalizedShape, class Shape> bool RegularArea<NormalizedShape, Shape>::intersects(const RegularArea<NormalizedShape, Shape> *area) const
 {
-    if (this->isEmpty())
+    if (this->isEmpty()) {
         return false;
+    }
 
     typename QList<NormalizedShape>::const_iterator it = this->begin(), itEnd = this->end();
     for (; it != itEnd; ++it) {
         typename QList<NormalizedShape>::const_iterator areaIt = area->begin(), areaItEnd = area->end();
         for (; areaIt != areaItEnd; ++areaIt) {
-            if (!(*it).isNull() && (*it).intersects(*areaIt))
+            if (!(*it).isNull() && (*it).intersects(*areaIt)) {
                 return true;
+            }
         }
     }
 
@@ -789,8 +802,9 @@ template<class NormalizedShape, class Shape> bool RegularArea<NormalizedShape, S
 template<class NormalizedShape, class Shape> void RegularArea<NormalizedShape, Shape>::appendArea(const RegularArea<NormalizedShape, Shape> *area)
 {
     typename QList<NormalizedShape>::const_iterator areaIt = area->begin(), areaItEnd = area->end();
-    for (; areaIt != areaItEnd; ++areaIt)
+    for (; areaIt != areaItEnd; ++areaIt) {
         this->append(*areaIt);
+    }
 }
 
 template<class NormalizedShape, class Shape> void RegularArea<NormalizedShape, Shape>::appendShape(const NormalizedShape &shape, MergeSide side)
@@ -843,36 +857,42 @@ template<class NormalizedShape, class Shape> void RegularArea<NormalizedShape, S
         // merge it with that and delete the shape
         if (intersection) {
             deref((*this)[size - 1]) |= deref(shape);
-        } else
+        } else {
             this->append(shape);
+        }
     }
 }
 
 template<class NormalizedShape, class Shape> bool RegularArea<NormalizedShape, Shape>::contains(double x, double y) const
 {
-    if (this->isEmpty())
+    if (this->isEmpty()) {
         return false;
+    }
 
     typename QList<NormalizedShape>::const_iterator it = this->begin(), itEnd = this->end();
-    for (; it != itEnd; ++it)
-        if ((*it).contains(x, y))
+    for (; it != itEnd; ++it) {
+        if ((*it).contains(x, y)) {
             return true;
+        }
+    }
 
     return false;
 }
 
 template<class NormalizedShape, class Shape> bool RegularArea<NormalizedShape, Shape>::contains(const NormalizedShape &shape) const
 {
-    if (this->isEmpty())
+    if (this->isEmpty()) {
         return false;
+    }
 
     return QList<NormalizedShape>::contains(shape);
 }
 
 template<class NormalizedShape, class Shape> QList<Shape> RegularArea<NormalizedShape, Shape>::geometry(int xScale, int yScale, int dx, int dy) const
 {
-    if (this->isEmpty())
+    if (this->isEmpty()) {
         return QList<Shape>();
+    }
 
     QList<Shape> ret;
     Shape t;
@@ -888,11 +908,13 @@ template<class NormalizedShape, class Shape> QList<Shape> RegularArea<Normalized
 
 template<class NormalizedShape, class Shape> void RegularArea<NormalizedShape, Shape>::transform(const QTransform &matrix)
 {
-    if (this->isEmpty())
+    if (this->isEmpty()) {
         return;
+    }
 
-    for (int i = 0; i < this->count(); ++i)
+    for (int i = 0; i < this->count(); ++i) {
         givePtr((*this)[i])->transform(matrix);
+    }
 }
 
 /**

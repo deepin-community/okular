@@ -7,12 +7,15 @@
   <name>Images</name>
   <name xml:lang="ar">الصور</name>
   <name xml:lang="az">Şəkillər</name>
+  <name xml:lang="be">Выявы</name>
+  <name xml:lang="bg">Изображения</name>
   <name xml:lang="ca">Imatges</name>
   <name xml:lang="ca-valencia">Imatges</name>
   <name xml:lang="cs">Obrázky</name>
   <name xml:lang="de">Bilder</name>
   <name xml:lang="el">Εικόνες</name>
   <name xml:lang="en-GB">Images</name>
+  <name xml:lang="eo">Bildoj</name>
   <name xml:lang="es">Imágenes</name>
   <name xml:lang="et">Pildid</name>
   <name xml:lang="eu">Irudiak</name>
@@ -20,8 +23,11 @@
   <name xml:lang="fr">Images</name>
   <name xml:lang="gl">Imaxes</name>
   <name xml:lang="hi">छवियाँ</name>
+  <name xml:lang="hu">Képek</name>
   <name xml:lang="ia">Images</name>
+  <name xml:lang="ie">Images</name>
   <name xml:lang="it">Immagini</name>
+  <name xml:lang="ka">გამოსახულებები</name>
   <name xml:lang="ko">그림</name>
   <name xml:lang="lt">Paveikslai</name>
   <name xml:lang="ml">ചിത്രങ്ങള്‍</name>
@@ -40,29 +46,36 @@
   <name xml:lang="sr-ijekavianlatin">Slike</name>
   <name xml:lang="sv">Bilder</name>
   <name xml:lang="ta">படங்கள்</name>
-  <name xml:lang="tr">Resimler</name>
+  <name xml:lang="tr">Görseller</name>
   <name xml:lang="uk">Зображення</name>
+  <name xml:lang="vi">Ảnh</name>
   <name xml:lang="x-test">xxImagesxx</name>
-  <name xml:lang="zh-CN">图片</name>
+  <name xml:lang="zh-CN">图像</name>
   <name xml:lang="zh-TW">影像</name>
   <summary>Adds support for reading many image formats</summary>
   <summary xml:lang="ar">يضيف دعم لقراءة العديد من تنسيقات الصور</summary>
   <summary xml:lang="az">Şəkil formatlarının oxunması dəstəyini əlavə edir</summary>
+  <summary xml:lang="be">Падтрымка чытання многіх фарматаў выяў</summary>
+  <summary xml:lang="bg">Добавя поддръжка за четене на множество формати за изображения</summary>
   <summary xml:lang="ca">Afegeix la implementació per a llegir molts formats d'imatge</summary>
   <summary xml:lang="ca-valencia">Afig la implementació per a llegir molts formats d'imatge</summary>
   <summary xml:lang="cs">Přidává podporu pro čtení formátů obrázků</summary>
   <summary xml:lang="de">Bietet Unterstützung zum Lesen von vielen Bildformaten</summary>
   <summary xml:lang="el">Προσθέτει υποστήριξη για την ανάγνωση πολλών τύπων αποθήκευσης εικόνων</summary>
   <summary xml:lang="en-GB">Adds support for reading many image formats</summary>
+  <summary xml:lang="eo">Aldonas subtenon por legi multajn bildformatojn</summary>
   <summary xml:lang="es">Permite la lectura de diversos formatos de imagen</summary>
   <summary xml:lang="et">Paljude pildivormingute lugemise toetus</summary>
   <summary xml:lang="eu">Irudi formatu ugari irakurtzeko euskarria gehitzen du</summary>
   <summary xml:lang="fi">Lisää monien kuvatiedostomuotojen lukutuen</summary>
   <summary xml:lang="fr">Permet la lecture de nombreux formats d'images</summary>
-  <summary xml:lang="gl">Engade a posibilidade de ler moitos formatos de imaxe</summary>
+  <summary xml:lang="gl">Engade a posibilidade de ler moitos formatos de imaxe.</summary>
   <summary xml:lang="hi">कई छवियों के प्रारूपों को पढ़ने के लिए समर्थन जोड़ता है</summary>
+  <summary xml:lang="hu">Támogatás számos képformátum olvasásához</summary>
   <summary xml:lang="ia">Adde supporto per leger formatos de image</summary>
+  <summary xml:lang="ie">Adjunte li supporte por letion de multiplic formates de images</summary>
   <summary xml:lang="it">Aggiunge il supporto per la lettura di vari formati di immagini</summary>
+  <summary xml:lang="ka">ამატებს მრავალი გამოსახულების ფორმატის წაკითხვის მხარდაჭერას</summary>
   <summary xml:lang="ko">다양한 그림 형식 읽기 지원 추가</summary>
   <summary xml:lang="lt">Prideda palaikymą daugelio paveikslų formatų skaitymui</summary>
   <summary xml:lang="ml">നിരവധി ചിത്ര ഫോർമാറ്റുകൾ വായിക്കുന്നതിനുള്ള പിന്തുണ ചേർക്കുന്നു</summary>
@@ -81,10 +94,11 @@
   <summary xml:lang="sr-ijekavianlatin">Podrška za čitanje raznih formata slika</summary>
   <summary xml:lang="sv">Lägger till stöd för att läsa många bildformat</summary>
   <summary xml:lang="ta">பல படப் படிவங்களுக்கான ஆதரவை சேர்க்கும்</summary>
-  <summary xml:lang="tr">Birçok resim biçimini okuma desteği ekler</summary>
+  <summary xml:lang="tr">Birçok görsel biçimini okuma desteği ekler</summary>
   <summary xml:lang="uk">Додає підтримку читання зображень у багатьох форматах</summary>
+  <summary xml:lang="vi">Thêm hỗ trợ đọc nhiều định dạng ảnh</summary>
   <summary xml:lang="x-test">xxAdds support for reading many image formatsxx</summary>
-  <summary xml:lang="zh-CN">支持多种图片格式的阅读</summary>
+  <summary xml:lang="zh-CN">增加对多种图像格式的阅读支持</summary>
   <summary xml:lang="zh-TW">加入讀取許多影像格式的支援</summary>
   <provides>
     <mediatype>image/bmp</mediatype>
@@ -114,9 +128,9 @@
   </provides>
   <url type="homepage">https://okular.kde.org</url>
   <releases>
-    <release version="21.08.3" date="2021-11-04"/>
-    <release version="21.08.2" date="2021-10-07"/>
-    <release version="21.08.1" date="2021-09-02"/>
-    <release version="21.08.0" date="2021-08-12"/>
+    <release version="23.08.1" date="2023-09-14"/>
+    <release version="23.08.0" date="2023-08-24"/>
+    <release version="23.04.3" date="2023-07-06"/>
+    <release version="23.04.2" date="2023-06-08"/>
   </releases>
 </component>

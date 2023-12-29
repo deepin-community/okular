@@ -9,8 +9,8 @@
 
 #include "core/document.h"
 #include "core/generator.h"
-#include "pagepainter.h"
-#include "priorities.h"
+#include "gui/pagepainter.h"
+#include "gui/priorities.h"
 
 static const int SCALE = 10;
 
@@ -106,14 +106,15 @@ void MagnifierView::move(int x, int y)
 
 void MagnifierView::requestPixmap()
 {
+    if (!m_page) {
+        return;
+    }
     const int full_width = m_page->width() * SCALE;
     const int full_height = m_page->height() * SCALE;
 
     Okular::NormalizedRect nrect = normalizedView();
 
-    if (m_page && !m_page->hasPixmap(this, full_width, full_height, nrect)) {
-        QLinkedList<Okular::PixmapRequest *> requestedPixmaps;
-
+    if (!m_page->hasPixmap(this, full_width, full_height, nrect)) {
         Okular::PixmapRequest *p = new Okular::PixmapRequest(this, m_current, full_width, full_height, devicePixelRatioF(), PAGEVIEW_PRIO, Okular::PixmapRequest::Asynchronous);
 
         if (m_page->hasTilesManager(this)) {
@@ -129,9 +130,8 @@ void MagnifierView::requestPixmap()
         const double right = qMin(nrect.right + rect_width, 1.0);
 
         p->setNormalizedRect(Okular::NormalizedRect(left, top, right, bottom));
-        requestedPixmaps.push_back(p);
 
-        m_document->requestPixmaps(requestedPixmaps);
+        m_document->requestPixmaps({p});
     }
 }
 

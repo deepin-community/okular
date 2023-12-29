@@ -1,1 +1,5 @@
+# The CHM file is a test payload
+okular source: source-contains-prebuilt-ms-help-file [generators/chm/autotests/data/test.chm]
+
+# to make lintian/ftp-master happy :-/
 okular source: source-contains-prebuilt-ms-help-file generators/chm/autotests/data/test.chm

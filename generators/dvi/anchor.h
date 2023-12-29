@@ -30,8 +30,8 @@ class Anchor
 public:
     /** \brief Constructs an anchor that points to an invalid page */
     Anchor()
+        : page(0)
     {
-        page = 0;
     }
 
     /** \brief Constructs an anchor that points to a given position on a
@@ -44,7 +44,7 @@ public:
         @param pg number of the page
         @param _distance_from_top distance from the top of the page
     */
-    Anchor(const PageNumber pg, const Length _distance_from_top)
+    Anchor(quint16 pg, const Length _distance_from_top)
         : page(pg)
         , distance_from_top(_distance_from_top)
     {

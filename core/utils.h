@@ -12,7 +12,6 @@
 
 class QRect;
 class QImage;
-class QWidget;
 
 namespace Okular
 {
@@ -28,17 +27,17 @@ public:
      * Rotate the rect \p source in the area \p width x \p height with the
      * specified \p orientation .
      */
-    static QRect rotateRect(const QRect &source, int width, int height, int orientation); // TODO remove the & when we do a BIC change elsewhere
+    static QRect rotateRect(const QRect source, int width, int height, int orientation);
 
     /**
-     * Return the real DPI of the display containing given widget
+     * Return the real DPI of the display containing given window
      *
      * On X11, it can indicate the real horizontal DPI value without any Xrdb
      * setting. Otherwise, returns the same as realDpiX/Y(),
      *
-     * @since 0.19 (KDE 4.13)
+     * @since 22.04
      */
-    static QSizeF realDpi(QWidget *widgetOnScreen);
+    static QSizeF realDpi(const QWindow *windowOnScreen);
 
     /**
      * Compute the smallest rectangle that contains all non-white pixels in image),

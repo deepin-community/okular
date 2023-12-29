@@ -38,7 +38,7 @@ public:
     // list of fonts
     Okular::FontInfo::List fontsForPage(int page) override;
 
-    bool print(QPrinter &printer) override;
+    Okular::Document::PrintError print(QPrinter &printer) override;
 
     QVariant metaData(const QString &key, const QVariant &option) const override;
 
@@ -60,7 +60,7 @@ private:
     Okular::TextPage *extractTextFromPage(dviPageInfo *pageInfo);
     void fillViewportFromAnchor(Okular::DocumentViewport &vp, const Anchor anch, int pW, int pH) const;
     void fillViewportFromAnchor(Okular::DocumentViewport &vp, const Anchor anch, const Okular::Page *page) const;
-    QLinkedList<Okular::ObjectRect *> generateDviLinks(const dviPageInfo *pageInfo);
+    QList<Okular::ObjectRect *> generateDviLinks(const dviPageInfo *pageInfo);
 };
 
 #endif

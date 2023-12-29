@@ -6,7 +6,6 @@
 
 #include "tts.h"
 
-#include <QDBusServiceWatcher>
 #include <QSet>
 
 #include <KLocalizedString>
@@ -17,10 +16,17 @@
 class OkularTTS::Private
 {
 public:
-    Private(OkularTTS *qq)
+    explicit Private(OkularTTS *qq)
         : q(qq)
         , speech(new QTextToSpeech(Okular::Settings::ttsEngine()))
     {
+        const QVector<QVoice> voices = speech->availableVoices();
+        QString voiceName = Okular::Settings::ttsVoice();
+        for (const QVoice &voice : voices) {
+            if (voice.name() == voiceName) {
+                speech->setVoice(voice);
+            }
+        }
     }
 
     ~Private()
@@ -43,7 +49,7 @@ OkularTTS::OkularTTS(QObject *parent)
     // Initialize speechEngine so we can reinitialize if it changes.
     d->speechEngine = Okular::Settings::ttsEngine();
     connect(d->speech, &QTextToSpeech::stateChanged, this, &OkularTTS::slotSpeechStateChanged);
-    connect(Okular::Settings::self(), &KConfigSkeleton::configChanged, this, &OkularTTS::slotConfigChanged);
+    connect(Okular::Settings::self(), &KCoreConfigSkeleton::configChanged, this, &OkularTTS::slotConfigChanged);
 }
 
 OkularTTS::~OkularTTS()
@@ -53,53 +59,67 @@ OkularTTS::~OkularTTS()
 
 void OkularTTS::say(const QString &text)
 {
-    if (text.isEmpty())
+    if (text.isEmpty()) {
         return;
+    }
 
     d->speech->say(text);
 }
 
 void OkularTTS::stopAllSpeechs()
 {
-    if (!d->speech)
+    if (!d->speech) {
         return;
+    }
 
     d->speech->stop();
 }
 
 void OkularTTS::pauseResumeSpeech()
 {
-    if (!d->speech)
+    if (!d->speech) {
         return;
+    }
 
-    if (d->speech->state() == QTextToSpeech::Speaking)
+    if (d->speech->state() == QTextToSpeech::Speaking) {
         d->speech->pause();
-    else
+    } else {
         d->speech->resume();
+    }
 }
 
 void OkularTTS::slotSpeechStateChanged(QTextToSpeech::State state)
 {
     if (state == QTextToSpeech::Speaking) {
-        emit isSpeaking(true);
-        emit canPauseOrResume(true);
+        Q_EMIT isSpeaking(true);
+        Q_EMIT canPauseOrResume(true);
     } else {
-        emit isSpeaking(false);
-        if (state == QTextToSpeech::Paused)
-            emit canPauseOrResume(true);
-        else
-            emit canPauseOrResume(false);
+        Q_EMIT isSpeaking(false);
+        if (state == QTextToSpeech::Paused) {
+            Q_EMIT canPauseOrResume(true);
+        } else {
+            Q_EMIT canPauseOrResume(false);
+        }
     }
 }
 
 void OkularTTS::slotConfigChanged()
 {
     const QString engine = Okular::Settings::ttsEngine();
+    const QString voiceName = Okular::Settings::ttsVoice();
     if (engine != d->speechEngine) {
         d->speech->stop();
         delete d->speech;
         d->speech = new QTextToSpeech(engine);
         connect(d->speech, &QTextToSpeech::stateChanged, this, &OkularTTS::slotSpeechStateChanged);
         d->speechEngine = engine;
+    }
+
+    const QVector<QVoice> voices = d->speech->availableVoices();
+    for (const QVoice &voice : voices) {
+        if (voice.name() == voiceName) {
+            d->speech->setVoice(voice);
+            break;
+        }
     }
 }

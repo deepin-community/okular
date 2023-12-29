@@ -38,7 +38,6 @@ NormalizedPoint::NormalizedPoint(int iX, int iY, int xScale, int yScale)
 
 NormalizedPoint &NormalizedPoint::operator=(const NormalizedPoint &p) = default;
 NormalizedPoint::NormalizedPoint(const NormalizedPoint &) = default;
-NormalizedPoint::~NormalizedPoint() = default;
 
 void NormalizedPoint::transform(const QTransform &matrix)
 {
@@ -132,7 +131,7 @@ NormalizedRect::NormalizedRect(double l, double t, double r, double b)
 {
 }
 
-NormalizedRect::NormalizedRect(const QRect &r, double xScale, double yScale) // clazy:exclude=function-args-by-value TODO when BIC changes are allowed
+NormalizedRect::NormalizedRect(const QRect r, double xScale, double yScale)
     : left((double)r.left() / xScale)
     , top((double)r.top() / yScale)
     , right((double)r.right() / xScale)
@@ -199,8 +198,9 @@ NormalizedRect &NormalizedRect::operator|=(const NormalizedRect &r)
 
 NormalizedRect NormalizedRect::operator&(const NormalizedRect &r) const
 {
-    if (isNull() || r.isNull())
+    if (isNull() || r.isNull()) {
         return NormalizedRect();
+    }
 
     NormalizedRect ret;
     ret.left = qMax(left, r.left);
@@ -211,8 +211,6 @@ NormalizedRect NormalizedRect::operator&(const NormalizedRect &r) const
 }
 
 NormalizedRect &NormalizedRect::operator=(const NormalizedRect &r) = default;
-
-NormalizedRect::~NormalizedRect() = default;
 
 bool NormalizedRect::operator==(const NormalizedRect &r) const
 {
@@ -243,6 +241,13 @@ QRect NormalizedRect::roundedGeometry(int xScale, int yScale) const
     int l = (int)(left * xScale + 0.5), t = (int)(top * yScale + 0.5), r = (int)(right * xScale + 0.5), b = (int)(bottom * yScale + 0.5);
 
     return QRect(l, t, r - l + 1, b - t + 1);
+}
+
+QRectF NormalizedRect::geometryF(float xScale, float yScale) const
+{
+    float l = (left * xScale), t = (top * yScale), r = (right * xScale), b = (bottom * yScale);
+
+    return QRectF(l, t, r - l, b - t);
 }
 
 void NormalizedRect::transform(const QTransform &matrix)
@@ -312,10 +317,11 @@ ObjectRect::ObjectRect(double l, double t, double r, double b, bool ellipse, Obj
 {
     // assign coordinates swapping them if negative width or height
     QRectF rect(r > l ? l : r, b > t ? t : b, fabs(r - l), fabs(b - t));
-    if (ellipse)
+    if (ellipse) {
         m_path.addEllipse(rect);
-    else
+    } else {
         m_path.addRect(rect);
+    }
 
     m_transformedPath = m_path;
 }
@@ -325,10 +331,11 @@ ObjectRect::ObjectRect(const NormalizedRect &r, bool ellipse, ObjectType type, v
     , m_object(object)
 {
     QRectF rect(r.left, r.top, fabs(r.right - r.left), fabs(r.bottom - r.top));
-    if (ellipse)
+    if (ellipse) {
         m_path.addEllipse(rect);
-    else
+    } else {
         m_path.addRect(rect);
+    }
 
     m_transformedPath = m_path;
 }
@@ -402,15 +409,17 @@ double ObjectRect::distanceSqr(double x, double y, double xScale, double yScale)
 
 ObjectRect::~ObjectRect()
 {
-    if (!m_object)
+    if (!m_object) {
         return;
+    }
 
-    if (m_objectType == Action)
+    if (m_objectType == Action) {
         delete static_cast<Okular::Action *>(m_object);
-    else if (m_objectType == SourceRef)
+    } else if (m_objectType == SourceRef) {
         delete static_cast<Okular::SourceReference *>(m_object);
-    else
+    } else {
         qCDebug(OkularCoreDebug).nospace() << "Object deletion not implemented for type '" << m_objectType << "'.";
+    }
 }
 
 /** class AnnotationObjectRect **/
