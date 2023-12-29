@@ -9,6 +9,7 @@
 
 #include "annotations.h"
 #include "area.h"
+#include "document.h"
 #include "okularcore_export.h"
 #include "signatureutils.h"
 
@@ -157,9 +158,22 @@ public:
      */
     Action *additionalAction(Annotation::AdditionalActionType type) const;
 
+    /* Returns all the additional actions for this form
+     *
+     * @since 22.04
+     */
+    QList<Action *> additionalActions() const;
+
+    /**
+     * Returns the page of this form field
+     *
+     * @since 21.12.2
+     */
+    Page *page() const;
+
 protected:
     /// @cond PRIVATE
-    FormField(FormFieldPrivate &dd);
+    explicit FormField(FormFieldPrivate &dd);
     Q_DECLARE_PRIVATE(FormField)
     FormFieldPrivate *d_ptr;
     /// @endcond
@@ -443,7 +457,13 @@ public:
     /**
      * The types of signature.
      */
-    enum SignatureType { AdbePkcs7sha1, AdbePkcs7detached, EtsiCAdESdetached, UnknownType };
+    enum SignatureType {
+        AdbePkcs7sha1,
+        AdbePkcs7detached,
+        EtsiCAdESdetached,
+        UnknownType,
+        UnsignedSignature ///< The signature field has not been signed yet. @since 22.04
+    };
 
     ~FormFieldSignature() override;
 
@@ -454,8 +474,16 @@ public:
 
     /**
      * The signature info
+     * @since 23.08
      */
-    virtual const SignatureInfo &signatureInfo() const = 0;
+    virtual SignatureInfo signatureInfo() const = 0;
+
+    /**
+      Signs a field of UnsignedSignature type.
+
+      @since 22.04
+     */
+    virtual bool sign(const NewSignatureData &data, const QString &newPath) const = 0;
 
 protected:
     FormFieldSignature();

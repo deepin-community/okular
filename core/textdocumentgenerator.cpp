@@ -102,8 +102,9 @@ Okular::TextPage *TextDocumentGeneratorPrivate::createTextPage(int pageNumber) c
             if (text.length() == 1) {
                 QRectF rect;
                 TextDocumentUtils::calculateBoundingRect(mDocument, i, i + 1, rect, pageNumber);
-                if (pageNumber == -1)
+                if (pageNumber == -1) {
                     text = QStringLiteral("\n");
+                }
 
                 textPage->append(text, new Okular::NormalizedRect(rect.left(), rect.top(), rect.right(), rect.bottom()));
             }
@@ -118,8 +119,9 @@ Okular::TextPage *TextDocumentGeneratorPrivate::createTextPage(int pageNumber) c
 
 void TextDocumentGeneratorPrivate::addAction(Action *action, int cursorBegin, int cursorEnd)
 {
-    if (!action)
+    if (!action) {
         return;
+    }
 
     LinkPosition position;
     position.link = action;
@@ -131,8 +133,9 @@ void TextDocumentGeneratorPrivate::addAction(Action *action, int cursorBegin, in
 
 void TextDocumentGeneratorPrivate::addAnnotation(Annotation *annotation, int cursorBegin, int cursorEnd)
 {
-    if (!annotation)
+    if (!annotation) {
         return;
+    }
 
     annotation->setFlags(annotation->flags() | Okular::Annotation::External);
 
@@ -152,11 +155,6 @@ void TextDocumentGeneratorPrivate::addTitle(int level, const QString &title, con
     position.block = block;
 
     mTitlePositions.append(position);
-}
-
-void TextDocumentGeneratorPrivate::addMetaData(const QString &key, const QString &value, const QString &title)
-{
-    mDocumentInfo.set(key, value, title);
 }
 
 void TextDocumentGeneratorPrivate::addMetaData(DocumentInfo::Key key, const QString &value)
@@ -200,8 +198,9 @@ QList<TextDocumentGeneratorPrivate::AnnotationInfo> TextDocumentGeneratorPrivate
 
         TextDocumentUtils::calculateBoundingRect(mDocument, annotationPosition.startPosition, annotationPosition.endPosition, info.boundingRect, info.page);
 
-        if (info.page >= 0)
+        if (info.page >= 0) {
             result.append(info);
+        }
     }
 
     return result;
@@ -263,8 +262,7 @@ void TextDocumentGeneratorPrivate::initializeGenerator()
     QObject::connect(mConverter, &TextDocumentConverter::addAction, q, [this](Action *a, int cb, int ce) { addAction(a, cb, ce); });
     QObject::connect(mConverter, &TextDocumentConverter::addAnnotation, q, [this](Annotation *a, int cb, int ce) { addAnnotation(a, cb, ce); });
     QObject::connect(mConverter, &TextDocumentConverter::addTitle, q, [this](int l, const QString &t, const QTextBlock &b) { addTitle(l, t, b); });
-    QObject::connect(mConverter, QOverload<const QString &, const QString &, const QString &>::of(&TextDocumentConverter::addMetaData), q, [this](const QString &k, const QString &v, const QString &t) { addMetaData(k, v, t); });
-    QObject::connect(mConverter, QOverload<DocumentInfo::Key, const QString &>::of(&TextDocumentConverter::addMetaData), q, [this](DocumentInfo::Key k, const QString &v) { addMetaData(k, v); });
+    QObject::connect(mConverter, &TextDocumentConverter::addMetaData, q, [this](DocumentInfo::Key k, const QString &v) { addMetaData(k, v); });
 
     QObject::connect(mConverter, &TextDocumentConverter::error, q, &Generator::error);
     QObject::connect(mConverter, &TextDocumentConverter::warning, q, &Generator::warning);
@@ -315,11 +313,12 @@ Document::OpenResult TextDocumentGenerator::loadDocumentWithPassword(const QStri
 
     const QSize size = d->mDocument->pageSize().toSize();
 
-    QVector<QLinkedList<Okular::ObjectRect *>> objects(d->mDocument->pageCount());
+    QVector<QList<Okular::ObjectRect *>> objects(d->mDocument->pageCount());
     for (const TextDocumentGeneratorPrivate::LinkInfo &info : linkInfos) {
         // in case that the converter report bogus link info data, do not assert here
-        if (info.page < 0 || info.page >= objects.count())
+        if (info.page < 0 || info.page >= objects.count()) {
             continue;
+        }
 
         const QRectF rect = info.boundingRect;
         if (info.ownsLink) {
@@ -329,7 +328,7 @@ Document::OpenResult TextDocumentGenerator::loadDocumentWithPassword(const QStri
         }
     }
 
-    QVector<QLinkedList<Okular::Annotation *>> annots(d->mDocument->pageCount());
+    QVector<QList<Okular::Annotation *>> annots(d->mDocument->pageCount());
     for (const TextDocumentGeneratorPrivate::AnnotationInfo &info : annotationInfos) {
         annots[info.page].append(info.annotation);
     }
@@ -341,7 +340,7 @@ Document::OpenResult TextDocumentGenerator::loadDocumentWithPassword(const QStri
         if (!objects.at(i).isEmpty()) {
             page->setObjectRects(objects.at(i));
         }
-        QLinkedList<Okular::Annotation *>::ConstIterator annIt = annots.at(i).begin(), annEnd = annots.at(i).end();
+        QList<Okular::Annotation *>::ConstIterator annIt = annots.at(i).begin(), annEnd = annots.at(i).end();
         for (; annIt != annEnd; ++annIt) {
             page->addAnnotation(*annIt);
         }
@@ -378,8 +377,9 @@ void TextDocumentGenerator::generatePixmap(Okular::PixmapRequest *request)
 
 QImage TextDocumentGeneratorPrivate::image(PixmapRequest *request)
 {
-    if (!mDocument)
+    if (!mDocument) {
         return QImage();
+    }
 
 #ifdef OKULAR_TEXTDOCUMENT_THREADED_RENDERING
     Q_Q(TextDocumentGenerator);
@@ -428,15 +428,16 @@ Okular::TextPage *TextDocumentGenerator::textPage(Okular::TextRequest *request)
     return d->createTextPage(request->page()->number());
 }
 
-bool TextDocumentGenerator::print(QPrinter &printer)
+Document::PrintError TextDocumentGenerator::print(QPrinter &printer)
 {
     Q_D(TextDocumentGenerator);
-    if (!d->mDocument)
-        return false;
+    if (!d->mDocument) {
+        return Document::UnknownPrintError;
+    }
 
     d->mDocument->print(&printer);
 
-    return true;
+    return Document::NoPrintError;
 }
 
 Okular::DocumentInfo TextDocumentGenerator::generateDocumentInfo(const QSet<DocumentInfo::Key> & /*keys*/) const
@@ -448,10 +449,11 @@ Okular::DocumentInfo TextDocumentGenerator::generateDocumentInfo(const QSet<Docu
 const Okular::DocumentSynopsis *TextDocumentGenerator::generateDocumentSynopsis()
 {
     Q_D(TextDocumentGenerator);
-    if (!d->mDocumentSynopsis.hasChildNodes())
+    if (!d->mDocumentSynopsis.hasChildNodes()) {
         return nullptr;
-    else
+    } else {
         return &d->mDocumentSynopsis;
+    }
 }
 
 QVariant TextDocumentGeneratorPrivate::metaData(const QString &key, const QVariant &option) const
@@ -483,13 +485,15 @@ Okular::ExportFormat::List TextDocumentGenerator::exportFormats() const
 bool TextDocumentGenerator::exportTo(const QString &fileName, const Okular::ExportFormat &format)
 {
     Q_D(TextDocumentGenerator);
-    if (!d->mDocument)
+    if (!d->mDocument) {
         return false;
+    }
 
     if (format.mimeType().name() == QLatin1String("application/pdf")) {
         QFile file(fileName);
-        if (!file.open(QIODevice::WriteOnly))
+        if (!file.open(QIODevice::WriteOnly)) {
             return false;
+        }
 
         QPrinter printer(QPrinter::HighResolution);
         printer.setOutputFormat(QPrinter::PdfFormat);
@@ -499,8 +503,9 @@ bool TextDocumentGenerator::exportTo(const QString &fileName, const Okular::Expo
         return true;
     } else if (format.mimeType().name() == QLatin1String("text/plain")) {
         QFile file(fileName);
-        if (!file.open(QIODevice::WriteOnly))
+        if (!file.open(QIODevice::WriteOnly)) {
             return false;
+        }
 
         QTextStream out(&file);
         out << d->mDocument->toPlainText();

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_ghostview\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2017-02-01 16:02+0100\n"
 "Last-Translator: Vít Pelčák <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -55,22 +55,22 @@ msgstr "Obecná nastavení"
 msgid "&Use platform fonts"
 msgstr "Po&užívat systémová písma"
 
-#: generator_ghostview.cpp:81
+#: generator_ghostview.cpp:82
 #, kde-format
 msgid "Ghostscript"
 msgstr "Ghostscript"
 
-#: generator_ghostview.cpp:81
+#: generator_ghostview.cpp:82
 #, kde-format
 msgid "Ghostscript Backend Configuration"
 msgstr "Nastavení podpůrné vrstvy Ghostscriptu"
 
-#: generator_ghostview.cpp:245
+#: generator_ghostview.cpp:253
 #, kde-format
 msgid "Document version"
 msgstr "Verze dokumentu"
 
-#: generator_ghostview.cpp:250
+#: generator_ghostview.cpp:259
 #, kde-format
 msgid "Language Level"
 msgstr "Úroveň jazyka"

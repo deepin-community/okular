@@ -28,7 +28,7 @@
 #include <QVBoxLayout>
 
 #include "core/document.h"
-#include "guiutils.h"
+#include "gui/guiutils.h"
 
 Q_DECLARE_METATYPE(Okular::EmbeddedFile *)
 
@@ -139,19 +139,22 @@ void EmbeddedFilesDialog::viewFileItem(QTreeWidgetItem *item, int /*column*/)
 void EmbeddedFilesDialog::attachViewContextMenu()
 {
     QList<QTreeWidgetItem *> selected = m_tw->selectedItems();
-    if (selected.isEmpty())
+    if (selected.isEmpty()) {
         return;
+    }
 
-    if (selected.size() > 1)
+    if (selected.size() > 1) {
         return;
+    }
 
     QMenu menu(this);
     QAction *saveAsAct = menu.addAction(QIcon::fromTheme(QStringLiteral("document-save-as")), i18nc("@action:inmenu", "&Save As..."));
     QAction *viewAct = menu.addAction(QIcon::fromTheme(QStringLiteral("document-open")), i18nc("@action:inmenu", "&View..."));
 
     QAction *act = menu.exec(QCursor::pos());
-    if (!act)
+    if (!act) {
         return;
+    }
 
     Okular::EmbeddedFile *ef = qvariant_cast<Okular::EmbeddedFile *>(selected.at(0)->data(0, EmbeddedFileRole));
     if (act == saveAsAct) {
@@ -168,7 +171,8 @@ void EmbeddedFilesDialog::viewFile(Okular::EmbeddedFile *ef)
 
     // save in temporary directory with a unique name resembling the attachment name,
     // using QTemporaryFile's XXXXXX placeholder
-    QTemporaryFile *tmpFile = new QTemporaryFile(QDir::tempPath() + '/' + fileInfo.baseName() + ".XXXXXX" + (fileInfo.completeSuffix().isEmpty() ? QLatin1String("") : QString('.' + fileInfo.completeSuffix())));
+    QTemporaryFile *tmpFile =
+        new QTemporaryFile(QDir::tempPath() + QLatin1Char('/') + fileInfo.baseName() + QStringLiteral(".XXXXXX") + (fileInfo.completeSuffix().isEmpty() ? QLatin1String("") : QString(QLatin1Char('.') + fileInfo.completeSuffix())));
     GuiUtils::writeEmbeddedFile(ef, this, *tmpFile);
 
     // set readonly to prevent the viewer application from modifying it
@@ -178,7 +182,7 @@ void EmbeddedFilesDialog::viewFile(Okular::EmbeddedFile *ef)
     m_openedFiles.push_back(QSharedPointer<QTemporaryFile>(tmpFile));
 
     // view the temporary file with the default application
-    new KRun(QUrl("file://" + tmpFile->fileName()), this);
+    new KRun(QUrl::fromLocalFile(tmpFile->fileName()), this);
 }
 
 void EmbeddedFilesDialog::saveFile(Okular::EmbeddedFile *ef)

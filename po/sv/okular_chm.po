@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_chm\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2020-02-22 12:15+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -28,12 +28,12 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "stefan.asserhall@bredband.net"
 
-#: lib/ebook_epub.cpp:297
+#: lib/ebook_epub.cpp:311
 #, kde-format
 msgid "Unsupported encoding"
 msgstr "Kodning stöds inte"
 
-#: lib/ebook_epub.cpp:297
+#: lib/ebook_epub.cpp:311
 #, kde-format
 msgid ""
 "The encoding of this ebook is not supported yet. Please open a bug in "

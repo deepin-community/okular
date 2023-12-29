@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegraphics\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2009-07-30 21:57+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -58,22 +58,22 @@ msgstr "Parametrat e Përgjithshëm"
 msgid "&Use platform fonts"
 msgstr "&Përdor gërmat e platformës"
 
-#: generator_ghostview.cpp:81
+#: generator_ghostview.cpp:82
 #, kde-format
 msgid "Ghostscript"
 msgstr "Ghostscript"
 
-#: generator_ghostview.cpp:81
+#: generator_ghostview.cpp:82
 #, kde-format
 msgid "Ghostscript Backend Configuration"
 msgstr "Konfigurimi i Ghostscript Backend"
 
-#: generator_ghostview.cpp:245
+#: generator_ghostview.cpp:253
 #, kde-format
 msgid "Document version"
 msgstr "Versioni i dokumentit"
 
-#: generator_ghostview.cpp:250
+#: generator_ghostview.cpp:259
 #, kde-format
 msgid "Language Level"
 msgstr "Niveli i Gjuhës"

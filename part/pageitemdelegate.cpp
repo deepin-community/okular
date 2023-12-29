@@ -13,6 +13,7 @@
 #include <QVariant>
 
 // local includes
+#include "gui/tocmodel.h"
 #include "settings.h"
 
 #define PAGEITEMDELEGATE_INTERNALMARGIN 3
@@ -46,8 +47,8 @@ void PageItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 
 void PageItemDelegate::drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const
 {
-    QVariant pageVariant = d->index.data(PageRole);
-    QVariant labelVariant = d->index.data(PageLabelRole);
+    QVariant pageVariant = d->index.data(TOCModel::PageRole);
+    QVariant labelVariant = d->index.data(TOCModel::PageLabelRole);
     if ((labelVariant.type() != QVariant::String && !pageVariant.canConvert(QVariant::String)) || !Okular::Settings::tocPageColumn()) {
         QItemDelegate::drawDisplay(painter, option, rect, text);
         return;
@@ -63,10 +64,11 @@ void PageItemDelegate::drawDisplay(QPainter *painter, const QStyleOptionViewItem
     QRect pageRect(rect);
     pageRect.setWidth(pageRectWidth + 2 * margindelta);
     newRect.setWidth(newRect.width() - pageRectWidth - PAGEITEMDELEGATE_INTERNALMARGIN);
-    if (option.direction == Qt::RightToLeft)
+    if (option.direction == Qt::RightToLeft) {
         newRect.translate(pageRectWidth + PAGEITEMDELEGATE_INTERNALMARGIN, 0);
-    else
+    } else {
         pageRect.translate(newRect.width() + PAGEITEMDELEGATE_INTERNALMARGIN - 2 * margindelta, 0);
+    }
     QItemDelegate::drawDisplay(painter, option, newRect, text);
     QStyleOptionViewItem newoption(option);
     newoption.displayAlignment = (option.displayAlignment & ~Qt::AlignHorizontal_Mask) | Qt::AlignRight;

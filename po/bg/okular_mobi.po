@@ -49,15 +49,3 @@ msgstr "Mobipocket"
 #, kde-format
 msgid "Mobipocket Backend Configuration"
 msgstr "Настройки на ядро Mobipocket"
-
-#~ msgid "Mobipocket Backend"
-#~ msgstr "Ядро Mobipocket"
-
-#~ msgid "A mobipocket backend"
-#~ msgstr "Ядро за Mobipocket"
-
-#~ msgid "© 2008-2009 Jakub Stachowski"
-#~ msgstr "© 2008-2009 Jakub Stachowski"
-
-#~ msgid "Jakub Stachowski"
-#~ msgstr "Jakub Stachowski"

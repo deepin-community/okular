@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2020-12-30 11:16+0100\n"
 "Last-Translator: Kristóf Kiszel <kiszel.kristof@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -28,68 +28,68 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kiszel.kristof@gmail.com"
 
-#: generator_djvu.cpp:130
+#: generator_djvu.cpp:136
 #, kde-format
 msgid "Editor"
 msgstr "Szerkesztő"
 
-#: generator_djvu.cpp:131
+#: generator_djvu.cpp:137
 #, kde-format
 msgid "Publisher"
 msgstr "Kiadó"
 
-#: generator_djvu.cpp:132
+#: generator_djvu.cpp:138
 #, kde-format
 msgid "Volume"
 msgstr "Kötet"
 
-#: generator_djvu.cpp:133
+#: generator_djvu.cpp:139
 #, kde-format
 msgid "Type of document"
 msgstr "Dokumentumtípus"
 
-#: generator_djvu.cpp:135
+#: generator_djvu.cpp:141
 #, kde-format
 msgctxt "Unknown number of component files"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: generator_djvu.cpp:135
+#: generator_djvu.cpp:141
 #, kde-format
 msgid "Component Files"
 msgstr "Összetett fájlok"
 
-#: kdjvu.cpp:662
+#: kdjvu.cpp:684
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: kdjvu.cpp:665
+#: kdjvu.cpp:687
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Single Page"
 msgstr "Egy oldal"
 
-#: kdjvu.cpp:668
+#: kdjvu.cpp:690
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Bundled"
 msgstr "Kötegelt"
 
-#: kdjvu.cpp:671
+#: kdjvu.cpp:693
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Indirect"
 msgstr "Közvetett"
 
-#: kdjvu.cpp:674
+#: kdjvu.cpp:696
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Bundled (old)"
 msgstr "Kötegelt (régi)"
 
-#: kdjvu.cpp:677
+#: kdjvu.cpp:699
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Indexed (old)"

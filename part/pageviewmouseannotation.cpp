@@ -25,7 +25,7 @@
 
 #include "core/document.h"
 #include "core/page.h"
-#include "guiutils.h"
+#include "gui/guiutils.h"
 #include "pageview.h"
 #include "videowidget.h"
 
@@ -233,8 +233,9 @@ void MouseAnnotation::routePaint(QPainter *painter, const QRect paintRect)
     static const QColor borderColor = QColor::fromHsvF(0, 0, 1.0);
     static const QColor fillColor = QColor::fromHsvF(0, 0, 0.75, 0.66);
 
-    if (!isFocused())
+    if (!isFocused()) {
         return;
+    }
     /*
      * Get annotation bounding rectangle in uncropped page coordinates.
      * Distinction between AnnotationUtils::annotationGeometry() and AnnotationObjectRect::boundingRect() is,
@@ -459,7 +460,25 @@ void MouseAnnotation::performCommand(const QPoint newPos)
     QPointF normalizedRotatedMouseDelta(rotateInRect(QPointF(mouseDelta.x() / pageViewItemRect.width(), mouseDelta.y() / pageViewItemRect.height()), m_focusedAnnotation.pageViewItem->page()->rotation()));
 
     if (isMoved()) {
-        m_document->translatePageAnnotation(m_focusedAnnotation.pageNumber, m_focusedAnnotation.annotation, Okular::NormalizedPoint(normalizedRotatedMouseDelta.x(), normalizedRotatedMouseDelta.y()));
+        Okular::NormalizedPoint delta(normalizedRotatedMouseDelta.x(), normalizedRotatedMouseDelta.y());
+        const Okular::NormalizedRect annotRect = m_focusedAnnotation.annotation->boundingRectangle();
+
+        // if moving annot to the left && delta.x is big enough to move annot outside the page
+        if (delta.x < 0 && (annotRect.left + delta.x) < 0) {
+            delta.x = -annotRect.left; // update delta.x to move annot only to the left edge of the page
+        }
+        // similar checks for right, top and bottom
+        if (delta.x > 0 && (annotRect.right + delta.x) > 1) {
+            delta.x = 1 - annotRect.right;
+        }
+        if (delta.y < 0 && (annotRect.top + delta.y) < 0) {
+            delta.y = -annotRect.top;
+        }
+        if (delta.y > 0 && (annotRect.bottom + delta.y) > 1) {
+            delta.y = 1 - annotRect.bottom;
+        }
+        m_document->translatePageAnnotation(m_focusedAnnotation.pageNumber, m_focusedAnnotation.annotation, delta);
+
     } else if (isResized()) {
         QPointF delta1, delta2;
         handleToAdjust(normalizedRotatedMouseDelta, delta1, delta2, m_handle, m_focusedAnnotation.pageViewItem->page()->rotation());
@@ -514,14 +533,18 @@ MouseAnnotation::ResizeHandle MouseAnnotation::getHandleAt(const QPoint eventPos
          * and therefore maybe more than two flags are set.
          * Favor one handle in that case.
          */
-        if ((selected & RH_BottomRight) == RH_BottomRight)
+        if ((selected & RH_BottomRight) == RH_BottomRight) {
             return RH_BottomRight;
-        if ((selected & RH_TopRight) == RH_TopRight)
+        }
+        if ((selected & RH_TopRight) == RH_TopRight) {
             return RH_TopRight;
-        if ((selected & RH_TopLeft) == RH_TopLeft)
+        }
+        if ((selected & RH_TopLeft) == RH_TopLeft) {
             return RH_TopLeft;
-        if ((selected & RH_BottomLeft) == RH_BottomLeft)
+        }
+        if ((selected & RH_BottomLeft) == RH_BottomLeft) {
             return RH_BottomLeft;
+        }
     }
 
     if (selected == RH_None && ad.annotation->canBeMoved()) {

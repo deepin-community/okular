@@ -27,6 +27,8 @@ class AnnotationPrivate
 public:
     AnnotationPrivate();
 
+    OKULARCORE_EXPORT static AnnotationPrivate *get(Annotation *a);
+
     virtual ~AnnotationPrivate();
 
     AnnotationPrivate(const AnnotationPrivate &) = delete;
@@ -69,7 +71,7 @@ public:
 
     Okular::Annotation::Style m_style;
     Okular::Annotation::Window m_window;
-    QLinkedList<Okular::Annotation::Revision> m_revisions;
+    QList<Okular::Annotation::Revision> m_revisions;
 
     Annotation::DisposeDataFunction m_disposeFunc;
     QVariant m_nativeId;

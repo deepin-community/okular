@@ -17,8 +17,8 @@
 #include <core/generator.h>
 #include <core/page.h>
 
-#include "part/pagepainter.h"
-#include "part/priorities.h"
+#include "gui/pagepainter.h"
+#include "gui/priorities.h"
 #include "settings.h"
 
 #define REDRAW_TIMEOUT 250
@@ -27,7 +27,6 @@ PageItem::PageItem(QQuickItem *parent)
     : QQuickItem(parent)
     , Okular::View(QStringLiteral("PageView"))
     , m_page(nullptr)
-    , m_smooth(false)
     , m_bookmarked(false)
     , m_isThumbnail(false)
 {
@@ -70,11 +69,12 @@ void PageItem::setFlickable(QQuickItem *flickable)
     m_flickable = flickable;
 
     if (flickable) {
-        connect(flickable, SIGNAL(contentXChanged()), this, SLOT(contentXChanged()));
-        connect(flickable, SIGNAL(contentYChanged()), this, SLOT(contentYChanged()));
+        // QQuickFlickable is not exported so we need the old-style connects here
+        connect(flickable, SIGNAL(contentXChanged()), this, SLOT(contentXChanged())); // clazy:exclude=old-style-connect
+        connect(flickable, SIGNAL(contentYChanged()), this, SLOT(contentYChanged())); // clazy:exclude=old-style-connect
     }
 
-    emit flickableChanged();
+    Q_EMIT flickableChanged();
 }
 
 QQuickItem *PageItem::flickable() const
@@ -100,7 +100,7 @@ void PageItem::setDocument(DocumentItem *doc)
     connect(observer, &Observer::pageChanged, this, &PageItem::pageHasChanged);
     connect(doc->document()->bookmarkManager(), &Okular::BookmarkManager::bookmarksChanged, this, &PageItem::checkBookmarksChanged);
     setPageNumber(0);
-    emit documentChanged();
+    Q_EMIT documentChanged();
     m_redrawTimer->start();
 
     connect(doc, &DocumentItem::urlChanged, this, &PageItem::refreshPage);
@@ -119,7 +119,7 @@ void PageItem::setPageNumber(int number)
 
     m_viewPort.pageNumber = number;
     refreshPage();
-    emit pageNumberChanged();
+    Q_EMIT pageNumberChanged();
     checkBookmarksChanged();
 }
 
@@ -131,8 +131,8 @@ void PageItem::refreshPage()
         m_page = nullptr;
     }
 
-    emit implicitWidthChanged();
-    emit implicitHeightChanged();
+    Q_EMIT implicitWidthChanged();
+    Q_EMIT implicitHeightChanged();
 
     m_redrawTimer->start();
 }
@@ -151,20 +151,6 @@ int PageItem::implicitHeight() const
         return m_page->height();
     }
     return 0;
-}
-
-void PageItem::setSmooth(const bool smooth)
-{
-    if (smooth == m_smooth) {
-        return;
-    }
-    m_smooth = smooth;
-    update();
-}
-
-bool PageItem::smooth() const
-{
-    return m_smooth;
 }
 
 bool PageItem::isBookmarked()
@@ -188,7 +174,7 @@ void PageItem::setBookmarked(bool bookmarked)
         m_documentItem.data()->document()->bookmarkManager()->removeBookmark(m_viewPort.pageNumber);
     }
     m_bookmarked = bookmarked;
-    emit bookmarkedChanged();
+    Q_EMIT bookmarkedChanged();
 }
 
 QStringList PageItem::bookmarks() const
@@ -236,10 +222,10 @@ void PageItem::setBookmarkAtPos(qreal x, qreal y)
 
     if (!m_bookmarked) {
         m_bookmarked = true;
-        emit bookmarkedChanged();
+        Q_EMIT bookmarkedChanged();
     }
 
-    emit bookmarksChanged();
+    Q_EMIT bookmarksChanged();
 }
 
 void PageItem::removeBookmarkAtPos(qreal x, qreal y)
@@ -253,16 +239,16 @@ void PageItem::removeBookmarkAtPos(qreal x, qreal y)
 
     if (m_bookmarked && m_documentItem.data()->document()->bookmarkManager()->bookmarks(m_viewPort.pageNumber).count() == 0) {
         m_bookmarked = false;
-        emit bookmarkedChanged();
+        Q_EMIT bookmarkedChanged();
     }
 
-    emit bookmarksChanged();
+    Q_EMIT bookmarksChanged();
 }
 
 void PageItem::removeBookmark(const QString &bookmark)
 {
-    m_documentItem.data()->document()->bookmarkManager()->removeBookmark(bookmark);
-    emit bookmarksChanged();
+    m_documentItem.data()->document()->bookmarkManager()->removeBookmark(Okular::DocumentViewport(bookmark));
+    Q_EMIT bookmarksChanged();
 }
 
 // Reimplemented
@@ -282,8 +268,8 @@ void PageItem::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeome
 
     if (changed) {
         // Why aren't they automatically emitted?
-        emit widthChanged();
-        emit heightChanged();
+        Q_EMIT widthChanged();
+        Q_EMIT heightChanged();
     }
 }
 
@@ -344,7 +330,7 @@ void PageItem::paint()
     QPixmap pix(limits.size());
     pix.setDevicePixelRatio(dpr);
     QPainter p(&pix);
-    p.setRenderHint(QPainter::Antialiasing, m_smooth);
+    p.setRenderHint(QPainter::Antialiasing, false);
     PagePainter::paintPageOnPainter(&p, m_page, observer, flags, width(), height(), limits);
     p.end();
 
@@ -378,11 +364,11 @@ void PageItem::checkBookmarksChanged()
     bool newBookmarked = m_documentItem.data()->document()->bookmarkManager()->isBookmarked(m_viewPort.pageNumber);
     if (m_bookmarked != newBookmarked) {
         m_bookmarked = newBookmarked;
-        emit bookmarkedChanged();
+        Q_EMIT bookmarkedChanged();
     }
 
     // TODO: check the page
-    emit bookmarksChanged();
+    Q_EMIT bookmarksChanged();
 }
 
 void PageItem::contentXChanged()
@@ -410,10 +396,6 @@ void PageItem::setIsThumbnail(bool thumbnail)
     }
 
     m_isThumbnail = thumbnail;
-
-    if (thumbnail) {
-        m_smooth = false;
-    }
 
     /*
     m_redrawTimer->setInterval(thumbnail ? 0 : REDRAW_TIMEOUT);

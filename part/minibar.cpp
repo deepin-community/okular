@@ -33,7 +33,7 @@ class HoverButton : public QToolButton
 {
     Q_OBJECT
 public:
-    HoverButton(QWidget *parent);
+    explicit HoverButton(QWidget *parent);
 };
 
 MiniBarLogic::MiniBarLogic(QObject *parent, Okular::Document *document)
@@ -70,8 +70,9 @@ int MiniBarLogic::currentPage() const
 void MiniBarLogic::notifySetup(const QVector<Okular::Page *> &pageVector, int setupFlags)
 {
     // only process data when document changes
-    if (!(setupFlags & Okular::DocumentObserver::DocumentChanged))
+    if (!(setupFlags & Okular::DocumentObserver::DocumentChanged)) {
         return;
+    }
 
     // if document is closed or has no pages, hide widget
     const int pages = pageVector.count();
@@ -155,7 +156,7 @@ void MiniBarLogic::notifyCurrentPageChanged(int previousPage, int currentPage)
 MiniBar::MiniBar(QWidget *parent, MiniBarLogic *miniBarLogic)
     : QWidget(parent)
     , m_miniBarLogic(miniBarLogic)
-    , m_oldToobarParent(nullptr)
+    , m_oldToolbarParent(nullptr)
 {
     setObjectName(QStringLiteral("miniBar"));
 
@@ -205,7 +206,7 @@ MiniBar::MiniBar(QWidget *parent, MiniBarLogic *miniBarLogic)
     resizeForPage(0, QString());
 
     // connect signals from child widgets to internal handlers / signals bouncers
-    connect(m_pageNumberEdit, &PageNumberEdit::returnPressed, this, &MiniBar::slotChangePageFromReturn);
+    connect(m_pageNumberEdit, &PageNumberEdit::returnKeyPressed, this, &MiniBar::slotChangePageFromReturn);
     connect(m_pageLabelEdit, &PageLabelEdit::pageNumberChosen, this, &MiniBar::slotChangePage);
     connect(m_pagesButton, &QAbstractButton::clicked, this, &MiniBar::gotoPage);
     connect(m_prevButton, &QAbstractButton::clicked, this, &MiniBar::prevPage);
@@ -226,11 +227,11 @@ void MiniBar::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::ParentChange) {
         QToolBar *tb = dynamic_cast<QToolBar *>(parent());
-        if (tb != m_oldToobarParent) {
-            if (m_oldToobarParent) {
-                disconnect(m_oldToobarParent, &QToolBar::iconSizeChanged, this, &MiniBar::slotToolBarIconSizeChanged);
+        if (tb != m_oldToolbarParent) {
+            if (m_oldToolbarParent) {
+                disconnect(m_oldToolbarParent, &QToolBar::iconSizeChanged, this, &MiniBar::slotToolBarIconSizeChanged);
             }
-            m_oldToobarParent = tb;
+            m_oldToolbarParent = tb;
             if (tb) {
                 connect(tb, &QToolBar::iconSizeChanged, this, &MiniBar::slotToolBarIconSizeChanged);
                 slotToolBarIconSizeChanged();
@@ -246,7 +247,7 @@ bool MiniBar::eventFilter(QObject *target, QEvent *event)
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
             int key = keyEvent->key();
             if (key == Qt::Key_PageUp || key == Qt::Key_PageDown || key == Qt::Key_Up || key == Qt::Key_Down) {
-                emit forwardKeyPressEvent(keyEvent);
+                Q_EMIT forwardKeyPressEvent(keyEvent);
                 return true;
             }
         }
@@ -276,19 +277,19 @@ void MiniBar::slotChangePage(int pageNumber)
 
 void MiniBar::slotEmitNextPage()
 {
-    // emit signal
-    emit nextPage();
+    // Q_EMIT signal
+    Q_EMIT nextPage();
 }
 
 void MiniBar::slotEmitPrevPage()
 {
-    // emit signal
-    emit prevPage();
+    // Q_EMIT signal
+    Q_EMIT prevPage();
 }
 
 void MiniBar::slotToolBarIconSizeChanged()
 {
-    const QSize buttonSize = m_oldToobarParent->iconSize();
+    const QSize buttonSize = m_oldToolbarParent->iconSize();
     m_prevButton->setIconSize(buttonSize);
     m_nextButton->setIconSize(buttonSize);
 }
@@ -350,28 +351,32 @@ void ProgressWidget::slotGotoNormalizedPage(float index)
 {
     // figure out page number and go to that page
     int number = (int)(index * (float)m_document->pages());
-    if (number >= 0 && number < (int)m_document->pages() && number != (int)m_document->currentPage())
+    if (number >= 0 && number < (int)m_document->pages() && number != (int)m_document->currentPage()) {
         m_document->setViewportPage(number);
+    }
 }
 
 void ProgressWidget::mouseMoveEvent(QMouseEvent *e)
 {
-    if ((QApplication::mouseButtons() & Qt::LeftButton) && width() > 0)
+    if ((QApplication::mouseButtons() & Qt::LeftButton) && width() > 0) {
         slotGotoNormalizedPage((float)(QApplication::isRightToLeft() ? width() - e->x() : e->x()) / (float)width());
+    }
 }
 
 void ProgressWidget::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton && width() > 0)
+    if (e->button() == Qt::LeftButton && width() > 0) {
         slotGotoNormalizedPage((float)(QApplication::isRightToLeft() ? width() - e->x() : e->x()) / (float)width());
+    }
 }
 
 void ProgressWidget::wheelEvent(QWheelEvent *e)
 {
-    if (e->angleDelta().y() > 0)
-        emit nextPage();
-    else
-        emit prevPage();
+    if (e->angleDelta().y() > 0) {
+        Q_EMIT nextPage();
+    } else {
+        Q_EMIT prevPage();
+    }
 }
 
 void ProgressWidget::paintEvent(QPaintEvent *e)
@@ -390,14 +395,16 @@ void ProgressWidget::paintEvent(QPaintEvent *e)
 
     QPalette pal = palette();
     // paint clear rect
-    if (cRect.isValid())
+    if (cRect.isValid()) {
         p.fillRect(cRect, pal.color(QPalette::Active, QPalette::HighlightedText));
+    }
     // draw a frame-like outline
     // p.setPen( palette().active().mid() );
     // p.drawRect( 0,0, w, h );
     // paint fill rect
-    if (fRect.isValid())
+    if (fRect.isValid()) {
         p.fillRect(fRect, pal.color(QPalette::Active, QPalette::Highlight));
+    }
     if (l && l != w) {
         p.setPen(pal.color(QPalette::Active, QPalette::Highlight).darker(120));
         int delta = QApplication::isRightToLeft() ? w - l : l;
@@ -411,7 +418,7 @@ PageLabelEdit::PageLabelEdit(MiniBar *parent)
     : PagesEdit(parent)
 {
     setVisible(false);
-    connect(this, &PageLabelEdit::returnPressed, this, &PageLabelEdit::pageChosen);
+    connect(this, &PageLabelEdit::returnKeyPressed, this, &PageLabelEdit::pageChosen);
 }
 
 void PageLabelEdit::setText(const QString &newText)
@@ -442,7 +449,7 @@ void PageLabelEdit::pageChosen()
     const QString newInput = text();
     const int pageNumber = m_labelPageMap.value(newInput, -1);
     if (pageNumber != -1) {
-        emit pageNumberChosen(pageNumber);
+        Q_EMIT pageNumberChosen(pageNumber);
     } else {
         setText(m_lastLabel);
     }
@@ -512,10 +519,11 @@ void PagesEdit::updatePalette()
 {
     QPalette pal;
 
-    if (hasFocus())
+    if (hasFocus()) {
         pal.setColor(QPalette::Active, QPalette::Base, QApplication::palette().color(QPalette::Active, QPalette::Base));
-    else
+    } else {
         pal.setColor(QPalette::Base, QApplication::palette().color(QPalette::Base).darker(102));
+    }
 
     setPalette(pal);
 }
@@ -524,8 +532,9 @@ void PagesEdit::focusInEvent(QFocusEvent *e)
 {
     // select all text
     selectAll();
-    if (e->reason() == Qt::MouseFocusReason)
+    if (e->reason() == Qt::MouseFocusReason) {
         m_eatClick = true;
+    }
     // change background color to the default 'edit' color
     updatePalette();
     // call default handler
@@ -543,17 +552,19 @@ void PagesEdit::focusOutEvent(QFocusEvent *e)
 void PagesEdit::mousePressEvent(QMouseEvent *e)
 {
     // if this click got the focus in, don't process the event
-    if (!m_eatClick)
+    if (!m_eatClick) {
         KLineEdit::mousePressEvent(e);
+    }
     m_eatClick = false;
 }
 
 void PagesEdit::wheelEvent(QWheelEvent *e)
 {
-    if (e->angleDelta().y() > 0)
+    if (e->angleDelta().y() > 0) {
         m_miniBar->slotEmitNextPage();
-    else
+    } else {
         m_miniBar->slotEmitPrevPage();
+    }
 }
 
 /** HoverButton **/

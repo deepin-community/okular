@@ -10,6 +10,7 @@
 
 #include <KLocalizedString>
 
+#include <QComboBox>
 #include <QFormLayout>
 #include <QLabel>
 #include <QLineEdit>
@@ -18,6 +19,14 @@ DlgAnnotations::DlgAnnotations(QWidget *parent)
     : QWidget(parent)
 {
     QFormLayout *layout = new QFormLayout(this);
+
+    // BEGIN Annotation toolbar: Combo box to set the annotation toolbar associated to annotation action in tool menu
+    QComboBox *primaryAnnotationToolBar = new QComboBox(this);
+    primaryAnnotationToolBar->addItem(i18nc("item:inlistbox Config dialog, general page", "Full Annotation Toolbar"));
+    primaryAnnotationToolBar->addItem(i18nc("item:inlistbox Config dialog, general page", "Quick Annotation Toolbar"));
+    primaryAnnotationToolBar->setObjectName(QStringLiteral("kcfg_PrimaryAnnotationToolBar"));
+    layout->addRow(i18nc("label:listbox Config dialog, general page", "Annotation toolbar:"), primaryAnnotationToolBar);
+    // END Annotation toolbar
 
     // BEGIN Author row: Line edit to set the annotation’s default author value.
     QLineEdit *authorLineEdit = new QLineEdit(this);

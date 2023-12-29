@@ -38,16 +38,31 @@ if(Poppler_Qt5_FOUND)
         LINK_LIBRARIES Qt5::Widgets Qt5::Test okularcore
     )
 
-    ecm_add_test(kjsfunctionstest.cpp
-        TEST_NAME "kjsfunctionstest"
+    ecm_add_test(jsfunctionstest.cpp
+        TEST_NAME "jsfunctionstest"
         LINK_LIBRARIES Qt5::Widgets Qt5::Test okularcore
     )
-    
+
     ecm_add_test(formattest.cpp
         TEST_NAME "formattest"
         LINK_LIBRARIES Qt5::Widgets Qt5::Test okularcore
     )
+
+    ecm_add_test(keystroketest.cpp
+        TEST_NAME "keystroketest"
+        LINK_LIBRARIES Qt5::Widgets Qt5::Test okularcore
+    )
+
+    ecm_add_test(signunsignedfieldtest.cpp
+        TEST_NAME "signunsignedfieldtest"
+        LINK_LIBRARIES Qt5::Widgets Qt5::Test okularcore
+    )
 endif()
+
+ecm_add_test(suggestedfilenametest.cpp
+    TEST_NAME "suggestedfilenametest"
+    LINK_LIBRARIES Qt5::Test okularcore KF5::I18n
+)
 
 ecm_add_test(documenttest.cpp
     TEST_NAME "documenttest"
@@ -100,18 +115,26 @@ ecm_add_test(calculatetexttest.cpp
 )
 
 if(KF5Activities_FOUND AND BUILD_DESKTOP)
-	ecm_add_test(mainshelltest.cpp ../shell/okular_main.cpp ../shell/shellutils.cpp ../shell/shell.cpp closedialoghelper.cpp
+	ecm_add_test(mainshelltest.cpp ../shell/okular_main.cpp ../shell/shellutils.cpp ../shell/shell.cpp ../shell/welcomescreen.cpp ../shell/recentitemsmodel.cpp closedialoghelper.cpp
 		TEST_NAME "mainshelltest"
 		LINK_LIBRARIES Qt5::Test KF5::Activities okularpart okularcore
 	)
 	target_compile_definitions(mainshelltest PRIVATE OKULAR_BINARY="$<TARGET_FILE:okular>")
+
+	if (HAVE_X11)
+        target_link_libraries(mainshelltest Qt5::X11Extras)
+    endif()
 endif()
 
 if(BUILD_DESKTOP)
-    ecm_add_test(annotationtoolbartest.cpp ../shell/okular_main.cpp ../shell/shellutils.cpp ../shell/shell.cpp closedialoghelper.cpp
+    ecm_add_test(annotationtoolbartest.cpp ../shell/okular_main.cpp ../shell/shellutils.cpp ../shell/shell.cpp ../shell/welcomescreen.cpp ../shell/recentitemsmodel.cpp closedialoghelper.cpp ../shell/welcomescreen.ui
         TEST_NAME "annotationtoolbartest"
         LINK_LIBRARIES Qt5::Test okularpart
     )
+
+    if (HAVE_X11)
+        target_link_libraries(annotationtoolbartest Qt5::X11Extras)
+    endif()
 endif()
 
 ecm_add_test(generatorstest.cpp

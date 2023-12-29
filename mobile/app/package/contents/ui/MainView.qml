@@ -4,12 +4,14 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-import QtQuick 2.1
-import QtQuick.Controls 2.3 as QQC2
+import QtQuick 2.15
+import QtQuick.Controls 2.15 as QQC2
 import org.kde.okular 2.0 as Okular
-import org.kde.kirigami 2.10 as Kirigami
+import org.kde.kirigami 2.17 as Kirigami
 
 Kirigami.Page {
+    id: root
+
     property alias document: pageArea.document
     leftPadding: 0
     topPadding: 0
@@ -34,9 +36,49 @@ Kirigami.Page {
         onClicked: fileBrowserRoot.controlsVisible = !fileBrowserRoot.controlsVisible
     }
 
-    // TODO KF 5.64 replace usage by upstream PlaceholderMessage
-    PlaceholderMessage {
-        visible: documentItem.url.toString().length === 0
+    Connections {
+        target: root.document
+
+        function onError(text, duration) {
+            inlineMessage.showMessage(Kirigami.MessageType.Error, text,  duration);
+        }
+
+        function onWarning(text, duration) {
+            inlineMessage.showMessage(Kirigami.MessageType.Warning, text,  duration);
+        }
+
+        function onNotice(text, duration) {
+            inlineMessage.showMessage(Kirigami.MessageType.Information, text,  duration);
+        }
+    }
+
+    Kirigami.InlineMessage {
+        id: inlineMessage
+        width: parent.width
+
+        function showMessage(type, text, duration) {
+            inlineMessage.type = type;
+            inlineMessage.text = text;
+            inlineMessage.visible = true;
+            inlineMessageTimer.interval = duration > 0 ? duration : 500 + 100 * text.length;
+        }
+
+        onVisibleChanged: {
+            if (visible) {
+                inlineMessageTimer.start()
+            } else {
+                inlineMessageTimer.stop()
+            }
+        }
+
+        Timer {
+            id: inlineMessageTimer
+            onTriggered: inlineMessage.visible = false
+        }
+    }
+
+    Kirigami.PlaceholderMessage {
+        visible: !document.opened
         text: i18n("No document open")
         helpfulAction: openDocumentAction
         width: parent.width - (Kirigami.Units.largeSpacing * 4)
@@ -46,7 +88,9 @@ Kirigami.Page {
     Connections {
         id: bookmarkConnection
         target: pageArea.page
-        onBookmarkedChanged: actions.main.checked = pageArea.page.bookmarked
+        function onBookmarkedChanged() {
+            actions.main.checked = pageArea.page.bookmarked
+        }
     }
     QQC2.ProgressBar {
         id: bar

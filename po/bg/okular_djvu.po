@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_djvu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2009-09-05 21:02+0300\n"
 "Last-Translator: Yasen Pramatarov <yasen@lindeas.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -28,109 +28,69 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "krasi.arnaudov@gmail.com"
 
-#: generator_djvu.cpp:130
+#: generator_djvu.cpp:136
 #, kde-format
 msgid "Editor"
 msgstr "Редактор"
 
-#: generator_djvu.cpp:131
+#: generator_djvu.cpp:137
 #, kde-format
 msgid "Publisher"
 msgstr "Издател"
 
-#: generator_djvu.cpp:132
+#: generator_djvu.cpp:138
 #, kde-format
 msgid "Volume"
 msgstr "Том"
 
-#: generator_djvu.cpp:133
+#: generator_djvu.cpp:139
 #, kde-format
 msgid "Type of document"
 msgstr "Вид на документа"
 
-#: generator_djvu.cpp:135
+#: generator_djvu.cpp:141
 #, kde-format
 msgctxt "Unknown number of component files"
 msgid "Unknown"
 msgstr "Неизвестен"
 
-#: generator_djvu.cpp:135
+#: generator_djvu.cpp:141
 #, kde-format
 msgid "Component Files"
 msgstr "Компонентни файлове"
 
-#: kdjvu.cpp:662
+#: kdjvu.cpp:684
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Unknown"
 msgstr "Неизвестен"
 
-#: kdjvu.cpp:665
+#: kdjvu.cpp:687
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Single Page"
 msgstr "Една страница"
 
-#: kdjvu.cpp:668
+#: kdjvu.cpp:690
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Bundled"
 msgstr "Няколко страници"
 
-#: kdjvu.cpp:671
+#: kdjvu.cpp:693
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Indirect"
 msgstr "Индиректен"
 
-#: kdjvu.cpp:674
+#: kdjvu.cpp:696
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Bundled (old)"
 msgstr "Няколко страници (стар)"
 
-#: kdjvu.cpp:677
+#: kdjvu.cpp:699
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Indexed (old)"
 msgstr "Индексиран (стар)"
-
-#~ msgid "DjVu Backend"
-#~ msgstr "Ядро DjVu"
-
-#~ msgid "DjVu backend based on DjVuLibre."
-#~ msgstr "Ядро за DjVu на основата на DjVuLibre"
-
-#~ msgid "© 2006-2008 Pino Toscano"
-#~ msgstr "© 2006-2008 Pino Toscano"
-
-#~ msgid "Pino Toscano"
-#~ msgstr "Pino Toscano"
-
-#~ msgctxt "Unknown title"
-#~ msgid "Unknown"
-#~ msgstr "Неизвестно"
-
-#~ msgctxt "Unknown author"
-#~ msgid "Unknown"
-#~ msgstr "Неизвестен"
-
-#~ msgctxt "Unknown editor"
-#~ msgid "Unknown"
-#~ msgstr "Неизвестен"
-
-#~ msgctxt "Unknown publisher"
-#~ msgid "Unknown"
-#~ msgstr "Неизвестен"
-
-#~ msgctxt "Unknown creation date"
-#~ msgid "Unknown"
-#~ msgstr "Неизвестно"
-
-#~ msgctxt "Unknown volume information"
-#~ msgid "Unknown"
-#~ msgstr "Неизвестно"
-
-#~ msgctxt "Unknown type of document"
-#~ msgid "Unknown"
-#~ msgstr "Неизвестен"

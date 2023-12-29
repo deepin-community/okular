@@ -12,19 +12,24 @@
 #define _OKULAR_GENERATOR_PDF_H_
 
 //#include "synctex/synctex_parser.h"
-#include <config-okular-poppler.h>
 
 #include <poppler-qt5.h>
+#include <poppler-version.h>
+
+#define POPPLER_VERSION_MACRO ((POPPLER_VERSION_MAJOR << 16) | (POPPLER_VERSION_MINOR << 8) | (POPPLER_VERSION_MICRO))
 
 #include <QBitArray>
 #include <QPointer>
 
+#include <core/annotations.h>
 #include <core/document.h>
 #include <core/generator.h>
 #include <core/printoptionswidget.h>
 #include <interfaces/configinterface.h>
 #include <interfaces/printinterface.h>
 #include <interfaces/saveinterface.h>
+
+#include <unordered_map>
 
 class PDFOptionsPage;
 class PopplerAnnotationProxy;
@@ -68,6 +73,7 @@ public:
     }
     QAbstractItemModel *layersModel() const override;
     void opaqueAction(const Okular::BackendOpaqueAction *action) override;
+    void freeOpaqueActionContents(const Okular::BackendOpaqueAction &action) override;
 
     // [INHERITED] document information
     bool isAllowed(Okular::Permission permission) const override;
@@ -76,7 +82,7 @@ public:
     QImage image(Okular::PixmapRequest *request) override;
 
     // [INHERITED] print page using an already configured kprinter
-    bool print(QPrinter &printer) override;
+    Okular::Document::PrintError print(QPrinter &printer) override;
 
     // [INHERITED] reply to some metadata requests
     QVariant metaData(const QString &key, const QVariant &option) const override;
@@ -102,14 +108,14 @@ public:
 
     Okular::CertificateStore *certificateStore() const override;
 
+    QByteArray requestFontData(const Okular::FontInfo &font) override;
+
+    static void okularToPoppler(const Okular::NewSignatureData &oData, Poppler::PDFConverter::NewSignatureData *pData);
+
 protected:
     SwapBackingFileResult swapBackingFile(QString const &newFileName, QVector<Okular::Page *> &newPagesVector) override;
     bool doCloseDocument() override;
     Okular::TextPage *textPage(Okular::TextRequest *request) override;
-    Q_INVOKABLE Okular::Generator::PrintError printError() const;
-
-protected Q_SLOTS:
-    void requestFontData(const Okular::FontInfo &font, QByteArray *data);
 
 private:
     Okular::Document::OpenResult init(QVector<Okular::Page *> &pagesVector, const QString &password);
@@ -121,7 +127,7 @@ private:
     // fetch the transition information and add it to the page
     void addTransition(Poppler::Page *pdfPage, Okular::Page *page);
     // fetch the poppler page form fields
-    QLinkedList<Okular::FormField *> getFormFields(Poppler::Page *popplerPage);
+    QList<Okular::FormField *> getFormFields(Poppler::Page *popplerPage);
 
     Okular::TextPage *abstractTextPage(const QList<Poppler::TextBox *> &text, double height, double width, int rot);
 
@@ -151,8 +157,6 @@ private:
     QBitArray rectsGenerated;
 
     QPointer<PDFOptionsPage> pdfOptionsPage;
-
-    PrintError lastPrintError;
 };
 
 #endif

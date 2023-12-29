@@ -7,7 +7,7 @@
 #include "documentitem.h"
 
 #include <QMimeDatabase>
-#include <QtQml> // krazy:exclude=includes
+#include <QQmlEngine>
 
 #ifdef Q_OS_ANDROID
 #include <QAndroidJniObject>
@@ -18,7 +18,9 @@
 #include <core/document_p.h>
 #include <core/page.h>
 
-#include "part/tocmodel.h"
+#include "gui/signatureguiutils.h"
+#include "gui/signaturemodel.h"
+#include "gui/tocmodel.h"
 
 DocumentItem::DocumentItem(QObject *parent)
     : QObject(parent)
@@ -27,21 +29,32 @@ DocumentItem::DocumentItem(QObject *parent)
     , m_searchInProgress(false)
 {
     qmlRegisterUncreatableType<TOCModel>("org.kde.okular.private", 1, 0, "TOCModel", QStringLiteral("Do not create objects of this type."));
+    qmlRegisterUncreatableType<SignatureModel>("org.kde.okular.private", 1, 0, "SignatureModel", QStringLiteral("Do not create objects of this type."));
     Okular::Settings::instance(QStringLiteral("okularproviderrc"));
     m_document = new Okular::Document(nullptr);
     m_tocModel = new TOCModel(m_document, this);
+    m_signaturesModel = new SignatureModel(m_document, this);
 
     connect(m_document, &Okular::Document::searchFinished, this, &DocumentItem::searchFinished);
     connect(m_document->bookmarkManager(), &Okular::BookmarkManager::bookmarksChanged, this, &DocumentItem::bookmarkedPagesChanged);
     connect(m_document->bookmarkManager(), &Okular::BookmarkManager::bookmarksChanged, this, &DocumentItem::bookmarksChanged);
+    connect(m_document, &Okular::Document::error, this, &DocumentItem::error);
+    connect(m_document, &Okular::Document::warning, this, &DocumentItem::warning);
+    connect(m_document, &Okular::Document::notice, this, &DocumentItem::notice);
 }
 
 DocumentItem::~DocumentItem()
 {
+    delete m_signaturesModel;
     delete m_document;
 }
 
 void DocumentItem::setUrl(const QUrl &url)
+{
+    openUrl(url, {});
+}
+
+void DocumentItem::openUrl(const QUrl &url, const QString &password)
 {
     m_document->closeDocument();
     // TODO: password
@@ -50,12 +63,12 @@ void DocumentItem::setUrl(const QUrl &url)
     QUrl realUrl = url; // NOLINT(performance-unnecessary-copy-initialization) because of the ifdef below this can't be const &
 
 #ifdef Q_OS_ANDROID
-    realUrl = QUrl(QtAndroid::androidActivity().callObjectMethod("contentUrlToFd", "(Ljava/lang/String;)Ljava/lang/String;", QAndroidJniObject::fromString(url.toString()).object<jstring>()).toString());
+    realUrl = QUrl(QtAndroid::androidActivity().callObjectMethod("contentUrlToFd", "(Ljava/lang/String;)Ljava/lang/String;", QAndroidJniObject::fromString(url.toString(QUrl::FullyEncoded)).object<jstring>()).toString());
 #endif
 
     const QString path = realUrl.isLocalFile() ? realUrl.toLocalFile() : QStringLiteral("-");
 
-    m_document->openDocument(path, realUrl, db.mimeTypeForUrl(realUrl));
+    const Okular::Document::OpenResult res = m_document->openDocument(path, realUrl, db.mimeTypeForUrl(realUrl), password);
 
     m_tocModel->clear();
     m_tocModel->fill(m_document->documentSynopsis());
@@ -65,13 +78,28 @@ void DocumentItem::setUrl(const QUrl &url)
     for (uint i = 0; i < m_document->pages(); ++i) {
         m_matchingPages << (int)i;
     }
-    emit matchingPagesChanged();
-    emit urlChanged();
-    emit pageCountChanged();
-    emit openedChanged();
-    emit supportsSearchingChanged();
-    emit windowTitleForDocumentChanged();
-    emit bookmarkedPagesChanged();
+    m_needsPassword = res == Okular::Document::OpenNeedsPassword;
+    Q_EMIT matchingPagesChanged();
+    Q_EMIT urlChanged();
+    Q_EMIT pageCountChanged();
+    Q_EMIT openedChanged();
+    Q_EMIT needsPasswordChanged();
+    Q_EMIT supportsSearchingChanged();
+    Q_EMIT windowTitleForDocumentChanged();
+    Q_EMIT bookmarkedPagesChanged();
+
+    KMessageWidget::MessageType messageType;
+    QString message;
+    std::tie(messageType, message) = SignatureGuiUtils::documentSignatureMessageWidgetText(m_document);
+    if (!message.isEmpty()) {
+        if (messageType == KMessageWidget::Information) {
+            Q_EMIT notice(message, -1);
+        } else if (messageType == KMessageWidget::Warning) {
+            Q_EMIT warning(message, -1);
+        } else {
+            qWarning() << "Unexpected message type" << messageType;
+        }
+    }
 }
 
 QString DocumentItem::windowTitleForDocument() const
@@ -100,7 +128,7 @@ void DocumentItem::setCurrentPage(int page)
 {
     m_document->setViewportPage(page);
     m_tocModel->setCurrentViewport(m_document->viewport());
-    emit currentPageChanged();
+    Q_EMIT currentPageChanged();
 }
 
 int DocumentItem::currentPage() const
@@ -126,6 +154,11 @@ QVariantList DocumentItem::matchingPages() const
 TOCModel *DocumentItem::tableOfContents() const
 {
     return m_tocModel;
+}
+
+SignatureModel *DocumentItem::signaturesModel() const
+{
+    return m_signaturesModel;
 }
 
 QVariantList DocumentItem::bookmarkedPages() const
@@ -179,7 +212,7 @@ void DocumentItem::searchText(const QString &text)
 
     if (!m_searchInProgress) {
         m_searchInProgress = true;
-        emit searchInProgressChanged();
+        Q_EMIT searchInProgressChanged();
     }
 }
 
@@ -192,10 +225,15 @@ void DocumentItem::resetSearch()
     }
     if (m_searchInProgress) {
         m_searchInProgress = false;
-        emit searchInProgressChanged();
+        Q_EMIT searchInProgressChanged();
     }
 
-    emit matchingPagesChanged();
+    Q_EMIT matchingPagesChanged();
+}
+
+void DocumentItem::setPassword(const QString &password)
+{
+    openUrl(m_document->currentDocument(), password);
 }
 
 Okular::Document *DocumentItem::document()
@@ -205,8 +243,9 @@ Okular::Document *DocumentItem::document()
 
 Observer *DocumentItem::thumbnailObserver()
 {
-    if (!m_thumbnailObserver)
+    if (!m_thumbnailObserver) {
         m_thumbnailObserver = new Observer(this);
+    }
 
     return m_thumbnailObserver;
 }
@@ -237,9 +276,9 @@ void DocumentItem::searchFinished(int id, Okular::Document::SearchStatus endStat
 
     if (m_searchInProgress) {
         m_searchInProgress = false;
-        emit searchInProgressChanged();
+        Q_EMIT searchInProgressChanged();
     }
-    emit matchingPagesChanged();
+    Q_EMIT matchingPagesChanged();
 }
 
 // Observer
@@ -257,5 +296,5 @@ Observer::~Observer()
 
 void Observer::notifyPageChanged(int page, int flags)
 {
-    emit pageChanged(page, flags);
+    Q_EMIT pageChanged(page, flags);
 }

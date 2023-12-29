@@ -7,12 +7,15 @@
   <name>XPS</name>
   <name xml:lang="ar">XPS</name>
   <name xml:lang="az">XPS</name>
+  <name xml:lang="be">XPS</name>
+  <name xml:lang="bg">XPS</name>
   <name xml:lang="ca">XPS</name>
   <name xml:lang="ca-valencia">XPS</name>
   <name xml:lang="cs">XPS</name>
   <name xml:lang="de">XPS</name>
   <name xml:lang="el">XPS</name>
   <name xml:lang="en-GB">XPS</name>
+  <name xml:lang="eo">XPS</name>
   <name xml:lang="es">XPS</name>
   <name xml:lang="et">XPS</name>
   <name xml:lang="eu">XPS</name>
@@ -20,8 +23,10 @@
   <name xml:lang="fr">XPS</name>
   <name xml:lang="gl">XPS</name>
   <name xml:lang="hi">एक्सपीएस</name>
+  <name xml:lang="hu">XPS</name>
   <name xml:lang="ia">XPS</name>
   <name xml:lang="it">XPS</name>
+  <name xml:lang="ka">XPS</name>
   <name xml:lang="ko">XPS</name>
   <name xml:lang="lt">XPS</name>
   <name xml:lang="ml">എക്സ് പി എസ്</name>
@@ -42,27 +47,33 @@
   <name xml:lang="ta">XPS</name>
   <name xml:lang="tr">XPS</name>
   <name xml:lang="uk">XPS</name>
+  <name xml:lang="vi">XPS</name>
   <name xml:lang="x-test">xxXPSxx</name>
   <name xml:lang="zh-CN">XPS</name>
   <name xml:lang="zh-TW">XPS</name>
   <summary>Adds support for reading XPS documents</summary>
   <summary xml:lang="ar">يضيف دعم لقراءة مستندات XPS</summary>
   <summary xml:lang="az">XPS sənədlərini oxumaq üçün dəstək əlavə edir</summary>
+  <summary xml:lang="be">Падтрымка чытання дакументаў XPS</summary>
+  <summary xml:lang="bg">Добавя поддръжка за четене на XPS документи</summary>
   <summary xml:lang="ca">Afegeix la implementació per a llegir documents XPS</summary>
   <summary xml:lang="ca-valencia">Afig la implementació per a llegir documents XPS</summary>
   <summary xml:lang="cs">Přidává podporu pro čtení dokumentů XPS</summary>
   <summary xml:lang="de">Bietet Unterstützung zum Lesen von XPS-Dokumenten</summary>
   <summary xml:lang="el">Προσθέτει υποστήριξη για την ανάγνωση εγγράφων XPS</summary>
   <summary xml:lang="en-GB">Adds support for reading XPS documents</summary>
+  <summary xml:lang="eo">Aldonas subtenon por legi XPS-dokumentojn</summary>
   <summary xml:lang="es">Permite la lectura de documentos XPS</summary>
   <summary xml:lang="et">XPS-dokumentide lugemise toetus</summary>
   <summary xml:lang="eu">XPS dokumentuak irakurtzeko euskarria gehitzen du</summary>
   <summary xml:lang="fi">Lisää XPS-tiedostojen lukutuen</summary>
   <summary xml:lang="fr">Permet la lecture des documents XPS</summary>
-  <summary xml:lang="gl">Engade a posibilidade de ler documentos XPS</summary>
+  <summary xml:lang="gl">Engade a posibilidade de ler documentos XPS.</summary>
   <summary xml:lang="hi">एक्सपीएस दस्तावेज़ पढ़ने के लिए समर्थन जोड़ता है</summary>
+  <summary xml:lang="hu">Támogatás XPS-dokumentumok olvasásához</summary>
   <summary xml:lang="ia">Adde supporto per leger documentos XPS</summary>
   <summary xml:lang="it">Aggiunge il supporto per la lettura di documenti XPS</summary>
+  <summary xml:lang="ka">XPS დოკუმენტების კითხვის მხარდაჭერის დამატება</summary>
   <summary xml:lang="ko">XPS 문서 읽기 지원 추가</summary>
   <summary xml:lang="lt">Prideda palaikymą XPS dokumentų skaitymui</summary>
   <summary xml:lang="ml">എക്‌സ് പി എസ് പ്രമാണങ്ങൾ വായിക്കാൻ പിന്തുണാ ചേർക്കുന്നു</summary>
@@ -83,6 +94,7 @@
   <summary xml:lang="ta">XPS ஆவணங்களைப் படிப்பதற்கான ஆதரவை சேர்க்கும்</summary>
   <summary xml:lang="tr">XPS belgelerini okuma desteği ekler</summary>
   <summary xml:lang="uk">Додає підтримку читання документів XPS</summary>
+  <summary xml:lang="vi">Thêm hỗ trợ đọc tài liệu XPS</summary>
   <summary xml:lang="x-test">xxAdds support for reading XPS documentsxx</summary>
   <summary xml:lang="zh-CN">增加对 XPS 文档的阅读支持</summary>
   <summary xml:lang="zh-TW">加入讀取 XPS 文件的支援</summary>
@@ -91,9 +103,9 @@
   </provides>
   <url type="homepage">https://okular.kde.org</url>
   <releases>
-    <release version="21.08.3" date="2021-11-04"/>
-    <release version="21.08.2" date="2021-10-07"/>
-    <release version="21.08.1" date="2021-09-02"/>
-    <release version="21.08.0" date="2021-08-12"/>
+    <release version="23.08.1" date="2023-09-14"/>
+    <release version="23.08.0" date="2023-08-24"/>
+    <release version="23.04.3" date="2023-07-06"/>
+    <release version="23.04.2" date="2023-06-08"/>
   </releases>
 </component>

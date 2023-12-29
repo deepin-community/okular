@@ -4,13 +4,13 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2007, 2008.
-# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2018, 2019, 2020, 2021.
+# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2018, 2019, 2020, 2021, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: okular_poppler\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-09-25 01:38+0000\n"
-"PO-Revision-Date: 2021-05-15 08:34+0300\n"
+"POT-Creation-Date: 2023-06-29 00:44+0000\n"
+"PO-Revision-Date: 2023-06-29 08:53+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -31,76 +31,133 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "fr.ivan@ukrainian-orthodox.org,yurchor@ukr.net"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_OverprintPreviewEnabled)
+#: conf/pdfsettingswidget.ui:17
+#, kde-format
+msgid "Enable overprint preview"
+msgstr "Увімкнути попередній перегляд наддруку"
+
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: conf/pdfsettingswidget.ui:19
+#: conf/pdfsettingswidget.ui:26
 #, kde-format
 msgid "Enhance thin lines:"
 msgstr "Покращення тонких ліній:"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:30 generator_pdf.cpp:856
+#: conf/pdfsettingswidget.ui:37 generator_pdf.cpp:947
 #, kde-format
 msgid "No"
 msgstr "Без оптимізації"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:35
+#: conf/pdfsettingswidget.ui:42
 #, kde-format
 msgid "Solid"
 msgstr "Суцільні"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:40
+#: conf/pdfsettingswidget.ui:47
 #, kde-format
 msgid "Shape"
 msgstr "Надати форму"
 
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: conf/pdfsettingswidget.ui:72
+#, kde-format
+msgid "Default scaling mode when printing:"
+msgstr "Типовий режим масштабування при друці:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:80 generator_pdf.cpp:103
+#, kde-format
+msgid "Fit to printable area"
+msgstr "За областю друку"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:85 generator_pdf.cpp:104
+#, kde-format
+msgid "Fit to full page"
+msgstr "За цілою сторінкою"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:90 generator_pdf.cpp:105
+#, kde-format
+msgid "None; print original size"
+msgstr "Немає, друкувати початковий розмір"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CheckOCSPServers)
+#: conf/pdfsettingswidget.ui:113
+#, kde-format
+msgid ""
+"Enabling this option will allow Okular to contact 3rd-party OCSP servers to "
+"check if the certificates used for digital signing have been revoked since "
+"their creation."
+msgstr ""
+"Позначення цього пункту дозволить Okular з'єднуватися зі сторонніми "
+"серверами OCSP для перевірки, чи не було відкликано з моменту їх створення "
+"сертифікати, які використовуються для цифрових підписів."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckOCSPServers)
+#: conf/pdfsettingswidget.ui:116
+#, kde-format
+msgid ""
+"Check revocation of digital signatures' certificates using 3rd-party servers"
+msgstr ""
+"Перевіряти відкликання сертифікатів цифрових підписів за допомогою сторонніх "
+"серверів"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: conf/pdfsettingswidget.ui:138
+#, kde-format
+msgid "Signature backend:"
+msgstr "Модуль підписів:"
+
 #. i18n: ectx: property (title), widget (QGroupBox, certDBGroupBox)
-#: conf/pdfsettingswidget.ui:63
+#: conf/pdfsettingswidget.ui:164
 #, kde-format
 msgid "Certificate Database"
 msgstr "База даних сертифікатів"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_UseDefaultCertDB)
-#: conf/pdfsettingswidget.ui:72
+#: conf/pdfsettingswidget.ui:173
 #, kde-format
 msgid "Default:"
 msgstr "Типовий:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, customRadioButton)
-#: conf/pdfsettingswidget.ui:79
+#: conf/pdfsettingswidget.ui:180
 #, kde-format
 msgid "Custom:"
 msgstr "Нетипове:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, certificatesGroup)
-#: conf/pdfsettingswidget.ui:96
+#: conf/pdfsettingswidget.ui:197
 #, kde-format
 msgid "Available Certificates"
 msgstr "Доступні сертифікати"
 
 #. i18n: ectx: property (text), widget (QPushButton, loadSignaturesButton)
-#: conf/pdfsettingswidget.ui:104
+#: conf/pdfsettingswidget.ui:205
 #, kde-format
 msgid "&Load Signatures"
 msgstr "З&авантажити підписи"
 
-#: generator_pdf.cpp:89
+#: generator_pdf.cpp:88
 #, kde-format
 msgid "PDF Options"
 msgstr "Параметри PDF"
 
-#: generator_pdf.cpp:91
+#: generator_pdf.cpp:90
 #, kde-format
 msgid "Print annotations"
 msgstr "Надрукувати анотації"
 
-#: generator_pdf.cpp:92
+#: generator_pdf.cpp:91
 #, kde-format
 msgid "Include annotations in the printed document"
 msgstr "Включити анотації до надрукованого документа"
 
-#: generator_pdf.cpp:93
+#: generator_pdf.cpp:92
 #, kde-format
 msgid ""
 "Includes annotations in the printed document. You can disable this if you "
@@ -110,17 +167,17 @@ msgstr ""
 "пункту, якщо вам потрібно надрукувати початковий незмінений документ без "
 "анотацій."
 
-#: generator_pdf.cpp:95
+#: generator_pdf.cpp:94
 #, kde-format
 msgid "Force rasterization"
 msgstr "Перетворити на растрове зображення"
 
-#: generator_pdf.cpp:96
+#: generator_pdf.cpp:95
 #, kde-format
 msgid "Rasterize into an image before printing"
 msgstr "Перетворювати на растрове зображення перед друком"
 
-#: generator_pdf.cpp:97
+#: generator_pdf.cpp:96
 #, kde-format
 msgid ""
 "Forces the rasterization of each page into an image before printing it. This "
@@ -132,94 +189,53 @@ msgstr ""
 "прийнятним для друку документів. Може знадобитися для документів, під час "
 "друку яких виникають проблеми."
 
-#: generator_pdf.cpp:104
-#, kde-format
-msgid "Fit to printable area"
-msgstr "За областю друку"
-
-#: generator_pdf.cpp:105
-#, kde-format
-msgid "Fit to full page"
-msgstr "За цілою сторінкою"
-
 #: generator_pdf.cpp:106
-#, kde-format
-msgid "None; print original size"
-msgstr "Немає, друкувати початковий розмір"
-
-#: generator_pdf.cpp:107
 #, kde-format
 msgid "Scaling mode for the printed pages"
 msgstr "Режим масштабування для друкованих сторінок"
 
-#: generator_pdf.cpp:108
+#: generator_pdf.cpp:107
 #, kde-format
 msgid "Scale mode:"
 msgstr "Режим масштабування:"
 
-#: generator_pdf.cpp:854
+#: generator_pdf.cpp:945
 #, kde-format
 msgctxt "PDF v. <version>"
 msgid "PDF v. %1.%2"
 msgstr "PDF вер. %1.%2"
 
-#: generator_pdf.cpp:854
+#: generator_pdf.cpp:945
 #, kde-format
 msgid "Format"
 msgstr "Формат"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Encrypted"
 msgstr "Зашифровано"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Unencrypted"
 msgstr "Не зашифровано"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Security"
 msgstr "Захист"
 
-#: generator_pdf.cpp:856
+#: generator_pdf.cpp:947
 #, kde-format
 msgid "Yes"
 msgstr "Так"
 
-#: generator_pdf.cpp:856
+#: generator_pdf.cpp:947
 #, kde-format
 msgid "Optimized"
 msgstr "Оптимізовано"
 
-#: generator_pdf.cpp:1462
-#, kde-format
-msgid "Using Poppler %1"
-msgstr "Вжито Poppler %1"
-
-#: generator_pdf.cpp:1464
-#, kde-format
-msgid ""
-"Using Poppler %1\n"
-"\n"
-"Built against Poppler %2"
-msgstr ""
-"Вжито Poppler %1\n"
-"\n"
-"Зібрано з Poppler %2"
-
-#: generator_pdf.cpp:1496
-#, kde-format
-msgid "PDF"
-msgstr "PDF"
-
-#: generator_pdf.cpp:1496
-#, kde-format
-msgid "PDF Backend Configuration"
-msgstr "Налаштовування модуля PDF"
-
-#: generator_pdf.cpp:1913
+#: generator_pdf.cpp:1378
 #, kde-format
 msgid ""
 "Signed by: %1\n"
@@ -230,7 +246,33 @@ msgstr ""
 "\n"
 "Дата: %2"
 
-#: generator_pdf.cpp:1954
+#: generator_pdf.cpp:1581
+#, kde-format
+msgid "Using Poppler %1"
+msgstr "Вжито Poppler %1"
+
+#: generator_pdf.cpp:1583
+#, kde-format
+msgid ""
+"Using Poppler %1\n"
+"\n"
+"Built against Poppler %2"
+msgstr ""
+"Вжито Poppler %1\n"
+"\n"
+"Зібрано з Poppler %2"
+
+#: generator_pdf.cpp:1618
+#, kde-format
+msgid "PDF"
+msgstr "PDF"
+
+#: generator_pdf.cpp:1618
+#, kde-format
+msgid "PDF Backend Configuration"
+msgstr "Налаштовування модуля PDF"
+
+#: generator_pdf.cpp:2111
 #, kde-format
 msgid ""
 "Some errors were found in the document, Okular might not be able to show the "
@@ -239,24 +281,24 @@ msgstr ""
 "У документі знайдено деякі помилки. Ймовірно, Okular не вдасться показати "
 "його належним чином."
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgctxt "Name of the person to whom the cerficate was issued"
 msgid "Issued to"
 msgstr "Видано для"
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgid "E-mail"
 msgstr "Ел. пошта"
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgctxt "Certificate expiration date"
 msgid "Expiration date"
 msgstr "Дата завершення строку дії"
 
-#: pdfsettingswidget.cpp:61
+#: pdfsettingswidget.cpp:145
 #, kde-format
 msgid ""
 "You are using a Poppler library built without NSS support.\n"
@@ -265,32 +307,30 @@ msgstr ""
 "Ви користуєтеся бібліотекою Poppler, яку зібрано без підтримки NSS.\n"
 "З цієї причини ви не зможете скористатися додаванням цифрових підписів"
 
-#: pdfsettingswidget.cpp:102
+#: pdfsettingswidget.cpp:186
 #, kde-format
 msgid "Restart needed"
 msgstr "Потрібен перезапуск"
 
-#: pdfsettingswidget.cpp:102
+#: pdfsettingswidget.cpp:186
 #, kde-format
 msgid "You need to restart Okular after changing the NSS directory settings"
 msgstr ""
 "Для набуття чинності внесеними змінами до параметрів каталогу NSS вам слід "
 "перезапустити Okular"
 
-#: pdfsignatureutils.cpp:40 pdfsignatureutils.cpp:46 pdfsignatureutils.cpp:54
-#, kde-format
-msgid "Not Available"
-msgstr "Недоступне"
-
-#: pdfsignatureutils.cpp:267
+#: pdfsignatureutils.cpp:194
 #, kde-format
 msgid "Enter Password"
 msgstr "Введіть пароль"
 
-#: pdfsignatureutils.cpp:267
+#: pdfsignatureutils.cpp:194
 #, kde-format
 msgid "Enter password to open %1:"
 msgstr "Введіть пароль для відкриття %1:"
+
+#~ msgid "Not Available"
+#~ msgstr "Недоступне"
 
 #~ msgid "PDF Certificates"
 #~ msgstr "Сертифікати PDF"

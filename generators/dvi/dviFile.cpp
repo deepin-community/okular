@@ -43,6 +43,7 @@
 
 #include <QLoggingCategory>
 #include <QProcess>
+#include <QStandardPaths>
 #include <QSysInfo>
 #include <QTemporaryFile>
 
@@ -126,8 +127,9 @@ void dvifile::find_postamble()
 {
     // Move backwards through the TRAILER bytes
     command_pointer = dvi_Data() + size_of_file - 1;
-    while ((*command_pointer == TRAILER) && (command_pointer > dvi_Data()))
+    while ((*command_pointer == TRAILER) && (command_pointer > dvi_Data())) {
         command_pointer--;
+    }
     if (command_pointer == dvi_Data()) {
         errorMsg = i18n("The DVI file is badly corrupted. Okular was not able to find the postamble.");
         return;
@@ -184,10 +186,11 @@ void dvifile::read_postamble()
 
             // Insert font in dictionary and make sure the dictionary is big
             // enough.
-            if (tn_table.capacity() - 2 <= tn_table.count())
+            if (tn_table.capacity() - 2 <= tn_table.count()) {
                 // Not quite optimal. The size of the dictionary should be a
                 // prime for optimal performance. I don't care.
                 tn_table.reserve(tn_table.capacity() * 2);
+            }
             tn_table.insert(TeXnumber, fontp);
         }
 
@@ -202,8 +205,9 @@ void dvifile::read_postamble()
 
     // Now we remove all those fonts from the memory which are no longer
     // in use.
-    if (font_pool != nullptr)
+    if (font_pool != nullptr) {
         font_pool->release_fonts();
+    }
 }
 
 void dvifile::prepare_pages()
@@ -211,16 +215,18 @@ void dvifile::prepare_pages()
 #ifdef DEBUG_DVIFILE
     qCDebug(OkularDviDebug) << "prepare_pages";
 #endif
-    if (total_pages == 0)
+    if (total_pages == 0) {
         return;
+    }
 
     page_offset.resize(total_pages + 1);
     if (page_offset.size() < (total_pages + 1)) {
         qCCritical(OkularDviDebug) << "No memory for page list!";
         return;
     }
-    for (int i = 0; i <= total_pages; i++)
+    for (int i = 0; i <= total_pages; i++) {
         page_offset[i] = 0;
+    }
 
     page_offset[int(total_pages)] = beginning_of_postamble;
     int j = total_pages - 1;
@@ -236,8 +242,9 @@ void dvifile::prepare_pages()
         }
         command_pointer += 10 * 4;
         page_offset[j] = readUINT32();
-        if ((dvi_Data() + page_offset[j] < dvi_Data()) || (dvi_Data() + page_offset[j] > dvi_Data() + size_of_file))
+        if ((dvi_Data() + page_offset[j] < dvi_Data()) || (dvi_Data() + page_offset[j] > dvi_Data() + size_of_file)) {
             break;
+        }
     }
 }
 
@@ -300,10 +307,12 @@ dvifile::~dvifile()
         QFile::remove(i.value());
     }
 
-    if (suggestedPageSize != nullptr)
+    if (suggestedPageSize != nullptr) {
         delete suggestedPageSize;
-    if (font_pool != nullptr)
+    }
+    if (font_pool != nullptr) {
         font_pool->mark_fonts_as_unused();
+    }
 }
 
 void dvifile::renumber()
@@ -317,7 +326,7 @@ void dvifile::renumber()
     for (int i = 1; i <= total_pages; i++) {
         quint8 *ptr = dviData.data() + page_offset[i - 1] + 1;
         quint8 *num = (quint8 *)&i;
-        for (quint8 j = 0; j < 4; j++)
+        for (quint8 j = 0; j < 4; j++) {
             if (bigEndian) {
                 *(ptr++) = num[0];
                 *(ptr++) = num[1];
@@ -329,6 +338,29 @@ void dvifile::renumber()
                 *(ptr++) = num[1];
                 *(ptr++) = num[0];
             }
+        }
+    }
+}
+
+void dvifile::pdf2psNotFound(const QString &PDFFilename, QString *converrorms)
+{
+    // Indicates that conversion failed, won't try again.
+    convertedFiles[PDFFilename].clear();
+    if (converrorms != nullptr && !have_complainedAboutMissingPDF2PS) {
+        *converrorms = i18n(
+            "<qt><p>The external program <strong>pdf2ps</strong> could not be started. As a result, "
+            "the PDF-file %1 could not be converted to PostScript. Some graphic elements in your "
+            "document will therefore not be displayed.</p>"
+            "<p><b>Possible reason:</b> The program <strong>pdf2ps</strong> may not be installed "
+            "on your system, or cannot be found in the current search path.</p>"
+            "<p><b>What you can do:</b> The program <strong>pdf2ps</strong> is normally "
+            "contained in distributions of the ghostscript PostScript interpreter system. If "
+            "ghostscript is not installed on your system, you could install it now. "
+            "If you are sure that ghostscript is installed, try to use <strong>pdf2ps</strong> "
+            "from the command line to check if it really works.</p><p><em>PATH:</em> %2</p></qt>",
+            PDFFilename,
+            QString::fromLocal8Bit(qgetenv("PATH")));
+        have_complainedAboutMissingPDF2PS = true;
     }
 }
 
@@ -341,6 +373,13 @@ QString dvifile::convertPDFtoPS(const QString &PDFFilename, QString *converrorms
         return it.value();
     }
 
+    // Make sure pdf2ps is in PATH and not just in the CWD
+    static const QString fullPath = QStandardPaths::findExecutable(QStringLiteral("pdf2ps"));
+    if (!fullPath.isEmpty()) {
+        pdf2psNotFound(PDFFilename, converrorms);
+        return QString();
+    }
+
     // Get the name of a temporary file.
     // Must open the QTemporaryFile to access the name.
     QTemporaryFile tmpfile;
@@ -351,27 +390,10 @@ QString dvifile::convertPDFtoPS(const QString &PDFFilename, QString *converrorms
     // Use pdf2ps to do the conversion
     QProcess pdf2ps;
     pdf2ps.setProcessChannelMode(QProcess::MergedChannels);
-    pdf2ps.start(QStringLiteral("pdf2ps"), QStringList() << PDFFilename << convertedFileName, QIODevice::ReadOnly | QIODevice::Text);
+    pdf2ps.start(fullPath, QStringList() << PDFFilename << convertedFileName, QIODevice::ReadOnly | QIODevice::Text);
 
     if (!pdf2ps.waitForStarted()) {
-        // Indicates that conversion failed, won't try again.
-        convertedFiles[PDFFilename].clear();
-        if (converrorms != nullptr && !have_complainedAboutMissingPDF2PS) {
-            *converrorms = i18n(
-                "<qt><p>The external program <strong>pdf2ps</strong> could not be started. As a result, "
-                "the PDF-file %1 could not be converted to PostScript. Some graphic elements in your "
-                "document will therefore not be displayed.</p>"
-                "<p><b>Possible reason:</b> The program <strong>pdf2ps</strong> may not be installed "
-                "on your system, or cannot be found in the current search path.</p>"
-                "<p><b>What you can do:</b> The program <strong>pdf2ps</strong> is normally "
-                "contained in distributions of the ghostscript PostScript interpreter system. If "
-                "ghostscript is not installed on your system, you could install it now. "
-                "If you are sure that ghostscript is installed, try to use <strong>pdf2ps</strong> "
-                "from the command line to check if it really works.</p><p><em>PATH:</em> %2</p></qt>",
-                PDFFilename,
-                QString::fromLocal8Bit(qgetenv("PATH")));
-            have_complainedAboutMissingPDF2PS = true;
-        }
+        pdf2psNotFound(PDFFilename, converrorms);
         return QString();
     }
 
@@ -406,14 +428,17 @@ QString dvifile::convertPDFtoPS(const QString &PDFFilename, QString *converrorms
 
 bool dvifile::saveAs(const QString &filename)
 {
-    if (dvi_Data() == nullptr)
+    if (dvi_Data() == nullptr) {
         return false;
+    }
 
     QFile out(filename);
-    if (out.open(QIODevice::WriteOnly) == false)
+    if (out.open(QIODevice::WriteOnly) == false) {
         return false;
-    if (out.write((char *)(dvi_Data()), size_of_file) == -1)
+    }
+    if (out.write((char *)(dvi_Data()), size_of_file) == -1) {
         return false;
+    }
     out.close();
     return true;
 }

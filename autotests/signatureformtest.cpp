@@ -18,7 +18,7 @@ class SignatureFormTest : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testSignatureForm();
@@ -46,7 +46,7 @@ void SignatureFormTest::testSignatureForm()
     QCOMPARE(m_document->openDocument(testFile, QUrl(), mime), Okular::Document::OpenSuccess);
 
     const Okular::Page *page = m_document->page(0);
-    QLinkedList<Okular::FormField *> pageFields = page->formFields();
+    const QList<Okular::FormField *> pageFields = page->formFields();
     QCOMPARE(pageFields.size(), 1);
     QCOMPARE(pageFields.first()->type(), Okular::FormField::FormSignature);
 

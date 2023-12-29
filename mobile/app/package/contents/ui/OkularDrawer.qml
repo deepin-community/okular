@@ -4,51 +4,44 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-import QtQuick 2.1
-import QtQuick.Controls 2.5 as QQC2
-import org.kde.kirigami 2.0 as Kirigami
+import QtQuick 2.15
+import QtQuick.Controls 2.15 as QQC2
+import org.kde.kirigami 2.17 as Kirigami
 import org.kde.okular 2.0 as Okular
+import QtQuick.Layouts 1.15
 
 
 Kirigami.OverlayDrawer {
+    id: root
+
     bottomPadding: 0
     topPadding: 0
     leftPadding: 0
     rightPadding: 0
 
     edge: Qt.application.layoutDirection == Qt.RightToLeft ? Qt.LeftEdge : Qt.RightEdge
-    contentItem: Item {
+    contentItem: ColumnLayout {
         id: browserFrame
-        implicitWidth: Kirigami.Units.gridUnit * 45
-        implicitHeight: implicitWidth
-        state: "Hidden"
+        spacing: 0
 
         QQC2.StackView {
             id: pageStack
-            anchors {
-                left: parent.left
-                top: parent.top
-                right: parent.right
-                bottom: tabsToolbar.top
-            }
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             clip: true
         }
 
         Connections {
             target: documentItem
-            onUrlChanged: thumbnailsButton.checked = true;
+            function onUrlChanged() {
+                thumbnailsButton.checked = true;
+            }
         }
 
         QQC2.ToolBar {
             id: tabsToolbar
-            height: mainTabBar.height
             position: QQC2.ToolBar.Footer
-            anchors {
-                top: undefined
-                bottom: browserFrame.bottom
-                left: parent.left
-                right: parent.right
-            }
+            Layout.fillWidth: true
             Component.onCompleted: thumbnailsButton.checked = true;
             Item {
                 width: parent.width
@@ -100,6 +93,32 @@ Kirigami.OverlayDrawer {
                         }
                         QQC2.ButtonGroup.group: tabPositionGroup
                     }
+                    QQC2.ToolButton {
+                        id: signatyresButton
+                        enabled: documentItem.signaturesModel.count > 0
+                        text: tabsToolbar.width > Kirigami.Units.gridUnit * 30 ? i18n("Signatures") : ""
+                        icon.name: "application-pkcs7-signature"
+                        checkable: true
+                        flat: false
+                        onCheckedChanged: {
+                            if (checked) {
+                                pageStack.replace(signaturesComponent)
+                            }
+                        }
+                        QQC2.ButtonGroup.group: tabPositionGroup
+                    }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: signaturesComponent
+        Signatures {
+            onDialogOpened: {
+                // We don't want to have two modal things open at the same time
+                if (root.modal) {
+                    root.close();
                 }
             }
         }

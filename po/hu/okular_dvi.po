@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-04-09 00:43+0000\n"
 "PO-Revision-Date: 2020-12-30 11:18+0100\n"
 "Last-Translator: Kristóf Kiszel <kiszel.kristof@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -29,7 +29,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kiszel.kristof@gmail.com"
 
-#: dviexport.cpp:117
+#: dviexport.cpp:123
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvipdfm</em> on your "
@@ -49,7 +49,7 @@ msgstr ""
 "p><p>Megjegyzés: a programok keresése mindig az elérési útban (PATH változó "
 "értéke) történik.</p></qt>"
 
-#: dviexport.cpp:135
+#: dviexport.cpp:142
 #, kde-format
 msgid ""
 "<qt>The external program 'dvipdfm', which was used to export the file, "
@@ -61,7 +61,7 @@ msgstr ""
 "hibaüzenet megtalálható a Fájl menü <strong>dokumentumjellemzők</strong> "
 "ablakában.</qt>"
 
-#: dviexport.cpp:158
+#: dviexport.cpp:168
 #, kde-format
 msgid ""
 "<qt>This DVI file refers to external graphic files which are not in "
@@ -75,7 +75,7 @@ msgstr ""
 "kinyomtatását és PostScript formátumú exportálását végzi. A kért funkció "
 "ezért nem érhető el az Okular ezen verziójában.</qt>"
 
-#: dviexport.cpp:166
+#: dviexport.cpp:176
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvips</em> on your computer. "
@@ -87,7 +87,7 @@ msgstr ""
 "exportálási műveletekhez.</p><p>Megjegyzés: a program az elérési útban (PATH "
 "változó) keresi a programokat.</p></qt>"
 
-#: dviexport.cpp:257
+#: dviexport.cpp:270
 #, kde-format
 msgid ""
 "<qt>The external program 'dvips', which was used to export the file, "
@@ -99,12 +99,12 @@ msgstr ""
 "pontos hibaüzenet a Fájl menü <strong>Dokumentumjellemzők</strong> ablakában "
 "található.</qt>"
 
-#: dviFile.cpp:90
+#: dviFile.cpp:91
 #, kde-format
 msgid "The DVI file does not start with the preamble."
 msgstr "A DVI-fájl nem preamble résszel kezdődik."
 
-#: dviFile.cpp:96
+#: dviFile.cpp:97
 #, kde-format
 msgid ""
 "The DVI file contains the wrong version of DVI output for this program. "
@@ -115,28 +115,28 @@ msgstr ""
 "szerkesztőprogramot használja, speciális megjelenítőre van szükség, például "
 "az oxdvi-re."
 
-#: dviFile.cpp:132
+#: dviFile.cpp:134
 #, kde-format
 msgid ""
 "The DVI file is badly corrupted. Okular was not able to find the postamble."
 msgstr "A DVI-fájl hibás, nem található a postamble rész."
 
-#: dviFile.cpp:146
+#: dviFile.cpp:148
 #, kde-format
 msgid "The postamble does not begin with the POST command."
 msgstr "A postamble rész nem POST paranccsal kezdődik."
 
-#: dviFile.cpp:199
+#: dviFile.cpp:202
 #, kde-format
 msgid "The postamble contained a command other than FNTDEF."
 msgstr "A postamble rész az FNTDEF-től eltérő parancsot tartalmaz."
 
-#: dviFile.cpp:234
+#: dviFile.cpp:240
 #, kde-format
 msgid "The page %1 does not start with the BOP command."
 msgstr "A(z) %1 oldal nem BOP paranccsal kezdődik."
 
-#: dviFile.cpp:361
+#: dviFile.cpp:351
 #, kde-format
 msgid ""
 "<qt><p>The external program <strong>pdf2ps</strong> could not be started. As "
@@ -161,7 +161,7 @@ msgstr ""
 "a <strong>pdf2ps</strong> program működik-e.</p><p><em>Elérési út:</em> %2</"
 "p></qt>"
 
-#: dviFile.cpp:388
+#: dviFile.cpp:410
 #, kde-format
 msgid ""
 "<qt><p>The PDF-file %1 could not be converted to PostScript. Some graphic "
@@ -176,27 +176,27 @@ msgstr ""
 "is PDF-fájl. A <strong>pdf2ps</strong> program kimenete ez volt:</"
 "p><p><strong>%2</strong></p></qt>"
 
-#: dviRenderer.cpp:199 dviRenderer.cpp:421
+#: dviRenderer.cpp:203 dviRenderer.cpp:435
 #, kde-format
 msgid "File corruption. %1"
 msgstr "Fájl sérülés. %1"
 
-#: dviRenderer.cpp:319
+#: dviRenderer.cpp:326
 #, kde-format
 msgid "Not all PostScript files could be embedded into your document. %1"
 msgstr "Nem minden PostScript fájl ágyazható be a dokumentumba. %1"
 
-#: dviRenderer.cpp:322
+#: dviRenderer.cpp:329
 #, kde-format
 msgid "All external PostScript files were embedded into your document."
 msgstr "Minden külső PostScript fájl be lett ágyazva a dokumentumba."
 
-#: dviRenderer.cpp:406
+#: dviRenderer.cpp:419
 #, kde-format
 msgid "The specified file '%1' does not exist."
 msgstr "A megadott „%1” fájl nem létezik."
 
-#: dviRenderer.cpp:544
+#: dviRenderer.cpp:565
 #, kde-format
 msgid ""
 "You have asked Okular to locate the place in the DVI file which corresponds "
@@ -207,7 +207,7 @@ msgstr ""
 "amely a(z) %2 TeX-fájl %1. sorának felel meg. Habár úgy tűnik, a DVI-fájl "
 "nem tartalmazza a szükséges forrásfájl információkat."
 
-#: dviRenderer.cpp:581
+#: dviRenderer.cpp:604
 #, kde-format
 msgid ""
 "Okular was not able to locate the place in the DVI file which corresponds to "
@@ -216,47 +216,47 @@ msgstr ""
 "Az Okular nem volt képes megtalálni azt a helyet a DVI-fájlban, amely a(z) "
 "%2 nevű TeX fájl %1. sorának felel meg."
 
-#: dviRenderer_draw.cpp:237
+#: dviRenderer_draw.cpp:243
 #, kde-format
 msgid "The DVI code set a character of an unknown font."
 msgstr "A DVI-kód ismeretlen betűtípusú karakterre vonatkozik."
 
-#: dviRenderer_draw.cpp:264 dviRenderer_prescan.cpp:629
+#: dviRenderer_draw.cpp:270 dviRenderer_prescan.cpp:668
 #, kde-format
 msgid "The DVI code referred to font #%1, which was not previously defined."
 msgstr "A DVI-kód olyan betűtípusra hivatkozik (#%1), amely nincs definiálva."
 
-#: dviRenderer_draw.cpp:345
+#: dviRenderer_draw.cpp:353
 #, kde-format
 msgid "The stack was not empty when the EOP command was encountered."
 msgstr "A verem nem volt üres egy EOP utasítás előtt."
 
-#: dviRenderer_draw.cpp:357
+#: dviRenderer_draw.cpp:365
 #, kde-format
 msgid "The stack was empty when a POP command was encountered."
 msgstr "A verem üres volt egy POP utasítás előtt."
 
-#: dviRenderer_draw.cpp:477 dviRenderer_draw.cpp:486
+#: dviRenderer_draw.cpp:489 dviRenderer_draw.cpp:498
 #, kde-format
 msgid "The DVI code referred to a font which was not previously defined."
 msgstr "A DVI-kód nem definiált betűtípusra hivatkozik."
 
-#: dviRenderer_draw.cpp:527
+#: dviRenderer_draw.cpp:539
 #, kde-format
 msgid "An illegal command was encountered."
 msgstr "Érvénytelen parancs."
 
-#: dviRenderer_draw.cpp:532
+#: dviRenderer_draw.cpp:544
 #, kde-format
 msgid "The unknown op-code %1 was encountered."
 msgstr "Ismeretlen műveletkód: %1"
 
-#: dviRenderer_prescan.cpp:83
+#: dviRenderer_prescan.cpp:87
 #, kde-format
 msgid "Embedding %1"
 msgstr "Beágyazás: %1"
 
-#: dviRenderer_prescan.cpp:98
+#: dviRenderer_prescan.cpp:105
 #, kde-format
 msgid ""
 "Page %1: The PDF file <strong>%2</strong> could not be converted to "
@@ -265,18 +265,18 @@ msgstr ""
 "%1. oldal: a PDF-fájlt (<strong>%2</strong>) nem sikerült PostScript "
 "formátumúra alakítani.<br>"
 
-#: dviRenderer_prescan.cpp:100
+#: dviRenderer_prescan.cpp:107
 #, kde-format
 msgid ""
 "Page %1: The PostScript file <strong>%2</strong> could not be found.<br>"
 msgstr "%1. oldal: a PostScript-fájl (<strong>%2</strong>) nem található.<br>"
 
-#: dviRenderer_prescan.cpp:246
+#: dviRenderer_prescan.cpp:261
 #, kde-format
 msgid "The papersize data '%1' could not be parsed."
 msgstr "A papírméret értékét nem sikerült értelmezni („%1”)."
 
-#: fontpool.cpp:203
+#: fontpool.cpp:209
 #, kde-format
 msgid ""
 "<qt><p>Okular was not able to locate all the font files which are necessary "
@@ -287,7 +287,7 @@ msgstr ""
 "betűtípust megtalálni, ezért esetleg a dokumentumot nem lehet olvasni.</"
 "p><p><small><b>ÚTVONAL:</b> %1</small></p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:270
+#: fontpool.cpp:284
 #, kde-format
 msgid ""
 "<qt><p>There were problems running <em>kpsewhich</em>. As a result, some "
@@ -303,7 +303,7 @@ msgstr ""
 "jelenlegi keresési útvonalon.</p><p><small><b>ÚTVONAL:</b> %1</small></"
 "p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:291
+#: fontpool.cpp:305
 #, kde-format
 msgid ""
 "<qt>The font generation by <em>kpsewhich</em> was aborted (exit code %1, "
@@ -314,32 +314,32 @@ msgstr ""
 "kód: %1, hiba: %2). Ennek eredményeképpen néhány betűtípusfájl nem "
 "található, és a dokumentum olvashatatlan lehet.</qt>"
 
-#: fontpool.cpp:462
+#: fontpool.cpp:481
 #, kde-format
 msgid "Currently generating %1 at %2 dpi..."
 msgstr "Betűtípus készítése: %1 (%2 dpi)…"
 
-#: generator_dvi.cpp:289
+#: generator_dvi.cpp:293
 #, kde-format
 msgid "Generator/Date"
 msgstr "Készítő/dátum"
 
-#: generator_dvi.cpp:372
+#: generator_dvi.cpp:382
 #, kde-format
 msgid "Font file not found"
 msgstr "Nem található egy betűtípusfájl"
 
-#: pageSize.cpp:294
+#: pageSize.cpp:318
 #, kde-format
 msgid "portrait"
 msgstr "álló"
 
-#: pageSize.cpp:296
+#: pageSize.cpp:320
 #, kde-format
 msgid "landscape"
 msgstr "fekvő"
 
-#: psgs.cpp:265
+#: psgs.cpp:284
 #, kde-format
 msgid ""
 "The version of Ghostview that is installed on this computer does not contain "
@@ -355,7 +355,7 @@ msgstr ""
 msgid "That makes 25 errors. Further error messages will not be printed."
 msgstr "25-nél több hiba történt, nem jelenik meg több hibaüzenet."
 
-#: special.cpp:216
+#: special.cpp:232
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Color pop command issued when the color "
@@ -364,7 +364,7 @@ msgstr ""
 "Hiba a(z) „%1” nevű DVI-fájlban (%2. oldal). A színverem üres volt egy "
 "színre vonatkozó POP művelet előtt."
 
-#: special.cpp:297
+#: special.cpp:318
 #, kde-format
 msgid ""
 "Malformed parameter in the epsf special command.\n"
@@ -373,7 +373,7 @@ msgstr ""
 "Hibás paraméter szerepel egy epsf speciális parancsban.\n"
 "Lebegőpontos számnak kell következnie %1 után ebben: %2"
 
-#: special.cpp:424
+#: special.cpp:446
 #, kde-format
 msgid ""
 "File not found: \n"
@@ -382,7 +382,7 @@ msgstr ""
 "Nem található ez a fájl: \n"
 " %1"
 
-#: special.cpp:664
+#: special.cpp:695
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Could not interpret angle in text rotation "
@@ -391,7 +391,7 @@ msgstr ""
 "Hiba a(z) „%1” nevű DVI-fájlban (%2. oldal). Nem sikerült értelmezni a "
 "szöget egy szövegforgatási műveletben."
 
-#: special.cpp:680
+#: special.cpp:714
 #, kde-format
 msgid "The special command '%1' is not implemented."
 msgstr "Nem támogatott speciális parancs: „%1”."
@@ -412,87 +412,87 @@ msgstr ""
 "Hibás betűtípusfájl: %1. A fájl hibás adatokat tartalmaz vagy megnyitási/"
 "olvasási hiba történt."
 
-#: TeXFont_PFB.cpp:165
+#: TeXFont_PFB.cpp:170
 #, kde-format
 msgid ""
 "FreeType reported an error when setting the character size for font file %1."
 msgstr "FreeType-hiba történt a betűméret beállításakor. Betűtípusfájl: %1."
 
-#: TeXFont_PFB.cpp:181
+#: TeXFont_PFB.cpp:188
 #, kde-format
 msgid "FreeType is unable to load glyph #%1 from font file %2."
 msgstr ""
 "A FreeType nem tudja beolvasni a(z) #%1 karaktert a(z) %2 betűtípusfájlból."
 
-#: TeXFont_PFB.cpp:193
+#: TeXFont_PFB.cpp:201
 #, kde-format
 msgid "FreeType is unable to render glyph #%1 from font file %2."
 msgstr ""
 "A FreeType nem tudja megjeleníteni a(z) #%1 karakert a(z) %2 "
 "betűtípusfájlból."
 
-#: TeXFont_PFB.cpp:206
+#: TeXFont_PFB.cpp:215
 #, kde-format
 msgid "Glyph #%1 is empty."
 msgstr "#%1 karakter: üres."
 
-#: TeXFont_PFB.cpp:207
+#: TeXFont_PFB.cpp:217
 #, kde-format
 msgid "Glyph #%1 from font file %2 is empty."
 msgstr "Üres a(z) #%1 karakter a(z) %2 betűtípusfájlban."
 
-#: TeXFont_PFB.cpp:272
+#: TeXFont_PFB.cpp:282
 #, kde-format
 msgid "FreeType is unable to load metric for glyph #%1 from font file %2."
 msgstr ""
 "A FreeType nem tudta betölteni a metrikát. Karakter: #%1, betűtípusfájl: %2."
 
-#: TeXFont_PK.cpp:68
+#: TeXFont_PK.cpp:69
 #, kde-format
 msgid "Cannot open font file %1."
 msgstr "Nem sikerült megnyitni ezt a betűtípusfájlt: %1."
 
-#: TeXFont_PK.cpp:114
+#: TeXFont_PK.cpp:116
 #, kde-format
 msgid "TexFont_PK::operator[]: Character %1 not defined in font %2"
 msgstr "TexFont_PK::operator[]: nincs %1 karakter a(z) %2 betűtípusban"
 
-#: TeXFont_PK.cpp:398
+#: TeXFont_PK.cpp:418
 #, kde-format
 msgid "Unexpected %1 in PK file %2"
 msgstr "Nem várt %1 a(z) %2 PK-fájlban"
 
-#: TeXFont_PK.cpp:462
+#: TeXFont_PK.cpp:484
 #, kde-format
 msgid "The character %1 is too large in file %2"
 msgstr "Túl nagy karakter: %1 (fájlnév: %2)"
 
-#: TeXFont_PK.cpp:562 TeXFont_PK.cpp:646
+#: TeXFont_PK.cpp:589 TeXFont_PK.cpp:679
 #, kde-format
 msgid "Wrong number of bits stored:  char. %1, font %2"
 msgstr "Hibás számú bit van eltárolva. Karakter: %1, betűtípus: %2"
 
-#: TeXFont_PK.cpp:564 TeXFont_PK.cpp:648
+#: TeXFont_PK.cpp:592 TeXFont_PK.cpp:682
 #, kde-format
 msgid "Bad pk file (%1), too many bits"
 msgstr "Hibás PK-fájl (%1): túl sok bit"
 
-#: TeXFont_PK.cpp:678
+#: TeXFont_PK.cpp:713
 #, kde-format
 msgid "Font has non-square aspect ratio "
 msgstr "A betűtípus nem 1:1 arányú "
 
-#: TeXFontDefinition.cpp:105
+#: TeXFontDefinition.cpp:106
 #, kde-format
 msgid "Cannot find font %1, file %2."
 msgstr "Nem található betűtípus: %1. Fájlnév: %2."
 
-#: TeXFontDefinition.cpp:121
+#: TeXFontDefinition.cpp:123
 #, kde-format
 msgid "Checksum mismatch for font file %1"
 msgstr "Hibás ellenőrző összeg: %1"
 
-#: TeXFontDefinition.cpp:169
+#: TeXFontDefinition.cpp:174
 #, kde-format
 msgid "Cannot recognize format for font file %1"
 msgstr "Ismeretlen formátumú betűtípusfájl: %1"
@@ -527,7 +527,7 @@ msgstr ""
 "vagy nem találja megfelelőnek a hiba kezelési módját, kérjük készítsen\n"
 "hibajelentést."
 
-#: vf.cpp:160
+#: vf.cpp:164
 #, kde-format
 msgid "Wrong command byte found in VF macro list: %1"
 msgstr "Hibás parancsbájt található a VF makrólistában: %1"

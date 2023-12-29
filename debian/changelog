@@ -1,3 +1,124 @@
+okular (4:23.08.1-2) unstable; urgency=medium
+
+  [ Patrick Franz ]
+  * Team upload.
+  * Upload to unstable.
+
+ -- Patrick Franz <deltaone@debian.org>  Fri, 22 Sep 2023 19:24:18 +0200
+
+okular (4:23.08.1-1) experimental; urgency=medium
+
+  * Team upload.
+
+  [ Jesse Rhodes ]
+  * New upstream release (23.08.1).
+  * Add build-dep on libqt5x11extras5-dev, required by cmake.
+  * Bump libokular5core soname to 11 and update deps.
+
+ -- Jesse Rhodes <jesse@sney.ca>  Thu, 21 Sep 2023 13:04:02 -0400
+
+okular (4:22.12.3-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (22.12.3).
+  * Update build-deps and deps with the info from cmake.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Wed, 01 Mar 2023 11:58:25 +0100
+
+okular (4:22.12.1-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (22.12.1).
+  * Add/update Albert Astals Cid’s master key in upstream signing keys.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sat, 07 Jan 2023 00:07:02 +0100
+
+okular (4:22.12.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Add missing dependency to okular-dev, so the cmake config files work:
+    qtbase5-private-dev. (Closes: #1027504)
+  * Update standards version to 4.6.2, no changes needed.
+  * Remove breaks/replaces for versions older than oldstable.
+
+ -- Pino Toscano <pino@debian.org>  Sun, 01 Jan 2023 18:02:28 +0100
+
+okular (4:22.12.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (22.11.90).
+  * Update build-deps and deps with the info from cmake.
+  * New upstream release (22.12.0).
+  * Review copyright information.
+  * Add old lintian syntax for the sourceless CHM test file, ftp-master
+    runs lintian from stable.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 11 Dec 2022 23:06:47 +0100
+
+okular (4:22.04.3-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Update lintian overrides.
+
+ -- Pino Toscano <pino@debian.org>  Tue, 12 Jul 2022 05:35:11 +0200
+
+okular (4:22.04.2-2) unstable; urgency=medium
+
+  * Team upload.
+  * Release to unstable.
+
+ -- Pino Toscano <pino@debian.org>  Wed, 06 Jul 2022 14:27:35 +0200
+
+okular (4:22.04.2-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+
+ -- Pino Toscano <pino@debian.org>  Fri, 10 Jun 2022 08:02:25 +0200
+
+okular (4:22.04.1-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Bump Standards-Version to 4.6.1, no changes required.
+  * Remove inactive Uploaders.
+  * Update the build dependencies according to the upstream build system:
+    - bump Qt packages to 5.15.2
+    - add kirigami2-dev, explicitly needed for the mobile UI
+  * Rename libokular5core9 to libokular5core10, according to the upstream
+    SONAME bump.
+  * Update install files.
+  * Modernize building:
+    - add the dh-sequence-kf5 build dependency to use the kf5 addon
+      automatically, removing pkg-kde-tools
+    - drop all the manually specified addons and buildsystem for dh
+
+ -- Pino Toscano <pino@debian.org>  Thu, 09 Jun 2022 08:39:09 +0200
+
+okular (4:21.12.3-2) unstable; urgency=medium
+
+  * Rebuild with latest version of Poppler from unstable to enable support for
+    PDF signatures. (Closes: #1008033)
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Mon, 21 Mar 2022 10:22:39 +0100
+
+okular (4:21.12.3-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 05 Mar 2022 15:22:01 +0100
+
+okular (4:21.12.2-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * CI: enable again blhc, as it works fine now with blhc 0.13.
+  * Drop the dbgsym migration, no more needed after two Debian stable releases.
+
+ -- Pino Toscano <pino@debian.org>  Sun, 27 Feb 2022 08:50:35 +0100
+
 okular (4:21.08.3-1) unstable; urgency=medium
 
   [ Norbert Preining ]

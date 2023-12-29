@@ -15,12 +15,12 @@
 #ifndef _PART_H_
 #define _PART_H_
 
+#include <QDBusAbstractAdaptor> // for Q_NOREPLY
 #include <QIcon>
 #include <QList>
 #include <QPointer>
 #include <QProcess>
 #include <QUrl>
-#include <QtDBus> // krazy:exclude=includes
 
 #include <KCompressionDevice>
 #include <KIO/Job>
@@ -44,6 +44,8 @@ class QMenu;
 
 class KConfigDialog;
 class KDirWatch;
+class KHamburgerMenu;
+class KMainWindow;
 class KToggleAction;
 class KToggleFullScreenAction;
 class QTemporaryFile;
@@ -72,7 +74,7 @@ class DrawingToolActions;
 class Layers;
 class SignaturePanel;
 
-#if PURPOSE_FOUND
+#if HAVE_PURPOSE
 namespace Purpose
 {
 class Menu;
@@ -145,7 +147,10 @@ public:
     bool areSourceLocationsShownGraphically() const override;
     void setShowSourceLocationsGraphically(bool show) override;
     bool openNewFilesInTabs() const override;
+    QWidget *getSideContainer() const override;
     Q_INVOKABLE bool activateTabIfAlreadyOpenFile() const;
+
+    void setModified(bool modified) override;
 
 public Q_SLOTS: // dbus
     Q_SCRIPTABLE Q_NOREPLY void goToPage(uint page) override;
@@ -168,6 +173,7 @@ public Q_SLOTS: // dbus
     Q_SCRIPTABLE Q_NOREPLY void enableStartWithPrint();
     Q_SCRIPTABLE Q_NOREPLY void enableExitAfterPrint();
     Q_SCRIPTABLE Q_NOREPLY void enableStartWithFind(const QString &text);
+    Q_SCRIPTABLE Q_NOREPLY void setEditorCmd(const QString &editorCmd);
     Q_SCRIPTABLE void slotOpenContainingFolder();
 
 Q_SIGNALS:
@@ -219,6 +225,14 @@ protected Q_SLOTS:
     void slotShowBottomBar();
     void slotShowPresentation();
     void slotHidePresentation();
+
+    /**
+     * Updates the menu that is by default at the right end of the toolbar.
+     * In true "simple by default" fashion, the menu only contains the most important actions
+     * which are needed to use all essential Okular features. More advanced actions can be
+     * discovered through a sub-menu (@see KConfigWidgets::KHamburgerMenu::setMenuBarAdvertised()).
+     */
+    void slotUpdateHamburgerMenu();
     void slotExportAs(QAction *);
     bool slotImportPSFile();
     void slotAboutBackend();
@@ -257,6 +271,14 @@ public Q_SLOTS:
 private:
     bool aboutToShowContextMenu(QMenu *menu, QAction *action, QMenu *contextMenu);
     void showMenu(const Okular::Page *page, const QPoint point, const QString &bookmarkTitle = QString(), const Okular::DocumentViewport &vp = DocumentViewport(), bool showTOCActions = false);
+    /**
+     * Searches the actionCollections of all KXMLGUIClients that were created by the same factory()
+     * as this Part for a QAction that has both the specified name and the specified class.
+     * @return an action with class @p Action and name @p actionName. nullptr if no such action is found.
+     */
+    template<class Action = QAction> Action *findActionInKPartHierarchy(const QString &actionName);
+    /** @return the first KMainWindow among the ancestors of this part. nullptr if no KMainWindow is found. */
+    KMainWindow *findMainWindow();
     bool eventFilter(QObject *watched, QEvent *event) override;
     Document::OpenResult doOpenFile(const QMimeType &mime, const QString &fileNameToOpen, bool *isCompressedFile);
     bool openUrl(const QUrl &url, bool swapInsteadOfOpening);
@@ -287,7 +309,7 @@ private:
     void setFileToWatch(const QString &filePath);
     void unsetFileToWatch();
 
-#if PURPOSE_FOUND
+#if HAVE_PURPOSE
     void slotShareActionFinished(const QJsonObject &output, int error, const QString &message);
 #endif
 
@@ -313,6 +335,7 @@ private:
     bool isDocumentArchive;
     bool m_documentOpenWithPassword;
     bool m_swapInsteadOfOpening; // if set, the next open operation will replace the backing file (used when reloading just saved files)
+    bool m_warnedAboutModifyingUnsaveableDocument = false;
 
     // main widgets
     Sidebar *m_sidebar;
@@ -382,11 +405,12 @@ private:
     QAction *m_exportAs;
     QAction *m_exportAsText;
     QAction *m_exportAsDocArchive;
-#if PURPOSE_FOUND
+#if HAVE_PURPOSE
     QAction *m_share;
 #endif
     QAction *m_showPresentation;
     QAction *m_openContainingFolder;
+    KHamburgerMenu *m_hamburgerMenuAction;
     KToggleAction *m_showMenuBarAction;
     KToggleAction *m_showLeftPanel;
     KToggleAction *m_showBottomBar;
@@ -395,13 +419,12 @@ private:
     QAction *m_aboutBackend;
     QAction *m_reload;
     QMenu *m_exportAsMenu;
-#if PURPOSE_FOUND
+#if HAVE_PURPOSE
     Purpose::Menu *m_shareMenu;
 #endif
     QAction *m_closeFindBar;
     DrawingToolActions *m_presentationDrawingActions;
 
-    bool m_actionsSearched;
     BrowserExtension *m_bExtension;
 
     QList<Okular::ExportFormat> m_exportFormats;

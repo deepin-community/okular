@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2010-01-30 15:52+0100\n"
 "Last-Translator: Marko Dimjasevic <marko@dimjasevic.net>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -60,22 +60,22 @@ msgid "&Use platform fonts"
 msgstr "&Koristi platformska pisma"
 
 # pmap: =/nom=Ghostscript/gen=Ghostscripta/dat=Ghostscriptu/aku=Ghostscript/lok=Ghostscriptu/ins=Ghostscriptom/_r=m/_b=j/
-#: generator_ghostview.cpp:81
+#: generator_ghostview.cpp:82
 #, kde-format
 msgid "Ghostscript"
 msgstr "Ghostscript"
 
-#: generator_ghostview.cpp:81
+#: generator_ghostview.cpp:82
 #, kde-format
 msgid "Ghostscript Backend Configuration"
 msgstr "Konfiguracija podrške za Ghostscript"
 
-#: generator_ghostview.cpp:245
+#: generator_ghostview.cpp:253
 #, kde-format
 msgid "Document version"
 msgstr "Inačica dokumenta"
 
-#: generator_ghostview.cpp:250
+#: generator_ghostview.cpp:259
 #, kde-format
 msgid "Language Level"
 msgstr "Razina jezika"

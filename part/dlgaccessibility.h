@@ -7,8 +7,10 @@
 #ifndef _DLGACCESSIBILITY_H
 #define _DLGACCESSIBILITY_H
 
+#include "config-okular.h"
 #include <QWidget>
 
+class QComboBox;
 class QStackedWidget;
 
 class DlgAccessibility : public QWidget
@@ -20,9 +22,16 @@ public:
 
 protected Q_SLOTS:
     void slotColorModeSelected(int mode);
+#if HAVE_SPEECH
+    void slotTTSEngineChanged();
+#endif
 
 protected:
     QStackedWidget *m_colorModeConfigStack;
+#if HAVE_SPEECH
+    QComboBox *m_ttsEngineBox;
+    QComboBox *m_ttsVoiceBox;
+#endif
 };
 
 #endif

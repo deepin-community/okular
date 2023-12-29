@@ -146,6 +146,7 @@ DlgPresentation::DlgPresentation(QWidget *parent)
 
 PreferredScreenSelector::PreferredScreenSelector(QWidget *parent)
     : QComboBox(parent)
+    , m_disconnectedScreenIndex(-1)
     , m_disconnectedScreenNumber(k_noDisconnectedScreenNumber)
 {
     repopulateList();
@@ -154,7 +155,7 @@ PreferredScreenSelector::PreferredScreenSelector(QWidget *parent)
 
     // KConfigWidgets setup:
     setProperty("kcfg_property", QByteArray("preferredScreen"));
-    connect(this, QOverload<int>::of(&QComboBox::currentIndexChanged), [this](int index) { emit preferredScreenChanged(index - k_specialScreenCount); });
+    connect(this, QOverload<int>::of(&QComboBox::currentIndexChanged), [this](int index) { Q_EMIT preferredScreenChanged(index - k_specialScreenCount); });
 }
 
 void PreferredScreenSelector::repopulateList()

@@ -11,6 +11,7 @@
 #include "annots.h"
 
 // qt/kde includes
+#include <QFileInfo>
 #include <QLoggingCategory>
 #include <QVariant>
 
@@ -279,6 +280,18 @@ static void setSharedAnnotationPropertiesToPopplerAnnotation(const Okular::Annot
     popplerAnnotation->setModificationDate(okularAnnotation->modificationDate());
 }
 
+static void setPopplerStampAnnotationCustomImage(const Poppler::Page *page, Poppler::StampAnnotation *pStampAnnotation, const Okular::StampAnnotation *oStampAnnotation)
+{
+    const QSize size = page->pageSize();
+    const QRect rect = Okular::AnnotationUtils::annotationGeometry(oStampAnnotation, size.width(), size.height());
+
+    QImage image = Okular::AnnotationUtils::loadStamp(oStampAnnotation->stampIconName(), qMax(rect.width(), rect.height())).toImage();
+
+    if (!image.isNull()) {
+        pStampAnnotation->setStampCustomImage(image);
+    }
+}
+
 static void updatePopplerAnnotationFromOkularAnnotation(const Okular::TextAnnotation *oTextAnnotation, Poppler::TextAnnotation *pTextAnnotation)
 {
     pTextAnnotation->setTextIcon(oTextAnnotation->textIcon());
@@ -292,7 +305,7 @@ static void updatePopplerAnnotationFromOkularAnnotation(const Okular::TextAnnota
 static void updatePopplerAnnotationFromOkularAnnotation(const Okular::LineAnnotation *oLineAnnotation, Poppler::LineAnnotation *pLineAnnotation)
 {
     QLinkedList<QPointF> points;
-    const QLinkedList<Okular::NormalizedPoint> annotPoints = oLineAnnotation->linePoints();
+    const QList<Okular::NormalizedPoint> annotPoints = oLineAnnotation->linePoints();
     for (const Okular::NormalizedPoint &p : annotPoints) {
         points.append(normPointToPointF(p));
     }
@@ -333,16 +346,16 @@ static void updatePopplerAnnotationFromOkularAnnotation(const Okular::HighlightA
     pHighlightAnnotation->setHighlightQuads(pQuads);
 }
 
-static void updatePopplerAnnotationFromOkularAnnotation(const Okular::StampAnnotation *oStampAnnotation, Poppler::StampAnnotation *pStampAnnotation)
+static void updatePopplerAnnotationFromOkularAnnotation(const Okular::StampAnnotation *oStampAnnotation, Poppler::StampAnnotation *pStampAnnotation, const Poppler::Page *page)
 {
-    pStampAnnotation->setStampIconName(oStampAnnotation->stampIconName());
+    setPopplerStampAnnotationCustomImage(page, pStampAnnotation, oStampAnnotation);
 }
 
 static void updatePopplerAnnotationFromOkularAnnotation(const Okular::InkAnnotation *oInkAnnotation, Poppler::InkAnnotation *pInkAnnotation)
 {
     QList<QLinkedList<QPointF>> paths;
-    const QList<QLinkedList<Okular::NormalizedPoint>> inkPathsList = oInkAnnotation->inkPaths();
-    for (const QLinkedList<Okular::NormalizedPoint> &path : inkPathsList) {
+    const QList<QList<Okular::NormalizedPoint>> inkPathsList = oInkAnnotation->inkPaths();
+    for (const QList<Okular::NormalizedPoint> &path : inkPathsList) {
         QLinkedList<QPointF> points;
         for (const Okular::NormalizedPoint &p : path) {
             points.append(normPointToPointF(p));
@@ -398,12 +411,12 @@ static Poppler::Annotation *createPopplerAnnotationFromOkularAnnotation(const Ok
     return pHighlightAnnotation;
 }
 
-static Poppler::Annotation *createPopplerAnnotationFromOkularAnnotation(const Okular::StampAnnotation *oStampAnnotation)
+static Poppler::Annotation *createPopplerAnnotationFromOkularAnnotation(const Okular::StampAnnotation *oStampAnnotation, Poppler::Page *page)
 {
     Poppler::StampAnnotation *pStampAnnotation = new Poppler::StampAnnotation();
 
     setSharedAnnotationPropertiesToPopplerAnnotation(oStampAnnotation, pStampAnnotation);
-    updatePopplerAnnotationFromOkularAnnotation(oStampAnnotation, pStampAnnotation);
+    updatePopplerAnnotationFromOkularAnnotation(oStampAnnotation, pStampAnnotation, page);
 
     return pStampAnnotation;
 }
@@ -431,6 +444,8 @@ void PopplerAnnotationProxy::notifyAddition(Okular::Annotation *okl_ann, int pag
 {
     QMutexLocker ml(mutex);
 
+    Poppler::Page *ppl_page = ppl_doc->page(page);
+
     // Create poppler annotation
     Poppler::Annotation *ppl_ann = nullptr;
     switch (okl_ann->subType()) {
@@ -446,9 +461,23 @@ void PopplerAnnotationProxy::notifyAddition(Okular::Annotation *okl_ann, int pag
     case Okular::Annotation::AHighlight:
         ppl_ann = createPopplerAnnotationFromOkularAnnotation(static_cast<Okular::HighlightAnnotation *>(okl_ann));
         break;
-    case Okular::Annotation::AStamp:
-        ppl_ann = createPopplerAnnotationFromOkularAnnotation(static_cast<Okular::StampAnnotation *>(okl_ann));
-        break;
+    case Okular::Annotation::AStamp: {
+        bool wasDenyWriteEnabled = okl_ann->flags() & Okular::Annotation::DenyWrite;
+
+        if (wasDenyWriteEnabled) {
+            okl_ann->setFlags(okl_ann->flags() & ~Okular::Annotation::DenyWrite);
+        }
+
+        ppl_ann = createPopplerAnnotationFromOkularAnnotation(static_cast<Okular::StampAnnotation *>(okl_ann), ppl_page);
+        if (deletedStampsAnnotationAppearance.find(static_cast<Okular::StampAnnotation *>(okl_ann)) != deletedStampsAnnotationAppearance.end()) {
+            ppl_ann->setAnnotationAppearance(*deletedStampsAnnotationAppearance[static_cast<Okular::StampAnnotation *>(okl_ann)].get());
+            deletedStampsAnnotationAppearance.erase(static_cast<Okular::StampAnnotation *>(okl_ann));
+
+            if (wasDenyWriteEnabled) {
+                okl_ann->setFlags(okl_ann->flags() | Okular::Annotation::DenyWrite);
+            }
+        }
+    } break;
     case Okular::Annotation::AInk:
         ppl_ann = createPopplerAnnotationFromOkularAnnotation(static_cast<Okular::InkAnnotation *>(okl_ann));
         break;
@@ -460,12 +489,9 @@ void PopplerAnnotationProxy::notifyAddition(Okular::Annotation *okl_ann, int pag
         return;
     }
 
-    // Poppler doesn't render StampAnnotations yet
-    if (ppl_ann->subType() != Poppler::Annotation::AStamp)
-        okl_ann->setFlags(okl_ann->flags() | Okular::Annotation::ExternallyDrawn);
+    okl_ann->setFlags(okl_ann->flags() | Okular::Annotation::ExternallyDrawn);
 
     // Bind poppler object to page
-    Poppler::Page *ppl_page = ppl_doc->page(page);
     ppl_page->addAnnotation(ppl_ann);
     delete ppl_page;
 
@@ -483,8 +509,9 @@ void PopplerAnnotationProxy::notifyModification(const Okular::Annotation *okl_an
 
     Poppler::Annotation *ppl_ann = qvariant_cast<Poppler::Annotation *>(okl_ann->nativeId());
 
-    if (!ppl_ann) // Ignore non-native annotations
+    if (!ppl_ann) { // Ignore non-native annotations
         return;
+    }
 
     QMutexLocker ml(mutex);
 
@@ -534,7 +561,9 @@ void PopplerAnnotationProxy::notifyModification(const Okular::Annotation *okl_an
     case Poppler::Annotation::AStamp: {
         const Okular::StampAnnotation *okl_stampann = static_cast<const Okular::StampAnnotation *>(okl_ann);
         Poppler::StampAnnotation *ppl_stampann = static_cast<Poppler::StampAnnotation *>(ppl_ann);
-        updatePopplerAnnotationFromOkularAnnotation(okl_stampann, ppl_stampann);
+        Poppler::Page *ppl_page = ppl_doc->page(page);
+        updatePopplerAnnotationFromOkularAnnotation(okl_stampann, ppl_stampann, ppl_page);
+        delete ppl_page;
         break;
     }
     case Poppler::Annotation::AInk: {
@@ -555,13 +584,17 @@ void PopplerAnnotationProxy::notifyRemoval(Okular::Annotation *okl_ann, int page
 {
     Poppler::Annotation *ppl_ann = qvariant_cast<Poppler::Annotation *>(okl_ann->nativeId());
 
-    if (!ppl_ann) // Ignore non-native annotations
+    if (!ppl_ann) { // Ignore non-native annotations
         return;
+    }
 
     QMutexLocker ml(mutex);
 
     Poppler::Page *ppl_page = ppl_doc->page(page);
     annotationsOnOpenHash->remove(okl_ann);
+    if (okl_ann->subType() == Okular::Annotation::AStamp) {
+        deletedStampsAnnotationAppearance[static_cast<Okular::StampAnnotation *>(okl_ann)] = ppl_ann->annotationAppearance();
+    }
     ppl_page->removeAnnotation(ppl_ann); // Also destroys ppl_ann
     delete ppl_page;
 
@@ -803,7 +836,7 @@ static Okular::Annotation *createAnnotationFromPopplerAnnotation(const Poppler::
     oLineAnn->setShowCaption(popplerAnnotation->lineShowCaption());
     oLineAnn->setLineIntent(popplerToOkular(popplerAnnotation->lineIntent()));
 
-    QLinkedList<Okular::NormalizedPoint> points;
+    QList<Okular::NormalizedPoint> points;
     const QLinkedList<QPointF> popplerPoints = popplerAnnotation->linePoints();
     for (const QPointF &p : popplerPoints) {
         points << Okular::NormalizedPoint(p.x(), p.y());
@@ -855,9 +888,9 @@ static Okular::Annotation *createAnnotationFromPopplerAnnotation(const Poppler::
     Okular::InkAnnotation *oInkAnn = new Okular::InkAnnotation();
 
     const QList<QLinkedList<QPointF>> popplerInkPaths = popplerAnnotation->inkPaths();
-    QList<QLinkedList<Okular::NormalizedPoint>> okularInkPaths;
+    QList<QList<Okular::NormalizedPoint>> okularInkPaths;
     for (const QLinkedList<QPointF> &popplerInkPath : popplerInkPaths) {
-        QLinkedList<Okular::NormalizedPoint> okularInkPath;
+        QList<Okular::NormalizedPoint> okularInkPath;
         for (const QPointF &popplerPoint : popplerInkPath) {
             okularInkPath << Okular::NormalizedPoint(popplerPoint.x(), popplerPoint.y());
         }
@@ -997,6 +1030,7 @@ Okular::Annotation *createAnnotationFromPopplerAnnotation(Poppler::Annotation *p
         break;
     }
     case Poppler::Annotation::AStamp:
+        externallyDrawn = true;
         tieToOkularAnn = true;
         *doDelete = false;
         okularAnnotation = createAnnotationFromPopplerAnnotation(static_cast<Poppler::StampAnnotation *>(popplerAnnotation));
@@ -1018,8 +1052,19 @@ Okular::Annotation *createAnnotationFromPopplerAnnotation(Poppler::Annotation *p
         okularAnnotation->setFlags(popplerAnnotation->flags() | Okular::Annotation::External);
         okularAnnotation->setBoundingRectangle(Okular::NormalizedRect::fromQRectF(popplerAnnotation->boundary()));
 
-        if (externallyDrawn)
+        if (externallyDrawn) {
             okularAnnotation->setFlags(okularAnnotation->flags() | Okular::Annotation::ExternallyDrawn);
+        }
+        if (okularAnnotation->subType() == Okular::Annotation::SubType::AStamp) {
+            Okular::StampAnnotation *oStampAnn = static_cast<Okular::StampAnnotation *>(okularAnnotation);
+            Poppler::StampAnnotation *pStampAnn = static_cast<Poppler::StampAnnotation *>(popplerAnnotation);
+            QFileInfo stampIconFile = oStampAnn->stampIconName();
+            if (stampIconFile.exists() && stampIconFile.isFile()) {
+                setPopplerStampAnnotationCustomImage(&popplerPage, pStampAnn, oStampAnn);
+            }
+
+            oStampAnn->setFlags(okularAnnotation->flags() | Okular::Annotation::Flag::DenyWrite);
+        }
 
         // Convert the poppler annotation style to Okular annotation style
         Okular::Annotation::Style &okularStyle = okularAnnotation->style();
@@ -1031,10 +1076,12 @@ Okular::Annotation *createAnnotationFromPopplerAnnotation(Poppler::Annotation *p
         okularStyle.setXCorners(popplerStyle.xCorners());
         okularStyle.setYCorners(popplerStyle.yCorners());
         const QVector<double> &dashArray = popplerStyle.dashArray();
-        if (dashArray.size() > 0)
+        if (dashArray.size() > 0) {
             okularStyle.setMarks(dashArray[0]);
-        if (dashArray.size() > 1)
+        }
+        if (dashArray.size() > 1) {
             okularStyle.setSpaces(dashArray[1]);
+        }
         okularStyle.setLineEffect(popplerToOkular(popplerStyle.lineEffect()));
         okularStyle.setEffectIntensity(popplerStyle.effectIntensity());
 
@@ -1052,7 +1099,7 @@ Okular::Annotation *createAnnotationFromPopplerAnnotation(Poppler::Annotation *p
         okularWindow.setSummary(popplerPopup.summary());
 
         // Convert the poppler revisions to Okular revisions
-        QLinkedList<Okular::Annotation::Revision> &okularRevisions = okularAnnotation->revisions();
+        QList<Okular::Annotation::Revision> &okularRevisions = okularAnnotation->revisions();
         const QList<Poppler::Annotation *> popplerRevisions = popplerAnnotation->revisions();
         for (Poppler::Annotation *popplerRevision : popplerRevisions) {
             bool deletePopplerRevision;

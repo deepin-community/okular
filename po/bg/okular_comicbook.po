@@ -2,19 +2,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Yasen Pramatarov <yasen@lindeas.com>, 2009.
+# Mincho Kondarev <mkondarev@yahoo.de>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: okular_comicbook\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-06-11 00:15+0000\n"
-"PO-Revision-Date: 2009-09-05 21:00+0300\n"
-"Last-Translator: Yasen Pramatarov <yasen@lindeas.com>\n"
+"PO-Revision-Date: 2022-05-21 22:23+0200\n"
+"Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 22.04.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -28,10 +29,10 @@ msgid "Your emails"
 msgstr "yasen@lindeas.com"
 
 #: document.cpp:96
-#, fuzzy, kde-format
-#| msgid "Cannot open document, unrar was not found."
+#, kde-format
 msgid "Cannot open document, neither unrar nor unarchiver were found."
-msgstr "Грешка при отваряне на документа. Не е открит unrar."
+msgstr ""
+"Не може да се отвори документ, не са намерени нито unrar, нито unarchiver."
 
 #: document.cpp:101
 #, kde-format
@@ -45,15 +46,3 @@ msgstr ""
 #, kde-format
 msgid "Unknown ComicBook format."
 msgstr "Непознат формат на комикс."
-
-#~ msgid "ComicBook Backend"
-#~ msgstr "Ядро ComicBook"
-
-#~ msgid "A renderer for various comic book formats"
-#~ msgstr "Показване на различни формати комикси"
-
-#~ msgid "© 2007-2008 Tobias Koenig"
-#~ msgstr "© 2007-2008 Tobias Koenig"
-
-#~ msgid "Tobias Koenig"
-#~ msgstr "Tobias Koenig"

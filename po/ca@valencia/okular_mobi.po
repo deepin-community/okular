@@ -34,14 +34,14 @@ msgstr "txemaq@gmail.com"
 #: converter.cpp:59
 #, kde-format
 msgid "Error while opening the Mobipocket document."
-msgstr "Error en obrir el document Mobipocket."
+msgstr "S'ha produït un error en obrir el document Mobipocket."
 
 #: converter.cpp:64
 #, kde-format
 msgid ""
 "This book is protected by DRM and can be displayed only on designated device"
 msgstr ""
-"Aquest llibre està protegit per DRM i només es pot visualitzar en el "
+"Este llibre està protegit per DRM i només es pot visualitzar en el "
 "dispositiu designat"
 
 #: generator_mobi.cpp:25
@@ -52,4 +52,4 @@ msgstr "Mobipocket"
 #: generator_mobi.cpp:25
 #, kde-format
 msgid "Mobipocket Backend Configuration"
-msgstr "Configuració del dorsal de Mobipocket"
+msgstr "Configureu el dorsal de Mobipocket"

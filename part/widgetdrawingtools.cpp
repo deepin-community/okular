@@ -81,10 +81,11 @@ void WidgetDrawingTools::setTools(const QStringList &items)
         if (toolElement.tagName() == QLatin1String("tool")) {
             const QString name = toolElement.attribute(QStringLiteral("name"));
             QString itemText;
-            if (toolElement.attribute(QStringLiteral("default"), QStringLiteral("false")) == QLatin1String("true"))
+            if (toolElement.attribute(QStringLiteral("default"), QStringLiteral("false")) == QLatin1String("true")) {
                 itemText = i18n(name.toLatin1().constData());
-            else
+            } else {
                 itemText = name;
+            }
 
             QListWidgetItem *listEntry = new QListWidgetItem(itemText, m_list);
             listEntry->setData(ToolXmlRole, QVariant::fromValue(toolXml));
@@ -119,8 +120,9 @@ void WidgetDrawingTools::slotAdd()
 {
     EditDrawingToolDialog dlg(QDomElement(), this);
 
-    if (dlg.exec() != QDialog::Accepted)
+    if (dlg.exec() != QDialog::Accepted) {
         return;
+    }
 
     const QDomDocument rootDoc = dlg.toolXml();
     QDomElement toolElement = rootDoc.documentElement();
@@ -153,7 +155,7 @@ void WidgetDrawingTools::slotAdd()
     m_list->setCurrentItem(listEntry);
     m_list->scrollToItem(listEntry);
     updateButtons();
-    emit changed();
+    Q_EMIT changed();
 }
 
 void WidgetDrawingTools::slotEdit()
@@ -166,8 +168,9 @@ void WidgetDrawingTools::slotEdit()
 
     EditDrawingToolDialog dlg(toolElement, this);
 
-    if (dlg.exec() != QDialog::Accepted)
+    if (dlg.exec() != QDialog::Accepted) {
         return;
+    }
 
     doc = dlg.toolXml();
     toolElement = doc.documentElement();
@@ -196,5 +199,5 @@ void WidgetDrawingTools::slotEdit()
     m_list->setCurrentItem(listEntry);
     m_list->scrollToItem(listEntry);
     updateButtons();
-    emit changed();
+    Q_EMIT changed();
 }

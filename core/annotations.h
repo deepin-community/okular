@@ -11,7 +11,6 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QFont>
-#include <QLinkedList>
 #include <QRect>
 #include <QString>
 
@@ -74,6 +73,17 @@ public:
      * @p scaleX and @p scaleY.
      */
     static QRect annotationGeometry(const Annotation *annotation, double scaleX, double scaleY);
+
+    /**
+     * Returns a pixmap for a stamp symbol
+     *
+     * @p name Name of a Okular stamp symbol, icon or path to an image
+     * @p size Size of the pixmap side
+     * @p keepAspectRatio Whether to keep aspect ratio of the stamp or not
+     *
+     * @since 21.12
+     */
+    static QPixmap loadStamp(const QString &nameOrPath, int size, bool keepAspectRatio = true);
 };
 
 /**
@@ -593,12 +603,12 @@ public:
     /**
      * Returns a reference to the revision list of the annotation.
      */
-    QLinkedList<Revision> &revisions();
+    QList<Revision> &revisions();
 
     /**
      * Returns a reference to the revision list of the annotation.
      */
-    const QLinkedList<Revision> &revisions() const;
+    const QList<Revision> &revisions() const;
 
     /**
      * Sets the "native" @p id of the annotation.
@@ -675,7 +685,7 @@ public:
 
 protected:
     /// @cond PRIVATE
-    Annotation(AnnotationPrivate &dd);
+    explicit Annotation(AnnotationPrivate &dd);
     Annotation(AnnotationPrivate &dd, const QDomNode &description);
     Q_DECLARE_PRIVATE(Annotation)
     AnnotationPrivate *d_ptr;
@@ -927,19 +937,25 @@ public:
 
     /**
      * Sets the normalized line @p points of the line annotation.
+     *
+     * @since 22.08
      */
-    void setLinePoints(const QLinkedList<NormalizedPoint> &points);
+    void setLinePoints(const QList<NormalizedPoint> &points);
 
     /**
      * Returns the normalized line points of the line annotation.
+     *
+     * @since 22.08
      */
-    QLinkedList<NormalizedPoint> linePoints() const;
+    QList<NormalizedPoint> linePoints() const;
 
     /**
      * Returns the transformed (e.g. rotated) normalized line points
      * of the line annotation.
+     *
+     * @since 22.08
      */
-    QLinkedList<NormalizedPoint> transformedLinePoints() const;
+    QList<NormalizedPoint> transformedLinePoints() const;
 
     /**
      * Sets the line starting @p style of the line annotation.
@@ -1325,19 +1341,25 @@ public:
 
     /**
      * Sets the @p paths of points for the ink annotation.
+     *
+     * @since 22.08
      */
-    void setInkPaths(const QList<QLinkedList<NormalizedPoint>> &paths);
+    void setInkPaths(const QList<QList<NormalizedPoint>> &paths);
 
     /**
      * Returns the paths of points of the ink annotation.
+     *
+     * @since 22.08
      */
-    QList<QLinkedList<NormalizedPoint>> inkPaths() const;
+    QList<QList<NormalizedPoint>> inkPaths() const;
 
     /**
      * Returns the paths of transformed (e.g. rotated) points of
      * the ink annotation.
+     *
+     * @since 22.08
      */
-    QList<QLinkedList<NormalizedPoint>> transformedInkPaths() const;
+    QList<QList<NormalizedPoint>> transformedInkPaths() const;
 
     /**
      * Returns the sub type of the ink annotation.

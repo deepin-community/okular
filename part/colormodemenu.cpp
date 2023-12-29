@@ -10,7 +10,7 @@
 #include <KLocalizedString>
 #include <kwidgetsaddons_version.h> // TODO KF6: Remove, this was needed for KActionMenu::setPopupMode().
 
-#include "guiutils.h"
+#include "gui/guiutils.h"
 #include "settings.h"
 
 ColorModeMenu::ColorModeMenu(KActionCollection *ac, QObject *parent)
@@ -18,12 +18,7 @@ ColorModeMenu::ColorModeMenu(KActionCollection *ac, QObject *parent)
     , m_colorModeActionGroup(new QActionGroup(this))
     , m_aChangeColors(new KToggleAction(QIcon::fromTheme(QStringLiteral("color-management")), i18nc("@action Change Colors feature toggle action", "Change Colors"), this))
 {
-#if KWIDGETSADDONS_VERSION < QT_VERSION_CHECK(5, 77, 0)
-    setDelayed(false);
-    setStickyMenu(true);
-#else
     setPopupMode(QToolButton::MenuButtonPopup);
-#endif
 
     Q_ASSERT_X(ac->action(QStringLiteral("color_mode_menu")) == nullptr, "ColorModeMenu", "ColorModeMenu constructed twice; color_mode_menu already in action collection.");
     ac->addAction(QStringLiteral("color_mode_menu"), this);
@@ -68,7 +63,7 @@ ColorModeMenu::ColorModeMenu(KActionCollection *ac, QObject *parent)
     // Add Configure Color Modes action.
     addSeparator();
     QAction *aConfigure = ac->action(QStringLiteral("options_configure_color_modes"));
-    Q_ASSERT_X(aConfigure, "ColorModeMenu", "ColorModeMenu constructed before Okular::Part?!? options_configure_color_modes not in action collection.");
+    Q_ASSERT_X(aConfigure, "ColorModeMenu", "options_configure_color_modes is not in the action collection.");
     addAction(aConfigure);
 
     connect(m_colorModeActionGroup, &QActionGroup::triggered, this, &ColorModeMenu::slotColorModeActionTriggered);

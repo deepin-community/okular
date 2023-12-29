@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_poppler\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-09-25 01:38+0000\n"
-"PO-Revision-Date: 2020-01-28 03:37+0200\n"
+"POT-Creation-Date: 2023-06-29 00:44+0000\n"
+"PO-Revision-Date: 2021-12-10 00:12+0200\n"
 "Last-Translator: Liudas <liudas.alisauskas@gmail.com>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 3.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -30,76 +30,134 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "andrius@stikonas.eu, liudas@akmc.lt, Moo"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_OverprintPreviewEnabled)
+#: conf/pdfsettingswidget.ui:17
+#, kde-format
+msgid "Enable overprint preview"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: conf/pdfsettingswidget.ui:19
+#: conf/pdfsettingswidget.ui:26
 #, kde-format
 msgid "Enhance thin lines:"
 msgstr "Pagerinti plonas linijas:"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:30 generator_pdf.cpp:856
+#: conf/pdfsettingswidget.ui:37 generator_pdf.cpp:947
 #, kde-format
 msgid "No"
 msgstr "Ne"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:35
+#: conf/pdfsettingswidget.ui:42
 #, kde-format
 msgid "Solid"
 msgstr "Vientisa"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:40
+#: conf/pdfsettingswidget.ui:47
 #, kde-format
 msgid "Shape"
 msgstr "Forma"
 
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: conf/pdfsettingswidget.ui:72
+#, fuzzy, kde-format
+#| msgid "Scaling mode for the printed pages"
+msgid "Default scaling mode when printing:"
+msgstr "Spausdinamų puslapių mastelio keitimo veiksena"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:80 generator_pdf.cpp:103
+#, kde-format
+msgid "Fit to printable area"
+msgstr "Talpinti į spausdintiną sritį"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:85 generator_pdf.cpp:104
+#, kde-format
+msgid "Fit to full page"
+msgstr "Talpinti į visą puslapį"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:90 generator_pdf.cpp:105
+#, kde-format
+msgid "None; print original size"
+msgstr "Nėra; spausdinti pradinį dydį"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CheckOCSPServers)
+#: conf/pdfsettingswidget.ui:113
+#, kde-format
+msgid ""
+"Enabling this option will allow Okular to contact 3rd-party OCSP servers to "
+"check if the certificates used for digital signing have been revoked since "
+"their creation."
+msgstr ""
+"Įjungus šią parinktį, programai Okular bus leidžiama susisiekti su trečiųjų "
+"šalių OCSP serveriais, kad būtų tikrinama, ar skaitmeniniam pasirašymui "
+"naudojami liudijimai nuo jų sukūrimo laiko buvo panaikinti, ar ne."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckOCSPServers)
+#: conf/pdfsettingswidget.ui:116
+#, kde-format
+msgid ""
+"Check revocation of digital signatures' certificates using 3rd-party servers"
+msgstr ""
+"Tikrinti skaitmeninių parašų liudijimų panaikinimą naudojant trečiųjų šalių "
+"serverius"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: conf/pdfsettingswidget.ui:138
+#, kde-format
+msgid "Signature backend:"
+msgstr ""
+
 #. i18n: ectx: property (title), widget (QGroupBox, certDBGroupBox)
-#: conf/pdfsettingswidget.ui:63
+#: conf/pdfsettingswidget.ui:164
 #, kde-format
 msgid "Certificate Database"
-msgstr ""
+msgstr "Liudijimų duomenų bazė"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_UseDefaultCertDB)
-#: conf/pdfsettingswidget.ui:72
+#: conf/pdfsettingswidget.ui:173
 #, kde-format
 msgid "Default:"
-msgstr ""
+msgstr "Numatytasis:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, customRadioButton)
-#: conf/pdfsettingswidget.ui:79
+#: conf/pdfsettingswidget.ui:180
 #, kde-format
 msgid "Custom:"
-msgstr ""
+msgstr "Tinkintas:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, certificatesGroup)
-#: conf/pdfsettingswidget.ui:96
+#: conf/pdfsettingswidget.ui:197
 #, kde-format
 msgid "Available Certificates"
-msgstr ""
+msgstr "Prieinami liudijimai"
 
 #. i18n: ectx: property (text), widget (QPushButton, loadSignaturesButton)
-#: conf/pdfsettingswidget.ui:104
+#: conf/pdfsettingswidget.ui:205
 #, kde-format
 msgid "&Load Signatures"
-msgstr ""
+msgstr "Įke&lti parašus"
 
-#: generator_pdf.cpp:89
+#: generator_pdf.cpp:88
 #, kde-format
 msgid "PDF Options"
 msgstr "PDF parinktys"
 
-#: generator_pdf.cpp:91
+#: generator_pdf.cpp:90
 #, kde-format
 msgid "Print annotations"
 msgstr "Spausdinti anotacijas"
 
-#: generator_pdf.cpp:92
+#: generator_pdf.cpp:91
 #, kde-format
 msgid "Include annotations in the printed document"
 msgstr "Įtraukti anotacijas į išspausdintą dokumentą"
 
-#: generator_pdf.cpp:93
+#: generator_pdf.cpp:92
 #, kde-format
 msgid ""
 "Includes annotations in the printed document. You can disable this if you "
@@ -108,17 +166,17 @@ msgstr ""
 "Įtraukti anotacijas į išspausdintą dokumentą. Galite tai išjungti, jei "
 "norite spausdinti pradinį neanotuotą dokumentą."
 
-#: generator_pdf.cpp:95
+#: generator_pdf.cpp:94
 #, kde-format
 msgid "Force rasterization"
 msgstr "Priverstinis keitimas į rastrinį vaizdą"
 
-#: generator_pdf.cpp:96
+#: generator_pdf.cpp:95
 #, kde-format
 msgid "Rasterize into an image before printing"
 msgstr "Prieš spausdinant, keisti į rastrinį paveikslą"
 
-#: generator_pdf.cpp:97
+#: generator_pdf.cpp:96
 #, kde-format
 msgid ""
 "Forces the rasterization of each page into an image before printing it. This "
@@ -129,73 +187,69 @@ msgstr ""
 "paveikslą. Dėl to, rezultatai paprastai būna prastesni, tačiau tai naudinga "
 "tais atvejais, jei atrodo, kad dokumentas spausdinamas netiksliai."
 
-#: generator_pdf.cpp:104
-#, kde-format
-msgid "Fit to printable area"
-msgstr "Talpinti į spausdintiną sritį"
-
-#: generator_pdf.cpp:105
-#, kde-format
-msgid "Fit to full page"
-msgstr "Talpinti į visą puslapį"
-
 #: generator_pdf.cpp:106
-#, kde-format
-msgid "None; print original size"
-msgstr "Nėra; spausdinti pradinį dydį"
-
-#: generator_pdf.cpp:107
 #, kde-format
 msgid "Scaling mode for the printed pages"
 msgstr "Spausdinamų puslapių mastelio keitimo veiksena"
 
-#: generator_pdf.cpp:108
+#: generator_pdf.cpp:107
 #, kde-format
 msgid "Scale mode:"
 msgstr "Mastelio keitimo veiksena:"
 
-#: generator_pdf.cpp:854
+#: generator_pdf.cpp:945
 #, kde-format
 msgctxt "PDF v. <version>"
 msgid "PDF v. %1.%2"
 msgstr "PDF v. %1.%2"
 
-#: generator_pdf.cpp:854
+#: generator_pdf.cpp:945
 #, kde-format
 msgid "Format"
 msgstr "Formatas"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Encrypted"
 msgstr "Šifruotas"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Unencrypted"
 msgstr "Nešifruotas"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Security"
 msgstr "Saugumas"
 
-#: generator_pdf.cpp:856
+#: generator_pdf.cpp:947
 #, kde-format
 msgid "Yes"
 msgstr "Taip"
 
-#: generator_pdf.cpp:856
+#: generator_pdf.cpp:947
 #, kde-format
 msgid "Optimized"
 msgstr "Optimizuotas"
 
-#: generator_pdf.cpp:1462
+#: generator_pdf.cpp:1378
+#, kde-format
+msgid ""
+"Signed by: %1\n"
+"\n"
+"Date: %2"
+msgstr ""
+"Pasirašė: %1\n"
+"\n"
+"Data: %2"
+
+#: generator_pdf.cpp:1581
 #, kde-format
 msgid "Using Poppler %1"
 msgstr "Naudojama Poppler %1"
 
-#: generator_pdf.cpp:1464
+#: generator_pdf.cpp:1583
 #, kde-format
 msgid ""
 "Using Poppler %1\n"
@@ -206,80 +260,73 @@ msgstr ""
 "\n"
 "Sukompiliuota su Poppler %2"
 
-#: generator_pdf.cpp:1496
+#: generator_pdf.cpp:1618
 #, kde-format
 msgid "PDF"
 msgstr "PDF"
 
-#: generator_pdf.cpp:1496
+#: generator_pdf.cpp:1618
 #, kde-format
 msgid "PDF Backend Configuration"
 msgstr "PDF programinės sąsajos konfigūracija"
 
-#: generator_pdf.cpp:1913
-#, kde-format
-msgid ""
-"Signed by: %1\n"
-"\n"
-"Date: %2"
-msgstr ""
-
-#: generator_pdf.cpp:1954
+#: generator_pdf.cpp:2111
 #, kde-format
 msgid ""
 "Some errors were found in the document, Okular might not be able to show the "
 "content correctly"
 msgstr ""
+"Dokumente buvo rasta tam tikrų klaidų. Gali būti, kad Okular negalės "
+"tinkamai atvaizduoti dokumento turinio"
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgctxt "Name of the person to whom the cerficate was issued"
 msgid "Issued to"
-msgstr ""
+msgstr "Kam išduotas:"
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgid "E-mail"
-msgstr ""
+msgstr "El. paštas"
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgctxt "Certificate expiration date"
 msgid "Expiration date"
-msgstr ""
+msgstr "Galioja iki"
 
-#: pdfsettingswidget.cpp:61
+#: pdfsettingswidget.cpp:145
 #, kde-format
 msgid ""
 "You are using a Poppler library built without NSS support.\n"
 "Adding Digital Signatures isn't available for that reason"
 msgstr ""
+"Jūs naudojate Poppler biblioteką, sudarytą be NSS palaikymo.\n"
+"Dėl šios priežasties, skaitmeninių parašų pridėjimas yra neprieinamas"
 
-#: pdfsettingswidget.cpp:102
+#: pdfsettingswidget.cpp:186
 #, kde-format
 msgid "Restart needed"
-msgstr ""
+msgstr "Reikia paleisti iš naujo"
 
-#: pdfsettingswidget.cpp:102
+#: pdfsettingswidget.cpp:186
 #, kde-format
 msgid "You need to restart Okular after changing the NSS directory settings"
-msgstr ""
+msgstr "Pakeitę NSS katalogo nuostatas, turite paleisti Okular iš naujo"
 
-#: pdfsignatureutils.cpp:40 pdfsignatureutils.cpp:46 pdfsignatureutils.cpp:54
+#: pdfsignatureutils.cpp:194
 #, kde-format
-msgid "Not Available"
-msgstr "Neprieinama"
-
-#: pdfsignatureutils.cpp:267
-#, fuzzy, kde-format
-#| msgid "Document Password"
 msgid "Enter Password"
-msgstr "Dokumento slaptažodis"
+msgstr "Įveskite slaptažodį"
 
-#: pdfsignatureutils.cpp:267
+#: pdfsignatureutils.cpp:194
 #, kde-format
 msgid "Enter password to open %1:"
-msgstr ""
+msgstr "Norėdami atverti %1, įveskite slaptažodį:"
+
+#~ msgid "Not Available"
+#~ msgstr "Neprieinama"
 
 #~ msgid "PDF Backend"
 #~ msgstr "PDF programinė sąsaja"

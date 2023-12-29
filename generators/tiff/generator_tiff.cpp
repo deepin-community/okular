@@ -96,26 +96,28 @@ public:
 
 static QDateTime convertTIFFDateTime(const char *tiffdate)
 {
-    if (!tiffdate)
+    if (!tiffdate) {
         return QDateTime();
+    }
 
     return QDateTime::fromString(QString::fromLatin1(tiffdate), QStringLiteral("yyyy:MM:dd HH:mm:ss"));
 }
 
-static void adaptSizeToResolution(TIFF *tiff, ttag_t whichres, double dpi, uint32 *size)
+static void adaptSizeToResolution(TIFF *tiff, ttag_t whichres, double dpi, uint32_t *size)
 {
     float resvalue = 1.0;
-    uint16 resunit = 0;
-    if (!TIFFGetField(tiff, whichres, &resvalue) || !TIFFGetFieldDefaulted(tiff, TIFFTAG_RESOLUTIONUNIT, &resunit))
+    uint16_t resunit = 0;
+    if (!TIFFGetField(tiff, whichres, &resvalue) || !TIFFGetFieldDefaulted(tiff, TIFFTAG_RESOLUTIONUNIT, &resunit)) {
         return;
+    }
 
     float newsize = *size / resvalue;
     switch (resunit) {
     case RESUNIT_INCH:
-        *size = (uint32)(newsize * dpi);
+        *size = (uint32_t)(newsize * dpi);
         break;
     case RESUNIT_CENTIMETER:
-        *size = (uint32)(newsize * 10.0 / 25.4 * dpi);
+        *size = (uint32_t)(newsize * 10.0 / 25.4 * dpi);
         break;
     case RESUNIT_NONE:
         break;
@@ -124,10 +126,11 @@ static void adaptSizeToResolution(TIFF *tiff, ttag_t whichres, double dpi, uint3
 
 static Okular::Rotation readTiffRotation(TIFF *tiff)
 {
-    uint32 tiffOrientation = 0;
+    uint32_t tiffOrientation = 0;
 
-    if (!TIFFGetField(tiff, TIFFTAG_ORIENTATION, &tiffOrientation))
+    if (!TIFFGetField(tiff, TIFFTAG_ORIENTATION, &tiffOrientation)) {
         return Okular::Rotation0;
+    }
 
     Okular::Rotation ret = Okular::Rotation0;
     switch (tiffOrientation) {
@@ -229,32 +232,34 @@ QImage TIFFGenerator::image(Okular::PixmapRequest *request)
 
     if (TIFFSetDirectory(d->tiff, mapPage(request->page()->number()))) {
         int rotation = request->page()->rotation();
-        uint32 width = 1;
-        uint32 height = 1;
-        uint32 orientation = 0;
+        uint32_t width = 1;
+        uint32_t height = 1;
+        uint32_t orientation = 0;
         TIFFGetField(d->tiff, TIFFTAG_IMAGEWIDTH, &width);
         TIFFGetField(d->tiff, TIFFTAG_IMAGELENGTH, &height);
 
-        if (!TIFFGetField(d->tiff, TIFFTAG_ORIENTATION, &orientation))
+        if (!TIFFGetField(d->tiff, TIFFTAG_ORIENTATION, &orientation)) {
             orientation = ORIENTATION_TOPLEFT;
+        }
 
         QImage image(width, height, QImage::Format_RGB32);
-        uint32 *data = reinterpret_cast<uint32 *>(image.bits());
+        uint32_t *data = reinterpret_cast<uint32_t *>(image.bits());
 
         // read data
         if (TIFFReadRGBAImageOriented(d->tiff, width, height, data, orientation) != 0) {
             // an image read by ReadRGBAImage is ABGR, we need ARGB, so swap red and blue
-            uint32 size = width * height;
-            for (uint32 i = 0; i < size; ++i) {
-                uint32 red = (data[i] & 0x00FF0000) >> 16;
-                uint32 blue = (data[i] & 0x000000FF) << 16;
+            uint32_t size = width * height;
+            for (uint32_t i = 0; i < size; ++i) {
+                uint32_t red = (data[i] & 0x00FF0000) >> 16;
+                uint32_t blue = (data[i] & 0x000000FF) << 16;
                 data[i] = (data[i] & 0xFF00FF00) + red + blue;
             }
 
             int reqwidth = request->width();
             int reqheight = request->height();
-            if (rotation % 2 == 1)
+            if (rotation % 2 == 1) {
                 qSwap(reqwidth, reqheight);
+            }
             img = image.scaled(reqwidth, reqheight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
             generated = true;
@@ -273,8 +278,9 @@ Okular::DocumentInfo TIFFGenerator::generateDocumentInfo(const QSet<Okular::Docu
 {
     Okular::DocumentInfo docInfo;
     if (d->tiff) {
-        if (keys.contains(Okular::DocumentInfo::MimeType))
+        if (keys.contains(Okular::DocumentInfo::MimeType)) {
             docInfo.set(Okular::DocumentInfo::MimeType, QStringLiteral("image/tiff"));
+        }
 
         if (keys.contains(Okular::DocumentInfo::Description)) {
             char *buffer = nullptr;
@@ -313,23 +319,26 @@ Okular::DocumentInfo TIFFGenerator::generateDocumentInfo(const QSet<Okular::Docu
 
 void TIFFGenerator::loadPages(QVector<Okular::Page *> &pagesVector)
 {
-    if (!d->tiff)
+    if (!d->tiff) {
         return;
+    }
 
     tdir_t dirs = TIFFNumberOfDirectories(d->tiff);
     pagesVector.resize(dirs);
     tdir_t realdirs = 0;
 
-    uint32 width = 0;
-    uint32 height = 0;
+    uint32_t width = 0;
+    uint32_t height = 0;
 
     const QSizeF dpi = Okular::Utils::realDpi(nullptr);
     for (tdir_t i = 0; i < dirs; ++i) {
-        if (!TIFFSetDirectory(d->tiff, i))
+        if (!TIFFSetDirectory(d->tiff, i)) {
             continue;
+        }
 
-        if (TIFFGetField(d->tiff, TIFFTAG_IMAGEWIDTH, &width) != 1 || TIFFGetField(d->tiff, TIFFTAG_IMAGELENGTH, &height) != 1)
+        if (TIFFGetField(d->tiff, TIFFTAG_IMAGEWIDTH, &width) != 1 || TIFFGetField(d->tiff, TIFFTAG_IMAGELENGTH, &height) != 1) {
             continue;
+        }
 
         adaptSizeToResolution(d->tiff, TIFFTAG_XRESOLUTION, dpi.width(), &width);
         adaptSizeToResolution(d->tiff, TIFFTAG_YRESOLUTION, dpi.height(), &height);
@@ -345,38 +354,41 @@ void TIFFGenerator::loadPages(QVector<Okular::Page *> &pagesVector)
     pagesVector.resize(realdirs);
 }
 
-bool TIFFGenerator::print(QPrinter &printer)
+Okular::Document::PrintError TIFFGenerator::print(QPrinter &printer)
 {
-    uint32 width = 0;
-    uint32 height = 0;
+    uint32_t width = 0;
+    uint32_t height = 0;
 
     QPainter p(&printer);
 
     QList<int> pageList = Okular::FilePrinter::pageList(printer, document()->pages(), document()->currentPage() + 1, document()->bookmarkedPageList());
 
     for (int i = 0; i < pageList.count(); ++i) {
-        if (!TIFFSetDirectory(d->tiff, mapPage(pageList[i] - 1)))
+        if (!TIFFSetDirectory(d->tiff, mapPage(pageList[i] - 1))) {
             continue;
+        }
 
-        if (TIFFGetField(d->tiff, TIFFTAG_IMAGEWIDTH, &width) != 1 || TIFFGetField(d->tiff, TIFFTAG_IMAGELENGTH, &height) != 1)
+        if (TIFFGetField(d->tiff, TIFFTAG_IMAGEWIDTH, &width) != 1 || TIFFGetField(d->tiff, TIFFTAG_IMAGELENGTH, &height) != 1) {
             continue;
+        }
 
         QImage image(width, height, QImage::Format_RGB32);
-        uint32 *data = reinterpret_cast<uint32 *>(image.bits());
+        uint32_t *data = reinterpret_cast<uint32_t *>(image.bits());
 
         // read data
         if (TIFFReadRGBAImageOriented(d->tiff, width, height, data, ORIENTATION_TOPLEFT) != 0) {
             // an image read by ReadRGBAImage is ABGR, we need ARGB, so swap red and blue
-            uint32 size = width * height;
-            for (uint32 j = 0; j < size; ++j) {
-                uint32 red = (data[j] & 0x00FF0000) >> 16;
-                uint32 blue = (data[j] & 0x000000FF) << 16;
+            uint32_t size = width * height;
+            for (uint32_t j = 0; j < size; ++j) {
+                uint32_t red = (data[j] & 0x00FF0000) >> 16;
+                uint32_t blue = (data[j] & 0x000000FF) << 16;
                 data[j] = (data[j] & 0xFF00FF00) + red + blue;
             }
         }
 
-        if (i != 0)
+        if (i != 0) {
             printer.newPage();
+        }
 
         QSize targetSize = printer.pageRect().size();
 
@@ -389,7 +401,7 @@ bool TIFFGenerator::print(QPrinter &printer)
         }
     }
 
-    return true;
+    return Okular::Document::NoPrintError;
 }
 
 int TIFFGenerator::mapPage(int page) const

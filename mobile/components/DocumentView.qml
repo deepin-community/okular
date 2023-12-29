@@ -4,8 +4,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-import QtQuick 2.2
-import QtQuick.Controls 2.2 as QQC2
+import QtQuick 2.15
+import QtQuick.Controls 2.15 as QQC2
 import org.kde.okular 2.0
 import "./private"
 
@@ -37,7 +37,9 @@ QQC2.ScrollView {
         }
         Connections {
             target: root.document
-            onUrlChanged: resizeTimer.restart()
+            function onUrlChanged() {
+                resizeTimer.restart()
+            }
         }
         Timer {
             id: resizeTimer

@@ -19,11 +19,11 @@
 >yurchor@ukr.net</email
 ></author>
 <date
->2019-02-14</date>
+>2022-02-19</date>
 <releaseinfo
->Okular 1.7</releaseinfo>
+>Okular 22.04</releaseinfo>
 <productname
->KDE-program</productname>
+>KDE Gear</productname>
 </refentryinfo>
 
 <refmeta>
@@ -151,6 +151,21 @@
 <listitem>
 <para
 >Sök efter en sträng i texten.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--editor-cmd <replaceable
+>sträng</replaceable
+></option
+></term>
+<listitem>
+<para
+>Ställer in det externa redigeringskommandot. Du kan inte ställa in redigeringskommandot för en instans av Okular som redan kör. Observera att <option
+>--unique</option
+> inte heller stöds när redigeringskommandot ställs in på kommandoraden.</para>
 </listitem>
 </varlistentry>
 </variablelist>

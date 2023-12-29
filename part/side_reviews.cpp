@@ -39,7 +39,7 @@ class TreeView : public QTreeView
     Q_OBJECT
 
 public:
-    TreeView(Okular::Document *document, QWidget *parent = Q_NULLPTR)
+    explicit TreeView(Okular::Document *document, QWidget *parent = Q_NULLPTR)
         : QTreeView(parent)
         , m_document(document)
     {
@@ -49,11 +49,12 @@ protected:
     void paintEvent(QPaintEvent *event) override
     {
         bool hasAnnotations = false;
-        for (uint i = 0; i < m_document->pages(); ++i)
+        for (uint i = 0; i < m_document->pages(); ++i) {
             if (m_document->page(i)->hasAnnotations()) {
                 hasAnnotations = true;
                 break;
             }
+        }
         if (!hasAnnotations) {
             QPainter p(viewport());
             p.setRenderHint(QPainter::Antialiasing, true);
@@ -71,7 +72,7 @@ protected:
 
             p.setBrush(palette().window());
             p.translate(0.5, 0.5);
-            p.drawRoundedRect(15, 15, w, h, (8 * 200.0) / w, (8 * 200.0) / h);
+            p.drawRoundedRect(15, 15, w, h, 3, 3);
             p.translate(20, 20);
             document.drawContents(&p);
 
@@ -93,7 +94,7 @@ Reviews::Reviews(QWidget *parent, Okular::Document *document)
     vLayout->setSpacing(6);
 
     KTitleWidget *titleWidget = new KTitleWidget(this);
-    titleWidget->setLevel(2);
+    titleWidget->setLevel(4);
     titleWidget->setText(i18n("Annotations"));
 
     m_view = new TreeView(m_document, this);
@@ -234,8 +235,9 @@ void Reviews::activated(const QModelIndex &index)
     const QModelIndex annotIndex = m_filterProxy->mapToSource(filterIndex);
 
     Okular::Annotation *annotation = m_model->annotationForIndex(annotIndex);
-    if (!annotation)
+    if (!annotation) {
         return;
+    }
 
     int pageNumber = m_model->data(annotIndex, AnnotationModel::PageRole).toInt();
     const Okular::Page *page = m_document->page(pageNumber);

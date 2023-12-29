@@ -57,13 +57,13 @@ Converter::~Converter()
 
 QTextDocument *Converter::convert(const QString &fileName)
 {
-    m_markdownFile = fopen(fileName.toLocal8Bit(), "rb");
+    m_markdownFile = fopen(fileName.toLocal8Bit().constData(), "rb");
     if (!m_markdownFile) {
-        emit error(i18n("Failed to open the document"), -1);
+        Q_EMIT error(i18n("Failed to open the document"), -1);
         return nullptr;
     }
 
-    m_fileDir = QDir(fileName.left(fileName.lastIndexOf('/')));
+    m_fileDir = QDir(fileName.left(fileName.lastIndexOf(QLatin1Char('/'))));
 
     QTextDocument *doc = convertOpenFile();
     QHash<QString, QTextFragment> internalLinks;
@@ -75,7 +75,7 @@ QTextDocument *Converter::convert(const QString &fileName)
         if (anchorIt != documentAnchors.constEnd()) {
             const Okular::DocumentViewport viewport = calculateViewport(doc, anchorIt.value());
             Okular::GotoAction *action = new Okular::GotoAction(QString(), viewport);
-            emit addAction(action, linkIt.value().position(), linkIt.value().position() + linkIt.value().length());
+            Q_EMIT addAction(action, linkIt.value().position(), linkIt.value().position() + linkIt.value().length());
         } else {
             qDebug() << "Could not find destination for" << linkIt.key();
         }
@@ -93,15 +93,39 @@ QTextDocument *Converter::convertOpenFile()
 {
     rewind(m_markdownFile);
 
+#if defined(MKD_NOLINKS)
+    // on discount 2 MKD_NOLINKS is a define
     MMIOT *markdownHandle = mkd_in(m_markdownFile, 0);
 
     int flags = MKD_FENCEDCODE | MKD_GITHUBTAGS | MKD_AUTOLINK | MKD_TOC | MKD_IDANCHOR;
-    if (!m_isFancyPantsEnabled)
+    if (!m_isFancyPantsEnabled) {
         flags |= MKD_NOPANTS;
+    }
     if (!mkd_compile(markdownHandle, flags)) {
-        emit error(i18n("Failed to compile the Markdown document."), -1);
+        Q_EMIT error(i18n("Failed to compile the Markdown document."), -1);
         return nullptr;
     }
+#else
+    // on discount 3 MKD_NOLINKS is an enum value
+    MMIOT *markdownHandle = mkd_in(m_markdownFile, nullptr);
+
+    mkd_flag_t *flags = mkd_flags();
+    // These flags aren't bitflags, so they can't be | together
+    mkd_set_flag_num(flags, MKD_FENCEDCODE);
+    mkd_set_flag_num(flags, MKD_GITHUBTAGS);
+    mkd_set_flag_num(flags, MKD_AUTOLINK);
+    mkd_set_flag_num(flags, MKD_TOC);
+    mkd_set_flag_num(flags, MKD_IDANCHOR);
+    if (!m_isFancyPantsEnabled) {
+        mkd_set_flag_num(flags, MKD_NOPANTS);
+    }
+    if (!mkd_compile(markdownHandle, flags)) {
+        Q_EMIT error(i18n("Failed to compile the Markdown document."), -1);
+        mkd_free_flags(flags);
+        return nullptr;
+    }
+    mkd_free_flags(flags);
+#endif
 
     char *htmlDocument;
     const int size = mkd_document(markdownHandle, &htmlDocument);
@@ -111,8 +135,9 @@ QTextDocument *Converter::convertOpenFile()
     QTextDocument *textDocument = new QTextDocument;
     textDocument->setPageSize(QSizeF(PAGE_WIDTH, PAGE_HEIGHT));
     textDocument->setHtml(html);
-    if (generator())
+    if (generator()) {
         textDocument->setDefaultFont(generator()->generalSettings()->font());
+    }
 
     mkd_cleanup(markdownHandle);
 
@@ -149,11 +174,11 @@ void Converter::extractLinks(const QTextBlock &parent, QHash<QString, QTextFragm
             const QTextCharFormat textCharFormat = textFragment.charFormat();
             if (textCharFormat.isAnchor()) {
                 const QString href = textCharFormat.anchorHref();
-                if (href.startsWith('#')) { // It's an internal link, store it and we'll resolve it at the end
+                if (href.startsWith(QLatin1Char('#'))) { // It's an internal link, store it and we'll resolve it at the end
                     internalLinks.insert(href.mid(1), textFragment);
                 } else {
                     Okular::BrowseAction *action = new Okular::BrowseAction(QUrl(textCharFormat.anchorHref()));
-                    emit addAction(action, textFragment.position(), textFragment.position() + textFragment.length());
+                    Q_EMIT addAction(action, textFragment.position(), textFragment.position() + textFragment.length());
                 }
 
                 const QStringList anchorNames = textCharFormat.anchorNames();
@@ -195,7 +220,8 @@ void Converter::convertImages(const QTextBlock &parent, const QDir &dir, QTextDo
                 cursor.setPosition(textFragment.position(), QTextCursor::MoveAnchor);
                 cursor.setPosition(textFragment.position() + textFragment.length(), QTextCursor::KeepAnchor);
 
-                const QString imageFilePath = QDir::cleanPath(dir.absoluteFilePath(textCharFormat.toImageFormat().name()));
+                const QString imageFilePath = QDir::cleanPath(dir.absoluteFilePath(QUrl::fromPercentEncoding(textCharFormat.toImageFormat().name().toUtf8())));
+
                 if (QFile::exists(imageFilePath)) {
                     cursor.removeSelectedText();
                     format.setName(imageFilePath);
@@ -204,11 +230,8 @@ void Converter::convertImages(const QTextBlock &parent, const QDir &dir, QTextDo
                     setImageSize(format, specifiedWidth, specifiedHeight, img.width(), img.height());
 
                     cursor.insertImage(format);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
                 } else if ((!textCharFormat.toImageFormat().property(QTextFormat::ImageAltText).toString().isEmpty())) {
-                    cursor.removeSelectedText();
                     cursor.insertText(textCharFormat.toImageFormat().property(QTextFormat::ImageAltText).toString());
-#endif
                 }
             }
         }

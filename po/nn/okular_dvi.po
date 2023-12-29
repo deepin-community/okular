@@ -1,20 +1,20 @@
 # Translation of okular_dvi to Norwegian Nynorsk
 #
-# Karl Ove Hufthammer <karl@huftis.org>, 2007, 2008, 2013, 2016.
+# Karl Ove Hufthammer <karl@huftis.org>, 2007, 2008, 2013, 2016, 2023.
 # Eirik U. Birkeland <eirbir@gmail.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: okular_dvi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
-"PO-Revision-Date: 2016-01-24 12:14+0100\n"
+"POT-Creation-Date: 2022-04-09 00:43+0000\n"
+"PO-Revision-Date: 2023-05-17 18:30+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 23.04.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
@@ -30,7 +30,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "karl@huftis.org"
 
-#: dviexport.cpp:117
+#: dviexport.cpp:123
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvipdfm</em> on your "
@@ -52,7 +52,7 @@ msgstr ""
 "systemadministratoren: Okular brukar miljøvariabelen PATH når det leitar "
 "etter program.</p></qt>"
 
-#: dviexport.cpp:135
+#: dviexport.cpp:142
 #, kde-format
 msgid ""
 "<qt>The external program 'dvipdfm', which was used to export the file, "
@@ -65,7 +65,7 @@ msgstr ""
 "<strong>dokumentinformasjonsvindauget</strong>, som du finn i filmenyen, for "
 "å få ein nøyaktig feilrapport.</qt>"
 
-#: dviexport.cpp:158
+#: dviexport.cpp:168
 #, kde-format
 msgid ""
 "<qt>This DVI file refers to external graphic files which are not in "
@@ -80,7 +80,7 @@ msgstr ""
 "Funksjonaliteten du treng om er derfor ikkje tilgjengeleg i denne versjonen "
 "av Okular.</qt>"
 
-#: dviexport.cpp:166
+#: dviexport.cpp:176
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvips</em> on your computer. "
@@ -93,7 +93,7 @@ msgstr ""
 "til den forskrekka systemadministratoren: Okular brukar miljøvariabelen PATH "
 "når det leitar etter program.</p></qt>"
 
-#: dviexport.cpp:257
+#: dviexport.cpp:270
 #, kde-format
 msgid ""
 "<qt>The external program 'dvips', which was used to export the file, "
@@ -105,12 +105,12 @@ msgstr ""
 "rapporterte om feil. Du finn feilmeldinga i "
 "<strong>dokumentinformasjonsvindauget</strong>, som du finn i filmenyen.</qt>"
 
-#: dviFile.cpp:90
+#: dviFile.cpp:91
 #, kde-format
 msgid "The DVI file does not start with the preamble."
 msgstr "DVI-fila har inga innleiing."
 
-#: dviFile.cpp:96
+#: dviFile.cpp:97
 #, kde-format
 msgid ""
 "The DVI file contains the wrong version of DVI output for this program. "
@@ -120,28 +120,28 @@ msgstr ""
 "DVI-fila inneheld feil versjon av DVI-data for dette programmet. Tips: "
 "Dersom du brukar Omega-systemet, må du bruka eit spesielt program, som oxdvi."
 
-#: dviFile.cpp:132
+#: dviFile.cpp:134
 #, kde-format
 msgid ""
 "The DVI file is badly corrupted. Okular was not able to find the postamble."
 msgstr "DVI-fila er svært øydelagd. Okular klarte ikkje finna avsluttinga."
 
-#: dviFile.cpp:146
+#: dviFile.cpp:148
 #, kde-format
 msgid "The postamble does not begin with the POST command."
 msgstr "Avsluttinga startar ikkje med POST-kommandoen."
 
-#: dviFile.cpp:199
+#: dviFile.cpp:202
 #, kde-format
 msgid "The postamble contained a command other than FNTDEF."
 msgstr "Avsluttinga inneheld ein annan kommando enn FNTDEF."
 
-#: dviFile.cpp:234
+#: dviFile.cpp:240
 #, kde-format
 msgid "The page %1 does not start with the BOP command."
 msgstr "Side %1 startar ikkje med BOP-kommandoen."
 
-#: dviFile.cpp:361
+#: dviFile.cpp:351
 #, kde-format
 msgid ""
 "<qt><p>The external program <strong>pdf2ps</strong> could not be started. As "
@@ -169,7 +169,7 @@ msgstr ""
 "kommandolinja for å sjå om det verkeleg verkar.</p><p><em>PATH:</em> %2</p></"
 "qt>"
 
-#: dviFile.cpp:388
+#: dviFile.cpp:410
 #, kde-format
 msgid ""
 "<qt><p>The PDF-file %1 could not be converted to PostScript. Some graphic "
@@ -184,86 +184,86 @@ msgstr ""
 "er utdata frå <strong>pdf2ps</strong>, programmet okular brukte:</"
 "p><p><strong>%2</strong></p></qt>"
 
-#: dviRenderer.cpp:199 dviRenderer.cpp:421
+#: dviRenderer.cpp:203 dviRenderer.cpp:435
 #, kde-format
 msgid "File corruption. %1"
 msgstr "Øydelagd fil. %1"
 
 # skip-rule: kunne
-#: dviRenderer.cpp:319
+#: dviRenderer.cpp:326
 #, kde-format
 msgid "Not all PostScript files could be embedded into your document. %1"
 msgstr "Kunne ikkje byggja inn alle PostScript-filene i dokumentet. %1"
 
-#: dviRenderer.cpp:322
+#: dviRenderer.cpp:329
 #, kde-format
 msgid "All external PostScript files were embedded into your document."
 msgstr "Alle eksterne PostScript-filer vart bygde inn i dokumentet."
 
-#: dviRenderer.cpp:406
+#: dviRenderer.cpp:419
 #, kde-format
 msgid "The specified file '%1' does not exist."
 msgstr "Den oppgjevne fila «%1» finst ikkje."
 
-#: dviRenderer.cpp:544
+#: dviRenderer.cpp:565
 #, kde-format
 msgid ""
 "You have asked Okular to locate the place in the DVI file which corresponds "
 "to line %1 in the TeX-file %2. It seems, however, that the DVI file does not "
 "contain the necessary source file information. "
 msgstr ""
-"Du har bedt Okular om å finna staden i DVI-fila som tilsvarer linje %1 i TeX-"
+"Du har bedt Okular om å finna staden i DVI-fila som tilsvarar linje %1 i TeX-"
 "fila %2. Men det ser ut til at DVI-fila ikkje inneheld dei nødvendige "
 "opplysningane om kjeldefila."
 
-#: dviRenderer.cpp:581
+#: dviRenderer.cpp:604
 #, kde-format
 msgid ""
 "Okular was not able to locate the place in the DVI file which corresponds to "
 "line %1 in the TeX-file %2."
-msgstr "Fann ikkje staden i DVI-fila som tilsvarer linje %1 i TeX-fila %2."
+msgstr "Fann ikkje staden i DVI-fila som tilsvarar linje %1 i TeX-fila %2."
 
-#: dviRenderer_draw.cpp:237
+#: dviRenderer_draw.cpp:243
 #, kde-format
 msgid "The DVI code set a character of an unknown font."
 msgstr "DVI-koden sette eit teikn i ei ukjend skrift."
 
-#: dviRenderer_draw.cpp:264 dviRenderer_prescan.cpp:629
+#: dviRenderer_draw.cpp:270 dviRenderer_prescan.cpp:668
 #, kde-format
 msgid "The DVI code referred to font #%1, which was not previously defined."
 msgstr "DVI-koden refererte til skrifta #%1, som ikkje er definert."
 
-#: dviRenderer_draw.cpp:345
+#: dviRenderer_draw.cpp:353
 #, kde-format
 msgid "The stack was not empty when the EOP command was encountered."
 msgstr "Stabelen var ikkje tom ved EOP-kommandoen."
 
-#: dviRenderer_draw.cpp:357
+#: dviRenderer_draw.cpp:365
 #, kde-format
 msgid "The stack was empty when a POP command was encountered."
 msgstr "Stabelen var tom når ein POP-kommando vart oppdaga."
 
-#: dviRenderer_draw.cpp:477 dviRenderer_draw.cpp:486
+#: dviRenderer_draw.cpp:489 dviRenderer_draw.cpp:498
 #, kde-format
 msgid "The DVI code referred to a font which was not previously defined."
 msgstr "DVI-koden refererte til ei skrift som ikkje er definert."
 
-#: dviRenderer_draw.cpp:527
+#: dviRenderer_draw.cpp:539
 #, kde-format
 msgid "An illegal command was encountered."
 msgstr "Støytte på ein ugyldig kommando."
 
-#: dviRenderer_draw.cpp:532
+#: dviRenderer_draw.cpp:544
 #, kde-format
 msgid "The unknown op-code %1 was encountered."
 msgstr "Støytte på den ukjende op-koden %1."
 
-#: dviRenderer_prescan.cpp:83
+#: dviRenderer_prescan.cpp:87
 #, kde-format
 msgid "Embedding %1"
 msgstr "Byggjer inn %1"
 
-#: dviRenderer_prescan.cpp:98
+#: dviRenderer_prescan.cpp:105
 #, kde-format
 msgid ""
 "Page %1: The PDF file <strong>%2</strong> could not be converted to "
@@ -272,18 +272,18 @@ msgstr ""
 "Side %1: PDF-fila <strong>%2</strong> kunne ikkje gjerast om til PostScript."
 "<br/>"
 
-#: dviRenderer_prescan.cpp:100
+#: dviRenderer_prescan.cpp:107
 #, kde-format
 msgid ""
 "Page %1: The PostScript file <strong>%2</strong> could not be found.<br>"
 msgstr "Side %1: Fann ikkje PostScript-fila <strong>%2</strong>.<br/>"
 
-#: dviRenderer_prescan.cpp:246
+#: dviRenderer_prescan.cpp:261
 #, kde-format
 msgid "The papersize data '%1' could not be parsed."
 msgstr "Klarte ikkje tolka papirstorleiken «%1»."
 
-#: fontpool.cpp:203
+#: fontpool.cpp:209
 #, kde-format
 msgid ""
 "<qt><p>Okular was not able to locate all the font files which are necessary "
@@ -294,7 +294,7 @@ msgstr ""
 "Dokumentet kan vera uleseleg.</p><p><small><b>Søkjesti (PATH):</b> %1</"
 "small></p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:270
+#: fontpool.cpp:284
 #, kde-format
 msgid ""
 "<qt><p>There were problems running <em>kpsewhich</em>. As a result, some "
@@ -309,7 +309,7 @@ msgstr ""
 "i den gjeldande søkjestien.</p><p><small><b>Søkjesti (PATH):</b> %1</small></"
 "p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:291
+#: fontpool.cpp:305
 #, kde-format
 msgid ""
 "<qt>The font generation by <em>kpsewhich</em> was aborted (exit code %1, "
@@ -320,32 +320,32 @@ msgstr ""
 "%1, feil: %2). Som eit resultat av dette fann ikkje programmet alle "
 "skriftene, og det er ikkje sikkert at dokumentet er lesbart.</qt>"
 
-#: fontpool.cpp:462
+#: fontpool.cpp:481
 #, kde-format
 msgid "Currently generating %1 at %2 dpi..."
 msgstr "Genererer no %1 med %2 p.p.t. …"
 
-#: generator_dvi.cpp:289
+#: generator_dvi.cpp:293
 #, kde-format
 msgid "Generator/Date"
 msgstr "Generator/dato"
 
-#: generator_dvi.cpp:372
+#: generator_dvi.cpp:382
 #, kde-format
 msgid "Font file not found"
 msgstr "Fann ikkje skriftfil"
 
-#: pageSize.cpp:294
+#: pageSize.cpp:318
 #, kde-format
 msgid "portrait"
 msgstr "ståande"
 
-#: pageSize.cpp:296
+#: pageSize.cpp:320
 #, kde-format
 msgid "landscape"
 msgstr "liggjande"
 
-#: psgs.cpp:265
+#: psgs.cpp:284
 #, kde-format
 msgid ""
 "The version of Ghostview that is installed on this computer does not contain "
@@ -361,7 +361,7 @@ msgstr ""
 msgid "That makes 25 errors. Further error messages will not be printed."
 msgstr "I alt 25 feil. Fleire feilmeldingar vert ikkje skrivne ut."
 
-#: special.cpp:216
+#: special.cpp:232
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Color pop command issued when the color "
@@ -370,7 +370,7 @@ msgstr ""
 "Feil i DVI-fila «%1», side %2. Prøver å henta ut farge sjølv om "
 "fargestabelen er tom."
 
-#: special.cpp:297
+#: special.cpp:318
 #, kde-format
 msgid ""
 "Malformed parameter in the epsf special command.\n"
@@ -379,7 +379,7 @@ msgstr ""
 "Misforma parameter i epsf-spesialkommandoen.\n"
 "Forventa at eit flyttal skulle komma etter %1 i %2."
 
-#: special.cpp:424
+#: special.cpp:446
 #, kde-format
 msgid ""
 "File not found: \n"
@@ -388,7 +388,7 @@ msgstr ""
 "Fann ikkje fil:\n"
 " %1"
 
-#: special.cpp:664
+#: special.cpp:695
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Could not interpret angle in text rotation "
@@ -396,7 +396,7 @@ msgid ""
 msgstr ""
 "Feil i DVI-fila «%1», side %2. Klarte ikkje tolka vinkelen i tekstrotasjonen."
 
-#: special.cpp:680
+#: special.cpp:714
 #, kde-format
 msgid "The special command '%1' is not implemented."
 msgstr "Spesialkommandoen «%1» er ikkje implementert."
@@ -414,7 +414,7 @@ msgstr ""
 msgid "The font file %1 is broken, or it could not be opened or read."
 msgstr "Skriftfila %1 er øydelagd eller kunne ikkje opnast og lesast."
 
-#: TeXFont_PFB.cpp:165
+#: TeXFont_PFB.cpp:170
 #, kde-format
 msgid ""
 "FreeType reported an error when setting the character size for font file %1."
@@ -422,77 +422,77 @@ msgstr ""
 "FreeType rapporterte om feil ved oppsett av teiknstorleiken for "
 "skriftfila %1."
 
-#: TeXFont_PFB.cpp:181
+#: TeXFont_PFB.cpp:188
 #, kde-format
 msgid "FreeType is unable to load glyph #%1 from font file %2."
 msgstr "FreeType klarar ikkje lasta inn teikn #%1 frå skriftfila %2."
 
-#: TeXFont_PFB.cpp:193
+#: TeXFont_PFB.cpp:201
 #, kde-format
 msgid "FreeType is unable to render glyph #%1 from font file %2."
 msgstr "FreeType klarar ikkje visa teikn #%1 frå skriftfila %2."
 
-#: TeXFont_PFB.cpp:206
+#: TeXFont_PFB.cpp:215
 #, kde-format
 msgid "Glyph #%1 is empty."
 msgstr "Teiknet #%1 er tomt."
 
-#: TeXFont_PFB.cpp:207
+#: TeXFont_PFB.cpp:217
 #, kde-format
 msgid "Glyph #%1 from font file %2 is empty."
 msgstr "Teiknet #%1 frå skriftfila %2 er tomt."
 
-#: TeXFont_PFB.cpp:272
+#: TeXFont_PFB.cpp:282
 #, kde-format
 msgid "FreeType is unable to load metric for glyph #%1 from font file %2."
 msgstr "FreeType klarar ikkje lasta inn mål for teikn #%1 frå skriftfila %2."
 
-#: TeXFont_PK.cpp:68
+#: TeXFont_PK.cpp:69
 #, kde-format
 msgid "Cannot open font file %1."
 msgstr "Klarte ikkje opna skriftfila %1"
 
-#: TeXFont_PK.cpp:114
+#: TeXFont_PK.cpp:116
 #, kde-format
 msgid "TexFont_PK::operator[]: Character %1 not defined in font %2"
 msgstr "TexFont_PK::operator[]: Teiknet %1 er ikkje definert i skrifta %2"
 
-#: TeXFont_PK.cpp:398
+#: TeXFont_PK.cpp:418
 #, kde-format
 msgid "Unexpected %1 in PK file %2"
 msgstr "Uventa %1 i PK-fila %2"
 
-#: TeXFont_PK.cpp:462
+#: TeXFont_PK.cpp:484
 #, kde-format
 msgid "The character %1 is too large in file %2"
 msgstr "Teiknet %1 er for stort i fila %2"
 
-#: TeXFont_PK.cpp:562 TeXFont_PK.cpp:646
+#: TeXFont_PK.cpp:589 TeXFont_PK.cpp:679
 #, kde-format
 msgid "Wrong number of bits stored:  char. %1, font %2"
 msgstr "Feil tal på bit lagra: teikn %1, skrift %2"
 
-#: TeXFont_PK.cpp:564 TeXFont_PK.cpp:648
+#: TeXFont_PK.cpp:592 TeXFont_PK.cpp:682
 #, kde-format
 msgid "Bad pk file (%1), too many bits"
 msgstr "Øydelagd pk-fil (%1) – for mange bit"
 
-#: TeXFont_PK.cpp:678
+#: TeXFont_PK.cpp:713
 #, kde-format
 msgid "Font has non-square aspect ratio "
 msgstr "Skrifttypen har eit ikkje-kvadratisk høve "
 
-#: TeXFontDefinition.cpp:105
+#: TeXFontDefinition.cpp:106
 #, kde-format
 msgid "Cannot find font %1, file %2."
 msgstr "Finn ikkje skrifta %1, fil %2."
 
-#: TeXFontDefinition.cpp:121
+#: TeXFontDefinition.cpp:123
 #, kde-format
 msgid "Checksum mismatch for font file %1"
 msgstr "Feil i sjekksum for skriftfila %1"
 
-#: TeXFontDefinition.cpp:169
+#: TeXFontDefinition.cpp:174
 #, kde-format
 msgid "Cannot recognize format for font file %1"
 msgstr "Kjenner ikkje att formatet for skriftfila %1"
@@ -528,7 +528,7 @@ msgstr ""
 "Okular burde takla denne situasjonen betre, \n"
 "bør du melda frå om problemet."
 
-#: vf.cpp:160
+#: vf.cpp:164
 #, kde-format
 msgid "Wrong command byte found in VF macro list: %1"
 msgstr "Feil kommandobyte funnen i VF-makroliste: %1"

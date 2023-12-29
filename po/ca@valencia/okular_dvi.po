@@ -1,23 +1,23 @@
 # Translation of okular_dvi.po to Catalan (Valencian)
-# Copyright (C) 2007-2020 This_file_is_part_of_KDE
+# Copyright (C) 2007-2021 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2013, 2014, 2015, 2016.
+# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2013, 2014, 2015, 2016, 2021.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: okular\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
-"PO-Revision-Date: 2020-08-06 15:18+0200\n"
-"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
+"POT-Creation-Date: 2022-04-09 00:43+0000\n"
+"PO-Revision-Date: 2021-11-03 18:53+0100\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.04.3\n"
+"X-Generator: Lokalize 20.12.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -31,7 +31,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "txemaq@gmail.com"
 
-#: dviexport.cpp:117
+#: dviexport.cpp:123
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvipdfm</em> on your "
@@ -43,17 +43,17 @@ msgid ""
 "em> program.</p><p>Hint to the perplexed system administrator: Okular uses "
 "the PATH environment variable when looking for programs.</p></qt>"
 msgstr ""
-"<qt><p>L'Okular no ha pogut trobar el programa <em>dvipdfm</em> a "
-"l'ordinador. Aquest programa és essencial perquè funcione la funció "
-"exportar. Malgrat tot, podeu convertir el fitxer DVI a PDF usant la funció "
-"d'impressió de l'Okular, però això molt sovint produeix documents que "
-"s'imprimeixen bé, però són de qualitat inferior si es visualitzen amb "
-"l'Acrobat Reader. Seria desitjable actualitzar-lo a una versió més recent "
-"del TeX de la vostra distribució que incloga el programa <em>dvipdfm</em>.</"
-"p><p>Consell per a l'administrador de sistema perplex: l'Okular usa la "
-"variable PATH de l'intèrpret d'ordres quan cerca programes.</p></qt>"
+"<qt><p>Okular no ha pogut trobar el programa <em>dvipdfm</em> en "
+"l'ordinador. Este programa és essencial perquè funcione la funció exportar. "
+"Malgrat tot, podeu convertir el fitxer DVI a PDF utilitzant la funció "
+"d'impressió d'Okular, però açò molt sovint produïx documents que "
+"s'imprimixen bé, però són de qualitat inferior si es visualitzen amb Acrobat "
+"Reader. Seria desitjable actualitzar-lo a una versió més recent de TeX de la "
+"vostra distribució que incloga el programa <em>dvipdfm</em>.</p><p>Consell "
+"per a l'administrador de sistema perplex: Okular utilitza la variable PATH "
+"de l'intèrpret d'ordres quan busca programes.</p></qt>"
 
-#: dviexport.cpp:135
+#: dviexport.cpp:142
 #, kde-format
 msgid ""
 "<qt>The external program 'dvipdfm', which was used to export the file, "
@@ -61,12 +61,12 @@ msgid ""
 "dialog</strong> which you will find in the File-Menu for a precise error "
 "report.</qt>"
 msgstr ""
-"<qt>El programa extern «dvipdfm», el qual s'usa per a exportar el fitxer, ha "
-"informat d'un error. Podeu cercar al <strong>diàleg d'informació del "
-"document</strong> que trobareu al menú Fitxer per a un llistat detallat de "
-"l'error.</qt>"
+"<qt>El programa extern «dvipdfm», el qual s'utilitza per a exportar el "
+"fitxer, ha informat d'un error. Podeu buscar al <strong>diàleg d'informació "
+"del document</strong> que trobareu en el menú Fitxer per a un llistat "
+"detallat de l'error.</qt>"
 
-#: dviexport.cpp:158
+#: dviexport.cpp:168
 #, kde-format
 msgid ""
 "<qt>This DVI file refers to external graphic files which are not in "
@@ -75,13 +75,13 @@ msgid ""
 "functionality that you require is therefore unavailable in this version of "
 "Okular.</qt>"
 msgstr ""
-"<qt>Aquest fitxer DVI té referències a fitxers gràfics externs que no estan "
-"en format PostScript, i no es poden manipular amb el programa <em>dvips</em> "
-"que l'Okular usa internament per a imprimir o exportar a PostScript. La "
-"funcionalitat que necessiteu no està disponible en aquesta versió de "
-"l'Okular.</qt>"
+"<qt>Este fitxer DVI té referències a fitxers gràfics externs que no estan en "
+"format PostScript, i no es poden manipular amb el programa <em>dvips</em> "
+"que Okular utilitza internament per a imprimir o exportar a PostScript. La "
+"característica que necessiteu no està disponible en esta versió d'Okular.</"
+"qt>"
 
-#: dviexport.cpp:166
+#: dviexport.cpp:176
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvips</em> on your computer. "
@@ -89,13 +89,13 @@ msgid ""
 "perplexed system administrator: Okular uses the PATH environment variable "
 "when looking for programs.</p></qt>"
 msgstr ""
-"<qt><p>L'Okular no ha pogut localitzar el programa <em>dvips</em> a "
-"l'ordinador. Aquest programa és essencial perquè funcione la funció "
-"d'exportació.</p><p>Consell per a l'administrador de sistema perplex: "
-"l'Okular usa la variable PATH de l'intèrpret d'ordres quan cerca programes.</"
-"p></qt>"
+"<qt><p>Okular no ha pogut localitzar el programa <em>dvips</em> en "
+"l'ordinador. Este programa és essencial perquè funcione la funció "
+"d'exportació.</p><p>Consell per a l'administrador de sistema perplex: Okular "
+"utilitza la variable PATH de l'intèrpret d'ordres quan busca programes.</p></"
+"qt>"
 
-#: dviexport.cpp:257
+#: dviexport.cpp:270
 #, kde-format
 msgid ""
 "<qt>The external program 'dvips', which was used to export the file, "
@@ -103,49 +103,49 @@ msgid ""
 "dialog</strong> which you will find in the File-Menu for a precise error "
 "report.</qt>"
 msgstr ""
-"<qt>El programa extern «dvip per as», el qual s'ha usat exportar el fitxer, "
-"ha informat d'un error. Podeu cercar al <strong>diàleg d'informació del "
-"document</strong> que trobareu al menú Fitxer per a un llistat detallat de "
-"l'error.</qt>"
+"<qt>El programa extern «dvip per as», el qual s'ha utilitzat exportar el "
+"fitxer, ha informat d'un error. Podeu buscar al <strong>diàleg d'informació "
+"del document</strong> que trobareu en el menú Fitxer per a un llistat "
+"detallat de l'error.</qt>"
 
-#: dviFile.cpp:90
+#: dviFile.cpp:91
 #, kde-format
 msgid "The DVI file does not start with the preamble."
 msgstr "El fitxer DVI no s'inicia amb el preàmbul."
 
-#: dviFile.cpp:96
+#: dviFile.cpp:97
 #, kde-format
 msgid ""
 "The DVI file contains the wrong version of DVI output for this program. "
 "Hint: If you use the typesetting system Omega, you have to use a special "
 "program, such as oxdvi."
 msgstr ""
-"El fitxer DVI conté la versió incorrecta de l'eixida DVI d'aquest programa. "
-"Consell: Si empreu el sistema de procés de tipografia Omega, heu d'usar un "
-"programa especial, com l'«oxdvi»."
+"El fitxer DVI conté la versió incorrecta de l'eixida DVI d'este programa. "
+"Consell: Si utilitzeu el sistema de procés de tipografia Omega, heu "
+"d'utilitzar un programa especial, com «oxdvi»."
 
-#: dviFile.cpp:132
+#: dviFile.cpp:134
 #, kde-format
 msgid ""
 "The DVI file is badly corrupted. Okular was not able to find the postamble."
-msgstr "El fitxer DVI està corrupte. L'Okular no ha pogut trobar el postàmbul."
+msgstr "El fitxer DVI està corrupte. Okular no ha pogut trobar l'epíleg."
 
-#: dviFile.cpp:146
+#: dviFile.cpp:148
 #, kde-format
 msgid "The postamble does not begin with the POST command."
-msgstr "El postàmbul no comença amb l'ordre POST."
+msgstr "L'epíleg no comença amb l'ordre POST."
 
-#: dviFile.cpp:199
+#: dviFile.cpp:202
 #, kde-format
 msgid "The postamble contained a command other than FNTDEF."
-msgstr "El postàmbul conté una ordre diferent de FNTDEF."
+msgstr "L'epíleg conté una ordre diferent de FNTDEF."
 
-#: dviFile.cpp:234
+#: dviFile.cpp:240
 #, kde-format
 msgid "The page %1 does not start with the BOP command."
 msgstr "La pàgina %1 no s'inicia amb l'ordre BOP."
 
-#: dviFile.cpp:361
+#: dviFile.cpp:351
 #, kde-format
 msgid ""
 "<qt><p>The external program <strong>pdf2ps</strong> could not be started. As "
@@ -164,15 +164,15 @@ msgstr ""
 "a resultat, el fitxer PDF %1 no s'ha pogut convertir a PostScript. Alguns "
 "elements gràfics del document no es visualitzaran.</p><p><b>Un possible "
 "motiu:</b> el programa <strong>pdf2ps</strong> potser no està instal·lat en "
-"el sistema, o no es troba al camí actual de cerca.</p><p><b>Què podeu fer:</"
-"b> el programa <strong>pdf2ps</strong> normalment està en distribucions del "
-"sistema de l'intèrpret PostScript. Si el ghostscript no està instal·lat en "
-"el sistema, el podeu instal·lar ara. Si esteu segur que el ghostscript està "
-"instal·lat, intenteu usar el <strong>pdf2ps</strong> des de la línia "
+"el sistema, o no es troba en el camí actual de busca.</p><p><b>Què podeu fer:"
+"</b> el programa <strong>pdf2ps</strong> normalment està en distribucions "
+"del sistema de l'intèrpret PostScript. Si el ghostscript no està instal·lat "
+"en el sistema, el podeu instal·lar ara. Si segur que el ghostscript està "
+"instal·lat, intenteu utilitzar el <strong>pdf2ps</strong> des de la línia "
 "d'ordres per a comprovar si realment funciona.</p><p><em>PATH:</em> %2</p></"
 "qt>"
 
-#: dviFile.cpp:388
+#: dviFile.cpp:410
 #, kde-format
 msgid ""
 "<qt><p>The PDF-file %1 could not be converted to PostScript. Some graphic "
@@ -183,96 +183,96 @@ msgid ""
 msgstr ""
 "<qt><p>El fitxer PDF %1 no s'ha pogut convertir a PostScript. Alguns "
 "elements gràfics no es visualitzaran.</p><p><b>Un possible motiu:</b> el "
-"fitxer %1 podria estar fet malbé, o potser no és un fitxer PDF. Aquesta és "
-"l'eixida del programa <strong>pdf2ps</strong> que ha usat l'Okular:</"
+"fitxer %1 podria estar fet malbé, o potser no és un fitxer PDF. Esta és "
+"l'eixida del programa <strong>pdf2ps</strong> que ha utilitzat Okular:</"
 "p><p><strong>%2</strong></p></qt>"
 
-#: dviRenderer.cpp:199 dviRenderer.cpp:421
+#: dviRenderer.cpp:203 dviRenderer.cpp:435
 #, kde-format
 msgid "File corruption. %1"
 msgstr "S'ha malmés el fitxer. %1"
 
-#: dviRenderer.cpp:319
+#: dviRenderer.cpp:326
 #, kde-format
 msgid "Not all PostScript files could be embedded into your document. %1"
 msgstr "No es poden incrustar tots els fitxers PostScript en el document. %1"
 
-#: dviRenderer.cpp:322
+#: dviRenderer.cpp:329
 #, kde-format
 msgid "All external PostScript files were embedded into your document."
 msgstr ""
 "No es poden incrustar tots els fitxers PostScript externs en el document."
 
-#: dviRenderer.cpp:406
+#: dviRenderer.cpp:419
 #, kde-format
 msgid "The specified file '%1' does not exist."
-msgstr "El fitxer «%1» especificat no existeix."
+msgstr "El fitxer «%1» especificat no existix."
 
-#: dviRenderer.cpp:544
+#: dviRenderer.cpp:565
 #, kde-format
 msgid ""
 "You have asked Okular to locate the place in the DVI file which corresponds "
 "to line %1 in the TeX-file %2. It seems, however, that the DVI file does not "
 "contain the necessary source file information. "
 msgstr ""
-"Heu demanat a l'Okular que situe el punt en el fitxer DVI que correspon a la "
-"línia %1 del fitxer TeX %2. Tanmateix, sembla que el fitxer DVI no conté la "
+"Heu demanat a Okular que situe el punt en el fitxer DVI que correspon a la "
+"línia %1 del fitxer TeX %2. Tanmateix, pareix que el fitxer DVI no conté la "
 "informació del fitxer font necessària. "
 
-#: dviRenderer.cpp:581
+#: dviRenderer.cpp:604
 #, kde-format
 msgid ""
 "Okular was not able to locate the place in the DVI file which corresponds to "
 "line %1 in the TeX-file %2."
 msgstr ""
-"L'Okular no ha pogut situar el punt en el fitxer DVI que correspon a la "
-"línia %1 del fitxer TeX %2."
+"Okular no ha pogut situar el punt en el fitxer DVI que correspon a la línia "
+"%1 del fitxer TeX %2."
 
-#: dviRenderer_draw.cpp:237
+#: dviRenderer_draw.cpp:243
 #, kde-format
 msgid "The DVI code set a character of an unknown font."
 msgstr "El codi DVI ha configurat un caràcter d'un tipus de lletra desconegut."
 
-#: dviRenderer_draw.cpp:264 dviRenderer_prescan.cpp:629
+#: dviRenderer_draw.cpp:270 dviRenderer_prescan.cpp:668
 #, kde-format
 msgid "The DVI code referred to font #%1, which was not previously defined."
 msgstr ""
 "El codi DVI fa referència al tipus de lletra #%1, el qual no s'ha definit "
 "prèviament."
 
-#: dviRenderer_draw.cpp:345
+#: dviRenderer_draw.cpp:353
 #, kde-format
 msgid "The stack was not empty when the EOP command was encountered."
 msgstr "La pila no estava buida quan s'ha trobat l'ordre EOP."
 
-#: dviRenderer_draw.cpp:357
+#: dviRenderer_draw.cpp:365
 #, kde-format
 msgid "The stack was empty when a POP command was encountered."
 msgstr "La pila estava buida quan s'ha trobat l'ordre POP."
 
-#: dviRenderer_draw.cpp:477 dviRenderer_draw.cpp:486
+#: dviRenderer_draw.cpp:489 dviRenderer_draw.cpp:498
 #, kde-format
 msgid "The DVI code referred to a font which was not previously defined."
 msgstr ""
 "El codi DVI fa referència a un tipus de lletra que no s'ha definit "
 "prèviament."
 
-#: dviRenderer_draw.cpp:527
+#: dviRenderer_draw.cpp:539
 #, kde-format
 msgid "An illegal command was encountered."
 msgstr "S'ha trobat una ordre no permesa."
 
-#: dviRenderer_draw.cpp:532
+#: dviRenderer_draw.cpp:544
 #, kde-format
 msgid "The unknown op-code %1 was encountered."
 msgstr "S'ha trobat el codi %1 desconegut."
 
-#: dviRenderer_prescan.cpp:83
+#: dviRenderer_prescan.cpp:87
 #, kde-format
 msgid "Embedding %1"
 msgstr "S'està incrustant %1"
 
-#: dviRenderer_prescan.cpp:98
+#: dviRenderer_prescan.cpp:105
 #, kde-format
 msgid ""
 "Page %1: The PDF file <strong>%2</strong> could not be converted to "
@@ -281,30 +281,30 @@ msgstr ""
 "Pàgina %1: el fitxer PDF <strong>%2</strong> no s'ha pogut convertir a "
 "PostScript.<br>"
 
-#: dviRenderer_prescan.cpp:100
+#: dviRenderer_prescan.cpp:107
 #, kde-format
 msgid ""
 "Page %1: The PostScript file <strong>%2</strong> could not be found.<br>"
 msgstr ""
 "Pàgina %1: no s'ha trobat el fitxer PostScript <strong>%2</strong>.<br>"
 
-#: dviRenderer_prescan.cpp:246
+#: dviRenderer_prescan.cpp:261
 #, kde-format
 msgid "The papersize data '%1' could not be parsed."
 msgstr "La dada «%1» de la mida de paper no s'ha pogut analitzar."
 
-#: fontpool.cpp:203
+#: fontpool.cpp:209
 #, kde-format
 msgid ""
 "<qt><p>Okular was not able to locate all the font files which are necessary "
 "to display the current DVI file. Your document might be unreadable.</"
 "p><p><small><b>PATH:</b> %1</small></p><p><small>%2</small></p></qt>"
 msgstr ""
-"<qt><p>L'Okular no ha pogut localitzar tots els fitxers de tipus de lletra "
+"<qt><p>Okular no ha pogut localitzar tots els fitxers de tipus de lletra "
 "necessaris per a mostrar el fitxer DVI actual. El document pot ser illegible."
 "</p><p><small><b>CAMÍ:</b> %1</small></p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:270
+#: fontpool.cpp:284
 #, kde-format
 msgid ""
 "<qt><p>There were problems running <em>kpsewhich</em>. As a result, some "
@@ -317,10 +317,10 @@ msgstr ""
 "resultat, no s'han pogut localitzar alguns fitxers de tipus de lletra, el "
 "document podria ser illegible.<br/>Un possible motiu: El programa "
 "<em>kpsewhich</em> potser no està instal·lat en el sistema, o no s'ha pogut "
-"trobar en el camí de cerca actual.</p><p><small><b>CAMÍ:</b> %1</small></"
+"trobar en el camí de busca actual.</p><p><small><b>CAMÍ:</b> %1</small></"
 "p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:291
+#: fontpool.cpp:305
 #, kde-format
 msgid ""
 "<qt>The font generation by <em>kpsewhich</em> was aborted (exit code %1, "
@@ -331,66 +331,66 @@ msgstr ""
 "em> (codi d'eixida %1, error %2). Com a resultat, alguns fitxers de tipus de "
 "lletra no es poden localitzar, i el document pot ser illegible.</qt>"
 
-#: fontpool.cpp:462
+#: fontpool.cpp:481
 #, kde-format
 msgid "Currently generating %1 at %2 dpi..."
 msgstr "Actualment s'està generant %1 a %2 ppp..."
 
-#: generator_dvi.cpp:289
+#: generator_dvi.cpp:293
 #, kde-format
 msgid "Generator/Date"
 msgstr "Generador/Data"
 
-#: generator_dvi.cpp:372
+#: generator_dvi.cpp:382
 #, kde-format
 msgid "Font file not found"
 msgstr "No s'ha trobat el fitxer de tipus de lletra"
 
-#: pageSize.cpp:294
+#: pageSize.cpp:318
 #, kde-format
 msgid "portrait"
 msgstr "vertical"
 
-#: pageSize.cpp:296
+#: pageSize.cpp:320
 #, kde-format
 msgid "landscape"
 msgstr "apaïsat"
 
-#: psgs.cpp:265
+#: psgs.cpp:284
 #, kde-format
 msgid ""
 "The version of Ghostview that is installed on this computer does not contain "
 "any of the Ghostview device drivers that are known to Okular. PostScript "
 "support has therefore been turned off in Okular."
 msgstr ""
-"La versió del Ghostview que està instal·lada en aquest ordinador no conté "
-"cap dels controladors de dispositiu del Ghostview reconeguts per l'Okular. "
-"El funcionament del PostScript es desactivarà ara de l'Okular."
+"La versió del Ghostview que està instal·lada en este ordinador no conté cap "
+"dels controladors de dispositiu del Ghostview reconeguts per Okular. El "
+"funcionament de PostScript es desactivarà ara d'Okular."
 
 #: special.cpp:36
 #, kde-format
 msgid "That makes 25 errors. Further error messages will not be printed."
 msgstr "Hi ha 25 errors. No s'imprimiran més missatges d'error."
 
-#: special.cpp:216
+#: special.cpp:232
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Color pop command issued when the color "
 "stack is empty."
 msgstr ""
-"Error en el fitxer DVI «%1», pàgina %2. S'ha emés l'ordre «color pop» quan "
-"la pila de color estava buida."
+"S'ha produït un error en el fitxer DVI «%1», pàgina %2. S'ha emés l'ordre "
+"«color pop» quan la pila de color estava buida."
 
-#: special.cpp:297
+#: special.cpp:318
 #, kde-format
 msgid ""
 "Malformed parameter in the epsf special command.\n"
 "Expected a float to follow %1 in %2"
 msgstr ""
-"Paràmetre incorrecte a l'ordre especial «epsf».\n"
+"Paràmetre incorrecte en l'ordre especial «epsf».\n"
 "S'esperava un flotant després de %1 a %2"
 
-#: special.cpp:424
+#: special.cpp:446
 #, kde-format
 msgid ""
 "File not found: \n"
@@ -399,16 +399,16 @@ msgstr ""
 "No s'ha trobat el fitxer:\n"
 " %1"
 
-#: special.cpp:664
+#: special.cpp:695
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Could not interpret angle in text rotation "
 "special."
 msgstr ""
-"Error en el fitxer DVI «%1», pàgina %2. No s'ha pogut interpretar l'angle en "
-"un gir especial de text."
+"S'ha produït un error en el fitxer DVI «%1», pàgina %2. No s'ha pogut "
+"interpretar l'angle en un gir especial de text."
 
-#: special.cpp:680
+#: special.cpp:714
 #, kde-format
 msgid "The special command '%1' is not implemented."
 msgstr "L'ordre especial «%1» no està implementada."
@@ -428,94 +428,94 @@ msgid "The font file %1 is broken, or it could not be opened or read."
 msgstr ""
 "El fitxer de tipus de lletra %1 està fet malbé, o no es pot obrir o llegir."
 
-#: TeXFont_PFB.cpp:165
+#: TeXFont_PFB.cpp:170
 #, kde-format
 msgid ""
 "FreeType reported an error when setting the character size for font file %1."
 msgstr ""
-"El FreeType ha informat d'un error en establir la mida del caràcter al "
+"FreeType ha informat d'un error en establir la mida del caràcter per al "
 "fitxer de tipus de lletra %1."
 
-#: TeXFont_PFB.cpp:181
+#: TeXFont_PFB.cpp:188
 #, kde-format
 msgid "FreeType is unable to load glyph #%1 from font file %2."
 msgstr ""
-"El FreeType no pot carregar el tipus #%1 del fitxer de tipus de lletra %2."
+"FreeType no pot carregar el tipus #%1 del fitxer de tipus de lletra %2."
 
-#: TeXFont_PFB.cpp:193
+#: TeXFont_PFB.cpp:201
 #, kde-format
 msgid "FreeType is unable to render glyph #%1 from font file %2."
 msgstr ""
-"El FreeType no pot representar el tipus #%1 del fitxer de tipus de lletra %2."
+"FreeType no pot representar el tipus #%1 del fitxer de tipus de lletra %2."
 
-#: TeXFont_PFB.cpp:206
+#: TeXFont_PFB.cpp:215
 #, kde-format
 msgid "Glyph #%1 is empty."
 msgstr "El tipus #%1 està buit."
 
-#: TeXFont_PFB.cpp:207
+#: TeXFont_PFB.cpp:217
 #, kde-format
 msgid "Glyph #%1 from font file %2 is empty."
 msgstr "El tipus #%1 del fitxer de tipus de lletra %2 està buit."
 
-#: TeXFont_PFB.cpp:272
+#: TeXFont_PFB.cpp:282
 #, kde-format
 msgid "FreeType is unable to load metric for glyph #%1 from font file %2."
 msgstr ""
-"El FreeType no pot carregar la mètrica del tipus #%1 del fitxer de tipus de "
+"FreeType no pot carregar la mètrica del tipus #%1 del fitxer de tipus de "
 "lletra %2."
 
-#: TeXFont_PK.cpp:68
+#: TeXFont_PK.cpp:69
 #, kde-format
 msgid "Cannot open font file %1."
 msgstr "No es pot obrir el fitxer de tipus de lletra %1."
 
-#: TeXFont_PK.cpp:114
+#: TeXFont_PK.cpp:116
 #, kde-format
 msgid "TexFont_PK::operator[]: Character %1 not defined in font %2"
 msgstr ""
 "TexFont_PK::operator[]: El caràcter %1 no està definit al tipus de lletra %2"
 
-#: TeXFont_PK.cpp:398
+#: TeXFont_PK.cpp:418
 #, kde-format
 msgid "Unexpected %1 in PK file %2"
-msgstr "%1 no esperat al fitxer PK %2"
+msgstr "%1 no esperat en el fitxer PK %2"
 
-#: TeXFont_PK.cpp:462
+#: TeXFont_PK.cpp:484
 #, kde-format
 msgid "The character %1 is too large in file %2"
 msgstr "El caràcter %1 és massa gran, en el fitxer %2"
 
-#: TeXFont_PK.cpp:562 TeXFont_PK.cpp:646
+#: TeXFont_PK.cpp:589 TeXFont_PK.cpp:679
 #, kde-format
 msgid "Wrong number of bits stored:  char. %1, font %2"
 msgstr ""
 "S'han emmagatzemat un nombre incorrecte de bits: car. %1, tipus de lletra %2"
 
-#: TeXFont_PK.cpp:564 TeXFont_PK.cpp:648
+#: TeXFont_PK.cpp:592 TeXFont_PK.cpp:682
 #, kde-format
 msgid "Bad pk file (%1), too many bits"
 msgstr "Fitxer pk incorrecte (%1), massa bits"
 
-#: TeXFont_PK.cpp:678
+#: TeXFont_PK.cpp:713
 #, kde-format
 msgid "Font has non-square aspect ratio "
 msgstr "El tipus de lletra té una relació d'aspecte no quadrada "
 
-#: TeXFontDefinition.cpp:105
+#: TeXFontDefinition.cpp:106
 #, kde-format
 msgid "Cannot find font %1, file %2."
-msgstr "No s'ha trobat el tipus de lletra %1, al fitxer %2."
+msgstr "No s'ha trobat el tipus de lletra %1, en el fitxer %2."
 
-#: TeXFontDefinition.cpp:121
+#: TeXFontDefinition.cpp:123
 #, kde-format
 msgid "Checksum mismatch for font file %1"
 msgstr "Error a la suma de verificació del fitxer de tipus de lletra %1"
 
-#: TeXFontDefinition.cpp:169
+#: TeXFontDefinition.cpp:174
 #, kde-format
 msgid "Cannot recognize format for font file %1"
-msgstr "No es pot reconèixer el format del fitxer de tipus de lletra %1"
+msgstr "No es pot reconéixer el format del fitxer de tipus de lletra %1"
 
 #: util.cpp:58
 #, kde-format
@@ -540,16 +540,16 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Això probablement significa que, o bé heu trobat una errada a l'Okular,\n"
+"Açò probablement significa que, o bé heu trobat una errada en Okular,\n"
 "o que el fitxer DVI, o els fitxers auxiliars (com ara els fitxers de tipus "
 "de lletra, \n"
 "o els fitxers de tipus de lletra virtuals) estaven fets malbé de mala "
 "manera.\n"
-"L'Okular s'aturarà després d'aquest missatge. Si penseu que heu trobat una \n"
-"errada, o que l'Okular s'hauria de comportar millor en aquesta situació,\n"
+"Okular es pararà després d'este missatge. Si penseu que heu trobat una \n"
+"errada, o que Okular s'hauria de comportar millor en esta situació,\n"
 "informeu del problema, per favor."
 
-#: vf.cpp:160
+#: vf.cpp:164
 #, kde-format
 msgid "Wrong command byte found in VF macro list: %1"
-msgstr "S'ha trobat una ordre de byte incorrecta a la llista VF de macros: %1"
+msgstr "S'ha trobat una ordre de byte incorrecta en la llista VF de macros: %1"

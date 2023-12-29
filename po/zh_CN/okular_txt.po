@@ -1,13 +1,9 @@
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
-#
-# Weng Xuetian <wengxt@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-06-11 00:15+0000\n"
-"PO-Revision-Date: 2021-10-29 13:28\n"
+"PO-Revision-Date: 2023-09-02 02:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -24,12 +20,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Weng Xuetian"
+msgstr "Tyson Tan, Weng Xuetian"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "wengxt@gmail.com"
+msgstr "tysontan@tysontan.com, wengxt@gmail.com"
 
 #: generator_txt.cpp:25
 #, kde-format
@@ -39,4 +35,4 @@ msgstr "Txt"
 #: generator_txt.cpp:25
 #, kde-format
 msgid "Txt Backend Configuration"
-msgstr "Txt 后端配置"
+msgstr "Txt 后端程序配置"

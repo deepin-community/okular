@@ -22,7 +22,7 @@ using namespace Okular;
 class Movie::Private
 {
 public:
-    Private(const QString &url)
+    explicit Private(const QString &url)
         : m_url(url)
         , m_rotation(Rotation0)
         , m_playMode(PlayLimited)
@@ -30,6 +30,7 @@ public:
         , m_tmp(nullptr)
         , m_showControls(false)
         , m_autoPlay(false)
+        , m_startPaused(false)
         , m_showPosterImage(false)
     {
     }
@@ -43,6 +44,7 @@ public:
     QImage m_posterImage;
     bool m_showControls : 1;
     bool m_autoPlay : 1;
+    bool m_startPaused : 1;
     bool m_showPosterImage : 1;
 };
 
@@ -65,8 +67,9 @@ Movie::Movie(const QString &fileName, const QByteArray &data)
     if (d->m_tmp->open()) {
         d->m_tmp->write(data);
         d->m_tmp->flush();
-    } else
+    } else {
         qCDebug(OkularCoreDebug) << "Failed to create temporary file for video data.";
+    }
 }
 
 Movie::~Movie()
@@ -77,13 +80,14 @@ Movie::~Movie()
 
 QString Movie::url() const
 {
-    if (d->m_tmp)
+    if (d->m_tmp) {
         return d->m_tmp->fileName();
-    else
+    } else {
         return d->m_url;
+    }
 }
 
-void Movie::setSize(const QSize &aspect) // clazy:exclude=function-args-by-value TODO remove the & when we do a BIC change elsewhere
+void Movie::setSize(const QSize aspect)
 {
     d->m_aspect = aspect;
 }
@@ -141,6 +145,16 @@ void Movie::setAutoPlay(bool autoPlay)
 bool Movie::autoPlay() const
 {
     return d->m_autoPlay;
+}
+
+void Movie::setStartPaused(bool startPaused)
+{
+    d->m_startPaused = startPaused;
+}
+
+bool Movie::startPaused() const
+{
+    return d->m_startPaused;
 }
 
 void Movie::setShowPosterImage(bool show)

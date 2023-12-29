@@ -3,11 +3,12 @@ Section: kde
 Priority: optional
 Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Aurélien COUDERC <coucouf@debian.org>,
-           Norbert Preining <norbert@preining.info>,
 Build-Depends: cmake (>= 3.16~),
                debhelper-compat (= 13),
+               dh-sequence-kf5,
                extra-cmake-modules (>= 5.68.0~),
                gettext,
+               kirigami2-dev (>= 5.85.0~),
                libchm-dev,
                libdjvulibre-dev (>= 3.5.17~),
                libepub-dev,
@@ -41,26 +42,27 @@ Build-Depends: cmake (>= 3.16~),
                libpoppler-qt5-dev (>= 0.86.0~),
                libqca-qt5-2-dev (>= 2.1.0~),
                libqmobipocket-dev (>= 4:17.08~),
-               libqt5svg5-dev (>= 5.13.0~),
+               libqt5svg5-dev (>= 5.15.2~),
                libqt5texttospeech5-dev (>= 5.12.0~),
+               libqt5x11extras5-dev,
                libspectre-dev (>= 0.2~),
                libtiff-dev,
                libzip-dev,
                pkg-config,
-               pkg-kde-tools,
-               qtbase5-dev (>= 5.13.0~),
-               qtdeclarative5-dev (>= 5.13.0~),
+               qtbase5-dev (>= 5.15.2~),
+               qtbase5-private-dev,
+               qtdeclarative5-dev (>= 5.15.2~),
                zlib1g-dev,
-Standards-Version: 4.6.0
+Standards-Version: 4.6.2
 Rules-Requires-Root: no
 Homepage: https://apps.kde.org/en/okular
 Vcs-Git: https://salsa.debian.org/qt-kde-team/kde/okular.git
 Vcs-Browser: https://salsa.debian.org/qt-kde-team/kde/okular
 
-Package: libokular5core9
+Package: libokular5core11
 Section: libs
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends},
 Description: libraries for the Okular document viewer
  This package contains libraries used by the Okular document viewer.
  .
@@ -69,18 +71,14 @@ Description: libraries for the Okular document viewer
 Package: okular
 Section: graphics
 Architecture: any
-Depends: kinit, ${misc:Depends}, ${shlibs:Depends}
-Recommends: cups-bsd
+Depends: kinit, ${misc:Depends}, ${shlibs:Depends},
+Recommends: cups-bsd,
 Suggests: ghostscript,
           okular-extra-backends (= ${binary:Version}),
           poppler-data,
           texlive-binaries,
           unrar,
-Provides: pdf-viewer, postscript-viewer
-Breaks: kdegraphics-mobipocket (<< 4:4.12),
-        okular-extra-backends (<< 4:16.12.0),
-        okular-mobile (<< 4:17.04.1-0),
-Replaces: okular-extra-backends (<< 4:16.12.0), okular-mobile (<< 4:17.04.1-0)
+Provides: pdf-viewer, postscript-viewer,
 Description: universal document viewer
  Okular is a universal document viewer with support for advanced document
  features, such as annotations, forms, and embedded files.
@@ -107,8 +105,9 @@ Architecture: any
 Depends: libkf5config-dev (>= 5.68.0~),
          libkf5coreaddons-dev (>= 5.68.0~),
          libkf5xmlgui-dev (>= 5.68.0~),
-         libokular5core9 (= ${binary:Version}),
-         qtbase5-dev (>= 5.13.0~),
+         libokular5core11 (= ${binary:Version}),
+         qtbase5-dev (>= 5.15.2~),
+         qtbase5-private-dev (>= 5.15.2~),
          ${misc:Depends},
 Description: development files for the Okular libraries
  This package contains development files for building Okular document format
@@ -118,11 +117,9 @@ Description: development files for the Okular libraries
 
 Package: okular-extra-backends
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Recommends: okular
-Provides: djvu-viewer
-Breaks: okular (<< 4:16.12.0)
-Replaces: okular (<< 4:16.12.0)
+Depends: ${misc:Depends}, ${shlibs:Depends},
+Recommends: okular,
+Provides: djvu-viewer,
 Description: additional document format support for Okular
  These plugins allow Okular to view additional document formats:
   * DeJaVu Format
@@ -141,8 +138,6 @@ Depends: qml-module-org-kde-kirigami2 (>= 5.68.0~),
          qml-module-qtquick2 (>= 5.12.0~),
          ${misc:Depends},
          ${shlibs:Depends},
-Breaks: okular (<< 4:17.12.2~)
-Replaces: okular (<< 4:17.12.2~)
 Description: mobile support for Okular - QML modules
  This package contains the QML module for interfacing with the Okular core
  library.
@@ -166,7 +161,7 @@ Suggests: ghostscript,
           poppler-data,
           texlive-binaries,
           unrar,
-Recommends: okular
+Recommends: okular,
 Description: mobile support for Okular
  These plugins allow Okular to view additional document formats for mobile:
   * Portable Document Format (PDF)

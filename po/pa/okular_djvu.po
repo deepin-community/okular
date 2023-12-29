@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_djvu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2019-02-09 13:18-0800\n"
 "Last-Translator: A S Alam <alam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -28,68 +28,68 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "alam.yellow@gmail.com"
 
-#: generator_djvu.cpp:130
+#: generator_djvu.cpp:136
 #, kde-format
 msgid "Editor"
 msgstr "ਐਡੀਟਰ"
 
-#: generator_djvu.cpp:131
+#: generator_djvu.cpp:137
 #, kde-format
 msgid "Publisher"
 msgstr "ਪਬਲਿਸ਼ਰ"
 
-#: generator_djvu.cpp:132
+#: generator_djvu.cpp:138
 #, kde-format
 msgid "Volume"
 msgstr "ਵਾਲੀਅਮ"
 
-#: generator_djvu.cpp:133
+#: generator_djvu.cpp:139
 #, kde-format
 msgid "Type of document"
 msgstr "ਡੌਕੂਮੈਂਟ ਦੀ ਟਾਈਪ"
 
-#: generator_djvu.cpp:135
+#: generator_djvu.cpp:141
 #, kde-format
 msgctxt "Unknown number of component files"
 msgid "Unknown"
 msgstr "ਅਣਪਛਾਤੀ"
 
-#: generator_djvu.cpp:135
+#: generator_djvu.cpp:141
 #, kde-format
 msgid "Component Files"
 msgstr "ਭਾਗ ਫਾਇਲਾਂ"
 
-#: kdjvu.cpp:662
+#: kdjvu.cpp:684
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
-#: kdjvu.cpp:665
+#: kdjvu.cpp:687
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Single Page"
 msgstr "ਇੱਕਲਾ ਸਫ਼ਾ"
 
-#: kdjvu.cpp:668
+#: kdjvu.cpp:690
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Bundled"
 msgstr "ਬੰਡਲ"
 
-#: kdjvu.cpp:671
+#: kdjvu.cpp:693
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Indirect"
 msgstr "ਅਸਿੱਧਾ"
 
-#: kdjvu.cpp:674
+#: kdjvu.cpp:696
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Bundled (old)"
 msgstr "ਬੰਡਲ (ਪੁਰਾਣਾ)"
 
-#: kdjvu.cpp:677
+#: kdjvu.cpp:699
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Indexed (old)"

@@ -18,7 +18,6 @@
 #include <KConfigDialog>
 #include <KPluginMetaData>
 #include <QHash>
-#include <QLinkedList>
 #include <QMap>
 #include <QMutex>
 #include <QPointer>
@@ -127,6 +126,7 @@ public:
         , m_fontsCached(false)
         , m_annotationEditingEnabled(true)
         , m_annotationBeingModified(false)
+        , m_undoStack(nullptr)
         , m_docdataMigrationNeeded(false)
         , m_synctex_scanner(nullptr)
     {
@@ -231,6 +231,8 @@ public:
 
     void clearAndWaitForRequests();
 
+    OKULARCORE_EXPORT static QString diff(const QString &oldVal, const QString &newVal);
+
     /*
      * Executes a ScriptAction with the event passed as parameter.
      */
@@ -260,17 +262,17 @@ public:
     qint64 m_docSize;
 
     // viewport stuff
-    QLinkedList<DocumentViewport> m_viewportHistory;
-    QLinkedList<DocumentViewport>::iterator m_viewportIterator;
+    std::list<DocumentViewport> m_viewportHistory;
+    std::list<DocumentViewport>::iterator m_viewportIterator;
     DocumentViewport m_nextDocumentViewport; // see Link::Goto for an explanation
     QString m_nextDocumentDestination;
 
     // observers / requests / allocator stuff
     QSet<DocumentObserver *> m_observers;
-    QLinkedList<PixmapRequest *> m_pixmapRequestsStack;
-    QLinkedList<PixmapRequest *> m_executingPixmapRequests;
+    std::list<PixmapRequest *> m_pixmapRequestsStack;
+    std::list<PixmapRequest *> m_executingPixmapRequests;
     QMutex m_pixmapRequestsMutex;
-    QLinkedList<AllocatedPixmap *> m_allocatedPixmaps;
+    std::list<AllocatedPixmap *> m_allocatedPixmaps;
     qulonglong m_allocatedPixmapsTotalMemory;
     QList<int> m_allocatedTextPagesFifo;
     int m_maxAllocatedTextPages;
@@ -345,6 +347,9 @@ public:
     static QVector<KPluginMetaData> availableGenerators();
     static QVector<KPluginMetaData> configurableGenerators();
     static KPluginMetaData generatorForMimeType(const QMimeType &type, QWidget *widget, const QVector<KPluginMetaData> &triedOffers = QVector<KPluginMetaData>());
+
+    // overrides the editor command (for example with a command from the command line)
+    QString editorCommandOverride;
 };
 
 class DocumentInfoPrivate

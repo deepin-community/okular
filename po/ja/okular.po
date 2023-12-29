@@ -5,38 +5,41 @@
 # Kurose Shushi <md81@bird.email.ne.jp>, 2004.
 # Tsuda Eisuke <eis-t@mue.biglobe.ne.jp>, 2004.
 # Yukiko Bando <ybando@k6.dion.ne.jp>, 2005, 2006, 2007, 2008, 2009.
-# Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2006, 2010, 2011, 2014.
+# Ryuichi Yamada <ryuichi_ya220@outlook.jp>, 2022.
+# Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2006, 2010, 2011, 2014, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: okular\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-10-19 01:41+0000\n"
-"PO-Revision-Date: 2014-09-28 23:11-0700\n"
+"POT-Creation-Date: 2023-09-12 02:25+0000\n"
+"PO-Revision-Date: 2022-08-28 21:16-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
+"X-Generator: Lokalize 22.04.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 "Ikuya AWASHIRO,Yukiko Bando,Taiki Komoda,Noboru Sinohara,Tsuda Eisuke,Kurose "
-"Shushi,Fumiaki Okushi"
+"Shushi,Fumiaki Okushi,Ryuichi Yamada"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 "ikuya@oooug.jp,ybando@k6.dion.ne.jp,kom@kde.gr.jp,shinobo@leo.bekkoame.ne.jp,"
-"eis-t@mue.biglobe.ne.jp,md81@bird.email.ne.jp,okushi@kde.gr.jp"
+"eis-t@mue.biglobe.ne.jp,md81@bird.email.ne.jp,okushi@kde.gr.jp,"
+"ryuichi_ya220@outlook.jp"
 
-#: aboutdata.h:19 part/annotationwidgets.cpp:421
+#: aboutdata.h:19 part/annotationwidgets.cpp:433
 #, kde-format
 msgid "Okular"
 msgstr "Okular"
@@ -47,13 +50,7 @@ msgid "Okular, a universal document viewer"
 msgstr "Okular, 汎用文書ビューア"
 
 #: aboutdata.h:23
-#, fuzzy, kde-format
-#| msgid ""
-#| "(C) 2002 Wilco Greven, Christophe Devriese\n"
-#| "(C) 2004-2005 Enrico Ros\n"
-#| "(C) 2005 Piotr Szymanski\n"
-#| "(C) 2004-2009 Albert Astals Cid\n"
-#| "(C) 2006-2009 Pino Toscano"
+#, kde-format
 msgid ""
 "(C) 2002 Wilco Greven, Christophe Devriese\n"
 "(C) 2004-2005 Enrico Ros\n"
@@ -64,8 +61,13 @@ msgstr ""
 "(C) 2002 Wilco Greven, Christophe Devriese\n"
 "(C) 2004-2005 Enrico Ros\n"
 "(C) 2005 Piotr Szymanski\n"
-"(C) 2004-2009 Albert Astals Cid\n"
+"(C) 2004-2017 Albert Astals Cid\n"
 "(C) 2006-2009 Pino Toscano"
+
+#: aboutdata.h:31
+#, kde-format
+msgid "Pino Toscano"
+msgstr "Pino Toscano"
 
 #: aboutdata.h:31
 #, kde-format
@@ -74,14 +76,29 @@ msgstr "以前のメンテナ"
 
 #: aboutdata.h:32
 #, kde-format
-msgid "Lots of framework work, ODT and FictionBook backends"
-msgstr "フレームワークの多くの作業、ODT と FictionBook バックエンド"
+msgid "Tobias Koenig"
+msgstr "Tobias Koenig"
+
+#: aboutdata.h:32
+#, kde-format
+msgid "Lots of framework work, FictionBook backend and former ODT backend"
+msgstr ""
+"フレームワークの多くの作業、FictionBook バックエンドと以前の ODT バックエンド"
 
 #: aboutdata.h:33
-#, fuzzy, kde-format
-#| msgid "KPDF developer"
+#, kde-format
+msgid "Albert Astals Cid"
+msgstr "Albert Astals Cid"
+
+#: aboutdata.h:33
+#, kde-format
 msgid "Developer"
-msgstr "KPDF の開発者"
+msgstr "開発者"
+
+#: aboutdata.h:34
+#, kde-format
+msgid "Piotr Szymanski"
+msgstr "Piotr Szymanski"
 
 #: aboutdata.h:34
 #, kde-format
@@ -90,8 +107,18 @@ msgstr "KPDF のコードを元に Okular を開発"
 
 #: aboutdata.h:35
 #, kde-format
+msgid "Enrico Ros"
+msgstr "Enrico Ros"
+
+#: aboutdata.h:35
+#, kde-format
 msgid "KPDF developer"
 msgstr "KPDF の開発者"
+
+#: aboutdata.h:36
+#, kde-format
+msgid "Eugene Trounev"
+msgstr "Eugene Trounev"
 
 #: aboutdata.h:36
 #, kde-format
@@ -99,16 +126,24 @@ msgid "Annotations artwork"
 msgstr "注釈のアートワーク"
 
 #: aboutdata.h:37
-#, fuzzy, kde-format
-#| msgid "&Text Selection Tool"
+#, kde-format
+msgid "Jiri Baum - NICTA"
+msgstr "Jiri Baum - NICTA"
+
+#: aboutdata.h:37
+#, kde-format
 msgid "Table selection tool"
-msgstr "テキスト選択ツール(&T)"
+msgstr "表選択ツール"
 
 #: aboutdata.h:38
-#, fuzzy, kde-format
-#| msgid "Annotation Properties"
+#, kde-format
+msgid "Fabio D'Urso"
+msgstr "Fabio D'Urso"
+
+#: aboutdata.h:38
+#, kde-format
 msgid "Annotation improvements"
-msgstr "注釈のプロパティ"
+msgstr "注釈の改善"
 
 #: core/action.cpp:125
 #, kde-format
@@ -130,12 +165,12 @@ msgstr "‘%1’ を実行..."
 msgid "First Page"
 msgstr "最初のページ"
 
-#: core/action.cpp:286 part/presentationwidget.cpp:176
+#: core/action.cpp:286 part/presentationwidget.cpp:177
 #, kde-format
 msgid "Previous Page"
 msgstr "前のページ"
 
-#: core/action.cpp:288 part/presentationwidget.cpp:193
+#: core/action.cpp:288 part/presentationwidget.cpp:194
 #, kde-format
 msgid "Next Page"
 msgstr "次のページ"
@@ -203,7 +238,7 @@ msgstr "動画を再生"
 #: core/action.cpp:546
 #, kde-format
 msgid "Stop movie"
-msgstr ""
+msgstr "動画を停止"
 
 #: core/action.cpp:548
 #, kde-format
@@ -213,6 +248,11 @@ msgstr "動画を一時停止"
 #: core/action.cpp:550
 #, kde-format
 msgid "Resume movie"
+msgstr "動画を再開"
+
+#: core/audioplayer.cpp:315
+#, kde-format
+msgid "This Okular is built without audio support"
 msgstr ""
 
 #: core/chooseenginedialog.cpp:22
@@ -229,60 +269,59 @@ msgstr ""
 "<qt>MIME タイプに複数のバックエンドが見つかりました:<br /><b>%1</b> (%2)<br /"
 "><br />使用するものを一つ選択してください:</qt>"
 
-#: core/document.cpp:202
-#, fuzzy, kde-format
-#| msgid "Go to page %1"
+#: core/document.cpp:208
+#, kde-format
 msgctxt "@info %1 is a page size"
 msgid "Most pages are %1."
-msgstr "%1 ページに移動"
+msgstr "ほとんどのページは %1 です。"
 
-#: core/document.cpp:221
+#: core/document.cpp:229
 #, kde-format
 msgctxt "paper type and orientation (eg: Portrait A4)"
 msgid "Portrait %1"
-msgstr ""
+msgstr "縦 %1"
 
-#: core/document.cpp:223
+#: core/document.cpp:231
 #, kde-format
 msgctxt "paper type and orientation (eg: Portrait A4)"
 msgid "Landscape %1"
-msgstr ""
+msgstr "横 %1"
 
-#: core/document.cpp:246
+#: core/document.cpp:254
 #, kde-format
 msgctxt "%1 is width, %2 is height, %3 is paper size name"
 msgid "%1 x %2 in (%3)"
 msgstr "%1 x %2 インチ (%3)"
 
-#: core/document.cpp:248
+#: core/document.cpp:256
 #, kde-format
 msgctxt "%1 is width, %2 is height, %3 is paper size name"
 msgid "%1 x %2 mm (%3)"
 msgstr "%1 x %2 mm (%3)"
 
-#: core/document.cpp:1602
+#: core/document.cpp:1690
 #, kde-format
 msgid "Continuing search from beginning"
-msgstr ""
+msgstr "先頭から検索を続行します"
 
-#: core/document.cpp:1605
+#: core/document.cpp:1693
 #, kde-format
 msgid "Continuing search from bottom"
-msgstr ""
+msgstr "末尾から検索を続行します"
 
-#: core/document.cpp:2323
+#: core/document.cpp:2453
 #, kde-format
 msgid ""
 "Can not find a plugin which is able to handle the document being passed."
 msgstr "渡された文書を扱えるプラグインが見つかりません。"
 
-#: core/document.cpp:3378
+#: core/document.cpp:3603
 #, kde-format
 msgctxt "remove a collection of annotations from the page"
 msgid "remove annotations"
 msgstr "注釈を削除"
 
-#: core/document.cpp:3910 core/document.cpp:3916
+#: core/document.cpp:4187 core/document.cpp:4193
 #, kde-format
 msgid ""
 "The document is trying to execute an external application and, for your "
@@ -291,52 +330,52 @@ msgstr ""
 "文書が外部アプリケーションを実行しようとしていますが、安全のために Okular は"
 "これを許可しません。"
 
-#: core/document.cpp:3927
+#: core/document.cpp:4204 core/document.cpp:4214
 #, kde-format
 msgid "No application found for opening file of mimetype %1."
 msgstr "MIME タイプ %1 のファイルを開くアプリケーションが見つかりません。"
 
-#: core/document.cpp:4268
+#: core/document.cpp:4643
 #, kde-format
 msgid "Could not open a temporary file"
 msgstr "一時ファイルを開けませんでした"
 
-#: core/document.cpp:4270
+#: core/document.cpp:4645
 #, kde-format
 msgid "Print conversion failed"
 msgstr ""
 
-#: core/document.cpp:4272
+#: core/document.cpp:4647
 #, kde-format
 msgid "Printing process crashed"
 msgstr "印刷プロセスがクラッシュしました"
 
-#: core/document.cpp:4274
+#: core/document.cpp:4649
 #, kde-format
 msgid "Printing process could not start"
 msgstr "印刷プロセスを起動できませんでした"
 
-#: core/document.cpp:4276
+#: core/document.cpp:4651
 #, kde-format
 msgid "Printing to file failed"
 msgstr "ファイルへ印刷できませんでした"
 
-#: core/document.cpp:4278
+#: core/document.cpp:4653
 #, kde-format
 msgid "Printer was in invalid state"
 msgstr "プリンタの状態が不正です"
 
-#: core/document.cpp:4280
+#: core/document.cpp:4655
 #, kde-format
 msgid "Unable to find file to print"
 msgstr "印刷するファイルが見つかりません"
 
-#: core/document.cpp:4282
+#: core/document.cpp:4657
 #, kde-format
 msgid "There was no file to print"
 msgstr "印刷するファイルがありません"
 
-#: core/document.cpp:4284
+#: core/document.cpp:4659
 #, kde-format
 msgid ""
 "Could not find a suitable binary for printing. Make sure CUPS lpr binary is "
@@ -345,93 +384,92 @@ msgstr ""
 "印刷に必要な実行ファイルがありません。CUPS の lpr があることを確認してくださ"
 "い。"
 
-#: core/document.cpp:4286
+#: core/document.cpp:4661
 #, kde-format
 msgid "The page print size is invalid"
-msgstr ""
+msgstr "このページ印刷サイズは無効です"
 
-#: core/document.cpp:4915 part/part.cpp:1106
+#: core/document.cpp:5326 part/part.cpp:1162
 #, kde-format
 msgid "Could not open '%1'. File does not exist"
 msgstr "‘%1’ を開けませんでした。ファイルが存在しません。"
 
-#: core/document.cpp:5395
+#: core/document.cpp:5836
 #, kde-format
 msgid "Title"
 msgstr "タイトル"
 
-#: core/document.cpp:5398
+#: core/document.cpp:5839
 #, kde-format
 msgid "Subject"
 msgstr "主題"
 
-#: core/document.cpp:5401
+#: core/document.cpp:5842
 #, kde-format
 msgid "Description"
 msgstr "説明"
 
-#: core/document.cpp:5404
+#: core/document.cpp:5845
 #, kde-format
 msgid "Author"
 msgstr "作者"
 
-#: core/document.cpp:5407
+#: core/document.cpp:5848
 #, kde-format
 msgid "Creator"
 msgstr "作成ソフト"
 
-#: core/document.cpp:5410
+#: core/document.cpp:5851
 #, kde-format
 msgid "Producer"
 msgstr "生成ソフト"
 
-#: core/document.cpp:5413
+#: core/document.cpp:5854
 #, kde-format
 msgid "Copyright"
 msgstr "著作権"
 
-#: core/document.cpp:5416
+#: core/document.cpp:5857
 #, kde-format
 msgid "Pages"
 msgstr "ページ数"
 
-#: core/document.cpp:5419
+#: core/document.cpp:5860
 #, kde-format
 msgid "Created"
 msgstr "作成日"
 
-#: core/document.cpp:5422
+#: core/document.cpp:5863
 #, kde-format
 msgid "Modified"
 msgstr "変更日"
 
-#: core/document.cpp:5425
-#, fuzzy, kde-format
-#| msgid "Mime Type"
+#: core/document.cpp:5866
+#, kde-format
 msgid "MIME Type"
 msgstr "MIME タイプ"
 
-#: core/document.cpp:5428
+#: core/document.cpp:5869
 #, kde-format
 msgid "Category"
 msgstr "カテゴリ"
 
-#: core/document.cpp:5431
+#: core/document.cpp:5872
 #, kde-format
 msgid "Keywords"
 msgstr "キーワード"
 
-#: core/document.cpp:5434
+#: core/document.cpp:5875
 #, kde-format
 msgid "File Path"
 msgstr "ファイルのパス"
 
-#: core/document.cpp:5437
+#: core/document.cpp:5878
 #, kde-format
 msgid "File Size"
 msgstr "ファイルサイズ"
 
-#: core/document.cpp:5440
+#: core/document.cpp:5881
 #, kde-format
 msgid "Page Size"
 msgstr "ページサイズ"
@@ -442,95 +480,92 @@ msgctxt "Add an annotation to the page"
 msgid "add annotation"
 msgstr "注釈を追加"
 
-#: core/documentcommands.cpp:107
+#: core/documentcommands.cpp:108
 #, kde-format
 msgctxt "Remove an annotation from the page"
 msgid "remove annotation"
 msgstr "注釈を削除"
 
-#: core/documentcommands.cpp:153
+#: core/documentcommands.cpp:155
 #, kde-format
 msgctxt "Modify an annotation's internal properties (Color, line-width, etc.)"
 msgid "modify annotation properties"
 msgstr "注釈のプロパティを変更"
 
-#: core/documentcommands.cpp:187
+#: core/documentcommands.cpp:190
 #, kde-format
 msgctxt "Translate an annotation's position on the page"
 msgid "translate annotation"
 msgstr "注釈を転移"
 
-#: core/documentcommands.cpp:258
-#, fuzzy, kde-format
-#| msgctxt "Add an annotation to the page"
-#| msgid "add annotation"
+#: core/documentcommands.cpp:263
+#, kde-format
 msgctxt "Change an annotation's size"
 msgid "adjust annotation"
-msgstr "注釈を追加"
+msgstr "注釈を調整"
 
-#: core/documentcommands.cpp:325
+#: core/documentcommands.cpp:333
 #, kde-format
 msgctxt "Generic text edit command"
 msgid "edit text"
 msgstr "テキストを編集"
 
-#: core/documentcommands.cpp:387
+#: core/documentcommands.cpp:396
 #, kde-format
 msgctxt "Edit an annotation's text contents"
 msgid "edit annotation contents"
 msgstr "注釈の内容を編集"
 
-#: core/documentcommands.cpp:435
+#: core/documentcommands.cpp:445
 #, kde-format
 msgctxt "Edit an form's text contents"
 msgid "edit form contents"
 msgstr "フォームの内容を編集"
 
-#: core/documentcommands.cpp:484
+#: core/documentcommands.cpp:494
 #, kde-format
 msgctxt "Edit a list form's choices"
 msgid "edit list form choices"
 msgstr ""
 
-#: core/documentcommands.cpp:518
+#: core/documentcommands.cpp:528
 #, kde-format
 msgctxt "Edit a combo form's selection"
 msgid "edit combo form selection"
 msgstr ""
 
-#: core/documentcommands.cpp:590
+#: core/documentcommands.cpp:600
 #, kde-format
 msgctxt "Edit the state of a group of form buttons"
 msgid "edit form button states"
 msgstr ""
 
-#: core/generator.cpp:766
+#: core/generator.cpp:763
 #, kde-format
 msgid "Plain &Text..."
 msgstr "プレーンテキスト(&T)..."
 
-#: core/generator.cpp:769
+#: core/generator.cpp:766
 #, kde-format
 msgid "PDF"
 msgstr "PDF"
 
-#: core/generator.cpp:773
+#: core/generator.cpp:770
 #, kde-format
 msgctxt "This is the document format"
 msgid "OpenDocument Text"
 msgstr "OpenDocument テキスト"
 
-#: core/generator.cpp:776
+#: core/generator.cpp:773
 #, kde-format
 msgctxt "This is the document format"
 msgid "HTML"
 msgstr "HTML"
 
 #: core/printoptionswidget.cpp:19
-#, fuzzy, kde-format
-#| msgid "Editor Options"
+#, kde-format
 msgid "Print Options"
-msgstr "エディタのオプション"
+msgstr "印刷のオプション"
 
 #: core/printoptionswidget.cpp:23
 #, kde-format
@@ -543,22 +578,22 @@ msgid "Fit to full page"
 msgstr ""
 
 #: core/printoptionswidget.cpp:25
-#, fuzzy, kde-format
-#| msgid "Color mode:"
-msgid "Scale mode:"
-msgstr "変更モード:"
-
-#: core/script/kjs_app.cpp:159
 #, kde-format
-msgid "Missing alert type"
-msgstr ""
+msgid "Scale mode:"
+msgstr "スケールモード:"
 
-#: core/script/kjs_app.cpp:221
+# @info:tooltip
+#: core/script/js_app.cpp:202
 #, kde-format
 msgid "Do not show this message again"
-msgstr ""
+msgstr "次回からこのメッセージを表示しない"
 
-#: core/sourcereference.cpp:100
+#: core/signatureutils.cpp:19 part/signaturepropertiesdialog.cpp:31
+#, kde-format
+msgid "Not Available"
+msgstr "利用できません"
+
+#: core/sourcereference.cpp:101
 #, kde-format
 msgctxt "'source' is a source file"
 msgid "Source: %1"
@@ -569,115 +604,609 @@ msgstr "ソース: %1"
 msgid "&Default Font:"
 msgstr "デフォルトのフォント(&D):"
 
-#: part/annotationactionhandler.cpp:143
-#, fuzzy, kde-format
-#| msgid "Reloa&d"
-msgctxt "@item:inlistbox Color name"
-msgid "Red"
-msgstr "再読み込み(&D)"
-
-#: part/annotationactionhandler.cpp:144
+#: gui/certificatemodel.cpp:39
 #, kde-format
-msgctxt "@item:inlistbox Color name"
-msgid "Orange"
+msgid "Version"
+msgstr "バージョン"
+
+#: gui/certificatemodel.cpp:41
+#, kde-format
+msgid "Serial Number"
+msgstr "シリアルナンバー"
+
+#: gui/certificatemodel.cpp:43
+#, kde-format
+msgid "Issuer"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:145
-#, fuzzy, kde-format
-#| msgid "Allow"
-msgctxt "@item:inlistbox Color name"
-msgid "Yellow"
-msgstr "許可する"
+#: gui/certificatemodel.cpp:45 part/certificateviewer.cpp:149
+#, kde-format
+msgid "Issued On"
+msgstr ""
 
-#: part/annotationactionhandler.cpp:146
+#: gui/certificatemodel.cpp:47 part/certificateviewer.cpp:150
 #, fuzzy, kde-format
-#| msgctxt "Caption for a screen annotation"
-#| msgid "Screen"
-msgctxt "@item:inlistbox Color name"
-msgid "Green"
+#| msgid "Expired"
+msgid "Expires On"
+msgstr "期限切れ"
+
+#: gui/certificatemodel.cpp:49
+#, kde-format
+msgctxt "The person/company that made the signature"
+msgid "Subject"
+msgstr "主題"
+
+#: gui/certificatemodel.cpp:51
+#, kde-format
+msgid "Public Key"
+msgstr ""
+
+#: gui/certificatemodel.cpp:53
+#, fuzzy, kde-format
+#| msgid "Memory Usage"
+msgid "Key Usage"
+msgstr "メモリの使用"
+
+#: gui/certificatemodel.cpp:72
+#, kde-format
+msgid "V%1"
+msgstr "V%1"
+
+#: gui/certificatemodel.cpp:84
+#, kde-format
+msgid "%1 (%2 bits)"
+msgstr ""
+
+#: gui/certificatemodel.cpp:146
+#, kde-format
+msgid "Property"
+msgstr "プロパティ"
+
+#: gui/certificatemodel.cpp:148
+#, kde-format
+msgid "Value"
+msgstr ""
+
+#: gui/guiutils.cpp:37 part/editannottooldialog.cpp:88
+#: part/pageviewannotator.cpp:233 part/pageviewannotator.cpp:1327
+#, kde-format
+msgid "Pop-up Note"
+msgstr "ポップアップメモ"
+
+#: gui/guiutils.cpp:40 part/editannottooldialog.cpp:96
+#: part/pageviewannotator.cpp:220 part/pageviewannotator.cpp:1343
+#, kde-format
+msgid "Typewriter"
+msgstr "タイプライター"
+
+#: gui/guiutils.cpp:42 part/editannottooldialog.cpp:89
+#: part/pageviewannotator.cpp:215 part/pageviewannotator.cpp:1325
+#, kde-format
+msgid "Inline Note"
+msgstr "インラインメモ"
+
+#: gui/guiutils.cpp:48
+#, kde-format
+msgid "Straight Line with Comment"
+msgstr "コメント付きの直線"
+
+#: gui/guiutils.cpp:48 part/editannottooldialog.cpp:91
+#: part/pageviewannotator.cpp:1337
+#, kde-format
+msgid "Straight Line"
+msgstr "直線"
+
+#: gui/guiutils.cpp:50
+#, kde-format
+msgid "Polygon with Comment"
+msgstr "コメント付きの多角形"
+
+#: gui/guiutils.cpp:50 part/editannottooldialog.cpp:92
+#: part/pageviewannotator.cpp:1329
+#, kde-format
+msgid "Polygon"
+msgstr "多角形"
+
+#: gui/guiutils.cpp:54
+#, kde-format
+msgid "Geometry with Comment"
+msgstr "コメント付きの図形"
+
+#: gui/guiutils.cpp:54
+#, kde-format
+msgid "Geometry"
+msgstr "図形"
+
+#: gui/guiutils.cpp:59
+#, kde-format
+msgid "Highlight with Comment"
+msgstr "コメント付きの強調表示"
+
+#: gui/guiutils.cpp:59 part/annotationwidgets.cpp:655
+#, kde-format
+msgid "Highlight"
+msgstr "強調表示"
+
+#: gui/guiutils.cpp:62
+#, kde-format
+msgid "Squiggle with Comment"
+msgstr "コメント付きの波線"
+
+#: gui/guiutils.cpp:62 part/annotationwidgets.cpp:656
+#: part/pageviewannotator.cpp:1333
+#, kde-format
+msgid "Squiggle"
+msgstr "波線"
+
+#: gui/guiutils.cpp:65
+#, kde-format
+msgid "Underline with Comment"
+msgstr "コメント付きの下線"
+
+#: gui/guiutils.cpp:65 part/annotationwidgets.cpp:657
+#: part/pageviewannotator.cpp:1341
+#, kde-format
+msgid "Underline"
+msgstr "下線"
+
+#: gui/guiutils.cpp:68
+#, kde-format
+msgid "Strike Out with Comment"
+msgstr "コメント付きの取り消し線"
+
+#: gui/guiutils.cpp:68
+#, kde-format
+msgid "Strike Out"
+msgstr "取り消し線"
+
+#: gui/guiutils.cpp:73
+#, kde-format
+msgid "Stamp with Comment"
+msgstr "コメント付きのスタンプ"
+
+#: gui/guiutils.cpp:73 part/editannottooldialog.cpp:95
+#: part/pageviewannotator.cpp:1335
+#, kde-format
+msgid "Stamp"
+msgstr "スタンプ"
+
+#: gui/guiutils.cpp:76
+#, kde-format
+msgid "Freehand Line with Comment"
+msgstr "コメント付きの手描きの線"
+
+#: gui/guiutils.cpp:76 part/editannottooldialog.cpp:90
+#: part/pageviewannotator.cpp:1323
+#, kde-format
+msgid "Freehand Line"
+msgstr "手描きの線"
+
+#: gui/guiutils.cpp:79
+#, kde-format
+msgid "Caret"
+msgstr "キャレット"
+
+#: gui/guiutils.cpp:82
+#, kde-format
+msgid "File Attachment"
+msgstr "添付ファイル"
+
+#: gui/guiutils.cpp:85
+#, kde-format
+msgid "Sound"
+msgstr "サウンド"
+
+#: gui/guiutils.cpp:88
+#, kde-format
+msgid "Movie"
+msgstr "動画"
+
+#: gui/guiutils.cpp:91
+#, kde-format
+msgctxt "Caption for a screen annotation"
+msgid "Screen"
 msgstr "スクリーン"
+
+#: gui/guiutils.cpp:94
+#, kde-format
+msgctxt "Caption for a widget annotation"
+msgid "Widget"
+msgstr "ウィジェット"
+
+#: gui/guiutils.cpp:97
+#, kde-format
+msgctxt "Caption for a rich media annotation"
+msgid "Rich Media"
+msgstr "リッチメディア"
+
+#: gui/guiutils.cpp:109
+#, kde-format
+msgctxt "Unknown author"
+msgid "Unknown"
+msgstr "不明"
+
+#: gui/guiutils.cpp:126 part/presentationwidget.cpp:370
+#, kde-format
+msgid "Author: %1"
+msgstr "作者: %1"
+
+#: gui/guiutils.cpp:138 part/propertiesdialog.cpp:229
+#, kde-format
+msgid "Where do you want to save %1?"
+msgstr "‘%1’ をどこに保存しますか？"
+
+#: gui/guiutils.cpp:150 part/propertiesdialog.cpp:240
+#, kde-format
+msgid "Could not open \"%1\" for writing. File was not saved."
+msgstr ""
+"‘%1’ を書き込みのために開けませんでした。ファイルは保存されていません。"
+
+#: gui/signatureguiutils.cpp:42
+#, kde-format
+msgid "The signature is cryptographically valid."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:44
+#, kde-format
+msgid "The signature is cryptographically invalid."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:46
+#, kde-format
+msgid "Digest Mismatch occurred."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:48
+#, kde-format
+msgid "The signature CMS/PKCS7 structure is malformed."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:50
+#, kde-format
+msgid "The requested signature is not present in the document."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:52
+#, kde-format
+msgid "The signature could not be verified."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:60
+#, fuzzy, kde-format
+#| msgid "Configure Viewer"
+msgid "Certificate is Trusted."
+msgstr "ビューアを設定"
+
+#: gui/signatureguiutils.cpp:62
+#, kde-format
+msgid "Certificate issuer isn't Trusted."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:64
+#, fuzzy, kde-format
+#| msgid "Configure Viewer"
+msgid "Certificate issuer is unknown."
+msgstr "ビューアを設定"
+
+#: gui/signatureguiutils.cpp:66
+#, kde-format
+msgid "Certificate has been Revoked."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:68
+#, fuzzy, kde-format
+#| msgid "Configure Viewer"
+msgid "Certificate has Expired."
+msgstr "ビューアを設定"
+
+#: gui/signatureguiutils.cpp:70
+#, kde-format
+msgid "Certificate has not yet been verified."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:72
+#, kde-format
+msgid "Unknown issue with Certificate or corrupted data."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:80
+#, kde-format
+msgid "MD2"
+msgstr "MD2"
+
+#: gui/signatureguiutils.cpp:82
+#, kde-format
+msgid "MD5"
+msgstr "MD5"
+
+#: gui/signatureguiutils.cpp:84
+#, kde-format
+msgid "SHA1"
+msgstr "SHA1"
+
+#: gui/signatureguiutils.cpp:86
+#, kde-format
+msgid "SHA256"
+msgstr "SHA256"
+
+#: gui/signatureguiutils.cpp:88
+#, kde-format
+msgid "SHA384"
+msgstr "SHA384"
+
+#: gui/signatureguiutils.cpp:90
+#, kde-format
+msgid "SHA512"
+msgstr "SHA512"
+
+#: gui/signatureguiutils.cpp:92
+#, kde-format
+msgid "SHA224"
+msgstr "SHA224"
+
+#: gui/signatureguiutils.cpp:94
+#, kde-format
+msgid "Unknown Algorithm"
+msgstr "不明なアルゴリズム"
+
+#: gui/signatureguiutils.cpp:102
+#, kde-format
+msgid "RSA"
+msgstr "RSA"
+
+#: gui/signatureguiutils.cpp:104
+#, kde-format
+msgid "DSA"
+msgstr "DSA"
+
+#: gui/signatureguiutils.cpp:106
+#, kde-format
+msgid "EC"
+msgstr "EC"
+
+#: gui/signatureguiutils.cpp:108 gui/signatureguiutils.cpp:111
+#, kde-format
+msgid "Unknown Type"
+msgstr "不明なタイプ"
+
+#: gui/signatureguiutils.cpp:118
+#, kde-format
+msgid "Digital Signature"
+msgstr ""
+
+#: gui/signatureguiutils.cpp:121
+#, kde-format
+msgid "Non-Repudiation"
+msgstr ""
+
+#: gui/signatureguiutils.cpp:124
+#, kde-format
+msgid "Encrypt Keys"
+msgstr ""
+
+#: gui/signatureguiutils.cpp:127
+#, kde-format
+msgid "Decrypt Keys"
+msgstr ""
+
+#: gui/signatureguiutils.cpp:130
+#, kde-format
+msgid "Key Agreement"
+msgstr ""
+
+#: gui/signatureguiutils.cpp:133
+#, fuzzy, kde-format
+#| msgid "Configure Viewer"
+msgid "Sign Certificate"
+msgstr "ビューアを設定"
+
+#: gui/signatureguiutils.cpp:136
+#, kde-format
+msgid "Sign CRL"
+msgstr ""
+
+#: gui/signatureguiutils.cpp:139
+#, kde-format
+msgid "Encrypt Only"
+msgstr ""
+
+#: gui/signatureguiutils.cpp:142
+#, kde-format
+msgid "No Usage Specified"
+msgstr ""
+
+#: gui/signatureguiutils.cpp:149
+#, kde-format
+msgctxt "Joins the various ways a signature key can be used in a longer string"
+msgid ", "
+msgstr ""
+
+#: gui/signatureguiutils.cpp:163
+#, fuzzy, kde-format
+#| msgid "Printing this document is not allowed."
+msgid "The document has not been modified since it was signed."
+msgstr "この文書は印刷が許可されていません。"
+
+#: gui/signatureguiutils.cpp:166
+#, kde-format
+msgid ""
+"The revision of the document that was covered by this signature has not been "
+"modified;\n"
+"however there have been subsequent changes to the document."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:170
+#, kde-format
+msgid ""
+"The document has been modified in a way not permitted by a previous signer."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:172
+#, kde-format
+msgid "The document integrity verification could not be completed."
+msgstr ""
+
+#: gui/signatureguiutils.cpp:205
+#, fuzzy, kde-format
+#| msgid "Printing this document is not allowed."
+msgid "This document has unsigned signature fields."
+msgstr "この文書は印刷が許可されていません。"
+
+#: gui/signatureguiutils.cpp:208
+#, fuzzy, kde-format
+#| msgid "Printing this document is not allowed."
+msgid "This document is digitally signed."
+msgstr "この文書は印刷が許可されていません。"
+
+#: gui/signatureguiutils.cpp:210
+#, fuzzy, kde-format
+#| msgid "Printing this document is not allowed."
+msgid ""
+"This document is digitally signed. There have been changes since last signed."
+msgstr "この文書は印刷が許可されていません。"
+
+#: gui/signatureguiutils.cpp:213
+#, fuzzy, kde-format
+#| msgid "Printing this document is not allowed."
+msgid ""
+"This document is digitally signed. Some of the signatures could not be "
+"validated properly."
+msgstr "この文書は印刷が許可されていません。"
+
+#: gui/signaturemodel.cpp:141
+#, kde-format
+msgid "Unsigned Signature %1"
+msgstr ""
+
+#: gui/signaturemodel.cpp:144 gui/signaturemodel.cpp:172
+#, kde-format
+msgid "Field: %1 on page %2"
+msgstr ""
+
+#: gui/signaturemodel.cpp:152
+#, kde-format
+msgid "Rev. %1: Signed By %2"
+msgstr ""
+
+#: gui/signaturemodel.cpp:158
+#, kde-format
+msgid "Signing Time: %1"
+msgstr ""
+
+#: gui/signaturemodel.cpp:163
+#, kde-format
+msgid "Reason: %1"
+msgstr "理由: %1"
+
+#: gui/signaturemodel.cpp:168
+#, fuzzy, kde-format
+#| msgid "Location:"
+msgid "Location: %1"
+msgstr "場所:"
 
 #: part/annotationactionhandler.cpp:147
 #, kde-format
 msgctxt "@item:inlistbox Color name"
-msgid "Cyan"
-msgstr ""
+msgid "Red"
+msgstr "赤"
 
 #: part/annotationactionhandler.cpp:148
 #, kde-format
 msgctxt "@item:inlistbox Color name"
-msgid "Blue"
-msgstr ""
+msgid "Orange"
+msgstr "オレンジ"
 
 #: part/annotationactionhandler.cpp:149
 #, kde-format
 msgctxt "@item:inlistbox Color name"
-msgid "Magenta"
-msgstr ""
+msgid "Yellow"
+msgstr "黃"
 
 #: part/annotationactionhandler.cpp:150
 #, kde-format
 msgctxt "@item:inlistbox Color name"
-msgid "White"
-msgstr ""
+msgid "Green"
+msgstr "緑"
 
 #: part/annotationactionhandler.cpp:151
 #, kde-format
 msgctxt "@item:inlistbox Color name"
-msgid "Gray"
-msgstr ""
+msgid "Cyan"
+msgstr "シアン"
 
 #: part/annotationactionhandler.cpp:152
 #, kde-format
 msgctxt "@item:inlistbox Color name"
-msgid "Black"
-msgstr ""
+msgid "Blue"
+msgstr "青"
 
-#: part/annotationactionhandler.cpp:241 part/annotationactionhandler.cpp:697
-#, fuzzy, kde-format
-#| msgid "Fit Width"
+#: part/annotationactionhandler.cpp:153
+#, kde-format
+msgctxt "@item:inlistbox Color name"
+msgid "Magenta"
+msgstr "マゼンタ"
+
+#: part/annotationactionhandler.cpp:154
+#, kde-format
+msgctxt "@item:inlistbox Color name"
+msgid "White"
+msgstr "白"
+
+#: part/annotationactionhandler.cpp:155
+#, kde-format
+msgctxt "@item:inlistbox Color name"
+msgid "Gray"
+msgstr "グレー"
+
+#: part/annotationactionhandler.cpp:156
+#, kde-format
+msgctxt "@item:inlistbox Color name"
+msgid "Black"
+msgstr "黒"
+
+#: part/annotationactionhandler.cpp:245 part/annotationactionhandler.cpp:685
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Width %1"
-msgstr "幅に合わせる"
+msgstr "幅 %1"
 
-#: part/annotationactionhandler.cpp:247
-#, fuzzy, kde-format
-#| msgid "%1:"
+#: part/annotationactionhandler.cpp:251
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "%1%"
-msgstr "%1:"
+msgstr "%1%"
 
-#: part/annotationactionhandler.cpp:291
+#: part/annotationactionhandler.cpp:295
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation line width (No annotation selected)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:292
+#: part/annotationactionhandler.cpp:296
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation color (No annotation selected)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:293
+#: part/annotationactionhandler.cpp:297
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation fill color (No annotation selected)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:294
+#: part/annotationactionhandler.cpp:298
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation opacity (No annotation selected)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:295
+#: part/annotationactionhandler.cpp:299
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation font (No annotation selected)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:296
+#: part/annotationactionhandler.cpp:300
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -685,7 +1214,7 @@ msgid ""
 "selected)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:297
+#: part/annotationactionhandler.cpp:301
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -693,87 +1222,85 @@ msgid ""
 "selected)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:298
+#: part/annotationactionhandler.cpp:302
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Advanced settings for the current annotation tool (No annotation selected)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:303
+#: part/annotationactionhandler.cpp:307
 #, fuzzy, kde-format
 #| msgid "Annotation Options"
 msgctxt "@info:tooltip"
 msgid "Annotation line width"
 msgstr "注釈のオプション"
 
-#: part/annotationactionhandler.cpp:305
+#: part/annotationactionhandler.cpp:309
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation line width (Current annotation has no line width)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:309
+#: part/annotationactionhandler.cpp:313
 #, fuzzy, kde-format
 #| msgid "Annotation tools"
 msgctxt "@info:tooltip"
 msgid "Annotation text color"
 msgstr "注釈ツール"
 
-#: part/annotationactionhandler.cpp:311
+#: part/annotationactionhandler.cpp:315
 #, fuzzy, kde-format
 #| msgid "Annotation tools"
 msgctxt "@info:tooltip"
 msgid "Annotation border color"
 msgstr "注釈ツール"
 
-#: part/annotationactionhandler.cpp:313
+#: part/annotationactionhandler.cpp:317
 #, fuzzy, kde-format
 #| msgid "Annotation tools"
 msgctxt "@info:tooltip"
 msgid "Annotation color"
 msgstr "注釈ツール"
 
-#: part/annotationactionhandler.cpp:317
+#: part/annotationactionhandler.cpp:321
 #, fuzzy, kde-format
 #| msgid "Annotation tools"
 msgctxt "@info:tooltip"
 msgid "Annotation fill color"
 msgstr "注釈ツール"
 
-#: part/annotationactionhandler.cpp:319
+#: part/annotationactionhandler.cpp:323
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation fill color (Current annotation has no fill color)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:323
-#, fuzzy, kde-format
-#| msgid "Annotation"
-#| msgid_plural "%1 Annotations"
+#: part/annotationactionhandler.cpp:327
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation font"
-msgstr "注釈"
+msgstr "注釈のフォント"
 
-#: part/annotationactionhandler.cpp:325
+#: part/annotationactionhandler.cpp:329
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation font (Current annotation has no font)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:329
+#: part/annotationactionhandler.cpp:333
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Constrain line angle to 15° steps"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:331
+#: part/annotationactionhandler.cpp:335
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Constrain shape ratio to 1:1"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:333
+#: part/annotationactionhandler.cpp:337
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -781,212 +1308,181 @@ msgid ""
 "current annotation)"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:336
-#, fuzzy, kde-format
-#| msgid "Annotation Options"
+#: part/annotationactionhandler.cpp:340
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Annotation opacity"
-msgstr "注釈のオプション"
+msgstr "注釈の透明度"
 
-#: part/annotationactionhandler.cpp:337
+#: part/annotationactionhandler.cpp:341
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the current annotation to the quick annotations menu"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:338
+#: part/annotationactionhandler.cpp:342
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Advanced settings for the current annotation tool"
 msgstr ""
 
-# ACCELERATOR changed by translator
-#: part/annotationactionhandler.cpp:424
-#, fuzzy, kde-format
-#| msgid "&Color:"
+#: part/annotationactionhandler.cpp:431
+#, kde-format
 msgctxt "@action:intoolbar Current annotation config option"
 msgid "Color"
-msgstr "色(&L):"
+msgstr "色"
 
 # ACCELERATOR changed by translator
-#: part/annotationactionhandler.cpp:426
+#: part/annotationactionhandler.cpp:433
 #, fuzzy, kde-format
 #| msgid "&Color:"
 msgctxt "@action:intoolbar Current annotation config option"
 msgid "Fill Color"
 msgstr "色(&L):"
 
-#: part/annotationactionhandler.cpp:427
+#: part/annotationactionhandler.cpp:434
 #, kde-format
 msgctxt "@item:inlistbox Color name"
 msgid "Transparent"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:437
+#: part/annotationactionhandler.cpp:444
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Custom Color..."
 msgstr ""
 
-# ACCELERATOR changed by translator
-#: part/annotationactionhandler.cpp:494
-#, fuzzy, kde-format
-#| msgid "&Color:"
+#: part/annotationactionhandler.cpp:498
+#, kde-format
 msgctxt "@title:window"
 msgid "Select color"
-msgstr "色(&L):"
+msgstr "色を選択"
 
-#: part/annotationactionhandler.cpp:541
+#: part/annotationactionhandler.cpp:550
 #, kde-format
-msgctxt "@info"
-msgid ""
-"Stamps inserted in PDF documents are not visible in PDF readers other than "
-"Okular"
-msgstr ""
-
-#: part/annotationactionhandler.cpp:541
-#, fuzzy, kde-format
-#| msgid "Experimental"
-msgctxt "@title:window"
-msgid "Experimental feature"
-msgstr "試験的"
+msgid "&Annotations"
+msgstr "注釈(&A)"
 
 #: part/annotationactionhandler.cpp:551
-#, fuzzy, kde-format
-#| msgid "Annotations"
-msgid "&Annotations"
-msgstr "注釈"
-
-#: part/annotationactionhandler.cpp:552
 #, kde-format
 msgctxt "@action:intoolbar Hide the toolbar"
 msgid "Hide"
-msgstr ""
+msgstr "隠す"
 
-#: part/annotationactionhandler.cpp:554
-#, fuzzy, kde-format
-#| msgid "Create annotation tool"
+#: part/annotationactionhandler.cpp:552
+#, kde-format
 msgctxt "@action:intoolbar Show the builtin annotation toolbar"
 msgid "Show more annotation tools"
-msgstr "注釈ツールの作成"
+msgstr "注釈ツールをさらに表示"
 
-#: part/annotationactionhandler.cpp:559
-#, fuzzy, kde-format
-#| msgid "Highlight"
+#: part/annotationactionhandler.cpp:555
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Highlighter"
-msgstr "強調表示"
+msgstr "マーカー"
 
-#: part/annotationactionhandler.cpp:560
-#, fuzzy, kde-format
-#| msgid "Underline"
+#: part/annotationactionhandler.cpp:556
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Underline"
 msgstr "下線"
 
-#: part/annotationactionhandler.cpp:561
-#, fuzzy, kde-format
-#| msgid "Squiggly"
+#: part/annotationactionhandler.cpp:557
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Squiggle"
 msgstr "波線"
 
-#: part/annotationactionhandler.cpp:562
-#, fuzzy, kde-format
-#| msgid "Strike Out"
+#: part/annotationactionhandler.cpp:558
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Strike Out"
 msgstr "取り消し線"
 
-#: part/annotationactionhandler.cpp:564
-#, fuzzy, kde-format
-#| msgid "Caret Properties"
+#: part/annotationactionhandler.cpp:560
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Typewriter"
-msgstr "キャレットのプロパティ"
+msgstr "タイプライター"
 
-#: part/annotationactionhandler.cpp:565
-#, fuzzy, kde-format
-#| msgid "Inline Note"
+#: part/annotationactionhandler.cpp:561
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Inline Note"
 msgstr "インラインメモ"
 
-#: part/annotationactionhandler.cpp:566
-#, fuzzy, kde-format
-#| msgid "Pop-up Note"
+#: part/annotationactionhandler.cpp:562
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Popup Note"
 msgstr "ポップアップメモ"
 
-#: part/annotationactionhandler.cpp:567
-#, fuzzy, kde-format
-#| msgid "Line Properties"
+#: part/annotationactionhandler.cpp:563
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Freehand Line"
-msgstr "線のプロパティ"
+msgstr "手描きの線"
 
-#: part/annotationactionhandler.cpp:569
-#, fuzzy, kde-format
-#| msgid "Straight Line"
+#: part/annotationactionhandler.cpp:565
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Straight line"
 msgstr "直線"
 
-#: part/annotationactionhandler.cpp:570
+#: part/annotationactionhandler.cpp:566
 #, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Arrow"
-msgstr ""
+msgstr "矢印"
 
-#: part/annotationactionhandler.cpp:571
-#, fuzzy, kde-format
-#| msgid "Rectangle"
+#: part/annotationactionhandler.cpp:567
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Rectangle"
 msgstr "四角"
 
-#: part/annotationactionhandler.cpp:572
-#, fuzzy, kde-format
-#| msgid "Ellipse"
+#: part/annotationactionhandler.cpp:568
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Ellipse"
 msgstr "楕円"
 
-#: part/annotationactionhandler.cpp:573
-#, fuzzy, kde-format
-#| msgid "Polygon"
+#: part/annotationactionhandler.cpp:569
+#, kde-format
 msgctxt "@action:intoolbar Annotation tool"
 msgid "Polygon"
 msgstr "多角形"
 
-#: part/annotationactionhandler.cpp:574
+#: part/annotationactionhandler.cpp:570
 #, kde-format
 msgctxt "@action"
 msgid "Geometrical shapes"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:624
-#, fuzzy, kde-format
-#| msgid "Stamp"
+#: part/annotationactionhandler.cpp:616
+#, kde-format
 msgctxt "@action"
 msgid "Stamp"
 msgstr "スタンプ"
 
-#: part/annotationactionhandler.cpp:648
-#, fuzzy, kde-format
-#| msgid "Annotations"
+#: part/annotationactionhandler.cpp:636
+#, kde-format
 msgctxt "@action:intoolbar Show list of quick annotation tools"
 msgid "Quick Annotations"
-msgstr "注釈"
+msgstr "クイック注釈"
 
-#: part/annotationactionhandler.cpp:656
+#: part/annotationactionhandler.cpp:639
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Choose an annotation tool from the quick annotations"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:675
+#: part/annotationactionhandler.cpp:649
+#, kde-format
+msgid "Quick Annotation Bar"
+msgstr "クイック注釈バー"
+
+#: part/annotationactionhandler.cpp:663
 #, fuzzy, kde-format
 #| msgctxt "Add an annotation to the page"
 #| msgid "add annotation"
@@ -995,7 +1491,7 @@ msgctxt ""
 msgid "Add to Quick Annotations"
 msgstr "注釈を追加"
 
-#: part/annotationactionhandler.cpp:678
+#: part/annotationactionhandler.cpp:666
 #, kde-format
 msgctxt ""
 "@action:intoolbar When checked keep the current annotation tool active after "
@@ -1003,14 +1499,14 @@ msgctxt ""
 msgid "Keep Active"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:679
+#: part/annotationactionhandler.cpp:667
 #, fuzzy, kde-format
 #| msgid "Create annotation tool"
 msgctxt "@info:tooltip"
 msgid "Keep the annotation tool active after use"
 msgstr "注釈ツールの作成"
 
-#: part/annotationactionhandler.cpp:684
+#: part/annotationactionhandler.cpp:672
 #, kde-format
 msgctxt ""
 "@action When checked, line annotations are constrained to 15° steps, shape "
@@ -1018,65 +1514,82 @@ msgctxt ""
 msgid "Constrain Ratio and Angle of Annotation Tools"
 msgstr ""
 
-#: part/annotationactionhandler.cpp:690
-#, fuzzy, kde-format
-#| msgid "Font:"
+#: part/annotationactionhandler.cpp:678
+#, kde-format
 msgctxt "@action:intoolbar Current annotation config option"
 msgid "Font"
-msgstr "フォント:"
+msgstr "フォント"
 
-#: part/annotationactionhandler.cpp:691
-#, fuzzy, kde-format
-#| msgid "Annotation Options"
+#: part/annotationactionhandler.cpp:679
+#, kde-format
 msgctxt "@action:intoolbar Current annotation advanced settings"
 msgid "Annotation Settings"
-msgstr "注釈のオプション"
+msgstr "注釈の設定"
+
+#: part/annotationactionhandler.cpp:682
+#, kde-format
+msgctxt "@action:intoolbar Current annotation config option"
+msgid "Line width"
+msgstr "線の幅"
+
+#: part/annotationactionhandler.cpp:691
+#, kde-format
+msgctxt "@action:intoolbar Current annotation config option"
+msgid "Opacity"
+msgstr "不透明度"
 
 #: part/annotationactionhandler.cpp:694
 #, fuzzy, kde-format
-#| msgid "Fit Width"
-msgctxt "@action:intoolbar Current annotation config option"
-msgid "Line width"
-msgstr "幅に合わせる"
+#| msgctxt "@item:inlistbox"
+#| msgid "%1%"
+msgctxt ""
+"@item:inlistbox Annotation opacity percentage level, make sure to include %1 "
+"in your translation"
+msgid "%1%"
+msgstr "%1%"
 
-# ACCELERATOR changed by translator
-#: part/annotationactionhandler.cpp:703
-#, fuzzy, kde-format
-#| msgid "&Opacity:"
-msgctxt "@action:intoolbar Current annotation config option"
-msgid "Opacity"
-msgstr "不透明度(&Y):"
-
-#: part/annotationmodel.cpp:315 part/part.cpp:2972
+#: part/annotationmodel.cpp:324 part/part.cpp:3166
 #, kde-format
 msgid "Page %1"
 msgstr "ページ %1"
 
-#: part/annotationpopup.cpp:79
+#: part/annotationpopup.cpp:83
 #, kde-format
 msgid "Annotation"
 msgid_plural "%1 Annotations"
-msgstr[0] "注釈"
-msgstr[1] "%1 個の注釈"
+msgstr[0] "%1 個の注釈"
 
-#: part/annotationpopup.cpp:81 part/annotationpopup.cpp:116
+#: part/annotationpopup.cpp:85 part/annotationpopup.cpp:131
 #, kde-format
 msgid "&Open Pop-up Note"
 msgstr "ポップアップメモを開く(&O)"
 
-#: part/annotationpopup.cpp:85 part/annotationpopup.cpp:119
+#: part/annotationpopup.cpp:90 part/annotationpopup.cpp:135
+#, fuzzy, kde-format
+#| msgid "Copy to Clipboard"
+msgid "Copy Text to Clipboard"
+msgstr "クリップボードにコピー"
+
+#: part/annotationpopup.cpp:94 part/annotationpopup.cpp:139
+#: part/pageview.cpp:2545 part/pageview.cpp:2865 part/pageview.cpp:3009
+#: part/pageview.cpp:3066
+#, kde-format
+msgid "Copy forbidden by DRM"
+msgstr "コピーは DRM (デジタル著作権管理) によって禁止されています"
+
+#: part/annotationpopup.cpp:99 part/annotationpopup.cpp:144
 #, kde-format
 msgid "&Delete"
 msgstr "削除(&D)"
 
 # ACCELERATOR changed by translator
-#: part/annotationpopup.cpp:98 part/annotationpopup.cpp:123 part/part.cpp:773
+#: part/annotationpopup.cpp:113 part/annotationpopup.cpp:148 part/part.cpp:793
 #: part/propertiesdialog.cpp:54
 #, kde-format
 msgid "&Properties"
 msgstr "プロパティ(&T)"
 
-#: part/annotationpopup.cpp:105 part/annotationpopup.cpp:129
+#: part/annotationpopup.cpp:120 part/annotationpopup.cpp:154
 #, kde-format
 msgctxt "%1 is the name of the file to save"
 msgid "&Save '%1'..."
@@ -1100,16 +1613,14 @@ msgid "&Author:"
 msgstr "作者(&U):"
 
 #: part/annotationpropertiesdialog.cpp:69
-#, fuzzy, kde-format
-#| msgid "Created"
+#, kde-format
 msgid "Created:"
-msgstr "作成日"
+msgstr "作成日:"
 
 #: part/annotationpropertiesdialog.cpp:74
-#, fuzzy, kde-format
-#| msgid "Modified"
+#, kde-format
 msgid "Modified:"
-msgstr "変更日"
+msgstr "変更日:"
 
 #: part/annotationpropertiesdialog.cpp:108
 #, kde-format
@@ -1117,84 +1628,82 @@ msgid "Pop-up Note Properties"
 msgstr "ポップアップメモのプロパティ"
 
 #: part/annotationpropertiesdialog.cpp:111
-#, fuzzy, kde-format
-#| msgid "Caret Properties"
+#, kde-format
 msgid "Typewriter Properties"
-msgstr "キャレットのプロパティ"
+msgstr "タイプライターのプロパティ"
 
 #: part/annotationpropertiesdialog.cpp:113
 #, kde-format
 msgid "Inline Note Properties"
 msgstr "インラインメモのプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:118
+#: part/annotationpropertiesdialog.cpp:119
 #, kde-format
 msgid "Straight Line Properties"
 msgstr "直線のプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:120
+#: part/annotationpropertiesdialog.cpp:121
 #, kde-format
 msgid "Polygon Properties"
 msgstr "多角形のプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:123
+#: part/annotationpropertiesdialog.cpp:125
 #, kde-format
 msgid "Geometry Properties"
 msgstr "図形のプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:126
+#: part/annotationpropertiesdialog.cpp:128
 #, kde-format
 msgid "Text Markup Properties"
 msgstr "テキストマークアップのプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:129
+#: part/annotationpropertiesdialog.cpp:131
 #, kde-format
 msgid "Stamp Properties"
 msgstr "スタンプのプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:132
-#, fuzzy, kde-format
-#| msgid "Line Properties"
+#: part/annotationpropertiesdialog.cpp:134
+#, kde-format
 msgid "Freehand Line Properties"
-msgstr "線のプロパティ"
+msgstr "手描きの線のプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:135
+#: part/annotationpropertiesdialog.cpp:137
 #, kde-format
 msgid "Caret Properties"
 msgstr "キャレットのプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:138
+#: part/annotationpropertiesdialog.cpp:140
 #, kde-format
 msgid "File Attachment Properties"
 msgstr "添付ファイルのプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:141
+#: part/annotationpropertiesdialog.cpp:143
 #, kde-format
 msgid "Sound Properties"
 msgstr "サウンドのプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:144
+#: part/annotationpropertiesdialog.cpp:146
 #, kde-format
 msgid "Movie Properties"
 msgstr "動画のプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:147
+#: part/annotationpropertiesdialog.cpp:149
 #, kde-format
 msgid "Annotation Properties"
 msgstr "注釈のプロパティ"
 
-#: part/annotationpropertiesdialog.cpp:172
+#: part/annotationpropertiesdialog.cpp:175
 #, kde-format
 msgid "Modified: %1"
 msgstr "変更日: %1"
 
-#: part/annotationwidgets.cpp:52
+#: part/annotationwidgets.cpp:56
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select a custom stamp symbol from file"
 msgstr ""
 
-#: part/annotationwidgets.cpp:150
+#: part/annotationwidgets.cpp:156
 #, fuzzy, kde-format
 #| msgctxt "Annotation tool"
 #| msgid "Put a stamp symbol"
@@ -1202,419 +1711,386 @@ msgctxt "@title:window file chooser"
 msgid "Select custom stamp symbol"
 msgstr "スタンプのシンボル"
 
-#: part/annotationwidgets.cpp:150
+#: part/annotationwidgets.cpp:156
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz | Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
 msgstr ""
 
-#: part/annotationwidgets.cpp:154
+#: part/annotationwidgets.cpp:160
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not load the file <filename>%1</filename>"
 msgstr ""
 
-#: part/annotationwidgets.cpp:154
+#: part/annotationwidgets.cpp:160
 #, kde-format
 msgctxt "@title:window"
 msgid "Invalid file"
 msgstr ""
 
 # ACCELERATOR changed by translator
-#: part/annotationwidgets.cpp:257
+#: part/annotationwidgets.cpp:267
 #, kde-format
 msgid "&Color:"
 msgstr "色(&L):"
 
-#: part/annotationwidgets.cpp:266
-#, fuzzy, kde-format
-#| msgid "%"
+#: part/annotationwidgets.cpp:276
+#, kde-format
 msgctxt "Suffix for the opacity level, eg '80%'"
 msgid "%"
 msgstr "%"
 
 # ACCELERATOR changed by translator
-#: part/annotationwidgets.cpp:267 part/editdrawingtooldialog.cpp:67
+#: part/annotationwidgets.cpp:277 part/editdrawingtooldialog.cpp:67
 #, kde-format
 msgid "&Opacity:"
 msgstr "不透明度(&Y):"
 
-#: part/annotationwidgets.cpp:354
-#, fuzzy, kde-format
-#| msgid "Icon"
+#: part/annotationwidgets.cpp:365
+#, kde-format
 msgid "Icon:"
-msgstr "アイコン"
+msgstr "アイコン:"
 
-#: part/annotationwidgets.cpp:355
+#: part/annotationwidgets.cpp:366
 #, kde-format
 msgid "Comment"
 msgstr "コメント"
 
-#: part/annotationwidgets.cpp:356
+#: part/annotationwidgets.cpp:367
 #, kde-format
 msgid "Help"
 msgstr "ヘルプ"
 
-#: part/annotationwidgets.cpp:357
+#: part/annotationwidgets.cpp:368
 #, kde-format
 msgid "Insert"
 msgstr "挿入"
 
-#: part/annotationwidgets.cpp:358
+#: part/annotationwidgets.cpp:369
 #, kde-format
 msgid "Key"
 msgstr "キー"
 
-#: part/annotationwidgets.cpp:359
-#, fuzzy, kde-format
-#| msgid "New Paragraph"
+#: part/annotationwidgets.cpp:370
+#, kde-format
 msgid "New paragraph"
 msgstr "新しい段落"
 
-#: part/annotationwidgets.cpp:360
+#: part/annotationwidgets.cpp:371
 #, kde-format
 msgid "Note"
 msgstr "メモ"
 
-#: part/annotationwidgets.cpp:361
+#: part/annotationwidgets.cpp:372
 #, kde-format
 msgid "Paragraph"
 msgstr "段落"
 
-#: part/annotationwidgets.cpp:369
+#: part/annotationwidgets.cpp:380
 #, kde-format
 msgid "Font:"
 msgstr "フォント:"
 
-# ACCELERATOR changed by translator
-#: part/annotationwidgets.cpp:378
-#, fuzzy, kde-format
-#| msgid "&Color:"
+#: part/annotationwidgets.cpp:389
+#, kde-format
 msgid "Text &color:"
-msgstr "色(&L):"
+msgstr "テキストの色(&C):"
 
-#: part/annotationwidgets.cpp:385
+#: part/annotationwidgets.cpp:396
 #, kde-format
 msgid "&Align:"
 msgstr ""
 
-#: part/annotationwidgets.cpp:386
+#: part/annotationwidgets.cpp:397
 #, kde-format
 msgid "Left"
 msgstr "左"
 
-#: part/annotationwidgets.cpp:387
+#: part/annotationwidgets.cpp:398
 #, kde-format
 msgid "Center"
 msgstr "中央"
 
-#: part/annotationwidgets.cpp:388
+#: part/annotationwidgets.cpp:399
 #, kde-format
 msgid "Right"
 msgstr "右"
 
-#: part/annotationwidgets.cpp:396
+#: part/annotationwidgets.cpp:407
 #, kde-format
 msgid "Border &width:"
 msgstr ""
 
-#: part/annotationwidgets.cpp:405
+#: part/annotationwidgets.cpp:416
 #, kde-format
 msgid "Approved"
 msgstr "承認済み"
 
-#: part/annotationwidgets.cpp:406
+#: part/annotationwidgets.cpp:417
 #, kde-format
 msgid "As Is"
 msgstr "そのまま"
 
-#: part/annotationwidgets.cpp:407
+#: part/annotationwidgets.cpp:418
 #, kde-format
 msgid "Confidential"
 msgstr "機密"
 
-#: part/annotationwidgets.cpp:408
+#: part/annotationwidgets.cpp:419
 #, kde-format
 msgid "Departmental"
 msgstr "部門内"
 
-#: part/annotationwidgets.cpp:409
+#: part/annotationwidgets.cpp:420
 #, kde-format
 msgid "Draft"
 msgstr "草稿"
 
-#: part/annotationwidgets.cpp:410
+#: part/annotationwidgets.cpp:421
 #, kde-format
 msgid "Experimental"
 msgstr "試験的"
 
-#: part/annotationwidgets.cpp:411
+#: part/annotationwidgets.cpp:422
+#, kde-format
+msgid "Expired"
+msgstr "期限切れ"
+
+#: part/annotationwidgets.cpp:423
 #, kde-format
 msgid "Final"
 msgstr "最終稿"
 
-#: part/annotationwidgets.cpp:412
+#: part/annotationwidgets.cpp:424
 #, kde-format
 msgid "For Comment"
 msgstr "コメント用"
 
-#: part/annotationwidgets.cpp:413
+#: part/annotationwidgets.cpp:425
 #, kde-format
 msgid "For Public Release"
 msgstr "一般公開用"
 
-#: part/annotationwidgets.cpp:414
+#: part/annotationwidgets.cpp:426
 #, kde-format
 msgid "Not Approved"
 msgstr "未承認"
 
-#: part/annotationwidgets.cpp:415
+#: part/annotationwidgets.cpp:427
 #, kde-format
 msgid "Not For Public Release"
 msgstr "一般公開しない"
 
-#: part/annotationwidgets.cpp:416
+#: part/annotationwidgets.cpp:428
 #, kde-format
 msgid "Sold"
 msgstr "販売済み"
 
-#: part/annotationwidgets.cpp:417
+#: part/annotationwidgets.cpp:429
 #, kde-format
 msgid "Top Secret"
 msgstr "極秘"
 
-#: part/annotationwidgets.cpp:418
+#: part/annotationwidgets.cpp:430
 #, kde-format
 msgid "Bookmark"
 msgstr "ブックマーク"
 
-#: part/annotationwidgets.cpp:419
+#: part/annotationwidgets.cpp:431
 #, kde-format
 msgid "Information"
 msgstr "情報"
 
-#: part/annotationwidgets.cpp:420
+#: part/annotationwidgets.cpp:432
 #, kde-format
 msgid "KDE"
 msgstr "KDE"
 
-#: part/annotationwidgets.cpp:439
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<warning>experimental feature.<nl/>Stamps inserted in PDF documents are not "
-"visible in PDF readers other than Okular.</warning>"
-msgstr ""
-
-#: part/annotationwidgets.cpp:450
-#, fuzzy, kde-format
-#| msgid "Stamp Symbol"
+#: part/annotationwidgets.cpp:453
+#, kde-format
 msgid "Stamp symbol:"
-msgstr "スタンプのシンボル"
+msgstr "スタンプのシンボル:"
 
-#: part/annotationwidgets.cpp:498 part/annotationwidgets.cpp:560
-#: part/annotationwidgets.cpp:623 part/annotationwidgets.cpp:697
-#: part/annotationwidgets.cpp:776
-#, fuzzy, kde-format
-#| msgid "Fit Width"
+#: part/annotationwidgets.cpp:501 part/annotationwidgets.cpp:563
+#: part/annotationwidgets.cpp:626 part/annotationwidgets.cpp:700
+#: part/annotationwidgets.cpp:779
+#, kde-format
 msgid "&Width:"
-msgstr "幅に合わせる"
+msgstr "幅(&W):"
 
-#: part/annotationwidgets.cpp:503
+#: part/annotationwidgets.cpp:506
 #, kde-format
 msgid "Line start:"
 msgstr ""
 
-#: part/annotationwidgets.cpp:505
+#: part/annotationwidgets.cpp:508
 #, kde-format
 msgid "Line end:"
 msgstr ""
 
-#: part/annotationwidgets.cpp:508
+#: part/annotationwidgets.cpp:511
 #, kde-format
 msgid "Square"
 msgstr ""
 
-#: part/annotationwidgets.cpp:509
+#: part/annotationwidgets.cpp:512
 #, kde-format
 msgid "Circle"
 msgstr ""
 
-#: part/annotationwidgets.cpp:510
+#: part/annotationwidgets.cpp:513
 #, kde-format
 msgid "Diamond"
 msgstr ""
 
-#: part/annotationwidgets.cpp:511
+#: part/annotationwidgets.cpp:514
 #, kde-format
 msgid "Open Arrow"
 msgstr ""
 
-#: part/annotationwidgets.cpp:512
+#: part/annotationwidgets.cpp:515
 #, kde-format
 msgid "Closed Arrow"
 msgstr ""
 
-#: part/annotationwidgets.cpp:513
-#, fuzzy, kde-format
-#| msgctxt "Symbol for caret annotations"
-#| msgid "None"
+#: part/annotationwidgets.cpp:516
+#, kde-format
 msgid "None"
 msgstr "なし"
 
-#: part/annotationwidgets.cpp:514
+#: part/annotationwidgets.cpp:517
 #, kde-format
 msgid "Butt"
 msgstr ""
 
-#: part/annotationwidgets.cpp:515
+#: part/annotationwidgets.cpp:518
 #, kde-format
 msgid "Right Open Arrow"
 msgstr ""
 
-#: part/annotationwidgets.cpp:516
+#: part/annotationwidgets.cpp:519
 #, kde-format
 msgid "Right Closed Arrow"
 msgstr ""
 
-#: part/annotationwidgets.cpp:517
+#: part/annotationwidgets.cpp:520
 #, kde-format
 msgid "Slash"
 msgstr ""
 
-#: part/annotationwidgets.cpp:530
+#: part/annotationwidgets.cpp:533
 #, fuzzy, kde-format
 #| msgid "Leader Line Length:"
 msgid "Leader line length:"
 msgstr "引き出し線の長さ:"
 
-#: part/annotationwidgets.cpp:532
+#: part/annotationwidgets.cpp:535
 #, fuzzy, kde-format
 #| msgid "Leader Line Extensions Length:"
 msgid "Leader line extensions length:"
 msgstr "引き出し線の延長:"
 
-#: part/annotationwidgets.cpp:546 part/annotationwidgets.cpp:690
+#: part/annotationwidgets.cpp:549 part/annotationwidgets.cpp:693
 #, kde-format
 msgid "Enabled"
 msgstr ""
 
-#: part/annotationwidgets.cpp:550 part/annotationwidgets.cpp:694
+#: part/annotationwidgets.cpp:553 part/annotationwidgets.cpp:697
 #, fuzzy, kde-format
 #| msgid "Save to File..."
 msgid "Shape fill:"
 msgstr "ファイルに保存..."
 
 # ACCELERATOR added by translator
-#: part/annotationwidgets.cpp:650 part/annotationwidgets.cpp:684
+#: part/annotationwidgets.cpp:653 part/annotationwidgets.cpp:687
 #, kde-format
 msgid "Type:"
 msgstr "タイプ(&T):"
 
-#: part/annotationwidgets.cpp:652 part/guiutils.cpp:84
-#, kde-format
-msgid "Highlight"
-msgstr "強調表示"
-
-#: part/annotationwidgets.cpp:653 part/guiutils.cpp:87
-#: part/pageviewannotator.cpp:1322
-#, fuzzy, kde-format
-#| msgid "Squiggly"
-msgid "Squiggle"
-msgstr "波線"
-
-#: part/annotationwidgets.cpp:654 part/guiutils.cpp:90
-#: part/pageviewannotator.cpp:1330
-#, kde-format
-msgid "Underline"
-msgstr "下線"
-
-#: part/annotationwidgets.cpp:655 part/pageviewannotator.cpp:1328
+#: part/annotationwidgets.cpp:658 part/pageviewannotator.cpp:1339
 #, kde-format
 msgid "Strike out"
 msgstr "取り消し線"
 
-#: part/annotationwidgets.cpp:699 part/pageviewannotator.cpp:1320
+#: part/annotationwidgets.cpp:702 part/pageviewannotator.cpp:1331
 #, kde-format
 msgid "Rectangle"
 msgstr "四角"
 
-#: part/annotationwidgets.cpp:700 part/pageviewannotator.cpp:1308
+#: part/annotationwidgets.cpp:703 part/pageviewannotator.cpp:1319
 #, kde-format
 msgid "Ellipse"
 msgstr "楕円"
 
-#: part/annotationwidgets.cpp:744
-#, fuzzy, kde-format
-#| msgid "File Attachment Symbol"
-msgid "File attachment symbol:"
-msgstr "添付ファイルのシンボル"
-
 #: part/annotationwidgets.cpp:747
+#, kde-format
+msgid "File attachment symbol:"
+msgstr "添付ファイルのシンボル:"
+
+#: part/annotationwidgets.cpp:750
 #, kde-format
 msgctxt "Symbol for file attachment annotations"
 msgid "Graph"
 msgstr "グラフ"
 
-#: part/annotationwidgets.cpp:748
+#: part/annotationwidgets.cpp:751
 #, kde-format
 msgctxt "Symbol for file attachment annotations"
 msgid "Push Pin"
 msgstr "押しピン"
 
-#: part/annotationwidgets.cpp:749
+#: part/annotationwidgets.cpp:752
 #, kde-format
 msgctxt "Symbol for file attachment annotations"
 msgid "Paperclip"
 msgstr "ペーパークリップ"
 
-#: part/annotationwidgets.cpp:750
+#: part/annotationwidgets.cpp:753
 #, kde-format
 msgctxt "Symbol for file attachment annotations"
 msgid "Tag"
 msgstr "タグ"
 
-#: part/annotationwidgets.cpp:759
+#: part/annotationwidgets.cpp:762
 #, kde-format
 msgctxt "'File' as normal file, that can be opened, saved, etc.."
 msgid "File"
 msgstr "ファイル"
 
-#: part/annotationwidgets.cpp:763 part/embeddedfilesdialog.cpp:87
+#: part/annotationwidgets.cpp:766 part/embeddedfilesdialog.cpp:87
 #, kde-format
 msgctxt "Not available size"
 msgid "N/A"
 msgstr "N/A"
 
-#: part/annotationwidgets.cpp:764
+#: part/annotationwidgets.cpp:767
 #, kde-format
 msgid "No description available."
 msgstr "説明はありません。"
 
-#: part/annotationwidgets.cpp:772
-#, fuzzy, kde-format
-#| msgid "&Name:"
+#: part/annotationwidgets.cpp:775
+#, kde-format
 msgid "Name:"
-msgstr "名前(&N):"
+msgstr "名前:"
 
-#: part/annotationwidgets.cpp:783
+#: part/annotationwidgets.cpp:786
 #, kde-format
 msgid "Description:"
 msgstr "説明:"
 
-#: part/annotationwidgets.cpp:841
-#, fuzzy, kde-format
-#| msgid "Caret Symbol"
+#: part/annotationwidgets.cpp:845
+#, kde-format
 msgid "Caret symbol:"
-msgstr "キャレットのシンボル"
+msgstr "キャレットのシンボル:"
 
-#: part/annotationwidgets.cpp:843
+#: part/annotationwidgets.cpp:847
 #, kde-format
 msgctxt "Symbol for caret annotations"
 msgid "None"
 msgstr "なし"
 
-#: part/annotationwidgets.cpp:844
+#: part/annotationwidgets.cpp:848
 #, kde-format
 msgctxt "Symbol for caret annotations"
 msgid "P"
@@ -1638,33 +2114,33 @@ msgid ""
 "Click here to render."
 msgstr ""
 
-#: part/annotwindow.cpp:375
+#: part/annotwindow.cpp:415
 #, kde-format
 msgid "Cannot find latex executable."
 msgstr ""
 
-#: part/annotwindow.cpp:375 part/annotwindow.cpp:380 part/annotwindow.cpp:385
-#: part/annotwindow.cpp:390
+#: part/annotwindow.cpp:415 part/annotwindow.cpp:420 part/annotwindow.cpp:425
+#: part/annotwindow.cpp:430
 #, kde-format
 msgid "LaTeX rendering failed"
 msgstr ""
 
-#: part/annotwindow.cpp:380
+#: part/annotwindow.cpp:420
 #, kde-format
 msgid "Cannot find dvipng executable."
 msgstr ""
 
-#: part/annotwindow.cpp:385
+#: part/annotwindow.cpp:425
 #, kde-format
 msgid "A problem occurred during the execution of the 'latex' command."
 msgstr ""
 
-#: part/annotwindow.cpp:390
+#: part/annotwindow.cpp:430
 #, kde-format
 msgid "A problem occurred during the execution of the 'dvipng' command."
 msgstr ""
 
-#: part/bookmarklist.cpp:112
+#: part/bookmarklist.cpp:115
 #, kde-format
 msgctxt "%1 is the file name"
 msgid ""
@@ -1678,208 +2154,133 @@ msgid_plural ""
 msgstr[0] ""
 "%1\n"
 "\n"
-"ブックマーク 1 個"
-msgstr[1] ""
-"%1\n"
-"\n"
 "ブックマーク %2 個"
 
-#: part/bookmarklist.cpp:128 part/part.cpp:399
+#: part/bookmarklist.cpp:131 part/part.cpp:415
 #, kde-format
 msgid "Bookmarks"
 msgstr "ブックマーク"
 
-#: part/bookmarklist.cpp:133 part/searchwidget.cpp:37 part/side_reviews.cpp:123
-#: part/toc.cpp:43
-#, fuzzy, kde-format
-#| msgid "S&earch:"
-msgid "Search..."
-msgstr "検索(&E):"
-
-#: part/bookmarklist.cpp:162
+#: part/bookmarklist.cpp:135
 #, kde-format
-msgid "Current document only"
-msgstr "現在の文書のみ"
+msgid "Show for all documents"
+msgstr ""
 
-#: part/bookmarklist.cpp:248
+#: part/bookmarklist.cpp:142 part/searchwidget.cpp:37 part/side_reviews.cpp:124
+#: part/toc.cpp:43
+#, kde-format
+msgid "Search..."
+msgstr "検索..."
+
+#: part/bookmarklist.cpp:257
 #, kde-format
 msgid "Go to This Bookmark"
 msgstr "このブックマークに移動"
 
-#: part/bookmarklist.cpp:249 part/bookmarklist.cpp:276 part/part.cpp:707
-#: part/part.cpp:2343
+#: part/bookmarklist.cpp:258 part/bookmarklist.cpp:289 part/part.cpp:725
+#: part/part.cpp:2467
 #, kde-format
 msgid "Rename Bookmark"
 msgstr "ブックマークの名前を変更"
 
-#: part/bookmarklist.cpp:250 part/part.cpp:2151 part/part.cpp:2974
+#: part/bookmarklist.cpp:259 part/part.cpp:2272 part/part.cpp:3172
 #, kde-format
 msgid "Remove Bookmark"
 msgstr "ブックマークを削除"
 
-#: part/bookmarklist.cpp:275
+#: part/bookmarklist.cpp:287
 #, kde-format
 msgctxt "Opens the selected document"
 msgid "Open Document"
 msgstr "文書を開く"
 
-#: part/bookmarklist.cpp:277
+#: part/bookmarklist.cpp:290
 #, kde-format
-msgid "Remove Bookmarks"
-msgstr "ブックマークを削除"
-
-#: part/certificateviewer.cpp:118
-#, kde-format
-msgid "Version"
+msgid "Remove all Bookmarks for this Document"
 msgstr ""
 
-#: part/certificateviewer.cpp:120
-#, fuzzy, kde-format
-#| msgid "Page Number"
-msgid "Serial Number"
-msgstr "ページ番号"
-
-#: part/certificateviewer.cpp:122
+#: part/certificateviewer.cpp:121
 #, kde-format
-msgid "Issuer"
-msgstr ""
-
-#: part/certificateviewer.cpp:124 part/certificateviewer.cpp:239
-#, kde-format
-msgid "Issued On"
-msgstr ""
-
-#: part/certificateviewer.cpp:126 part/certificateviewer.cpp:240
-#, fuzzy, kde-format
-#| msgid "Expired"
-msgid "Expires On"
-msgstr "期限切れ"
-
-#: part/certificateviewer.cpp:128
-#, fuzzy, kde-format
-#| msgid "Subject"
-msgctxt "The person/company that made the signature"
-msgid "Subject"
-msgstr "主題"
-
-#: part/certificateviewer.cpp:130
-#, kde-format
-msgid "Public Key"
-msgstr ""
-
-#: part/certificateviewer.cpp:132
-#, fuzzy, kde-format
-#| msgid "Memory Usage"
-msgid "Key Usage"
-msgstr "メモリの使用"
-
-#: part/certificateviewer.cpp:141
-#, fuzzy, kde-format
-#| msgid "%1:"
-msgid "V%1"
-msgstr "%1:"
-
-#: part/certificateviewer.cpp:153
-#, kde-format
-msgid "%1 (%2 bits)"
-msgstr ""
-
-# ACCELERATOR changed by translator
-#: part/certificateviewer.cpp:196
-#, fuzzy, kde-format
-#| msgid "&Properties"
-msgid "Property"
-msgstr "プロパティ(&T)"
-
-#: part/certificateviewer.cpp:198
-#, kde-format
-msgid "Value"
-msgstr ""
-
-#: part/certificateviewer.cpp:211
-#, fuzzy, kde-format
-#| msgid "Configure Viewer"
 msgid "Certificate Viewer"
-msgstr "ビューアを設定"
+msgstr "証明書ビューア"
 
-#: part/certificateviewer.cpp:214
-#, fuzzy, kde-format
-#| msgid "E&xport As"
+#: part/certificateviewer.cpp:124
+#, kde-format
 msgid "Export..."
-msgstr "エクスポート(&X)"
+msgstr "エクスポート..."
 
-#: part/certificateviewer.cpp:220 part/preferencesdialog.cpp:39
+#: part/certificateviewer.cpp:130 part/preferencesdialog.cpp:41
 #, kde-format
 msgid "General"
 msgstr "全般"
 
-#: part/certificateviewer.cpp:222
+#: part/certificateviewer.cpp:132
 #, kde-format
 msgid "Issued By"
 msgstr ""
 
-#: part/certificateviewer.cpp:225 part/certificateviewer.cpp:232
+#: part/certificateviewer.cpp:135 part/certificateviewer.cpp:142
 #, kde-format
 msgid "Common Name(CN)"
 msgstr ""
 
-#: part/certificateviewer.cpp:226 part/certificateviewer.cpp:233
+#: part/certificateviewer.cpp:136 part/certificateviewer.cpp:143
 #, kde-format
 msgid "EMail"
 msgstr ""
 
-#: part/certificateviewer.cpp:227 part/certificateviewer.cpp:234
+#: part/certificateviewer.cpp:137 part/certificateviewer.cpp:144
 #, kde-format
 msgid "Organization(O)"
 msgstr ""
 
-#: part/certificateviewer.cpp:229
+#: part/certificateviewer.cpp:139
 #, kde-format
 msgid "Issued To"
 msgstr ""
 
-#: part/certificateviewer.cpp:236
+#: part/certificateviewer.cpp:146
 #, kde-format
 msgid "Validity"
 msgstr ""
 
-#: part/certificateviewer.cpp:242
+#: part/certificateviewer.cpp:152
 #, kde-format
 msgid "Fingerprints"
 msgstr ""
 
-#: part/certificateviewer.cpp:250
+#: part/certificateviewer.cpp:160
 #, kde-format
 msgid "SHA-1 Fingerprint"
 msgstr ""
 
-#: part/certificateviewer.cpp:251
+#: part/certificateviewer.cpp:161
 #, kde-format
 msgid "SHA-256 Fingerprint"
 msgstr ""
 
-#: part/certificateviewer.cpp:269
+#: part/certificateviewer.cpp:179
 #, kde-format
 msgid "Details"
 msgstr ""
 
-#: part/certificateviewer.cpp:270
+#: part/certificateviewer.cpp:180
 #, kde-format
 msgid "Certificate Data:"
 msgstr ""
 
-#: part/certificateviewer.cpp:312
+#: part/certificateviewer.cpp:232
 #, fuzzy, kde-format
 #| msgid "Where do you want to save %1?"
 msgid "Where do you want to save this certificate?"
 msgstr "‘%1’ をどこに保存しますか？"
 
-#: part/certificateviewer.cpp:313
+#: part/certificateviewer.cpp:233
 #, kde-format
 msgid "Certificate File (*.cer)"
 msgstr ""
 
-#: part/certificateviewer.cpp:318
+#: part/certificateviewer.cpp:236
 #, kde-format
 msgid "Could not export the certificate"
 msgstr ""
@@ -1891,74 +2292,70 @@ msgctxt "@title:menu"
 msgid "&Color Mode"
 msgstr "変更モード:"
 
-# ACCELERATOR changed by translator
 #: part/colormodemenu.cpp:19
-#, fuzzy, kde-format
-#| msgid "Change &colors"
+#, kde-format
 msgctxt "@action Change Colors feature toggle action"
 msgid "Change Colors"
-msgstr "色を変更する(&G)"
+msgstr "色を変更する"
 
-#: part/colormodemenu.cpp:32
+#: part/colormodemenu.cpp:27
 #, kde-format
 msgctxt "@item:inmenu color mode"
 msgid "&Normal Colors"
 msgstr ""
 
-#: part/colormodemenu.cpp:44
+#: part/colormodemenu.cpp:39
 #, fuzzy, kde-format
 #| msgid "Invert Colors"
 msgctxt "@item:inmenu color mode"
 msgid "&Invert Colors"
 msgstr "色を反転"
 
-#: part/colormodemenu.cpp:45
+#: part/colormodemenu.cpp:40
 #, fuzzy, kde-format
 #| msgid "Change Paper Color"
 msgctxt "@item:inmenu color mode"
 msgid "Change &Paper Color"
 msgstr "紙の色を変更"
 
-#: part/colormodemenu.cpp:47
+#: part/colormodemenu.cpp:42
 #, fuzzy, kde-format
 #| msgid "Change Dark & Light Colors"
 msgctxt "@item:inmenu color mode"
 msgid "Change &Dark && Light Colors"
 msgstr "暗い色と明るい色を変更"
 
-#: part/colormodemenu.cpp:49
-#, fuzzy, kde-format
-#| msgid "Convert to Black & White"
+#: part/colormodemenu.cpp:44
+#, kde-format
 msgctxt "@item:inmenu color mode"
 msgid "Convert to &Black && White"
-msgstr "白黒に変換"
+msgstr "白黒に変換(&B)"
 
-#: part/colormodemenu.cpp:52
-#, fuzzy, kde-format
-#| msgid "Invert Colors"
+#: part/colormodemenu.cpp:47
+#, kde-format
 msgctxt "@item:inmenu color mode"
 msgid "Invert &Lightness"
-msgstr "色を反転"
+msgstr "明るさを反転(&L)"
 
-#: part/colormodemenu.cpp:55
+#: part/colormodemenu.cpp:50
 #, kde-format
 msgctxt "@item:inmenu color mode"
 msgid "Invert L&uma (sRGB Linear)"
 msgstr ""
 
-#: part/colormodemenu.cpp:58
+#: part/colormodemenu.cpp:53
 #, kde-format
 msgctxt "@item:inmenu color mode"
 msgid "Invert Luma (&Symmetric)"
 msgstr ""
 
-#: part/colormodemenu.cpp:61
+#: part/colormodemenu.cpp:56
 #, kde-format
 msgctxt "@item:inmenu color mode"
 msgid "Shift Hue P&ositive"
 msgstr ""
 
-#: part/colormodemenu.cpp:64
+#: part/colormodemenu.cpp:59
 #, kde-format
 msgctxt "@item:inmenu color mode"
 msgid "Shift Hue N&egative"
@@ -1966,129 +2363,113 @@ msgstr ""
 
 #. i18n: tag tool attribute name
 #: part/data/drawingtools.xml:11
-#, fuzzy, kde-format
-#| msgid "Reloa&d"
+#, kde-format
 msgid "Red"
-msgstr "再読み込み(&D)"
+msgstr "赤"
 
 #. i18n: tag tool attribute name
 #: part/data/drawingtools.xml:16
-#, fuzzy, kde-format
-#| msgctxt "Caption for a screen annotation"
-#| msgid "Screen"
+#, kde-format
 msgid "Green"
-msgstr "スクリーン"
+msgstr "緑"
 
 #. i18n: tag tool attribute name
 #: part/data/drawingtools.xml:21
 #, kde-format
 msgid "Blue"
-msgstr ""
+msgstr "青"
 
 #. i18n: tag tool attribute name
 #: part/data/drawingtools.xml:26
-#, fuzzy, kde-format
-#| msgid "Allow"
+#, kde-format
 msgid "Yellow"
-msgstr "許可する"
+msgstr "黃"
 
 #. i18n: tag tool attribute name
 #: part/data/drawingtools.xml:31
 #, kde-format
 msgid "Black"
-msgstr ""
+msgstr "黒"
 
 #. i18n: tag tool attribute name
 #: part/data/drawingtools.xml:36
 #, kde-format
 msgid "White"
-msgstr ""
+msgstr "白"
 
 #. i18n: tag tool attribute name
 #: part/data/tools.xml:103
 #, kde-format
 msgid "Arrow"
-msgstr ""
+msgstr "矢印"
 
 #. i18n: tag tool attribute name
 #: part/data/toolsQuick.xml:9
-#, fuzzy, kde-format
-#| msgid "Highlight"
+#, kde-format
 msgid "Yellow Highlighter"
-msgstr "強調表示"
+msgstr "黄色のマーカー"
 
 #. i18n: tag tool attribute name
 #: part/data/toolsQuick.xml:14
-#, fuzzy, kde-format
-#| msgid "Highlight"
+#, kde-format
 msgid "Green Highlighter"
-msgstr "強調表示"
+msgstr "緑のマーカー"
 
 #. i18n: tag tool attribute name
 #: part/data/toolsQuick.xml:24
-#, fuzzy, kde-format
-#| msgid "Insert"
+#, kde-format
 msgid "Insert Text"
-msgstr "挿入"
+msgstr "テキストを挿入"
 
 #: part/dlgaccessibility.cpp:38
-#, fuzzy, kde-format
-#| msgid "Draw border around &Links"
+#, kde-format
 msgctxt "@option:check Config dialog, accessibility page"
 msgid "Draw border around links"
-msgstr "リンクに縁取りを付ける(&L)"
+msgstr "リンクに縁取りを付ける"
 
-# ACCELERATOR changed by translator
 #: part/dlgaccessibility.cpp:48
-#, fuzzy, kde-format
-#| msgid "Change &colors"
+#, kde-format
 msgctxt "@option:check Config dialog, accessibility page"
 msgid "Change colors"
-msgstr "色を変更する(&G)"
+msgstr "色を変更する"
 
 #: part/dlgaccessibility.cpp:54
-#, fuzzy, kde-format
-#| msgid "Warning: these options can badly affect drawing speed."
+#, kde-format
 msgctxt "@info Config dialog, accessibility page"
 msgid "<b>Warning:</b> these options can badly affect drawing speed."
 msgstr ""
-"【注意】 これらのオプションを有効にすると描画速度が著しく遅くなる場合がありま"
-"す。"
+"<b>【注意】</b>これらのオプションを有効にすると描画速度が著しく遅くなる場合が"
+"あります。"
 
 #: part/dlgaccessibility.cpp:60
-#, fuzzy, kde-format
-#| msgid "Invert Colors"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, accessibility page"
 msgid "Invert colors"
 msgstr "色を反転"
 
 #: part/dlgaccessibility.cpp:61
-#, fuzzy, kde-format
-#| msgid "Change Paper Color"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, accessibility page"
 msgid "Change paper color"
 msgstr "紙の色を変更"
 
 #: part/dlgaccessibility.cpp:62
-#, fuzzy, kde-format
-#| msgid "Change Dark & Light Colors"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, accessibility page"
 msgid "Change dark & light colors"
 msgstr "暗い色と明るい色を変更"
 
 #: part/dlgaccessibility.cpp:63
-#, fuzzy, kde-format
-#| msgid "Convert to Black & White"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, accessibility page"
 msgid "Convert to black & white"
 msgstr "白黒に変換"
 
 #: part/dlgaccessibility.cpp:64
-#, fuzzy, kde-format
-#| msgid "Invert Colors"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, accessibility page"
 msgid "Invert lightness"
-msgstr "色を反転"
+msgstr "明るさを反転"
 
 #: part/dlgaccessibility.cpp:65
 #, kde-format
@@ -2115,43 +2496,37 @@ msgid "Shift hue negative"
 msgstr ""
 
 #: part/dlgaccessibility.cpp:70
-#, fuzzy, kde-format
-#| msgid "Color mode:"
+#, kde-format
 msgctxt "@label:listbox Config dialog, accessibility page"
 msgid "Color mode:"
-msgstr "変更モード:"
+msgstr "カラーモード:"
 
 #: part/dlgaccessibility.cpp:87
-#, fuzzy, kde-format
-#| msgid "Paper color:"
+#, kde-format
 msgctxt "@label:chooser Config dialog, accessibility page"
 msgid "Paper color:"
 msgstr "紙の色:"
 
 #: part/dlgaccessibility.cpp:99
-#, fuzzy, kde-format
-#| msgid "Dark color:"
+#, kde-format
 msgctxt "@label:chooser Config dialog, accessibility page"
 msgid "Dark color:"
 msgstr "暗い色:"
 
 #: part/dlgaccessibility.cpp:104
-#, fuzzy, kde-format
-#| msgid "Light color:"
+#, kde-format
 msgctxt "@label:chooser Config dialog, accessibility page"
 msgid "Light color:"
 msgstr "明るい色:"
 
 #: part/dlgaccessibility.cpp:119
-#, fuzzy, kde-format
-#| msgid "Threshold:"
+#, kde-format
 msgctxt "@label:slider Config dialog, accessibility page"
 msgid "Threshold:"
 msgstr "しきい値:"
 
 #: part/dlgaccessibility.cpp:127
-#, fuzzy, kde-format
-#| msgid "Contrast:"
+#, kde-format
 msgctxt "@label:slider Config dialog, accessibility page"
 msgid "Contrast:"
 msgstr "コントラスト:"
@@ -2160,38 +2535,56 @@ msgstr "コントラスト:"
 #, kde-format
 msgctxt "@label:listbox Config dialog, accessibility page"
 msgid "Text-to-speech engine:"
-msgstr ""
+msgstr "読み上げエンジン:"
 
-# ACCELERATOR changed by translator
+#: part/dlgaccessibility.cpp:165
+#, kde-format
+msgctxt "&label:listbox Config dialog, accessibility page"
+msgid "Text-to-speech voice:"
+msgstr "読み上げボイス:"
+
 #: part/dlgannotations.cpp:25
-#, fuzzy, kde-format
-#| msgid "&Author:"
+#, kde-format
+msgctxt "item:inlistbox Config dialog, general page"
+msgid "Full Annotation Toolbar"
+msgstr "フル注釈ツールバー"
+
+#: part/dlgannotations.cpp:26
+#, kde-format
+msgctxt "item:inlistbox Config dialog, general page"
+msgid "Quick Annotation Toolbar"
+msgstr "クイック注釈ツールバー"
+
+#: part/dlgannotations.cpp:28
+#, kde-format
+msgctxt "label:listbox Config dialog, general page"
+msgid "Annotation toolbar:"
+msgstr "注釈ツールバー:"
+
+#: part/dlgannotations.cpp:34
+#, kde-format
 msgctxt "@label:textbox Config dialog, annotations page"
 msgid "Author:"
-msgstr "作者(&U):"
+msgstr "作者:"
 
-#: part/dlgannotations.cpp:29
-#, fuzzy, kde-format
-#| msgid ""
-#| "<b>Note</b>: the information here is used only for comments and reviews. "
-#| "Information inserted here will not be transmitted without your knowledge."
+#: part/dlgannotations.cpp:38
+#, kde-format
 msgctxt "@info Config dialog, annotations page"
 msgid ""
 "<b>Note:</b> the information here is used only for annotations. The "
 "information is saved in annotated documents, and so will be transmitted "
 "together with the document."
 msgstr ""
-"【注】 この情報はコメントと注釈にのみ使用されます。ここに入力した情報があなた"
-"の同意なしに送信されることはありません。"
+"<b>【注】</b>この情報は注釈にのみ使用されます。情報は注釈した文書に保存され、"
+"文書とともに移動されます。"
 
-#: part/dlgannotations.cpp:39
-#, fuzzy, kde-format
-#| msgid "Edit annotation tool"
+#: part/dlgannotations.cpp:48
+#, kde-format
 msgctxt ""
 "@label Config dialog, annotations page, heading line for Quick Annotations "
 "tool manager"
 msgid "<h3>Quick Annotation Tools</h3>"
-msgstr "注釈ツールの編集"
+msgstr "<h3>クイック注釈ツール</h3>"
 
 #: part/dlgeditor.cpp:28
 #, fuzzy, kde-format
@@ -2206,49 +2599,37 @@ msgstr "Okular がソースファイルを開くときに起動するエディ�
 
 # skip-rule: text_editor
 #: part/dlgeditor.cpp:29
-#, fuzzy, kde-format
-#| msgctxt "Text editor"
-#| msgid "Custom Text Editor"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, editor page"
 msgid "Custom Text Editor"
 msgstr "カスタム"
 
 #: part/dlgeditor.cpp:30
-#, fuzzy, kde-format
-#| msgctxt "Text editor"
-#| msgid "Kate"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, editor page"
 msgid "Kate"
 msgstr "Kate"
 
 #: part/dlgeditor.cpp:31
-#, fuzzy, kde-format
-#| msgctxt "Text editor"
-#| msgid "Kile"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, editor page"
 msgid "Kile"
 msgstr "Kile"
 
 #: part/dlgeditor.cpp:32
-#, fuzzy, kde-format
-#| msgctxt "Text editor"
-#| msgid "SciTE"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, editor page"
 msgid "SciTE"
 msgstr "SciTE"
 
 #: part/dlgeditor.cpp:33
-#, fuzzy, kde-format
-#| msgctxt "Text editor"
-#| msgid "Emacs client"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, editor page"
 msgid "Emacs client"
 msgstr "Emacs クライアント"
 
 #: part/dlgeditor.cpp:34
-#, fuzzy, kde-format
-#| msgctxt "Text editor"
-#| msgid "Lyx client"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, editor page"
 msgid "Lyx client"
 msgstr "Lyx クライアント"
@@ -2257,17 +2638,16 @@ msgstr "Lyx クライアント"
 #, kde-format
 msgctxt "@item:inlistbox Config dialog, editor page"
 msgid "TeXstudio"
-msgstr ""
+msgstr "TeXstudio"
 
 #: part/dlgeditor.cpp:36
 #, kde-format
 msgctxt "@item:inlistbox Config dialog, editor page"
 msgid "TeXiFy IDEA"
-msgstr ""
+msgstr "TeXiFy IDEA"
 
 #: part/dlgeditor.cpp:37
-#, fuzzy, kde-format
-#| msgid "Editor:"
+#, kde-format
 msgctxt "@label:listbox Config dialog, editor page"
 msgid "Editor:"
 msgstr "エディタ:"
@@ -2296,112 +2676,103 @@ msgstr ""
 "%f を指定しなければ、コマンドの最後にファイル名が追加されます。"
 
 #: part/dlgeditor.cpp:63
-#, fuzzy, kde-format
-#| msgid "Command:"
+#, kde-format
 msgctxt "@label:textbox Config dialog, editor page"
 msgid "Command:"
 msgstr "コマンド:"
 
-#: part/dlggeneral.cpp:32
+#: part/dlggeneral.cpp:33
 #, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Use smooth scrolling"
-msgstr ""
+msgstr "スムーズスクロールを使用する"
 
-#: part/dlggeneral.cpp:34
-#, fuzzy, kde-format
-#| msgid "Appearance"
+#: part/dlggeneral.cpp:35
+#, kde-format
 msgctxt "@title:group Config dialog, general page"
 msgid "Appearance:"
-msgstr "外観"
+msgstr "外観:"
 
-#: part/dlggeneral.cpp:38
-#, fuzzy, kde-format
-#| msgid "Show scroll&bars"
+#: part/dlggeneral.cpp:39
+#, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Show scrollbars"
 msgstr "スクロールバーを表示する(&B)"
 
-#: part/dlggeneral.cpp:45
+#: part/dlggeneral.cpp:46
 #, fuzzy, kde-format
 #| msgid "Link the &thumbnails with the page"
 msgctxt "@option:check Config dialog, general page"
 msgid "Link the thumbnails with the page"
 msgstr "サムネイルをページとリンクする(&T)"
 
-# ACCELERATOR changed by translator
-#: part/dlggeneral.cpp:52
-#, fuzzy, kde-format
-#| msgid "Show &hints and info messages"
+#: part/dlggeneral.cpp:53
+#, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Show hints and info messages"
-msgstr "ヒントと情報メッセージを表示する(&S)"
+msgstr "ヒントと情報メッセージを表示する"
 
-#: part/dlggeneral.cpp:58
+#: part/dlggeneral.cpp:59
 #, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Notify about embedded files, forms, or signatures"
 msgstr ""
 
-#: part/dlggeneral.cpp:65
+#: part/dlggeneral.cpp:66
 #, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Display document title in titlebar if available"
 msgstr ""
 
-#: part/dlggeneral.cpp:71
+#: part/dlggeneral.cpp:72
 #, kde-format
 msgctxt "item:inlistbox Config dialog, general page"
 msgid "Display file name only"
 msgstr ""
 
-#: part/dlggeneral.cpp:72
+#: part/dlggeneral.cpp:73
 #, kde-format
 msgctxt "item:inlistbox Config dialog, general page"
 msgid "Display full file path"
 msgstr ""
 
-#: part/dlggeneral.cpp:74
+#: part/dlggeneral.cpp:75
 #, kde-format
 msgctxt "label:listbox Config dialog, general page"
 msgid "When not displaying document title:"
 msgstr ""
 
-#: part/dlggeneral.cpp:89
-#, fuzzy, kde-format
-#| msgid "Background color:"
+#: part/dlggeneral.cpp:90
+#, kde-format
 msgctxt "@label:listbox Config dialog, general page"
 msgid "Use custom background color:"
-msgstr "背景色:"
+msgstr "カスタム背景色を使用する:"
 
-#: part/dlggeneral.cpp:111
-#, fuzzy, kde-format
-#| msgid "Program Features"
+#: part/dlggeneral.cpp:112
+#, kde-format
 msgctxt "@title:group Config dialog, general page"
 msgid "Program features:"
-msgstr "プログラムの機能"
+msgstr "プログラムの機能:"
 
-#: part/dlggeneral.cpp:118
+#: part/dlggeneral.cpp:119
 #, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Open new files in tabs"
 msgstr ""
 
-#: part/dlggeneral.cpp:123
+#: part/dlggeneral.cpp:124
 #, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Switch to existing tab if file is already open"
 msgstr ""
 
-# ACCELERATOR changed by translator
-#: part/dlggeneral.cpp:136
-#, fuzzy, kde-format
-#| msgid "&Obey DRM limitations"
+#: part/dlggeneral.cpp:137
+#, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Obey DRM limitations"
-msgstr "DRM (デジタル著作権管理) の制限に従う(&M)"
+msgstr "DRM (デジタル著作権管理) の制限に従う"
 
-#: part/dlggeneral.cpp:145
+#: part/dlggeneral.cpp:146
 #, fuzzy, kde-format
 #| msgid "&Reload document on file change"
 msgctxt "@option:check Config dialog, general page"
@@ -2409,40 +2780,43 @@ msgid "Reload document on file change"
 msgstr "ファイルが変更されたら文書を再読み込みする(&R)"
 
 # ACCELERATOR added by translator
-#: part/dlggeneral.cpp:152
-#, fuzzy, kde-format
-#| msgid "Show backend selection dialog"
+#: part/dlggeneral.cpp:153
+#, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Show backend selection dialog"
 msgstr "バックエンド選択ダイアログを表示する(&W)"
 
-#: part/dlggeneral.cpp:159
+#: part/dlggeneral.cpp:160
 #, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Right to left reading direction"
 msgstr ""
 
-#: part/dlggeneral.cpp:165
+#: part/dlggeneral.cpp:166
 #, kde-format
 msgctxt "@option:check Config dialog, general page"
 msgid "Open in continuous mode by default"
 msgstr ""
 
-#: part/dlggeneral.cpp:181
-#, fuzzy, kde-format
-#| msgid "Overview &columns:"
+#: part/dlggeneral.cpp:173
+#, kde-format
+msgctxt "@option:check Config dialog, general page"
+msgid "When using Browse Tool, wrap cursor at screen edges"
+msgstr ""
+
+#: part/dlggeneral.cpp:190
+#, kde-format
 msgctxt "@label:spinbox Config dialog, general page"
 msgid "Overview columns:"
-msgstr "概観モードの列数(&C):"
+msgstr "概観モードの列数:"
 
-#: part/dlggeneral.cpp:188
-#, fuzzy, kde-format
-#| msgid "%"
+#: part/dlggeneral.cpp:197
+#, kde-format
 msgctxt "Page Up/Down overlap, spinbox suffix"
 msgid "%"
 msgstr "%"
 
-#: part/dlggeneral.cpp:189
+#: part/dlggeneral.cpp:198
 #, kde-format
 msgctxt "@info:tooltip Config dialog, general page"
 msgid ""
@@ -2450,39 +2824,37 @@ msgid ""
 "pressing the Page Up/Down keys."
 msgstr ""
 
-#: part/dlggeneral.cpp:191
+#: part/dlggeneral.cpp:200
 #, kde-format
 msgctxt "@label:spinbox Config dialog, general page"
 msgid "Page Up/Down overlap:"
 msgstr ""
 
-#: part/dlggeneral.cpp:195
+#: part/dlggeneral.cpp:204
 #, kde-format
 msgctxt "item:inlistbox Config dialog, general page, default zoom"
 msgid "100%"
 msgstr ""
 
-#: part/dlggeneral.cpp:196
-#, fuzzy, kde-format
-#| msgid "Fit Width"
+#: part/dlggeneral.cpp:205
+#, kde-format
 msgctxt "item:inlistbox Config dialog, general page, default zoom"
 msgid "Fit Width"
 msgstr "幅に合わせる"
 
-#: part/dlggeneral.cpp:197
-#, fuzzy, kde-format
-#| msgid "Fit Page"
+#: part/dlggeneral.cpp:206
+#, kde-format
 msgctxt "item:inlistbox Config dialog, general page, default zoom"
 msgid "Fit Page"
 msgstr "ページに合わせる"
 
-#: part/dlggeneral.cpp:198
+#: part/dlggeneral.cpp:207
 #, kde-format
 msgctxt "item:inlistbox Config dialog, general page, default zoom"
 msgid "Auto Fit"
-msgstr ""
+msgstr "自動調整"
 
-#: part/dlggeneral.cpp:199
+#: part/dlggeneral.cpp:208
 #, kde-format
 msgctxt "item:inlistbox Config dialog, general page, default zoom"
 msgid ""
@@ -2490,63 +2862,53 @@ msgid ""
 "files which were opened before the previous zoom is applied."
 msgstr ""
 
-#: part/dlggeneral.cpp:201
-#, fuzzy, kde-format
-#| msgid "&Default Zoom:"
+#: part/dlggeneral.cpp:210
+#, kde-format
 msgctxt "label:listbox Config dialog, general page, default zoom"
 msgid "Default zoom:"
-msgstr "デフォルトのズーム(&D):"
+msgstr "デフォルトのズーム:"
 
 #: part/dlgperformance.cpp:26
-#, fuzzy, kde-format
-#| msgid "Enable &transparency effects"
+#, kde-format
 msgctxt "@option:check Config dialog, performance page"
 msgid "Enable transparency effects"
-msgstr "透過効果を有効にする(&T)"
+msgstr "透過効果を有効にする"
 
 #: part/dlgperformance.cpp:28
-#, fuzzy, kde-format
-#| msgid "CPU Usage"
+#, kde-format
 msgctxt "@label Config dialog, performance page"
 msgid "CPU usage:"
-msgstr "CPU の使用"
+msgstr "CPU の使用:"
 
 #: part/dlgperformance.cpp:35
-#, fuzzy, kde-format
-#| msgid "&Low"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, performance page, memory usage"
 msgid "Low"
-msgstr "低(&L)"
+msgstr "低"
 
 #: part/dlgperformance.cpp:36
-#, fuzzy, kde-format
-#| msgid "&Normal (default)"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, performance page, memory usage"
 msgid "Normal (default)"
-msgstr "普通(&N) (標準設定)"
+msgstr "普通 (標準設定)"
 
-# ACCELERATOR changed by translator
 #: part/dlgperformance.cpp:37
-#, fuzzy, kde-format
-#| msgid "&Aggressive"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, performance page, memory usage"
 msgid "Aggressive"
-msgstr "高(&S)"
+msgstr "高"
 
 #: part/dlgperformance.cpp:38
-#, fuzzy, kde-format
-#| msgctxt "Caption for a screen annotation"
-#| msgid "Screen"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, performance page, memory usage"
 msgid "Greedy"
-msgstr "スクリーン"
+msgstr "最高"
 
 #: part/dlgperformance.cpp:40
-#, fuzzy, kde-format
-#| msgid "Memory Usage"
+#, kde-format
 msgctxt "@label:listbox Config dialog, performance page, memory usage"
 msgid "Memory usage:"
-msgstr "メモリの使用"
+msgstr "メモリの使用:"
 
 #: part/dlgperformance.cpp:54
 #, fuzzy, kde-format
@@ -2629,7 +2991,6 @@ msgctxt "Advance every %1 seconds"
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " 秒"
-msgstr[1] " 秒"
 
 #: part/dlgpresentation.cpp:45
 #, kde-format
@@ -2639,8 +3000,7 @@ msgstr ""
 
 # ACCELERATOR added by translator
 #: part/dlgpresentation.cpp:53
-#, fuzzy, kde-format
-#| msgid "Loop after last page"
+#, kde-format
 msgctxt "@option:check Config dialog, presentation page"
 msgid "Loop after last page"
 msgstr "最後まで行ったら最初のページに戻る(&L)"
@@ -2661,115 +3021,100 @@ msgstr ""
 #, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, tap navigation"
 msgid "Disabled"
-msgstr ""
+msgstr "無効"
 
 #: part/dlgpresentation.cpp:63
-#, fuzzy, kde-format
-#| msgid "Navigation"
+#, kde-format
 msgctxt "@label:listbox Config dialog, presentation page, tap navigation"
 msgid "Touch navigation:"
-msgstr "ナビゲーション"
+msgstr "タッチナビゲーション:"
 
 #: part/dlgpresentation.cpp:72
-#, fuzzy, kde-format
-#| msgid "Background color:"
+#, kde-format
 msgctxt "@label:chooser Config dialog, presentation page"
 msgid "Background color:"
 msgstr "背景色:"
 
 #: part/dlgpresentation.cpp:76
-#, fuzzy, kde-format
-#| msgid "Hidden After Delay"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, cursor visibility"
 msgid "Hidden after delay"
 msgstr "遅延して隠す"
 
 #: part/dlgpresentation.cpp:77
-#, fuzzy, kde-format
-#| msgid "Always Visible"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, cursor visibility"
 msgid "Always visible"
 msgstr "常に表示"
 
 #: part/dlgpresentation.cpp:78
-#, fuzzy, kde-format
-#| msgid "Always Hidden"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, cursor visibility"
 msgid "Always hidden"
 msgstr "常に隠す"
 
 #: part/dlgpresentation.cpp:80
-#, fuzzy, kde-format
-#| msgid "Mouse cursor:"
+#, kde-format
 msgctxt "@label:listbox Config dialog, presentation page, cursor visibility"
 msgid "Mouse cursor:"
 msgstr "マウスカーソル:"
 
 #: part/dlgpresentation.cpp:84
-#, fuzzy, kde-format
-#| msgid "Show &progress indicator"
+#, kde-format
 msgctxt "@option:check Config dialog, presentation page"
 msgid "Show progress indicator"
-msgstr "進捗インジケータを表示する(&P)"
+msgstr "進捗インジケータを表示する"
 
 #: part/dlgpresentation.cpp:90
-#, fuzzy, kde-format
-#| msgid "Show s&ummary page"
+#, kde-format
 msgctxt "@option:check Config dialog, presentation page"
 msgid "Show summary page"
-msgstr "まとめページを表示する(&U)"
+msgstr "まとめページを表示する"
 
 #: part/dlgpresentation.cpp:100
 #, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Instant (Never use animations)"
-msgstr ""
+msgstr "即時 (アニメーションを使用しない)"
 
 #: part/dlgpresentation.cpp:101
-#, fuzzy, kde-format
-#| msgid "Replace"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Replace"
 msgstr "置換"
 
 #: part/dlgpresentation.cpp:102
-#, fuzzy, kde-format
-#| msgid "Random Transition"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Random transition"
 msgstr "ランダム"
 
 #: part/dlgpresentation.cpp:103
-#, fuzzy, kde-format
-#| msgid "Blinds Vertical"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Blinds vertical"
 msgstr "垂直ブラインド"
 
 #: part/dlgpresentation.cpp:104
-#, fuzzy, kde-format
-#| msgid "Blinds Horizontal"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Blinds horizontal"
 msgstr "水平ブラインド"
 
 #: part/dlgpresentation.cpp:105
-#, fuzzy, kde-format
-#| msgid "Box In"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Box in"
 msgstr "ボックス (内へ)"
 
 #: part/dlgpresentation.cpp:106
-#, fuzzy, kde-format
-#| msgid "Box Out"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Box out"
 msgstr "ボックス (外へ)"
 
 #: part/dlgpresentation.cpp:107
-#, fuzzy, kde-format
-#| msgid "Dissolve"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Dissolve"
 msgstr "溶かす"
@@ -2778,88 +3123,76 @@ msgstr "溶かす"
 #, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Fade"
-msgstr ""
+msgstr "フェード"
 
 #: part/dlgpresentation.cpp:109
-#, fuzzy, kde-format
-#| msgid "Glitter Down"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Glitter down"
 msgstr "キラキラ (下へ)"
 
 #: part/dlgpresentation.cpp:110
-#, fuzzy, kde-format
-#| msgid "Glitter Right"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Glitter right"
 msgstr "キラキラ (右へ)"
 
 #: part/dlgpresentation.cpp:111
-#, fuzzy, kde-format
-#| msgid "Glitter Right-Down"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Glitter right-down"
 msgstr "キラキラ (右下へ)"
 
 #: part/dlgpresentation.cpp:112
-#, fuzzy, kde-format
-#| msgid "Split Horizontal In"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Split horizontal in"
 msgstr "水平分割 (内へ)"
 
 #: part/dlgpresentation.cpp:113
-#, fuzzy, kde-format
-#| msgid "Split Horizontal Out"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Split horizontal out"
 msgstr "水平分割 (外へ)"
 
 #: part/dlgpresentation.cpp:114
-#, fuzzy, kde-format
-#| msgid "Split Vertical In"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Split vertical in"
 msgstr "垂直分割 (内へ)"
 
 #: part/dlgpresentation.cpp:115
-#, fuzzy, kde-format
-#| msgid "Split Vertical Out"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Split vertical out"
 msgstr "垂直分割 (外へ)"
 
 #: part/dlgpresentation.cpp:116
-#, fuzzy, kde-format
-#| msgid "Wipe Down"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Wipe down"
 msgstr "拭き取る (下へ)"
 
 #: part/dlgpresentation.cpp:117
-#, fuzzy, kde-format
-#| msgid "Wipe Right"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Wipe right"
 msgstr "拭き取る (右へ)"
 
 #: part/dlgpresentation.cpp:118
-#, fuzzy, kde-format
-#| msgid "Wipe Left"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Wipe left"
 msgstr "拭き取る (左へ)"
 
 #: part/dlgpresentation.cpp:119
-#, fuzzy, kde-format
-#| msgid "Wipe Up"
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, transitions"
 msgid "Wipe up"
 msgstr "拭き取る (上へ)"
 
 #: part/dlgpresentation.cpp:121
-#, fuzzy, kde-format
-#| msgid "Default transition:"
+#, kde-format
 msgctxt "@label:listbox Config dialog, presentation page, transitions"
 msgid "Default transition:"
 msgstr "デフォルトのページ入れ替え:"
@@ -2868,7 +3201,7 @@ msgstr "デフォルトのページ入れ替え:"
 #, kde-format
 msgctxt "@label:listbox Config dialog, presentation page, preferred screen"
 msgid "Preferred screen:"
-msgstr ""
+msgstr "優先されるスクリーン:"
 
 #: part/dlgpresentation.cpp:137
 #, kde-format
@@ -2876,36 +3209,30 @@ msgctxt ""
 "@label Config dialog, presentation page, heading line for drawing tool "
 "manager"
 msgid "<h3>Drawing Tools</h3>"
-msgstr ""
+msgstr "<h3>描画ツール</h3>"
 
-#: part/dlgpresentation.cpp:170
-#, fuzzy, kde-format
-#| msgctxt "@label:listbox The current screen, for the presentation mode"
-#| msgid "Current Screen"
+#: part/dlgpresentation.cpp:171
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, preferred screen"
 msgid "Current Screen"
 msgstr "現在のスクリーン"
 
-#: part/dlgpresentation.cpp:171
-#, fuzzy, kde-format
-#| msgctxt "@label:listbox The default screen for the presentation mode"
-#| msgid "Default Screen"
+#: part/dlgpresentation.cpp:172
+#, kde-format
 msgctxt "@item:inlistbox Config dialog, presentation page, preferred screen"
 msgid "Default Screen"
 msgstr "デフォルトのスクリーン"
 
-#: part/dlgpresentation.cpp:177
-#, fuzzy, kde-format
-#| msgctxt "@label:listbox %1 is the screen number (0, 1, ...)"
-#| msgid "Screen %1"
+#: part/dlgpresentation.cpp:178
+#, kde-format
 msgctxt ""
 "@item:inlistbox Config dialog, presentation page, preferred screen. %1 is "
 "the screen number (0, 1, ...). %2 is the screen manufacturer name. %3 is the "
 "screen model name. %4 is the screen name like DVI-0"
 msgid "Screen %1 (%2 %3 %4)"
-msgstr "スクリーン %1"
+msgstr "スクリーン %1 (%2 %3 %4)"
 
-#: part/dlgpresentation.cpp:189
+#: part/dlgpresentation.cpp:190
 #, kde-format
 msgctxt ""
 "@item:inlistbox Config dialog, presentation page, preferred screen. %1 is "
@@ -2913,12 +3240,12 @@ msgctxt ""
 msgid "Screen %1 (disconnected)"
 msgstr ""
 
-#: part/drawingtoolactions.cpp:191
+#: part/drawingtoolactions.cpp:192
 #, kde-format
 msgid "Drawing Tool: %1"
 msgstr ""
 
-#: part/drawingtoolactions.cpp:213 part/drawingtoolactions.cpp:214
+#: part/drawingtoolactions.cpp:214 part/drawingtoolactions.cpp:215
 #, fuzzy, kde-format
 #| msgid "Erase Drawings"
 msgid "Eraser"
@@ -2939,36 +3266,6 @@ msgstr "タイプ(&T):"
 msgid "Appearance"
 msgstr "外観"
 
-#: part/editannottooldialog.cpp:88 part/guiutils.cpp:64
-#: part/pageviewannotator.cpp:222 part/pageviewannotator.cpp:1316
-#, kde-format
-msgid "Pop-up Note"
-msgstr "ポップアップメモ"
-
-#: part/editannottooldialog.cpp:89 part/guiutils.cpp:69
-#: part/pageviewannotator.cpp:205 part/pageviewannotator.cpp:1314
-#, kde-format
-msgid "Inline Note"
-msgstr "インラインメモ"
-
-#: part/editannottooldialog.cpp:90 part/guiutils.cpp:101
-#: part/pageviewannotator.cpp:1312
-#, kde-format
-msgid "Freehand Line"
-msgstr ""
-
-#: part/editannottooldialog.cpp:91 part/guiutils.cpp:74
-#: part/pageviewannotator.cpp:1326
-#, kde-format
-msgid "Straight Line"
-msgstr "直線"
-
-#: part/editannottooldialog.cpp:92 part/guiutils.cpp:76
-#: part/pageviewannotator.cpp:1318
-#, kde-format
-msgid "Polygon"
-msgstr "多角形"
-
 #: part/editannottooldialog.cpp:93
 #, kde-format
 msgid "Text markup"
@@ -2977,18 +3274,6 @@ msgstr "テキストのマークアップ"
 #: part/editannottooldialog.cpp:94
 #, kde-format
 msgid "Geometrical shape"
-msgstr ""
-
-#: part/editannottooldialog.cpp:95 part/guiutils.cpp:98
-#: part/pageviewannotator.cpp:1324
-#, kde-format
-msgid "Stamp"
-msgstr "スタンプ"
-
-#: part/editannottooldialog.cpp:96 part/guiutils.cpp:67
-#: part/pageviewannotator.cpp:210 part/pageviewannotator.cpp:1332
-#, kde-format
-msgid "Typewriter"
 msgstr ""
 
 #: part/editannottooldialog.cpp:101
@@ -3003,22 +3288,20 @@ msgstr "注釈ツールの編集"
 
 # ACCELERATOR changed by translator
 #: part/editdrawingtooldialog.cpp:50
-#, fuzzy, kde-format
-#| msgid "&Color:"
+#, kde-format
 msgid "Color:"
 msgstr "色(&L):"
 
 #: part/editdrawingtooldialog.cpp:57
-#, fuzzy, kde-format
-#| msgid "Fit Width"
+#, kde-format
 msgid "&Pen Width:"
-msgstr "幅に合わせる"
+msgstr "ペンの幅(&P):"
 
 #: part/editdrawingtooldialog.cpp:63
 #, kde-format
 msgctxt "Suffix for the pen width, eg '10 px'"
 msgid " px"
-msgstr ""
+msgstr "ピクセル"
 
 #: part/editdrawingtooldialog.cpp:73
 #, kde-format
@@ -3027,16 +3310,14 @@ msgid " %"
 msgstr " %"
 
 #: part/editdrawingtooldialog.cpp:78
-#, fuzzy, kde-format
-#| msgid "Create annotation tool"
+#, kde-format
 msgid "Create drawing tool"
-msgstr "注釈ツールの作成"
+msgstr "描画ツールの作成"
 
 #: part/editdrawingtooldialog.cpp:83
-#, fuzzy, kde-format
-#| msgid "Edit annotation tool"
+#, kde-format
 msgid "Edit drawing tool"
-msgstr "注釈ツールの編集"
+msgstr "描画ツールの編集"
 
 #: part/embeddedfilesdialog.cpp:39
 #, kde-format
@@ -3051,11 +3332,10 @@ msgid "Embedded Files"
 msgstr "埋め込みファイル"
 
 #: part/embeddedfilesdialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "&View"
+#, kde-format
 msgctxt "@action:button"
 msgid "View"
-msgstr "表示(&V)"
+msgstr "表示"
 
 #: part/embeddedfilesdialog.cpp:67
 #, kde-format
@@ -3087,18 +3367,17 @@ msgctxt "@title:column"
 msgid "Modified"
 msgstr "変更日"
 
-#: part/embeddedfilesdialog.cpp:149
+#: part/embeddedfilesdialog.cpp:151
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Save As..."
 msgstr "名前を付けて保存(&S)..."
 
-#: part/embeddedfilesdialog.cpp:150
-#, fuzzy, kde-format
-#| msgid "&View"
+#: part/embeddedfilesdialog.cpp:152
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "&View..."
-msgstr "表示(&V)"
+msgstr "表示(&V)..."
 
 #: part/fileprinterpreview.cpp:115
 #, kde-format
@@ -3168,556 +3447,426 @@ msgstr "現在のページから"
 msgid "Find as you type"
 msgstr ""
 
-#: part/formwidgets.cpp:738
+#: part/formwidgets.cpp:751
 #, kde-format
 msgid "*|All Files"
 msgstr "*|すべてのファイル"
 
-#: part/formwidgets.cpp:1105 part/signaturepropertiesdialog.cpp:38
-#, fuzzy, kde-format
-#| msgid "Caret Properties"
+#: part/formwidgets.cpp:1065
+#, kde-format
+msgid "Unsigned Signature Field (Click to Sign)"
+msgstr ""
+
+#: part/formwidgets.cpp:1131 part/signaturepanel.cpp:97
+#, kde-format
+msgid "&Sign..."
+msgstr ""
+
+#: part/formwidgets.cpp:1135 part/signaturepropertiesdialog.cpp:40
+#, kde-format
 msgid "Signature Properties"
-msgstr "キャレットのプロパティ"
+msgstr "署名のプロパティ"
 
-#: part/guiutils.cpp:74
-#, fuzzy, kde-format
-#| msgid "Straight Line Properties"
-msgid "Straight Line with Comment"
-msgstr "直線のプロパティ"
-
-#: part/guiutils.cpp:76
-#, kde-format
-msgid "Polygon with Comment"
-msgstr ""
-
-#: part/guiutils.cpp:79
-#, fuzzy, kde-format
-#| msgid "For Comment"
-msgid "Geometry with Comment"
-msgstr "コメント用"
-
-#: part/guiutils.cpp:79
-#, kde-format
-msgid "Geometry"
-msgstr "図形"
-
-#: part/guiutils.cpp:84
-#, fuzzy, kde-format
-#| msgctxt "Annotation tool"
-#| msgid "Highlight text"
-msgid "Highlight with Comment"
-msgstr "テキストを強調表示"
-
-#: part/guiutils.cpp:87
-#, fuzzy, kde-format
-#| msgid "Squiggly"
-msgid "Squiggle with Comment"
-msgstr "波線"
-
-#: part/guiutils.cpp:90
-#, fuzzy, kde-format
-#| msgctxt "Annotation tool"
-#| msgid "Underline text"
-msgid "Underline with Comment"
-msgstr "テキストに下線"
-
-#: part/guiutils.cpp:93
-#, fuzzy, kde-format
-#| msgctxt "Annotation tool"
-#| msgid "Strike out text"
-msgid "Strike Out with Comment"
-msgstr "テキストを取り消す"
-
-#: part/guiutils.cpp:93
-#, kde-format
-msgid "Strike Out"
-msgstr "取り消し線"
-
-#: part/guiutils.cpp:98
-#, kde-format
-msgid "Stamp with Comment"
-msgstr ""
-
-#: part/guiutils.cpp:101
-#, fuzzy, kde-format
-#| msgid "Line Properties"
-msgid "Freehand Line with Comment"
-msgstr "線のプロパティ"
-
-#: part/guiutils.cpp:104
-#, kde-format
-msgid "Caret"
-msgstr "キャレット"
-
-#: part/guiutils.cpp:107
-#, kde-format
-msgid "File Attachment"
-msgstr "添付ファイル"
-
-#: part/guiutils.cpp:110
-#, kde-format
-msgid "Sound"
-msgstr "サウンド"
-
-#: part/guiutils.cpp:113
-#, kde-format
-msgid "Movie"
-msgstr "動画"
-
-#: part/guiutils.cpp:116
-#, kde-format
-msgctxt "Caption for a screen annotation"
-msgid "Screen"
-msgstr "スクリーン"
-
-#: part/guiutils.cpp:119
-#, kde-format
-msgctxt "Caption for a widget annotation"
-msgid "Widget"
-msgstr ""
-
-#: part/guiutils.cpp:122
-#, kde-format
-msgctxt "Caption for a rich media annotation"
-msgid "Rich Media"
-msgstr ""
-
-#: part/guiutils.cpp:134
-#, kde-format
-msgctxt "Unknown author"
-msgid "Unknown"
-msgstr "不明"
-
-#: part/guiutils.cpp:151 part/presentationwidget.cpp:366
-#, kde-format
-msgid "Author: %1"
-msgstr "作者: %1"
-
-#: part/guiutils.cpp:191 part/propertiesdialog.cpp:228
-#, kde-format
-msgid "Where do you want to save %1?"
-msgstr "‘%1’ をどこに保存しますか？"
-
-#: part/guiutils.cpp:202 part/propertiesdialog.cpp:238
-#, kde-format
-msgid "Could not open \"%1\" for writing. File was not saved."
-msgstr ""
-"‘%1’ を書き込みのために開けませんでした。ファイルは保存されていません。"
-
-#: part/ktreeviewsearchline.cpp:274
+#: part/ktreeviewsearchline.cpp:283
 #, kde-format
 msgid "Search Options"
 msgstr "検索オプション"
 
-#: part/ktreeviewsearchline.cpp:275
+#: part/ktreeviewsearchline.cpp:284
 #, kde-format
 msgctxt "Enable case sensitive search in the side navigation panels"
 msgid "Case Sensitive"
 msgstr "大文字と小文字を区別する"
 
-#: part/ktreeviewsearchline.cpp:278
+#: part/ktreeviewsearchline.cpp:287
 #, kde-format
 msgctxt "Enable regular expression search in the side navigation panels"
 msgid "Regular Expression"
 msgstr "正規表現"
 
-#: part/ktreeviewsearchline.cpp:376
+#: part/ktreeviewsearchline.cpp:386
 #, kde-format
 msgid "S&earch:"
 msgstr "検索(&E):"
 
-#: part/layers.cpp:35 part/part.cpp:2194
+#: part/layers.cpp:35 part/part.cpp:2315
 #, kde-format
 msgid "Layers"
-msgstr ""
+msgstr "レイヤ"
 
-#: part/minibar.cpp:189
+#: part/minibar.cpp:190
 #, kde-format
 msgctxt "Layouted like: '5 [pages] of 10'"
 msgid "of"
 msgstr "/"
 
-#: part/pageview.cpp:538
+#: part/pageview.cpp:535
 #, kde-format
 msgid "Zoom"
 msgstr "ズーム"
 
-#: part/pageview.cpp:550
+#: part/pageview.cpp:547
 #, kde-format
 msgid "Zoom to 100%"
-msgstr ""
+msgstr "100% にズーム"
 
-#: part/pageview.cpp:561
+#: part/pageview.cpp:558
 #, kde-format
 msgid "Rotate &Right"
 msgstr "右に回転(&R)"
 
-#: part/pageview.cpp:562
+#: part/pageview.cpp:559
 #, kde-format
 msgctxt "Rotate right"
 msgid "Right"
 msgstr "右に回転"
 
-#: part/pageview.cpp:566
+#: part/pageview.cpp:563
 #, kde-format
 msgid "Rotate &Left"
 msgstr "左に回転(&L)"
 
-#: part/pageview.cpp:567
+#: part/pageview.cpp:564
 #, kde-format
 msgctxt "Rotate left"
 msgid "Left"
 msgstr "左に回転"
 
-#: part/pageview.cpp:571
+#: part/pageview.cpp:568
 #, kde-format
 msgid "Original Orientation"
 msgstr "元の向き"
 
-#: part/pageview.cpp:577
+#: part/pageview.cpp:574
 #, fuzzy, kde-format
 #| msgid "&View"
 msgid "&Trim View"
 msgstr "表示(&V)"
 
-#: part/pageview.cpp:581
+#: part/pageview.cpp:578
 #, kde-format
 msgid "&Trim Margins"
 msgstr "余白を除去(&T)"
 
-#: part/pageview.cpp:588
+#: part/pageview.cpp:585
 #, fuzzy, kde-format
 #| msgctxt "Text Selection Tool"
 #| msgid "Text Selection"
 msgid "Trim To &Selection"
 msgstr "テキスト選択"
 
-#: part/pageview.cpp:594
+#: part/pageview.cpp:591
 #, kde-format
 msgid "Fit &Width"
 msgstr "幅に合わせる(&W)"
 
 # ACCELERATOR changed by translator
-#: part/pageview.cpp:598
+#: part/pageview.cpp:595
 #, kde-format
 msgid "Fit &Page"
 msgstr "ページに合わせる(&G)"
 
-#: part/pageview.cpp:602
+#: part/pageview.cpp:599
 #, kde-format
 msgid "&Auto Fit"
 msgstr ""
 
 # ACCELERATOR changed by translator
-#: part/pageview.cpp:606
-#, fuzzy, kde-format
-#| msgid "Fit &Page"
+#: part/pageview.cpp:603
+#, kde-format
 msgid "Fit Wi&ndow to Page"
-msgstr "ページに合わせる(&G)"
+msgstr "ウィンドウをページに合わせる(&N)"
 
-#: part/pageview.cpp:613
+#: part/pageview.cpp:610
 #, kde-format
 msgid "&View Mode"
 msgstr "表示モード(&V)"
 
-#: part/pageview.cpp:625
+#: part/pageview.cpp:622
 #, fuzzy, kde-format
 #| msgid "Single Page"
 msgctxt "@item:inmenu"
 msgid "&Single Page"
 msgstr "単一ページ"
 
-#: part/pageview.cpp:626
+#: part/pageview.cpp:623
 #, fuzzy, kde-format
 #| msgid "Facing Pages"
 msgctxt "@item:inmenu"
 msgid "&Facing Pages"
 msgstr "見開きページ"
 
-#: part/pageview.cpp:627
+#: part/pageview.cpp:624
 #, fuzzy, kde-format
 #| msgid "Center &first page"
 msgctxt "@item:inmenu"
 msgid "Facing Pages (&Center First Page)"
 msgstr "最初のページは中央に配置する(&F)"
 
-#: part/pageview.cpp:630
-#, fuzzy, kde-format
-#| msgid "Overview"
+#: part/pageview.cpp:627
+#, kde-format
 msgctxt "@item:inmenu"
 msgid "&Overview"
-msgstr "概観"
+msgstr "概観(&O)"
 
-#: part/pageview.cpp:642
+#: part/pageview.cpp:639
 #, kde-format
 msgid "&Continuous"
 msgstr "連続(&C)"
 
-#: part/pageview.cpp:649
+#: part/pageview.cpp:646
 #, kde-format
 msgctxt "@action page layout"
 msgid "Use Right to Left Reading Direction"
 msgstr ""
 
-#: part/pageview.cpp:658
-#, fuzzy, kde-format
-#| msgctxt "Browse Tool"
-#| msgid "Browse"
+#: part/pageview.cpp:655
+#, kde-format
 msgid "&Browse"
-msgstr "閲覧"
+msgstr "閲覧(&B)"
 
-#: part/pageview.cpp:666
-#, fuzzy, kde-format
-#| msgid "Zoom"
+#: part/pageview.cpp:663
+#, kde-format
 msgid "&Zoom"
-msgstr "ズーム"
+msgstr "ズーム(&Z)"
 
-#: part/pageview.cpp:686
-#, fuzzy, kde-format
-#| msgctxt "Text Selection Tool"
-#| msgid "Text Selection"
+#: part/pageview.cpp:683
+#, kde-format
 msgid "Area &Selection"
-msgstr "テキスト選択"
+msgstr "範囲選択(&S)"
 
-#: part/pageview.cpp:693
-#, fuzzy, kde-format
-#| msgctxt "Text Selection Tool"
-#| msgid "Text Selection"
+#: part/pageview.cpp:690
+#, kde-format
 msgid "&Text Selection"
-msgstr "テキスト選択"
+msgstr "テキスト選択(&T)"
 
-#: part/pageview.cpp:700
-#, fuzzy, kde-format
-#| msgctxt "Text Selection Tool"
-#| msgid "Text Selection"
+#: part/pageview.cpp:697
+#, kde-format
 msgid "T&able Selection"
-msgstr "テキスト選択"
+msgstr "表選択(&A)"
 
-#: part/pageview.cpp:707
+#: part/pageview.cpp:704
 #, kde-format
 msgid "&Magnifier"
-msgstr ""
+msgstr "拡大鏡(&M)"
 
-#: part/pageview.cpp:716
-#, fuzzy, kde-format
-#| msgid "Selection Tools"
+#: part/pageview.cpp:713
+#, kde-format
 msgctxt "@action"
 msgid "Selection Tools"
 msgstr "選択ツール"
 
-#: part/pageview.cpp:747
+#: part/pageview.cpp:739
 #, kde-format
 msgid "Digitally &Sign..."
 msgstr ""
 
-#: part/pageview.cpp:753
+#: part/pageview.cpp:745
 #, kde-format
 msgid "Speak Whole Document"
 msgstr "文書全体を読み上げ"
 
-#: part/pageview.cpp:758
+#: part/pageview.cpp:750
 #, kde-format
 msgid "Speak Current Page"
 msgstr "現在のページを読み上げ"
 
-#: part/pageview.cpp:763
+#: part/pageview.cpp:755
 #, kde-format
 msgid "Stop Speaking"
 msgstr "読み上げを停止"
 
-#: part/pageview.cpp:768
+#: part/pageview.cpp:760
 #, kde-format
 msgid "Pause/Resume Speaking"
-msgstr ""
+msgstr "読み上げを再開/一時停止"
 
-#: part/pageview.cpp:780
+#: part/pageview.cpp:772
 #, kde-format
 msgid "Scroll Up"
 msgstr "上にスクロール"
 
-#: part/pageview.cpp:786
+#: part/pageview.cpp:778
 #, kde-format
 msgid "Scroll Down"
 msgstr "下にスクロール"
 
-#: part/pageview.cpp:792
+#: part/pageview.cpp:784
 #, kde-format
 msgid "Scroll Page Up"
 msgstr "上にページをスクロール"
 
-#: part/pageview.cpp:798
+#: part/pageview.cpp:790
 #, kde-format
 msgid "Scroll Page Down"
 msgstr "下にページをスクロール"
 
 # ACCELERATOR added by translator
-#: part/pageview.cpp:804
+#: part/pageview.cpp:796
 #, kde-format
 msgid "Show Forms"
 msgstr "フォームを表示(&F)"
 
-#: part/pageview.cpp:1289
+#: part/pageview.cpp:1300
 #, kde-format
 msgid " Loaded a one-page document."
 msgid_plural " Loaded a %1-page document."
-msgstr[0] " 1 ページの文書を読み込みました。"
-msgstr[1] " %1 ページの文書を読み込みました。"
+msgstr[0] " %1 ページの文書を読み込みました。"
 
-#: part/pageview.cpp:2478
-#, fuzzy, kde-format
-#| msgid "Copy to Clipboard"
-msgid "Copy Table Contents to Clipboard"
-msgstr "クリップボードにコピー"
-
-#: part/pageview.cpp:2483 part/pageview.cpp:2795 part/pageview.cpp:2933
-#: part/pageview.cpp:2987
+#: part/pageview.cpp:2540
 #, kde-format
-msgid "Copy forbidden by DRM"
-msgstr "コピーは DRM (デジタル著作権管理) によって禁止されています"
+msgid "Copy Table Contents to Clipboard"
+msgstr "表の内容をクリップボードにコピー"
 
-#: part/pageview.cpp:2789
+#: part/pageview.cpp:2859
 #, kde-format
 msgid "Text (1 character)"
 msgid_plural "Text (%1 characters)"
-msgstr[0] "テキスト (1 文字)"
-msgstr[1] "テキスト (%1 文字)"
+msgstr[0] "テキスト (%1 文字)"
 
-#: part/pageview.cpp:2790 part/pageview.cpp:2807
+#: part/pageview.cpp:2860 part/pageview.cpp:2878
 #, kde-format
 msgid "Copy to Clipboard"
 msgstr "クリップボードにコピー"
 
-#: part/pageview.cpp:2799 part/pageview.cpp:2983
+#: part/pageview.cpp:2869 part/pageview.cpp:3061
 #, kde-format
 msgid "Speak Text"
 msgstr "テキストを読み上げる"
 
-#: part/pageview.cpp:2806
+#: part/pageview.cpp:2877
 #, kde-format
 msgid "Image (%1 by %2 pixels)"
 msgstr "画像 (%1 x %2 ピクセル)"
 
-#: part/pageview.cpp:2808
+#: part/pageview.cpp:2879
 #, kde-format
 msgid "Save to File..."
 msgstr "ファイルに保存..."
 
-#: part/pageview.cpp:2827
+#: part/pageview.cpp:2899
 #, kde-format
 msgid "Image [%1x%2] copied to clipboard."
 msgstr "画像 [%1x%2] をクリップボードにコピーしました。"
 
-#: part/pageview.cpp:2830
-#, fuzzy, kde-format
-#| msgid "Save to File..."
+#: part/pageview.cpp:2902
+#, kde-format
 msgid "Save file"
-msgstr "ファイルに保存..."
+msgstr "ファイルを保存"
 
-#: part/pageview.cpp:2830
+#: part/pageview.cpp:2902
 #, kde-format
 msgid "Images (*.png *.jpeg)"
-msgstr ""
+msgstr "画像 (*.png *.jpeg)"
 
-#: part/pageview.cpp:2832
+#: part/pageview.cpp:2904
 #, kde-format
 msgid "File not saved."
 msgstr "ファイルは保存されていません。"
 
 # %3=filetype
-#: part/pageview.cpp:2842
+#: part/pageview.cpp:2915
 #, kde-format
 msgid "Image [%1x%2] saved to %3 file."
 msgstr "画像 [%1x%2] を %3 ファイルに保存しました。"
 
-#: part/pageview.cpp:2979
+#: part/pageview.cpp:3057
 #, kde-format
 msgid "Copy Text"
 msgstr "テキストをコピー"
 
-#: part/pageview.cpp:2998
+#: part/pageview.cpp:3077
 #, kde-format
 msgid "Go to '%1'"
 msgstr "%1 へ移動"
 
-#: part/pageview.cpp:3907 part/part.cpp:2978
+#: part/pageview.cpp:4056 part/part.cpp:3177
 #, kde-format
 msgid "Fit Width"
 msgstr "幅に合わせる"
 
-#: part/pageview.cpp:3907
+#: part/pageview.cpp:4056
 #, kde-format
 msgid "Fit Page"
 msgstr "ページに合わせる"
 
-#: part/pageview.cpp:3907
+#: part/pageview.cpp:4056
 #, kde-format
 msgid "Auto Fit"
-msgstr ""
+msgstr "自動調整"
 
-#: part/pageview.cpp:4212
+#: part/pageview.cpp:4079
+#, fuzzy, kde-format
+#| msgctxt "@item:inlistbox"
+#| msgid "%1%"
+msgctxt ""
+"Zoom percentage value %1 will be replaced by the actual zoom factor value, "
+"so make sure you include it in your translation in order to not to break "
+"anything"
+msgid "%1%"
+msgstr "%1%"
+
+#: part/pageview.cpp:4362
 #, kde-format
 msgid "Search for '%1' with"
 msgstr "「%1」を検索"
 
-#: part/pageview.cpp:4226
+#: part/pageview.cpp:4376
 #, kde-format
 msgid "Configure Web Shortcuts..."
 msgstr "ウェブショートカットを設定..."
 
-#: part/pageview.cpp:4251
+#: part/pageview.cpp:4402
 #, kde-format
 msgid "Follow This Link"
 msgstr "このリンクをたどる"
 
-#: part/pageview.cpp:4254
-#, fuzzy, kde-format
-#| msgid "Play sound..."
+#: part/pageview.cpp:4405
+#, kde-format
 msgid "Play this Sound"
-msgstr "サウンドを再生..."
+msgstr "このサウンドを再生"
 
-#: part/pageview.cpp:4256
-#, fuzzy, kde-format
-#| msgid "Sound"
+#: part/pageview.cpp:4407
+#, kde-format
 msgid "Stop Sound"
-msgstr "サウンド"
+msgstr "サウンドを停止"
 
-#: part/pageview.cpp:4262
+#: part/pageview.cpp:4413
 #, kde-format
 msgid "Copy Link Address"
 msgstr "リンクアドレスをコピー"
 
-#: part/pageview.cpp:4282
-#, fuzzy, kde-format
-#| msgid "Search for '%1' with"
+#: part/pageview.cpp:4434
+#, kde-format
 msgid "Search for '%1' in this document"
-msgstr "「%1」を検索"
+msgstr "この文書で「%1」を検索"
 
-#: part/pageview.cpp:4704
+#: part/pageview.cpp:4882
 #, kde-format
 msgid "Welcome"
 msgstr "ようこそ"
 
-#: part/pageview.cpp:4817
+#: part/pageview.cpp:5002
 #, kde-format
 msgid "Select zooming area. Right-click to zoom out."
 msgstr "拡大する範囲を選択してください。右クリックで縮小できます。"
 
-#: part/pageview.cpp:4828
+#: part/pageview.cpp:5013
 #, kde-format
 msgid "Click to see the magnified view."
 msgstr ""
 
-#: part/pageview.cpp:4841
+#: part/pageview.cpp:5026
 #, kde-format
 msgid "Draw a rectangle around the text/graphics to copy."
 msgstr "コピーするテキスト/画像を四角で囲ってください。"
 
-#: part/pageview.cpp:4853
+#: part/pageview.cpp:5038
 #, kde-format
 msgid "Select text"
 msgstr "テキストを選択"
 
-#: part/pageview.cpp:4865
+#: part/pageview.cpp:5050
 #, fuzzy, kde-format
 #| msgid "Draw a rectangle around the text/graphics to copy."
 msgid ""
@@ -3725,33 +3874,48 @@ msgid ""
 "Esc to clear."
 msgstr "コピーするテキスト/画像を四角で囲ってください。"
 
-#: part/pageview.cpp:4875
+#: part/pageview.cpp:5060
+#, kde-format
+msgid ""
+"All your signing certificates are either not valid yet or are past their "
+"validity date."
+msgstr ""
+
+#: part/pageview.cpp:5063
+#, kde-format
+msgid ""
+"There are no available signing certificates.<br/>For more information, "
+"please see the section about <a href=\"%1\">Adding Digital Signatures</a> in "
+"the manual."
+msgstr ""
+
+#: part/pageview.cpp:5079
 #, kde-format
 msgid "You have unsaved changes. Please save the document before signing it."
 msgstr ""
 
-#: part/pageview.cpp:4879
+#: part/pageview.cpp:5095
 #, kde-format
 msgid "Draw a rectangle to insert the signature field"
 msgstr ""
 
-#: part/pageview.cpp:5016
+#: part/pageview.cpp:5239
 #, fuzzy, kde-format
 #| msgid "Draw a rectangle around the text/graphics to copy."
 msgid "Draw a rectangle around the page area you wish to keep visible"
 msgstr "コピーするテキスト/画像を四角で囲ってください。"
 
-#: part/pageviewannotator.cpp:203 part/pageviewannotator.cpp:208
+#: part/pageviewannotator.cpp:218
 #, kde-format
 msgid "New Text Note"
 msgstr "新しいテキストメモ"
 
-#: part/pageviewannotator.cpp:203 part/pageviewannotator.cpp:208
+#: part/pageviewannotator.cpp:218
 #, kde-format
 msgid "Text of the new note:"
 msgstr "新しいメモのテキスト:"
 
-#: part/pageviewannotator.cpp:345
+#: part/pageviewannotator.cpp:362
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3760,187 +3924,125 @@ msgid ""
 "interface> and draw a bigger rectangle."
 msgstr ""
 
-#: part/pageviewannotator.cpp:347
+#: part/pageviewannotator.cpp:364
 #, kde-format
-msgid "Start over"
+msgctxt "@action:button"
+msgid "Start Over"
 msgstr ""
 
-#: part/pageviewannotator.cpp:348
+#: part/pageviewannotator.cpp:365
 #, kde-format
+msgctxt "@action:button"
 msgid "Sign"
 msgstr ""
 
-#: part/pageviewannotator.cpp:379
-#, kde-format
-msgid ""
-"There are no available signing certificates.<br/>For more information, "
-"please see the section about <a href=\"%1\">Adding Digital Signatures</a> in "
-"the manual."
-msgstr ""
-
-#: part/pageviewannotator.cpp:385
-#, kde-format
-msgid ""
-"All your signing certificates are either not valid yet or are past their "
-"validity date."
-msgstr ""
-
-#: part/pageviewannotator.cpp:391
-#, kde-format
-msgid "Select certificate to sign with"
-msgstr ""
-
-#: part/pageviewannotator.cpp:391
-#, fuzzy, kde-format
-#| msgid "Configure Viewer"
-msgid "Certificates:"
-msgstr "ビューアを設定"
-
-#: part/pageviewannotator.cpp:400
-#, kde-format
-msgid "Enter password (if any) to unlock certificate: %1"
-msgstr ""
-
-#: part/pageviewannotator.cpp:402
-#, kde-format
-msgid "Enter certificate password"
-msgstr ""
-
-#: part/pageviewannotator.cpp:1036 part/part.cpp:2473 part/part.cpp:2474
-#: part/part.cpp:3130
-#, kde-format
-msgctxt "File type name and pattern"
-msgid "%1 (%2)"
-msgstr ""
-
-#: part/pageviewannotator.cpp:1042
-#, kde-format
-msgctxt ""
-"Used when suggesting a new name for a digitally signed file. %1 is the old "
-"file name and %2 it's extension"
-msgid "%1_signed.%2"
-msgstr ""
-
-#: part/pageviewannotator.cpp:1044
-#, kde-format
-msgid "Save Signed File As"
-msgstr ""
-
-#: part/pageviewannotator.cpp:1051
+#: part/pageviewannotator.cpp:1048 part/signaturepartutils.cpp:411
 #, kde-format
 msgctxt "%1 is a file path"
 msgid "Could not sign. Invalid certificate password or could not write to '%1'"
 msgstr ""
 
-#: part/pageviewannotator.cpp:1170
-#, fuzzy, kde-format
-#| msgctxt "Add an annotation to the page"
-#| msgid "add annotation"
-msgid "Bookmark annotation"
-msgstr "注釈を追加"
-
-#: part/pageviewannotator.cpp:1170
+#: part/pageviewannotator.cpp:1177
 #, kde-format
-msgid "Insert a custom name for the annotation:"
-msgstr ""
+msgid "Author name"
+msgstr "作者の名前"
 
-#: part/pageviewannotator.cpp:1230
-#, fuzzy, kde-format
-#| msgctxt "Annotation tool"
-#| msgid "Inline Text Annotation (drag to select a zone)"
+#: part/pageviewannotator.cpp:1177
+#, kde-format
+msgid "Author name for the annotation:"
+msgstr "注釈の作者の名前:"
+
+#: part/pageviewannotator.cpp:1238
+#, kde-format
 msgctxt "Annotation tool"
 msgid "Draw an ellipse (drag to select a zone)"
-msgstr "インラインテキスト (ドラッグで領域を選択します)"
+msgstr "楕円を描く (ドラッグで領域を選択します)"
 
-#: part/pageviewannotator.cpp:1232
+#: part/pageviewannotator.cpp:1240
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Highlight text"
 msgstr "テキストを強調表示"
 
-#: part/pageviewannotator.cpp:1234
+#: part/pageviewannotator.cpp:1242
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Draw a freehand line"
-msgstr ""
+msgstr "手描きの線を描く"
 
-#: part/pageviewannotator.cpp:1236
+#: part/pageviewannotator.cpp:1244
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Inline Text Annotation (drag to select a zone)"
 msgstr "インラインテキスト (ドラッグで領域を選択します)"
 
-#: part/pageviewannotator.cpp:1238
+#: part/pageviewannotator.cpp:1246
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Put a pop-up note"
 msgstr ""
 
-#: part/pageviewannotator.cpp:1240
+#: part/pageviewannotator.cpp:1248
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Draw a polygon (click on the first point to close it)"
 msgstr "多角形 (最初の点をクリックして閉じます)"
 
-#: part/pageviewannotator.cpp:1242
+#: part/pageviewannotator.cpp:1250
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Draw a rectangle"
 msgstr "四角を描画"
 
-#: part/pageviewannotator.cpp:1244
-#, fuzzy, kde-format
-#| msgid "Squiggly"
+#: part/pageviewannotator.cpp:1252
+#, kde-format
 msgctxt "Annotation tool"
 msgid "Squiggle text"
-msgstr "波線"
+msgstr "波状のテキスト"
 
-#: part/pageviewannotator.cpp:1246
+#: part/pageviewannotator.cpp:1254
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Put a stamp symbol"
 msgstr "スタンプのシンボル"
 
-#: part/pageviewannotator.cpp:1248
+#: part/pageviewannotator.cpp:1256
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Draw a straight line"
 msgstr "直線を描画"
 
-#: part/pageviewannotator.cpp:1250
+#: part/pageviewannotator.cpp:1258
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Strike out text"
 msgstr "テキストを取り消す"
 
-#: part/pageviewannotator.cpp:1252
+#: part/pageviewannotator.cpp:1260
 #, kde-format
 msgctxt "Annotation tool"
 msgid "Underline text"
 msgstr "テキストに下線"
 
-#: part/pageviewannotator.cpp:1254
-#, fuzzy, kde-format
-#| msgctxt "Annotation tool"
-#| msgid "Inline Text Annotation (drag to select a zone)"
+#: part/pageviewannotator.cpp:1262
+#, kde-format
 msgctxt "Annotation tool"
 msgid "Typewriter Annotation (drag to select a zone)"
-msgstr "インラインテキスト (ドラッグで領域を選択します)"
+msgstr "タイプライター注釈 (ドラッグで領域を選択します)"
 
-#: part/pageviewannotator.cpp:1310
-#, fuzzy, kde-format
-#| msgid "Highlight"
+#: part/pageviewannotator.cpp:1321
+#, kde-format
 msgid "Highlighter"
-msgstr "強調表示"
+msgstr "マーカー"
 
-#: part/pageviewannotator.cpp:1595
+#: part/pageviewannotator.cpp:1618
 #, fuzzy, kde-format
 #| msgctxt "Add an annotation to the page"
 #| msgid "add annotation"
 msgid "Add favorite annotation"
 msgstr "注釈を追加"
 
-#: part/pageviewannotator.cpp:1595
+#: part/pageviewannotator.cpp:1618
 #, fuzzy, kde-format
 #| msgctxt "Add an annotation to the page"
 #| msgid "add annotation"
@@ -3960,7 +4062,7 @@ msgid "&Settings"
 msgstr "設定(&S)"
 
 #. i18n: ectx: Menu (help)
-#: part/part-viewermode.rc:15 part/part.rc:96
+#: part/part-viewermode.rc:15 part/part.rc:97
 #, kde-format
 msgid "&Help"
 msgstr "ヘルプ(&H)"
@@ -3981,22 +4083,21 @@ msgstr "ブックマーク(&B)"
 
 #. i18n: ectx: ToolBar (OkularViewerToolBar)
 #: part/part-viewermode.rc:63
-#, fuzzy, kde-format
-#| msgid "Main Toolbar"
+#, kde-format
 msgid "Viewer Toolbar"
-msgstr "メインツールバー"
+msgstr "ビューアツールバー"
 
-#: part/part.cpp:389 part/thumbnaillist.cpp:48
+#: part/part.cpp:405 part/thumbnaillist.cpp:48
 #, kde-format
 msgid "Thumbnails"
 msgstr "サムネイル"
 
-#: part/part.cpp:395 part/preferencesdialog.cpp:49 part/side_reviews.cpp:97
+#: part/part.cpp:411 part/preferencesdialog.cpp:50 part/side_reviews.cpp:98
 #, kde-format
 msgid "Annotations"
 msgstr "注釈"
 
-#: part/part.cpp:437
+#: part/part.cpp:453
 #, kde-format
 msgid ""
 "This document contains annotations or form data that were saved internally "
@@ -4005,7 +4106,7 @@ msgid ""
 "edit the document."
 msgstr ""
 
-#: part/part.cpp:444
+#: part/part.cpp:460
 #, kde-format
 msgid ""
 "This document has embedded files. <a href=\"okular:/embeddedfiles\">Click "
@@ -4015,245 +4116,249 @@ msgstr ""
 "embeddedfiles\">ここをクリック</a> するか、「ファイル」メニューから「埋め込み"
 "ファイル」を選択してください。"
 
-#: part/part.cpp:665
+#: part/part.cpp:682
 #, kde-format
 msgctxt "Previous page"
 msgid "Previous"
 msgstr "前のページ"
 
-#: part/part.cpp:666
+#: part/part.cpp:683
 #, kde-format
 msgid "Go back to the Previous Page"
 msgstr "前のページに戻る"
 
-#: part/part.cpp:667
+#: part/part.cpp:684
 #, kde-format
 msgid "Moves to the previous page of the document"
 msgstr "この文書の前のページに移動します。"
 
-#: part/part.cpp:677
+#: part/part.cpp:694
 #, kde-format
 msgctxt "Next page"
 msgid "Next"
 msgstr "次のページ"
 
-#: part/part.cpp:678
+#: part/part.cpp:695
 #, kde-format
 msgid "Advance to the Next Page"
 msgstr "次のページに進む"
 
-#: part/part.cpp:679
+#: part/part.cpp:696
 #, kde-format
 msgid "Moves to the next page of the document"
 msgstr "この文書の次のページに移動します。"
 
-#: part/part.cpp:690
+#: part/part.cpp:707
 #, kde-format
 msgid "Beginning of the document"
 msgstr "文書の先頭"
 
-#: part/part.cpp:691
+#: part/part.cpp:708
 #, kde-format
 msgid "Moves to the beginning of the document"
 msgstr "文書の先頭へ移動します"
 
-#: part/part.cpp:695
+#: part/part.cpp:712
 #, kde-format
 msgid "End of the document"
 msgstr "文書の最後"
 
-#: part/part.cpp:696
+#: part/part.cpp:713
 #, kde-format
 msgid "Moves to the end of the document"
 msgstr "文書の最後へ移動します"
 
-#: part/part.cpp:709
+#: part/part.cpp:727
 #, kde-format
 msgid "Rename the current bookmark"
 msgstr "現在のブックマークの名前を変更"
 
 # ACCELERATOR added by translator
-#: part/part.cpp:713
+#: part/part.cpp:731
 #, kde-format
 msgid "Previous Bookmark"
 msgstr "前のブックマーク(&P)"
 
-#: part/part.cpp:715
+#: part/part.cpp:733
 #, kde-format
 msgid "Go to the previous bookmark"
 msgstr "前のブックマークへ移動"
 
 # ACCELERATOR added by translator
-#: part/part.cpp:719
+#: part/part.cpp:737
 #, kde-format
 msgid "Next Bookmark"
 msgstr "次のブックマーク(&N)"
 
-#: part/part.cpp:721
+#: part/part.cpp:739
 #, kde-format
 msgid "Go to the next bookmark"
 msgstr "次のブックマークへ移動"
 
 # ACCELERATOR added by translator
-#: part/part.cpp:748
+#: part/part.cpp:768
 #, kde-format
 msgid "Configure Okular..."
 msgstr "Okular を設定(&O)..."
 
-#: part/part.cpp:751
+#: part/part.cpp:771
 #, kde-format
 msgid "Configure Viewer..."
 msgstr "ビューアを設定..."
 
-# ACCELERATOR added by translator
-#: part/part.cpp:757
-#, fuzzy, kde-format
-#| msgid "Configure Backends..."
+#: part/part.cpp:777
+#, kde-format
 msgid "Configure Viewer Backends..."
-msgstr "バックエンドを設定(&C)..."
+msgstr "ビューアバックエンドを設定..."
 
 # ACCELERATOR added by translator
-#: part/part.cpp:759
+#: part/part.cpp:779
 #, kde-format
 msgid "Configure Backends..."
 msgstr "バックエンドを設定(&C)..."
 
-#: part/part.cpp:795
+#: part/part.cpp:815
 #, kde-format
 msgid "About Backend"
 msgstr "バックエンドについて"
 
-#: part/part.cpp:800
+#: part/part.cpp:820
 #, kde-format
 msgid "Reloa&d"
 msgstr "再読み込み(&D)"
 
-#: part/part.cpp:802
+#: part/part.cpp:822
 #, kde-format
 msgid "Reload the current document from disk."
 msgstr "現在の文書をディスクから再読み込みします。"
 
-#: part/part.cpp:808
+#: part/part.cpp:828
 #, kde-format
 msgid "Close &Find Bar"
 msgstr "検索バーを閉じる(&F)"
 
-#: part/part.cpp:813
+#: part/part.cpp:833
 #, kde-format
 msgid "Page Number"
 msgstr "ページ番号"
 
-#: part/part.cpp:849
-#, fuzzy, kde-format
-#| msgid "Speak Current Page"
+#: part/part.cpp:837
+#, kde-format
+msgctxt "@action"
+msgid "Configure Color Modes..."
+msgstr "カラーモードを設定..."
+
+#: part/part.cpp:878
+#, kde-format
 msgid "Select All Text on Current Page"
-msgstr "現在のページを読み上げ"
+msgstr "現在のページのすべてのテキストを選択"
 
-#: part/part.cpp:862
-#, fuzzy, kde-format
-#| msgid "Show &Page Bar"
+#: part/part.cpp:891
+#, kde-format
 msgid "Show S&idebar"
-msgstr "ページバーを表示(&P)"
+msgstr "サイドバーを表示(&S)"
 
-#: part/part.cpp:871
+#: part/part.cpp:900
 #, kde-format
 msgid "Show &Page Bar"
 msgstr "ページバーを表示(&P)"
 
-#: part/part.cpp:877
-#, fuzzy, kde-format
-#| msgid "Show &Navigation Panel"
+#: part/part.cpp:906
+#, kde-format
 msgid "Show &Signatures Panel"
-msgstr "ナビゲーションパネルを表示(&N)"
+msgstr "署名パネルを表示(&S)"
 
-#: part/part.cpp:887
+#: part/part.cpp:916
 #, kde-format
 msgid "&Embedded Files"
 msgstr "埋め込みファイル(&E)"
 
-#: part/part.cpp:893
+#: part/part.cpp:922
 #, kde-format
 msgid "E&xport As"
 msgstr "エクスポート(&X)"
 
-#: part/part.cpp:905
+#: part/part.cpp:934
 #, kde-format
 msgid "S&hare"
-msgstr ""
+msgstr "共有(&H)"
 
-#: part/part.cpp:914
+#: part/part.cpp:943
 #, kde-format
 msgid "P&resentation"
 msgstr "プレゼンテーション(&R)"
 
-#: part/part.cpp:921
+#: part/part.cpp:950
 #, kde-format
 msgid "Open Con&taining Folder"
-msgstr ""
+msgstr "保存フォルダを開く(&T)"
 
-#: part/part.cpp:927
+#: part/part.cpp:964
 #, kde-format
 msgid "&Import PostScript as PDF..."
 msgstr "PostScript を PDF としてインポート(&I)..."
 
-#: part/part.cpp:931
+#: part/part.cpp:968
 #, kde-format
 msgid "Switch Blackscreen Mode"
 msgstr "ブラックスクリーンの切り替え"
 
-#: part/part.cpp:939
-#, fuzzy, kde-format
-#| msgid "Erase Drawings"
+#: part/part.cpp:976
+#, kde-format
 msgid "Erase Drawing"
 msgstr "描画を消す"
 
 # ACCELERATOR added by translator
-#: part/part.cpp:944
-#, fuzzy, kde-format
-#| msgid "Configure Okular..."
-msgctxt "@action"
-msgid "Configure Color Modes..."
-msgstr "Okular を設定(&O)..."
-
-# ACCELERATOR added by translator
-#: part/part.cpp:949
+#: part/part.cpp:981
 #, kde-format
 msgid "Configure Annotations..."
 msgstr "注釈を設定(&C)..."
 
-#: part/part.cpp:954
+#: part/part.cpp:986
 #, kde-format
 msgid "Play/Pause Presentation"
 msgstr "プレゼンテーションを再生/一次停止"
 
-#: part/part.cpp:1113
-#, fuzzy, kde-format
-#| msgid "Could not open %1"
-msgid "Could not open '%1' (%2) "
-msgstr "%1 を開けませんでした"
+#: part/part.cpp:1139
+#, kde-format
+msgid ""
+"You have just modified the open document, but this kind of document can not "
+"be saved.\n"
+"Any modification will be lost once Okular is closed."
+msgstr ""
 
-#: part/part.cpp:1163
+#: part/part.cpp:1140
+#, kde-format
+msgid "Document can't be saved"
+msgstr "文書を保存できません"
+
+#: part/part.cpp:1169
+#, kde-format
+msgid "Could not open '%1' (%2) "
+msgstr "'%1' を開けませんでした (%2)"
+
+#: part/part.cpp:1223
 #, kde-format
 msgid "The loading of %1 has been canceled."
 msgstr "%1 の読み込みをキャンセルしました。"
 
-#: part/part.cpp:1179
+#: part/part.cpp:1239
 #, kde-format
 msgid "Could not open %1. Reason: %2"
 msgstr "%1 を開けませんでした。理由: %2"
 
-#: part/part.cpp:1207
+#: part/part.cpp:1267
 #, fuzzy, kde-format
 #| msgid "Configure Backends"
 msgid "Configure Viewer Backends"
 msgstr "バックエンドを設定"
 
-#: part/part.cpp:1209
+#: part/part.cpp:1269
 #, kde-format
 msgid "Configure Backends"
 msgstr "バックエンドを設定"
 
-#: part/part.cpp:1289
+#: part/part.cpp:1354
 #, kde-format
 msgid ""
 "The program \"ps2pdf\" was not found, so Okular can not import PS files "
@@ -4262,42 +4367,42 @@ msgstr ""
 "プログラム ps2pdf が見つからなかったため、Okular は PS ファイルをインポートで"
 "きません。"
 
-#: part/part.cpp:1289
+#: part/part.cpp:1354
 #, kde-format
 msgid "ps2pdf not found"
 msgstr "ps2pdf が見つかりません"
 
-#: part/part.cpp:1294
+#: part/part.cpp:1359
 #, kde-format
 msgid "PostScript files (%1)"
 msgstr ""
 
-#: part/part.cpp:1309
+#: part/part.cpp:1375
 #, kde-format
 msgid "Importing PS file as PDF (this may take a while)..."
 msgstr "PS ファイルを PDF としてインポート中 (時間がかかる場合があります)..."
 
-#: part/part.cpp:1430
+#: part/part.cpp:1504
 #, kde-format
 msgid "Please enter the password to read the document:"
 msgstr "この文書のパスワードを入力してください:"
 
-#: part/part.cpp:1432
+#: part/part.cpp:1506
 #, kde-format
 msgid "Incorrect password. Try again:"
 msgstr ""
 
-#: part/part.cpp:1437
+#: part/part.cpp:1512
 #, kde-format
 msgid "Document Password"
 msgstr "文書のパスワード"
 
-#: part/part.cpp:1540
+#: part/part.cpp:1632
 #, kde-format
 msgid "This document has XFA forms, which are currently <b>unsupported</b>."
 msgstr ""
 
-#: part/part.cpp:1547
+#: part/part.cpp:1639
 #, kde-format
 msgid ""
 "This document has forms. Click on the button to interact with them, or use "
@@ -4306,116 +4411,99 @@ msgstr ""
 "この文書にはフォームが含まれています。それらとやりとりするにはボタンをクリッ"
 "クするか、「表示」メニューから「フォームを表示」を選択してください。"
 
-#: part/part.cpp:1567
+#: part/part.cpp:1655
 #, kde-format
 msgid ""
 "All editing and interactive features for this document are disabled. Please "
 "save a copy and reopen to edit this document."
 msgstr ""
 
-#: part/part.cpp:1581
-#, fuzzy, kde-format
-#| msgid "Printing this document is not allowed."
-msgid "This document is digitally signed."
-msgstr "この文書は印刷が許可されていません。"
-
-#: part/part.cpp:1584
-#, fuzzy, kde-format
-#| msgid "Printing this document is not allowed."
-msgid ""
-"This document is digitally signed. There have been changes since last signed."
-msgstr "この文書は印刷が許可されていません。"
-
-#: part/part.cpp:1588
-#, kde-format
-msgid ""
-"This document is digitally signed. Some of the signatures could not be "
-"validated properly."
-msgstr ""
-
-#: part/part.cpp:1665
+#: part/part.cpp:1743
 #, kde-format
 msgid ""
 "This document wants to be shown full screen.\n"
 "Leave normal mode and enter presentation mode?"
 msgstr ""
 
-#: part/part.cpp:1667
+#: part/part.cpp:1745
 #, kde-format
 msgid "Request to Change Viewing Mode"
 msgstr ""
 
-#: part/part.cpp:1668
-#, fuzzy, kde-format
-#| msgid "Exit Presentation Mode"
+#: part/part.cpp:1746
+#, kde-format
 msgid "Enter Presentation Mode"
-msgstr "プレゼンテーションモードを終了"
+msgstr "プレゼンテーションモードに入る"
 
-#: part/part.cpp:1669
+#: part/part.cpp:1747
 #, kde-format
 msgid "Deny Request"
 msgstr ""
 
-#: part/part.cpp:1755
+#: part/part.cpp:1837
 #, fuzzy, kde-format
 #| msgid "Could not open %1"
 msgid "Could not open %1. %2"
 msgstr "%1 を開けませんでした"
 
-#: part/part.cpp:1784
-#, kde-format
+#: part/part.cpp:1867
+#, kde-kuit-format
+msgctxt "@info"
 msgid ""
-"There are unsaved changes, and the file '%1' has been modified by another "
-"program. Your changes will be lost, because the file can no longer be saved."
-"<br>Do you want to continue reloading the file?"
+"The file <filename>%1</filename> has unsaved changes but has been modified "
+"by another program. Reloading it will replace the unsaved changes with the "
+"changes made in the other program.<nl/><nl/>Do you want to continue "
+"reloading the file?"
 msgstr ""
 
-#: part/part.cpp:1785 part/part.cpp:1792 part/part.cpp:2514
+#: part/part.cpp:1871 part/part.cpp:1881
 #, kde-format
 msgid "File Changed"
 msgstr ""
 
-#: part/part.cpp:1786
+#: part/part.cpp:1872
 #, fuzzy, kde-format
 #| msgid "&Continuous"
 msgid "Continue Reloading"
 msgstr "連続(&C)"
 
-#: part/part.cpp:1787
+#: part/part.cpp:1873
 #, kde-format
 msgid "Abort Reloading"
 msgstr ""
 
-#: part/part.cpp:1791
-#, kde-format
+#: part/part.cpp:1877
+#, kde-kuit-format
+msgctxt "@info"
 msgid ""
-"There are unsaved changes, and the file '%1' has been modified by another "
-"program. Your changes will be lost, because the file can no longer be saved."
-"<br>Do you want to continue closing the file?"
+"The file <filename>%1</filename> has unsaved changes but has been modified "
+"by another program. Closing it will replace the unsaved changes with the "
+"changes made in the other program.<nl/><nl/>Do you want to continue closing "
+"the file?"
 msgstr ""
 
-#: part/part.cpp:1793
+#: part/part.cpp:1882
 #, fuzzy, kde-format
 #| msgid "&Continuous"
 msgid "Continue Closing"
 msgstr "連続(&C)"
 
-#: part/part.cpp:1794
+#: part/part.cpp:1883
 #, kde-format
 msgid "Abort Closing"
 msgstr ""
 
-#: part/part.cpp:1799
+#: part/part.cpp:1890
 #, kde-format
 msgid "Do you want to save your changes to \"%1\" or discard them?"
 msgstr ""
 
-#: part/part.cpp:1799
+#: part/part.cpp:1890
 #, kde-format
 msgid "Close Document"
 msgstr "文書を閉じる"
 
-#: part/part.cpp:1919
+#: part/part.cpp:2022
 #, kde-format
 msgid ""
 "This link points to a close document action that does not work when using "
@@ -4424,7 +4512,7 @@ msgstr ""
 "これは文書を閉じる動作にリンクしていますが、埋め込みビューアでは機能しませ"
 "ん。"
 
-#: part/part.cpp:1924
+#: part/part.cpp:2028
 #, kde-format
 msgid ""
 "This link points to a quit application action that does not work when using "
@@ -4433,62 +4521,96 @@ msgstr ""
 "これはアプリケーションを終了する動作にリンクしていますが、埋め込みビューアで"
 "は機能しません。"
 
-#: part/part.cpp:2014 part/part.cpp:2031
+#: part/part.cpp:2120 part/part.cpp:2138
 #, kde-format
 msgid "Reloading the document..."
 msgstr "文書を再読み込み中..."
 
-#: part/part.cpp:2174 part/toc.cpp:38
+#: part/part.cpp:2295 part/toc.cpp:38
 #, kde-format
 msgid "Contents"
 msgstr "目次"
 
-#: part/part.cpp:2203 part/signaturepanel.cpp:47
+#: part/part.cpp:2324 part/signaturepanel.cpp:47
 #, kde-format
 msgid "Signatures"
-msgstr ""
+msgstr "署名"
 
-#: part/part.cpp:2230
+#: part/part.cpp:2351
 #, kde-format
 msgid "Go to Page"
 msgstr "ページに移動"
 
-#: part/part.cpp:2253
+#: part/part.cpp:2374
 #, kde-format
 msgid "&Page:"
 msgstr "ページ(&P):"
 
-#: part/part.cpp:2343
+#: part/part.cpp:2467
 #, kde-format
 msgid "Enter the new name of the bookmark:"
-msgstr ""
+msgstr "ブックマークの新しい名前を入力:"
 
-#: part/part.cpp:2389
+#: part/part.cpp:2513
 #, kde-format
 msgid "Rename this Bookmark"
 msgstr "ブックマークの名前を変更"
 
-#: part/part.cpp:2392
-#, fuzzy, kde-format
-#| msgid "Rename this Bookmark"
-msgid "Remove this Bookmark"
-msgstr "ブックマークの名前を変更"
-
-#: part/part.cpp:2481 part/revisionviewer.cpp:44
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "&Save As..."
-msgid "Save As"
-msgstr "名前を付けて保存(&S)..."
-
-#: part/part.cpp:2514
+#: part/part.cpp:2516
 #, kde-format
-msgid ""
-"The file '%1' has been modified by another program, which means it can no "
-"longer be saved."
+msgid "Remove this Bookmark"
+msgstr "ブックマークを削除"
+
+#: part/part.cpp:2602 part/part.cpp:2603 part/part.cpp:3483
+#: part/signaturepartutils.cpp:379
+#, kde-format
+msgctxt "File type name and pattern"
+msgid "%1 (%2)"
 msgstr ""
 
-#: part/part.cpp:2522
+#: part/part.cpp:2610 part/revisionviewer.cpp:44
+#, kde-format
+msgid "Save As"
+msgstr "名前を付けて保存"
+
+#: part/part.cpp:2627
+#, kde-format
+msgid ""
+"You have chosen to save an Okular Archive without the file name ending with "
+"the '%1' extension. That is not allowed, do you want to choose a new name?"
+msgstr ""
+
+#: part/part.cpp:2628
+#, kde-format
+msgid "Unsupported extension"
+msgstr "サポートされていない拡張子"
+
+#: part/part.cpp:2629
+#, kde-format
+msgctxt "@action:button"
+msgid "Choose New Name"
+msgstr ""
+
+#: part/part.cpp:2671
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> has been modified by another program. If "
+"you save now, any changes made in the other program will be lost. Are you "
+"sure you want to continue?"
+msgstr ""
+
+#: part/part.cpp:2674 part/part.cpp:2692 part/part.cpp:2744
+#, kde-format
+msgid "Save - Warning"
+msgstr ""
+
+#: part/part.cpp:2676
+#, kde-format
+msgid "Save a Copy Elsewhere"
+msgstr ""
+
+#: part/part.cpp:2691
 #, kde-format
 msgid ""
 "The current document is protected with a password.<br />In order to save, "
@@ -4496,44 +4618,45 @@ msgid ""
 "your undo/redo history will be lost.<br />Do you want to continue?"
 msgstr ""
 
-#: part/part.cpp:2523 part/part.cpp:2564
-#, kde-format
-msgid "Save - Warning"
-msgstr ""
-
-#: part/part.cpp:2540
+#: part/part.cpp:2718
 #, kde-format
 msgid "Could not open the temporary file for saving."
 msgstr "一時ファイルを保存のために開けませんでした。"
 
-#: part/part.cpp:2553 part/part.cpp:2576 part/part.cpp:2642 part/part.cpp:2661
-#: part/part.cpp:3145
-#, kde-format
-msgid "File could not be saved in '%1'. Try to save it to another location."
+#: part/part.cpp:2731
+#, fuzzy, kde-kuit-format
+#| msgid "File could not be saved in '%1'. Try to save it to another location."
+msgctxt "@info"
+msgid ""
+"Could not overwrite <filename>%1</filename> because that file is read-only. "
+"Try saving to another location or changing that file's permissions."
 msgstr "‘%1’ にファイルを保存できませんでした。他の場所に保存してください。"
 
-#: part/part.cpp:2564
+#: part/part.cpp:2743
 #, kde-format
 msgid ""
 "After saving, the current document format requires the file to be reloaded. "
 "Your undo/redo history will be lost.<br />Do you want to continue?"
 msgstr ""
 
-#: part/part.cpp:2588
+#: part/part.cpp:2758 part/part.cpp:2827 part/part.cpp:2848 part/part.cpp:3498
+#, kde-format
+msgid "File could not be saved in '%1'. Try to save it to another location."
+msgstr "‘%1’ にファイルを保存できませんでした。他の場所に保存してください。"
+
+#: part/part.cpp:2771
 #, fuzzy, kde-format
 #| msgctxt "Edit an form's text contents"
 #| msgid "edit form contents"
 msgid "Filled form contents"
 msgstr "フォームの内容を編集"
 
-#: part/part.cpp:2590
-#, fuzzy, kde-format
-#| msgctxt "remove a collection of annotations from the page"
-#| msgid "remove annotations"
+#: part/part.cpp:2774
+#, kde-format
 msgid "User annotations"
-msgstr "注釈を削除"
+msgstr "ユーザの注釈"
 
-#: part/part.cpp:2594
+#: part/part.cpp:2779
 #, kde-format
 msgid ""
 "You are about to save changes, but the current file format does not support "
@@ -4541,17 +4664,17 @@ msgid ""
 "format to preserve them."
 msgstr ""
 
-#: part/part.cpp:2598 part/part.cpp:2620
+#: part/part.cpp:2783 part/part.cpp:2805
 #, kde-format
 msgid "Warning"
 msgstr ""
 
-#: part/part.cpp:2599 part/part.cpp:2621
+#: part/part.cpp:2784 part/part.cpp:2806
 #, kde-format
 msgid "Save as Okular document archive..."
 msgstr ""
 
-#: part/part.cpp:2611
+#: part/part.cpp:2796
 #, kde-format
 msgid ""
 "You are about to save changes, but the current file format does not support "
@@ -4560,7 +4683,7 @@ msgid ""
 "discard these elements."
 msgstr ""
 
-#: part/part.cpp:2614
+#: part/part.cpp:2799
 #, kde-format
 msgid ""
 "You are about to save changes, but the current file format does not support "
@@ -4569,23 +4692,22 @@ msgid ""
 "these elements as well as the undo/redo history."
 msgstr ""
 
-#: part/part.cpp:2616
-#, fuzzy, kde-format
-#| msgid "&Continuous"
+#: part/part.cpp:2801
+#, kde-format
 msgid "Continue"
-msgstr "連続(&C)"
+msgstr "続行"
 
-#: part/part.cpp:2616
+#: part/part.cpp:2801
 #, kde-format
 msgid "Continue losing changes"
 msgstr ""
 
-#: part/part.cpp:2644
+#: part/part.cpp:2829
 #, kde-format
 msgid "File could not be saved in '%1'. %2"
 msgstr "ファイルを ‘%1’ に保存できませんでした。%2"
 
-#: part/part.cpp:2680
+#: part/part.cpp:2868
 #, kde-format
 msgid ""
 "Okular cannot copy %1 to the specified location.\n"
@@ -4596,64 +4718,75 @@ msgstr ""
 "\n"
 "文書はもう存在しません。"
 
-#: part/part.cpp:2708
-#, fuzzy, kde-format
-#| msgid "File could not be saved in '%1'. Try to save it to another location."
+#: part/part.cpp:2904
+#, kde-format
 msgid ""
 "File could not be saved in '%1'. Error: '%2'. Try to save it to another "
 "location."
-msgstr "‘%1’ にファイルを保存できませんでした。他の場所に保存してください。"
+msgstr ""
+"‘%1’ にファイルを保存できませんでした。エラー: '%2' 他の場所に保存してくださ"
+"い。"
 
-#: part/part.cpp:2961
-#, fuzzy, kde-format
-#| msgid "End Presentation"
+#: part/part.cpp:3155
+#, kde-format
 msgid "Expand whole section"
-msgstr "プレゼンテーションを終了"
+msgstr "セクション全体を展開"
 
-#: part/part.cpp:2962
+#: part/part.cpp:3156
 #, kde-format
 msgid "Collapse whole section"
-msgstr ""
+msgstr "セクション全体を折りたたむ"
 
-#: part/part.cpp:2963
+#: part/part.cpp:3157
 #, kde-format
 msgid "Expand all"
-msgstr ""
+msgstr "すべて展開"
 
-#: part/part.cpp:2964
+#: part/part.cpp:3158
 #, kde-format
 msgid "Collapse all"
-msgstr ""
+msgstr "すべて折りたたむ"
 
-#: part/part.cpp:2976
+#: part/part.cpp:3169
+#, kde-format
+msgid "Sync Thumbnail with Page"
+msgstr "サムネイルをページと同期する(&T)"
+
+#: part/part.cpp:3174
 #, kde-format
 msgid "Add Bookmark"
 msgstr "ブックマークを追加"
 
-#: part/part.cpp:2985
+#: part/part.cpp:3196
 #, kde-format
 msgid "Tools"
 msgstr "ツール"
 
-#: part/part.cpp:3182
+#: part/part.cpp:3379
+#, kde-format
+msgctxt "@action:inmenu menu that contains actions to control text to speach"
+msgid "Speak"
+msgstr "読み上げる"
+
+#: part/part.cpp:3536
 #, kde-format
 msgctxt "@title:window"
 msgid "Print"
-msgstr ""
+msgstr "印刷"
 
-#: part/part.cpp:3246
+#: part/part.cpp:3599
 #, kde-format
 msgid "Printing this document is not allowed."
 msgstr "この文書は印刷が許可されていません。"
 
-#: part/part.cpp:3253
+#: part/part.cpp:3607
 #, kde-format
 msgid ""
 "Could not print the document. Unknown error. Please report to bugs.kde.org"
 msgstr ""
 "文書を印刷できませんでした。不明なエラー。bugs.kde.org に報告してください。"
 
-#: part/part.cpp:3255
+#: part/part.cpp:3609
 #, kde-format
 msgid ""
 "Could not print the document. Detailed error is \"%1\". Please report to "
@@ -4662,17 +4795,17 @@ msgstr ""
 "文書を印刷できませんでした。詳細なエラーは「%1」です。bugs.kde.org に報告して"
 "ください。"
 
-#: part/part.cpp:3332
+#: part/part.cpp:3689
 #, kde-format
 msgid "Go to the place you were before"
 msgstr "前にいたところに移動"
 
-#: part/part.cpp:3336
+#: part/part.cpp:3693
 #, kde-format
 msgid "Go to the place you were after"
 msgstr "後にいたところに移動"
 
-#: part/part.cpp:3361
+#: part/part.cpp:3718
 #, kde-format
 msgid ""
 "<qt><strong>File Error!</strong> Could not create temporary file "
@@ -4680,7 +4813,7 @@ msgid ""
 msgstr ""
 "<qt>ファイルのエラーです。一時ファイル ‘%1’ を作成できませんでした。</qt>"
 
-#: part/part.cpp:3373
+#: part/part.cpp:3730
 #, kde-format
 msgid ""
 "<qt><strong>File Error!</strong> Could not open the file <nobr><strong>%1</"
@@ -4689,13 +4822,8 @@ msgstr ""
 "<qt>ファイルのエラーです。ファイル ‘%1’ を展開するために開けませんでした。"
 "ファイルは読み込まれません。</qt>"
 
-#: part/part.cpp:3377
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>This error typically occurs if you do not have enough permissions to "
-#| "read the file. You can check ownership and permissions if you right-click "
-#| "on the file in the Dolphin file manager and then choose the 'Properties' "
-#| "tab.</qt>"
+#: part/part.cpp:3734
+#, kde-format
 msgid ""
 "<qt>This error typically occurs if you do not have enough permissions to "
 "read the file. You can check ownership and permissions if you right-click on "
@@ -4703,10 +4831,11 @@ msgid ""
 "and select 'Permissions' tab in the opened window.</qt>"
 msgstr ""
 "<qt>このエラーはファイルを読む権限がないときによく起こります。Dolphin ファイ"
-"ルマネージャでファイルを右クリックし、「プロパティ」タブを選ぶと、ファイルの"
-"所有者とパーミッションを確認することができます。</qt>"
+"ルマネージャでファイルを右クリックし、「プロパティ」オプションを選び、「パー"
+"ミッション」タブを選択すると、ファイルの所有者とパーミッションを確認すること"
+"ができます。</qt>"
 
-#: part/part.cpp:3398
+#: part/part.cpp:3756
 #, kde-format
 msgid ""
 "<qt><strong>File Error!</strong> Could not uncompress the file <nobr><strong>"
@@ -4715,7 +4844,7 @@ msgstr ""
 "<qt>ファイルのエラーです。ファイル ‘%1’ を展開できませんでした。ファイルは読"
 "み込まれません。</qt>"
 
-#: part/part.cpp:3402
+#: part/part.cpp:3760
 #, kde-format
 msgid ""
 "<qt>This error typically occurs if the file is corrupt. If you want to be "
@@ -4724,27 +4853,27 @@ msgstr ""
 "<qt>このエラーはファイルが壊れているときによく起こります。確認するには、コマ"
 "ンドラインツールを使って手動でファイルを展開してみてください。</qt>"
 
-#: part/part.cpp:3428
+#: part/part.cpp:3786
 #, kde-format
 msgid "No Bookmarks"
 msgstr "ブックマークなし"
 
-#: part/part.cpp:3499
+#: part/part.cpp:3857
 #, kde-format
 msgid "There was a problem sharing the document: %1"
 msgstr ""
 
-#: part/part.cpp:3499 part/part.cpp:3505
+#: part/part.cpp:3857 part/part.cpp:3863
 #, kde-format
 msgid "Share"
-msgstr ""
+msgstr "共有"
 
-#: part/part.cpp:3503
+#: part/part.cpp:3861
 #, kde-format
 msgid "Document shared successfully"
 msgstr ""
 
-#: part/part.cpp:3505
+#: part/part.cpp:3863
 #, kde-format
 msgid "You can find the shared document at: <a href=\"%1\">%1</a>"
 msgstr ""
@@ -4774,129 +4903,145 @@ msgid "&Tools"
 msgstr "ツール(&T)"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: part/part.rc:100 shell/shell.rc:24
+#: part/part.rc:101 shell/shell.rc:24
 #, kde-format
 msgid "Main Toolbar"
 msgstr "メインツールバー"
 
 #. i18n: ectx: ToolBar (annotationToolBar)
-#: part/part.rc:116
-#, fuzzy, kde-format
-#| msgid "Annotation tools"
+#: part/part.rc:122
+#, kde-format
 msgid "Annotation Toolbar"
-msgstr "注釈ツール"
+msgstr "注釈ツールバー"
 
-#: part/preferencesdialog.cpp:39
+#. i18n: ectx: ToolBar (quickAnnotationToolBar)
+#: part/part.rc:146
+#, kde-format
+msgid "Quick Annotation Toolbar"
+msgstr "クイック注釈ツールバー"
+
+#: part/preferencesdialog.cpp:41
 #, kde-format
 msgid "General Options"
 msgstr "全般オプション"
 
-#: part/preferencesdialog.cpp:40
+#: part/preferencesdialog.cpp:42
 #, kde-format
 msgid "Accessibility"
 msgstr "アクセシビリティ"
 
 # skip-rule: accessibility
-#: part/preferencesdialog.cpp:40
+#: part/preferencesdialog.cpp:42
 #, kde-format
 msgid "Accessibility Reading Aids"
 msgstr "視覚補助"
 
-#: part/preferencesdialog.cpp:41
+#: part/preferencesdialog.cpp:43
 #, kde-format
 msgid "Performance"
 msgstr "パフォーマンス"
 
-#: part/preferencesdialog.cpp:41
+#: part/preferencesdialog.cpp:43
 #, kde-format
 msgid "Performance Tuning"
 msgstr "パフォーマンスの調整"
 
-#: part/preferencesdialog.cpp:43
+#: part/preferencesdialog.cpp:45
 #, kde-format
 msgid "Configure Viewer"
 msgstr "ビューアを設定"
 
-#: part/preferencesdialog.cpp:48
+#: part/preferencesdialog.cpp:49
 #, kde-format
 msgid "Presentation"
 msgstr "プレゼンテーション"
 
-#: part/preferencesdialog.cpp:48
+#: part/preferencesdialog.cpp:49
 #, kde-format
 msgid "Options for Presentation Mode"
 msgstr "プレゼンテーションモードのオプション"
 
-#: part/preferencesdialog.cpp:49
+#: part/preferencesdialog.cpp:50
 #, kde-format
 msgid "Annotation Options"
 msgstr "注釈のオプション"
 
-#: part/preferencesdialog.cpp:50
+#: part/preferencesdialog.cpp:53 part/preferencesdialog.cpp:59
 #, kde-format
 msgid "Editor"
 msgstr "エディタ"
 
-#: part/preferencesdialog.cpp:50
+#: part/preferencesdialog.cpp:53 part/preferencesdialog.cpp:59
 #, kde-format
 msgid "Editor Options"
 msgstr "エディタのオプション"
+
+#: part/preferencesdialog.cpp:56
+#, kde-format
+msgctxt ""
+"Give the user a hint, that it enabled the option --editor-cmd together with "
+"the current value of the option."
+msgid ""
+"The editor was set by the command line to \n"
+" %1 \n"
+"If you want to use the setting, start okular without the option --editor-cmd"
+msgstr ""
 
 #: part/presentationsearchbar.cpp:77
 #, kde-format
 msgid "Find Next"
 msgstr "次を検索"
 
-#: part/presentationwidget.cpp:166
+#: part/presentationwidget.cpp:167
 #, kde-format
 msgctxt "[document title/filename] – Presentation"
 msgid "%1 – Presentation"
 msgstr "%1 - プレゼンテーション"
 
-#: part/presentationwidget.cpp:220
+#: part/presentationwidget.cpp:221
 #, kde-format
 msgid "Switch Screen"
 msgstr "スクリーンを切り替え"
 
-#: part/presentationwidget.cpp:225
+#: part/presentationwidget.cpp:226
 #, kde-format
 msgctxt "%1 is the screen number (0, 1, ...)"
 msgid "Screen %1"
 msgstr "スクリーン %1"
 
-#: part/presentationwidget.cpp:232
+#: part/presentationwidget.cpp:233
 #, kde-format
 msgid "Exit Presentation Mode"
 msgstr "プレゼンテーションモードを終了"
 
-#: part/presentationwidget.cpp:364
+#: part/presentationwidget.cpp:367
 #, kde-format
 msgid "Title: %1"
 msgstr "タイトル: %1"
 
-#: part/presentationwidget.cpp:367
+#: part/presentationwidget.cpp:372
 #, kde-format
 msgid "Pages: %1"
 msgstr "ページ数: %1"
 
-#: part/presentationwidget.cpp:368
+#: part/presentationwidget.cpp:373
 #, kde-format
 msgid "Click to begin"
 msgstr "クリックで開始"
 
-#: part/presentationwidget.cpp:502
+#: part/presentationwidget.cpp:515
 #, kde-format
 msgctxt "For Presentation"
 msgid "Pause"
 msgstr "一時停止"
 
-#: part/presentationwidget.cpp:505
+#: part/presentationwidget.cpp:518
 #, kde-format
 msgctxt "For Presentation"
 msgid "Play"
 msgstr "再生"
 
-#: part/presentationwidget.cpp:1525
+#: part/presentationwidget.cpp:1619
 #, kde-format
 msgid ""
 "There are two ways of exiting presentation mode, you can press either ESC "
@@ -4907,7 +5052,7 @@ msgstr ""
 "示される終了ボタンをクリックすることで終了できます。キーボードショートカット "
 "(標準設定では Alt+Tab) を使ってウィンドウを切り替えることもできます。"
 
-#: part/presentationwidget.cpp:1608
+#: part/presentationwidget.cpp:1701
 #, kde-format
 msgctxt ""
 "Reason for inhibiting the screensaver activation, when the presentation mode "
@@ -4925,222 +5070,214 @@ msgstr "不明なファイル"
 msgid "%1 Properties"
 msgstr "%1 のプロパティ"
 
-#: part/propertiesdialog.cpp:103
+#: part/propertiesdialog.cpp:104
 #, kde-format
 msgctxt "mimetype information, example: \"PDF Document (application/pdf)\""
 msgid "%1 (%2)"
-msgstr ""
+msgstr "%1 (%2)"
 
-#: part/propertiesdialog.cpp:116
+#: part/propertiesdialog.cpp:117
 #, kde-format
 msgid "%1:"
 msgstr "%1:"
 
-#: part/propertiesdialog.cpp:123
+#: part/propertiesdialog.cpp:124
 #, kde-format
 msgid "&Fonts"
 msgstr "フォント(&F)"
 
-#: part/propertiesdialog.cpp:144
+#: part/propertiesdialog.cpp:145
 #, kde-format
 msgid "Reading font information..."
 msgstr "フォント情報を読み込み中..."
 
-#: part/propertiesdialog.cpp:157
-#, fuzzy, kde-format
-#| msgid "&Page Size"
+#: part/propertiesdialog.cpp:158
+#, kde-format
 msgid "&Page Sizes"
 msgstr "ページサイズ(&P)"
 
-#: part/propertiesdialog.cpp:224
+#: part/propertiesdialog.cpp:225
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Extract Font"
 msgstr "フォントを抽出(&E)"
 
-#: part/propertiesdialog.cpp:271
+#: part/propertiesdialog.cpp:273
 #, kde-format
 msgid "Type 1"
 msgstr "Type 1"
 
-#: part/propertiesdialog.cpp:274
+#: part/propertiesdialog.cpp:276
 #, kde-format
 msgid "Type 1C"
 msgstr "Type 1C"
 
-#: part/propertiesdialog.cpp:277
+#: part/propertiesdialog.cpp:279
 #, kde-format
 msgctxt "OT means OpenType"
 msgid "Type 1C (OT)"
 msgstr "Type 1C (OT)"
 
-#: part/propertiesdialog.cpp:280
+#: part/propertiesdialog.cpp:282
 #, kde-format
 msgid "Type 3"
 msgstr "Type 3"
 
-#: part/propertiesdialog.cpp:283
+#: part/propertiesdialog.cpp:285
 #, kde-format
 msgid "TrueType"
 msgstr "TrueType"
 
-#: part/propertiesdialog.cpp:286
+#: part/propertiesdialog.cpp:288
 #, kde-format
 msgctxt "OT means OpenType"
 msgid "TrueType (OT)"
 msgstr "TrueType (OT)"
 
-#: part/propertiesdialog.cpp:289
+#: part/propertiesdialog.cpp:291
 #, kde-format
 msgid "CID Type 0"
 msgstr "CID Type 0"
 
-#: part/propertiesdialog.cpp:292
+#: part/propertiesdialog.cpp:294
 #, kde-format
 msgid "CID Type 0C"
 msgstr "CID Type 0C"
 
-#: part/propertiesdialog.cpp:295
+#: part/propertiesdialog.cpp:297
 #, kde-format
 msgctxt "OT means OpenType"
 msgid "CID Type 0C (OT)"
 msgstr "CID Type 0C (OT)"
 
-#: part/propertiesdialog.cpp:298
+#: part/propertiesdialog.cpp:300
 #, kde-format
 msgid "CID TrueType"
 msgstr "CID TrueType"
 
-#: part/propertiesdialog.cpp:301
+#: part/propertiesdialog.cpp:303
 #, kde-format
 msgctxt "OT means OpenType"
 msgid "CID TrueType (OT)"
 msgstr "CID TrueType (OT)"
 
-#: part/propertiesdialog.cpp:304
+#: part/propertiesdialog.cpp:306
 #, kde-format
 msgid "TeX PK"
 msgstr "TeX PK"
 
-#: part/propertiesdialog.cpp:307
+#: part/propertiesdialog.cpp:309
 #, kde-format
 msgid "TeX virtual"
 msgstr "TeX virtual"
 
-#: part/propertiesdialog.cpp:310
+#: part/propertiesdialog.cpp:312
 #, kde-format
 msgid "TeX Font Metric"
 msgstr "TeX Font Metric"
 
-#: part/propertiesdialog.cpp:313
+#: part/propertiesdialog.cpp:315
 #, kde-format
 msgid "TeX FreeType-handled"
 msgstr "TeX FreeType-handled"
 
-#: part/propertiesdialog.cpp:316
+#: part/propertiesdialog.cpp:318
 #, kde-format
 msgctxt "Unknown font type"
 msgid "Unknown"
 msgstr "不明"
 
-#: part/propertiesdialog.cpp:329
+#: part/propertiesdialog.cpp:331
 #, kde-format
 msgid "Embedded (subset)"
 msgstr "埋め込み (サブセット)"
 
-#: part/propertiesdialog.cpp:332
+#: part/propertiesdialog.cpp:334
 #, kde-format
 msgid "Fully embedded"
 msgstr "埋め込み (完全)"
 
-#: part/propertiesdialog.cpp:342
+#: part/propertiesdialog.cpp:344
 #, kde-format
 msgid "No"
 msgstr "いいえ"
 
-#: part/propertiesdialog.cpp:345
+#: part/propertiesdialog.cpp:347
 #, kde-format
 msgid "Yes (subset)"
 msgstr "はい (サブセット)"
 
-#: part/propertiesdialog.cpp:348
+#: part/propertiesdialog.cpp:350
 #, kde-format
 msgid "Yes"
 msgstr "はい"
 
-#: part/propertiesdialog.cpp:367
+#: part/propertiesdialog.cpp:370
 #, kde-format
 msgctxt "Replacing missing font with another one"
 msgid "%1 (substituting with %2)"
 msgstr ""
 
-#: part/propertiesdialog.cpp:369
+#: part/propertiesdialog.cpp:372
 #, kde-format
 msgctxt "font name not available (empty)"
 msgid "[n/a]"
 msgstr "[n/a]"
 
-#: part/propertiesdialog.cpp:383
+#: part/propertiesdialog.cpp:386
 #, kde-format
 msgid "Unknown font"
 msgstr "不明なフォント"
 
-#: part/propertiesdialog.cpp:387
+#: part/propertiesdialog.cpp:392
 #, kde-format
 msgid "Embedded: %1"
 msgstr "埋め込み: %1"
 
-#: part/propertiesdialog.cpp:418
+#: part/propertiesdialog.cpp:426
 #, kde-format
 msgid "Name"
 msgstr "名前"
 
-#: part/propertiesdialog.cpp:421
+#: part/propertiesdialog.cpp:429
 #, kde-format
 msgid "Type"
 msgstr "タイプ"
 
-#: part/propertiesdialog.cpp:424
+#: part/propertiesdialog.cpp:432
 #, kde-format
 msgid "File"
 msgstr "ファイル"
 
-#: part/propertiesdialog.cpp:486
-#, fuzzy, kde-format
-#| msgid "Pages"
+#: part/propertiesdialog.cpp:500
+#, kde-format
 msgid "Page"
-msgstr "ページ数"
+msgstr "ページ"
 
-#: part/propertiesdialog.cpp:489
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Size"
+#: part/propertiesdialog.cpp:503
+#, kde-format
 msgid "Size"
 msgstr "サイズ"
 
 #: part/revisionviewer.cpp:41
-#, fuzzy, kde-format
-#| msgid "Print Preview"
+#, kde-format
 msgid "Revision Preview"
-msgstr "印刷プレビュー"
+msgstr "改訂プレビュー"
 
 #: part/revisionviewer.cpp:53
-#, fuzzy, kde-format
-#| msgid "Where do you want to save %1?"
+#, kde-format
 msgid "Where do you want to save this revision?"
-msgstr "‘%1’ をどこに保存しますか？"
+msgstr "この改訂をどこに保存しますか？"
 
 #: part/revisionviewer.cpp:56
-#, fuzzy, kde-format
-#| msgid "Could not open %1"
+#, kde-format
 msgid "Could not save file %1."
-msgstr "%1 を開けませんでした"
+msgstr "ファイル %1 を保存できませんでした。"
 
 #: part/revisionviewer.cpp:75
-#, fuzzy, kde-format
-#| msgid "Could not open %1. Reason: %2"
+#, kde-format
 msgid "Could not view revision."
-msgstr "%1 を開けませんでした。理由: %2"
+msgstr "改訂を表示できませんでした。"
 
 #: part/searchwidget.cpp:38
 #, kde-format
@@ -5172,11 +5309,65 @@ msgstr "いずれかの語を含む"
 msgid "Filter Options"
 msgstr "フィルタのオプション"
 
-#: part/side_reviews.cpp:64
+#. i18n: ectx: property (windowTitle), widget (QDialog, SelectCertificateDialog)
+#: part/selectcertificatedialog.ui:14
 #, fuzzy, kde-format
-#| msgid ""
-#| "<div align=center><h3>No annotations</h3>To create new annotations press "
-#| "F6 or select <i>Tools -&gt; Review</i> from the menu.</div>"
+#| msgid "Certificates:"
+msgid "Certificates"
+msgstr "証明書:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: part/selectcertificatedialog.ui:20
+#, kde-format
+msgid "Select certificate to sign with:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, reasonLabel)
+#: part/selectcertificatedialog.ui:42 part/signaturepropertiesdialog.cpp:66
+#, kde-format
+msgid "Reason:"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, reasonInput)
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, locationInput)
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, backgroundInput)
+#: part/selectcertificatedialog.ui:49 part/selectcertificatedialog.ui:66
+#: part/selectcertificatedialog.ui:85
+#, fuzzy, kde-format
+#| msgid "Options"
+msgid "optional"
+msgstr "オプション"
+
+#. i18n: ectx: property (text), widget (QLabel, locationLabel)
+#: part/selectcertificatedialog.ui:59 part/signaturepropertiesdialog.cpp:68
+#, kde-format
+msgid "Location:"
+msgstr "場所:"
+
+#. i18n: ectx: property (text), widget (QLabel, backgroundLabel)
+#: part/selectcertificatedialog.ui:76
+#, fuzzy, kde-format
+#| msgctxt "@label:chooser Config dialog, presentation page"
+#| msgid "Background color:"
+msgid "Background:"
+msgstr "背景色:"
+
+#. i18n: ectx: property (text), widget (QPushButton, backgroundButton)
+#: part/selectcertificatedialog.ui:95
+#, kde-format
+msgid "Choose..."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, recentLabel)
+#: part/selectcertificatedialog.ui:107
+#, fuzzy, kde-format
+#| msgctxt "@label:listbox Config dialog, general page"
+#| msgid "Use custom background color:"
+msgid "Recent backgrounds:"
+msgstr "カスタム背景色を使用する:"
+
+#: part/side_reviews.cpp:65
+#, kde-format
 msgid ""
 "<div align=center><h3>No annotations</h3>To create new annotations press F6 "
 "or select <i>Tools -&gt; Annotations</i> from the menu.</div>"
@@ -5184,360 +5375,189 @@ msgstr ""
 "<div align=left><h3>注釈はありません</h3>新しい注釈を作成するには F6 を押すか"
 "「ツール」メニューから「注釈」を選択してください。</div>"
 
-#: part/side_reviews.cpp:136
+#: part/side_reviews.cpp:137
 #, kde-format
 msgid "Group by Page"
 msgstr "ページでグループ化"
 
-#: part/side_reviews.cpp:141
+#: part/side_reviews.cpp:142
 #, kde-format
 msgid "Group by Author"
 msgstr "作者でグループ化"
 
-#: part/side_reviews.cpp:149
-#, fuzzy, kde-format
-#| msgid "Show reviews for current page only"
+#: part/side_reviews.cpp:150
+#, kde-format
 msgid "Show annotations for current page only"
 msgstr "現在のページの注釈のみを表示"
 
-#: part/side_reviews.cpp:159
+#: part/side_reviews.cpp:160
 #, kde-format
 msgid "Expand all elements"
 msgstr ""
 
-#: part/side_reviews.cpp:161
+#: part/side_reviews.cpp:162
 #, kde-format
 msgid "Collapse all elements"
 msgstr ""
 
-#: part/signatureguiutils.cpp:37
+#: part/signaturepanel.cpp:101
 #, kde-format
-msgid "The signature is cryptographically valid."
-msgstr ""
+msgid "Properties"
+msgstr "プロパティ"
 
-#: part/signatureguiutils.cpp:39
-#, kde-format
-msgid "The signature is cryptographically invalid."
-msgstr ""
-
-#: part/signatureguiutils.cpp:41
-#, kde-format
-msgid "Digest Mismatch occurred."
-msgstr ""
-
-#: part/signatureguiutils.cpp:43
-#, kde-format
-msgid "The signature CMS/PKCS7 structure is malformed."
-msgstr ""
-
-#: part/signatureguiutils.cpp:45
-#, kde-format
-msgid "The requested signature is not present in the document."
-msgstr ""
-
-#: part/signatureguiutils.cpp:47
-#, kde-format
-msgid "The signature could not be verified."
-msgstr ""
-
-#: part/signatureguiutils.cpp:55
-#, kde-format
-msgid "Certificate is Trusted."
-msgstr ""
-
-#: part/signatureguiutils.cpp:57
-#, kde-format
-msgid "Certificate issuer isn't Trusted."
-msgstr ""
-
-#: part/signatureguiutils.cpp:59
-#, kde-format
-msgid "Certificate issuer is unknown."
-msgstr ""
-
-#: part/signatureguiutils.cpp:61
-#, kde-format
-msgid "Certificate has been Revoked."
-msgstr ""
-
-#: part/signatureguiutils.cpp:63
-#, kde-format
-msgid "Certificate has Expired."
-msgstr ""
-
-#: part/signatureguiutils.cpp:65
-#, kde-format
-msgid "Certificate has not yet been verified."
-msgstr ""
-
-#: part/signatureguiutils.cpp:67
-#, kde-format
-msgid "Unknown issue with Certificate or corrupted data."
-msgstr ""
-
-#: part/signatureguiutils.cpp:75
-#, kde-format
-msgid "MD2"
-msgstr ""
-
-#: part/signatureguiutils.cpp:77
-#, kde-format
-msgid "MD5"
-msgstr ""
-
-#: part/signatureguiutils.cpp:79
-#, kde-format
-msgid "SHA1"
-msgstr ""
-
-#: part/signatureguiutils.cpp:81
-#, kde-format
-msgid "SHA256"
-msgstr ""
-
-#: part/signatureguiutils.cpp:83
-#, kde-format
-msgid "SHA384"
-msgstr ""
-
-#: part/signatureguiutils.cpp:85
-#, kde-format
-msgid "SHA512"
-msgstr ""
-
-#: part/signatureguiutils.cpp:87
-#, kde-format
-msgid "SHA224"
-msgstr ""
-
-#: part/signatureguiutils.cpp:89
-#, fuzzy, kde-format
-#| msgid "Unknown font"
-msgid "Unknown Algorithm"
-msgstr "不明なフォント"
-
-#: part/signatureguiutils.cpp:97
-#, kde-format
-msgid "RSA"
-msgstr ""
-
-#: part/signatureguiutils.cpp:99
-#, kde-format
-msgid "DSA"
-msgstr ""
-
-#: part/signatureguiutils.cpp:101
-#, kde-format
-msgid "EC"
-msgstr ""
-
-#: part/signatureguiutils.cpp:103 part/signatureguiutils.cpp:106
-#, fuzzy, kde-format
-#| msgid "Unknown File"
-msgid "Unknown Type"
-msgstr "不明なファイル"
-
-#: part/signatureguiutils.cpp:113
-#, kde-format
-msgid "Digital Signature"
-msgstr ""
-
-#: part/signatureguiutils.cpp:115
-#, kde-format
-msgid "Non-Repudiation"
-msgstr ""
-
-#: part/signatureguiutils.cpp:117
-#, kde-format
-msgid "Encrypt Keys"
-msgstr ""
-
-#: part/signatureguiutils.cpp:119
-#, kde-format
-msgid "Decrypt Keys"
-msgstr ""
-
-#: part/signatureguiutils.cpp:121
-#, kde-format
-msgid "Key Agreement"
-msgstr ""
-
-#: part/signatureguiutils.cpp:123
-#, kde-format
-msgid "Sign Certificate"
-msgstr ""
-
-#: part/signatureguiutils.cpp:125
-#, kde-format
-msgid "Sign CRL"
-msgstr ""
-
-#: part/signatureguiutils.cpp:127
-#, kde-format
-msgid "Encrypt Only"
-msgstr ""
-
-#: part/signatureguiutils.cpp:129
-#, kde-format
-msgid "No Usage Specified"
-msgstr ""
-
-#: part/signatureguiutils.cpp:135
-#, kde-format
-msgctxt "Joins the various ways a signature key can be used in a longer string"
-msgid ", "
-msgstr ""
-
-#: part/signaturemodel.cpp:133
-#, kde-format
-msgid "Rev. %1: Signed By %2"
-msgstr ""
-
-#: part/signaturemodel.cpp:139
-#, kde-format
-msgid "Signing Time: %1"
-msgstr ""
-
-#: part/signaturemodel.cpp:144
+#: part/signaturepartutils.cpp:302
 #, fuzzy, kde-format
 #| msgid "Pages: %1"
-msgid "Reason: %1"
+msgctxt "file types in a file open dialog"
+msgid "Images (%1)"
 msgstr "ページ数: %1"
 
-#: part/signaturemodel.cpp:148
+#: part/signaturepartutils.cpp:303
 #, kde-format
-msgid "Field: %1 on page %2"
+msgid "Select background image"
 msgstr ""
 
-# ACCELERATOR changed by translator
-#: part/signaturepanel.cpp:94
+#: part/signaturepartutils.cpp:308
 #, fuzzy, kde-format
-#| msgid "&Properties"
-msgid "Properties"
-msgstr "プロパティ(&T)"
+#| msgctxt "on welcome screen (recent document list)"
+#| msgid "Forget All"
+msgid "Forget image"
+msgstr "すべて忘れる"
 
-#: part/signaturepropertiesdialog.cpp:29
+#: part/signaturepartutils.cpp:309
 #, fuzzy, kde-format
-#| msgid "No description available."
-msgid "Not Available"
-msgstr "説明はありません。"
+#| msgctxt "on welcome screen (recent document list)"
+#| msgid "Forget All"
+msgid "Forget all images"
+msgstr "すべて忘れる"
 
-#: part/signaturepropertiesdialog.cpp:52
+#: part/signaturepartutils.cpp:350
 #, kde-format
-msgid "The document has not been modified since it was signed."
+msgid "Enter password (if any) to unlock certificate: %1"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:55
+#: part/signaturepartutils.cpp:352
 #, kde-format
-msgid ""
-"The revision of the document that was covered by this signature has not been "
-"modified;\n"
-"however there have been subsequent changes to the document."
+msgid "Enter certificate password"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:59
+#: part/signaturepartutils.cpp:365
 #, kde-format
-msgid ""
-"The document has been modified in a way not permitted by a previous signer."
+msgid "Enter document password"
+msgstr "文書のパスワードを入力"
+
+#: part/signaturepartutils.cpp:385
+#, kde-format
+msgid "Save Signed File As"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:61
+#: part/signaturepartutils.h:63
 #, kde-format
-msgid "The document integrity verification could not be completed."
+msgctxt ""
+"Used when suggesting a new name for a digitally signed file. %1 is the old "
+"file name and %2 it's extension"
+msgid "%1_signed.%2"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:64
+#: part/signaturepropertiesdialog.cpp:53
 #, kde-format
 msgid "Validity Status"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:67
+#: part/signaturepropertiesdialog.cpp:56
 #, kde-format
 msgid "Signature Validity:"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:68
+#: part/signaturepropertiesdialog.cpp:57
 #, kde-format
 msgid "Document Modifications:"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:71
-#, fuzzy, kde-format
-#| msgid "Information"
+#: part/signaturepropertiesdialog.cpp:60
+#, kde-format
 msgid "Additional Information"
-msgstr "情報"
+msgstr "追加の情報"
 
-#: part/signaturepropertiesdialog.cpp:74
+#: part/signaturepropertiesdialog.cpp:63
 #, kde-format
 msgid "Signed By:"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:75
+#: part/signaturepropertiesdialog.cpp:64
 #, kde-format
 msgid "Signing Time:"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:77
+#: part/signaturepropertiesdialog.cpp:78
 #, kde-format
-msgid "Reason:"
-msgstr ""
-
-#: part/signaturepropertiesdialog.cpp:79
-#, fuzzy, kde-format
-#| msgid "Annotation"
-#| msgid_plural "%1 Annotations"
-msgid "Location:"
-msgstr "注釈"
-
-#: part/signaturepropertiesdialog.cpp:89
-#, fuzzy, kde-format
-#| msgid "Document Password"
 msgid "Document Version"
-msgstr "文書のパスワード"
+msgstr "文書のバージョン"
 
-#: part/signaturepropertiesdialog.cpp:92
+#: part/signaturepropertiesdialog.cpp:81
 #, kde-format
 msgctxt "Document Revision <current> of <total>"
 msgid "Document Revision %1 of %2"
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:94
+#: part/signaturepropertiesdialog.cpp:83
 #, kde-format
 msgid "View Signed Version..."
 msgstr ""
 
-#: part/signaturepropertiesdialog.cpp:101
+#: part/signaturepropertiesdialog.cpp:90
 #, kde-format
 msgid "View Certificate..."
 msgstr ""
 
-#: part/thumbnaillist.cpp:980
+#: part/signaturepropertiesdialog.cpp:92
+#, fuzzy, kde-format
+#| msgid "Configure Viewer"
+msgid "View in Certificate Manager"
+msgstr "ビューアを設定"
+
+#: part/signaturepropertiesdialog.cpp:96
+#, kde-format
+msgid "KDE Certificate Manager (kleopatra) not found"
+msgstr ""
+
+#: part/thumbnaillist.cpp:1028
 #, kde-format
 msgid "Show bookmarked pages only"
 msgstr "ブックマークされたページのみを表示"
 
-#: part/videowidget.cpp:137
+#: part/videowidget.cpp:145
 #, kde-format
 msgctxt "start the movie playback"
 msgid "Play"
 msgstr "再生"
 
-#: part/videowidget.cpp:140
+#: part/videowidget.cpp:148
 #, kde-format
 msgctxt "pause the movie playback"
 msgid "Pause"
 msgstr "一時停止"
 
-#: part/videowidget.cpp:242
+#: part/videowidget.cpp:254
 #, kde-format
 msgctxt "stop the movie playback"
 msgid "Stop"
 msgstr "停止"
 
+#: part/videowidget.cpp:503
+#, kde-format
+msgid "Videos not supported in this okular"
+msgstr ""
+
+#: part/videowidget.cpp:507
+#, kde-format
+msgid "Videos not supported in this Okular"
+msgstr ""
+
 #: part/widgetconfigurationtoolsbase.cpp:28
 #, kde-format
 msgid "&Add..."
-msgstr ""
+msgstr "追加(&A)..."
 
 #: part/widgetconfigurationtoolsbase.cpp:31
 #, kde-format
@@ -5547,118 +5567,135 @@ msgstr "編集(&E)..."
 #: part/widgetconfigurationtoolsbase.cpp:35
 #, kde-format
 msgid "&Remove"
-msgstr ""
+msgstr "削除(&R)"
 
 #: part/widgetconfigurationtoolsbase.cpp:39
 #, kde-format
 msgid "Move &Up"
-msgstr ""
+msgstr "上へ移動(&U)"
 
 #: part/widgetconfigurationtoolsbase.cpp:43
 #, kde-format
 msgid "Move &Down"
 msgstr "下へ移動(&D)"
 
-#: part/widgetdrawingtools.cpp:104
+#: part/widgetdrawingtools.cpp:105
 #, kde-format
 msgid "Default Drawing Tool #%1"
 msgstr ""
 
-#: part/widgetdrawingtools.cpp:137 part/widgetdrawingtools.cpp:180
+#: part/widgetdrawingtools.cpp:139 part/widgetdrawingtools.cpp:183
 #, kde-format
 msgid "There's already a tool with that name. Using a default one"
 msgstr ""
 
-#: part/widgetdrawingtools.cpp:137 part/widgetdrawingtools.cpp:180
+#: part/widgetdrawingtools.cpp:139 part/widgetdrawingtools.cpp:183
 #, kde-format
 msgid "Duplicated Name"
 msgstr ""
 
-#: shell/main.cpp:71
+#: shell/main.cpp:75
 #, kde-format
 msgid "Page of the document to be shown"
 msgstr "表示する文書のページ"
 
-#: shell/main.cpp:72
+#: shell/main.cpp:76
 #, kde-format
 msgid "Start the document in presentation mode"
 msgstr "文書をプレゼンテーションモードで開く"
 
-#: shell/main.cpp:73
+#: shell/main.cpp:77
 #, kde-format
 msgid "Start with print dialog"
 msgstr ""
 
-#: shell/main.cpp:74
+#: shell/main.cpp:78
 #, kde-format
 msgid "Start with print dialog and exit after printing"
 msgstr ""
 
-#: shell/main.cpp:75
+#: shell/main.cpp:79
 #, kde-format
 msgid "\"Unique instance\" control"
 msgstr "1 つのインスタンスのみ許可"
 
-#: shell/main.cpp:76
+#: shell/main.cpp:80
 #, kde-format
 msgid "Not raise window"
 msgstr ""
 
-#: shell/main.cpp:77
+#: shell/main.cpp:81
 #, kde-format
 msgid "Find a string on the text"
 msgstr ""
 
-#: shell/main.cpp:78
-#, fuzzy, kde-format
-#| msgid "Document to open. Specify '-' to read from stdin."
-msgid "Documents to open. Specify '-' to read from stdin."
-msgstr "開く文書。標準入力から読む場合は “-” を指定。"
+#: shell/main.cpp:82
+#, kde-format
+msgid "sets the external editor command"
+msgstr ""
 
-#: shell/okular_main.cpp:120
+#: shell/main.cpp:83
+#, kde-format
+msgid "Documents to open. Specify '-' to read from stdin."
+msgstr "開く文書。標準入力から読む場合は “-” を指定してください。"
+
+#: shell/okular_main.cpp:60 shell/okular_main.cpp:157
+#, kde-format
+msgid ""
+"You cannot set the editor command in an already running okular instance. "
+"Please disable the tabs and try again. Please note, that unique is also not "
+"supported when setting the editor command at the commandline.\n"
+msgstr ""
+
+#: shell/okular_main.cpp:173
 #, kde-format
 msgid "Error: Can't open more than one document with the --unique switch"
 msgstr ""
 
-#: shell/okular_main.cpp:126
+#: shell/okular_main.cpp:179
 #, kde-format
 msgid "Error: Can't open more than one document with the --presentation switch"
 msgstr ""
 
-#: shell/okular_main.cpp:132
+#: shell/okular_main.cpp:185
 #, kde-format
 msgid "Error: Can't open more than one document with the --print switch"
 msgstr ""
 
-#: shell/okular_main.cpp:138
+#: shell/okular_main.cpp:191
 #, kde-format
 msgid "Error: Can't open more than one document with the --page switch"
 msgstr ""
 
-#: shell/okular_main.cpp:144
+#: shell/okular_main.cpp:197
 #, kde-format
 msgid "Error: Can't open more than one document with the --find switch"
 msgstr ""
 
-#: shell/shell.cpp:91
-#, fuzzy, kde-format
-#| msgid "Unable to find the Okular component."
+#: shell/shell.cpp:175
+#, kde-format
 msgid "Unable to find the Okular component: %1"
-msgstr "Okular のコンポーネントが見つかりません。"
+msgstr "Okular のコンポーネントが見つかりません: %1"
 
-#: shell/shell.cpp:132
+#: shell/shell.cpp:216
+#, fuzzy, kde-format
+#| msgid "Show S&idebar"
+msgid "Sidebar"
+msgstr "サイドバーを表示(&S)"
+
+#: shell/shell.cpp:245
 #, kde-format
 msgid ""
 "There is already a unique Okular instance running. This instance won't be "
 "the unique one."
 msgstr ""
 
-#: shell/shell.cpp:144
+#: shell/shell.cpp:268
 #, kde-format
 msgid "Unable to find the Okular component."
 msgstr "Okular のコンポーネントが見つかりません。"
 
-#: shell/shell.cpp:355
+#: shell/shell.cpp:510
 #, kde-format
 msgid ""
 "Click to open a file\n"
@@ -5667,66 +5704,124 @@ msgstr ""
 "クリックしてファイルを開く\n"
 "最近のファイルを開くにはクリックして保持"
 
-#: shell/shell.cpp:356
+#: shell/shell.cpp:511
 #, kde-format
 msgid ""
 "<b>Click</b> to open a file or <b>Click and hold</b> to select a recent file"
 msgstr "クリックしてファイルを開く、最近のファイルを開くにはクリックして保持"
 
-#: shell/shell.cpp:369
+#: shell/shell.cpp:524
 #, kde-format
 msgid "Next Tab"
 msgstr "次のタブ"
 
-#: shell/shell.cpp:375
+#: shell/shell.cpp:530
 #, kde-format
 msgid "Previous Tab"
 msgstr "前のタブ"
 
-#: shell/shell.cpp:381
+#: shell/shell.cpp:536
 #, kde-format
 msgid "Undo close tab"
-msgstr ""
+msgstr "閉じたタブを戻す"
 
-#: shell/shell.cpp:486
+#: shell/shell.cpp:545
 #, fuzzy, kde-format
-#| msgid "*|All Files"
-msgid "All files (*)"
-msgstr "*|すべてのファイル"
+#| msgid "Show S&idebar"
+msgid "Lock Sidebar"
+msgstr "サイドバーを表示(&S)"
 
-#: shell/shell.cpp:487
+#: shell/shell.cpp:642
+#, kde-format
+msgid "All files (*)"
+msgstr "すべてのファイル (*)"
+
+#: shell/shell.cpp:643
 #, kde-format
 msgid "All supported files (%1)"
-msgstr ""
+msgstr "すべてのサポートされたファイル (%1)"
 
-#: shell/shell.cpp:491
+#: shell/shell.cpp:647
 #, kde-format
 msgid "Open Document"
 msgstr "文書を開く"
 
-#: shell/shell.cpp:592
+#: shell/shell.cpp:757
 #, kde-format
 msgid "Confirm Close"
-msgstr ""
+msgstr "続行"
 
-#: shell/shell.cpp:596
-#, fuzzy, kde-format
-#| msgid "Close"
+#: shell/shell.cpp:761
+#, kde-format
 msgid "Close Tabs"
-msgstr "閉じる"
+msgstr "タブを閉じる"
 
-#: shell/shell.cpp:603
+#: shell/shell.cpp:768
 #, kde-format
 msgid "You are about to close %1 tabs. Are you sure you want to continue?"
-msgstr ""
+msgstr "%1 個のタブが閉じられます。本当に続行しますか？"
 
-#: shell/shell.cpp:605
+#: shell/shell.cpp:770
 #, kde-format
 msgid "Warn me when I attempt to close multiple tabs"
-msgstr ""
+msgstr "複数のタブが閉じられそうになったとき警告する"
 
-# ACCELERATOR changed by translator
+#: shell/welcomescreen.cpp:64
+#, kde-format
+msgid "&Copy Path"
+msgstr "パスをコピー(&C)"
+
+#: shell/welcomescreen.cpp:77
+#, kde-format
+msgid "&Open Containing Folder"
+msgstr "保存フォルダを開く(&O)"
+
+#: shell/welcomescreen.cpp:89
+#, kde-format
+msgctxt "recent items context menu"
+msgid "&Forget This Item"
+msgstr "このアイテムを忘れる(&F)"
+
+#: shell/welcomescreen.cpp:137
+#, kde-format
+msgctxt "on welcome screen"
+msgid "No recent documents"
+msgstr "最近使用した文書はありません"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: shell/welcomescreen.ui:153
+#, kde-format
+msgid "Welcome to Okular"
+msgstr "Okular へようこそ"
+
+#. i18n: ectx: property (text), widget (QPushButton, openButton)
+#: shell/welcomescreen.ui:232
+#, kde-format
+msgctxt "on welcome screen"
+msgid "Open Document..."
+msgstr "文書を開く..."
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: shell/welcomescreen.ui:377
+#, kde-format
+msgctxt "on welcome screen"
+msgid "Recent documents"
+msgstr "最近の文書"
+
+#. i18n: ectx: property (text), widget (QToolButton, forgetAllButton)
+#: shell/welcomescreen.ui:387
+#, kde-format
+msgctxt "on welcome screen (recent document list)"
+msgid "Forget All"
+msgstr "すべて忘れる"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, closeButton)
+#: shell/welcomescreen.ui:455
+#, kde-format
+msgid "Hide welcome screen"
+msgstr "ようこそスクリーンを隠す"
+
 #, fuzzy
-#~| msgid "Change &colors"
-#~ msgid "&Toggle Change Colors"
-#~ msgstr "色を変更する(&G)"
+#~| msgid "Show S&idebar"
+#~ msgid "Show Sidebar"
+#~ msgstr "サイドバーを表示(&S)"

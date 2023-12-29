@@ -8,6 +8,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
+#include "config-okular.h"
+
 #include "generator.h"
 #include "generator_p.h"
 #include "observer.h"
@@ -22,7 +24,7 @@
 #include <QMimeDatabase>
 #include <QTimer>
 
-#ifdef WITH_KWALLET
+#if HAVE_KWALLET
 #include <KWallet>
 #endif
 
@@ -49,21 +51,24 @@ GeneratorPrivate::GeneratorPrivate()
 
 GeneratorPrivate::~GeneratorPrivate()
 {
-    if (mPixmapGenerationThread)
+    if (mPixmapGenerationThread) {
         mPixmapGenerationThread->wait();
+    }
 
     delete mPixmapGenerationThread;
 
-    if (mTextPageGenerationThread)
+    if (mTextPageGenerationThread) {
         mTextPageGenerationThread->wait();
+    }
 
     delete mTextPageGenerationThread;
 }
 
 PixmapGenerationThread *GeneratorPrivate::pixmapGenerationThread()
 {
-    if (mPixmapGenerationThread)
+    if (mPixmapGenerationThread) {
         return mPixmapGenerationThread;
+    }
 
     Q_Q(Generator);
     mPixmapGenerationThread = new PixmapGenerationThread(q);
@@ -75,8 +80,9 @@ PixmapGenerationThread *GeneratorPrivate::pixmapGenerationThread()
 
 TextPageGenerationThread *GeneratorPrivate::textPageGenerationThread()
 {
-    if (mTextPageGenerationThread)
+    if (mTextPageGenerationThread) {
         return mTextPageGenerationThread;
+    }
 
     Q_Q(Generator);
     mTextPageGenerationThread = new TextPageGenerationThread(q);
@@ -109,8 +115,9 @@ void GeneratorPrivate::pixmapGenerationFinished()
         request->page()->setPixmap(request->observer(), new QPixmap(QPixmap::fromImage(img)), request->normalizedRect());
         const int pageNumber = request->page()->number();
 
-        if (mPixmapGenerationThread->calcBoundingBox())
+        if (mPixmapGenerationThread->calcBoundingBox()) {
             q->updatePageBoundingBox(pageNumber, mPixmapGenerationThread->boundingBox());
+        }
     } else {
         // Cancel the text page generation too if it's still running
         if (mTextPageGenerationThread && mTextPageGenerationThread->isRunning()) {
@@ -303,8 +310,9 @@ void Generator::generatePixmap(PixmapRequest *request)
     d->mPixmapReady = true;
 
     signalPixmapRequestDone(request);
-    if (calcBoundingBox)
+    if (calcBoundingBox) {
         updatePageBoundingBox(pageNumber, Utils::imageBoundingBox(&img));
+    }
 }
 
 bool Generator::canGenerateTextPage() const
@@ -377,17 +385,16 @@ void Generator::pageSizeChanged(const PageSize &, const PageSize &)
 {
 }
 
-bool Generator::print(QPrinter &)
+Document::PrintError Generator::print(QPrinter &)
 {
-    return false;
-}
-
-Generator::PrintError Generator::printError() const
-{
-    return UnknownPrintError;
+    return Document::UnknownPrintError;
 }
 
 void Generator::opaqueAction(const BackendOpaqueAction * /*action*/)
+{
+}
+
+void Generator::freeOpaqueActionContents(const BackendOpaqueAction & /*action*/)
 {
 }
 
@@ -409,7 +416,7 @@ bool Generator::exportTo(const QString &, const ExportFormat &)
 
 void Generator::walletDataForFile(const QString &fileName, QString *walletName, QString *walletFolder, QString *walletKey) const
 {
-#ifdef WITH_KWALLET
+#if HAVE_KWALLET
     *walletKey = fileName.section(QLatin1Char('/'), -1, -1);
     *walletName = KWallet::Wallet::NetworkWallet();
     *walletFolder = QStringLiteral("KPdf");
@@ -425,9 +432,9 @@ bool Generator::hasFeature(GeneratorFeature feature) const
 void Generator::signalPixmapRequestDone(PixmapRequest *request)
 {
     Q_D(Generator);
-    if (d->m_document)
+    if (d->m_document) {
         d->m_document->requestDone(request);
-    else {
+    } else {
         delete request;
     }
 }
@@ -435,16 +442,18 @@ void Generator::signalPixmapRequestDone(PixmapRequest *request)
 void Generator::signalTextGenerationDone(Page *page, TextPage *textPage)
 {
     Q_D(Generator);
-    if (d->m_document)
+    if (d->m_document) {
         d->m_document->textGenerationDone(page);
-    else
+    } else {
         delete textPage;
+    }
 }
 
 void Generator::signalPartialPixmapRequest(PixmapRequest *request, const QImage &image)
 {
-    if (request->shouldAbortRender())
+    if (request->shouldAbortRender()) {
         return;
+    }
 
     PagePrivate *pagePrivate = PagePrivate::get(request->page());
     pagePrivate->setPixmap(request->observer(), new QPixmap(QPixmap::fromImage(image)), request->normalizedRect(), true /* isPartialPixmap */);
@@ -465,35 +474,19 @@ const Document *Generator::document() const
 void Generator::setFeature(GeneratorFeature feature, bool on)
 {
     Q_D(Generator);
-    if (on)
+    if (on) {
         d->m_features.insert(feature);
-    else
+    } else {
         d->m_features.remove(feature);
-}
-
-QVariant Generator::documentMetaData(const QString &key, const QVariant &option) const
-{
-    Q_D(const Generator);
-    if (!d->m_document)
-        return QVariant();
-
-    if (key == QLatin1String("PaperColor"))
-        return documentMetaData(PaperColorMetaData, option);
-    if (key == QLatin1String("GraphicsAntialias"))
-        return documentMetaData(GraphicsAntialiasMetaData, option);
-    if (key == QLatin1String("TextAntialias"))
-        return documentMetaData(TextAntialiasMetaData, option);
-    if (key == QLatin1String("TextHinting"))
-        return documentMetaData(TextHintingMetaData, option);
-
-    return QVariant();
+    }
 }
 
 QVariant Generator::documentMetaData(const DocumentMetaDataKey key, const QVariant &option) const
 {
     Q_D(const Generator);
-    if (!d->m_document)
+    if (!d->m_document) {
         return QVariant();
+    }
 
     return d->m_document->documentMetaData(key, option);
 }
@@ -507,15 +500,17 @@ QMutex *Generator::userMutex() const
 void Generator::updatePageBoundingBox(int page, const NormalizedRect &boundingBox)
 {
     Q_D(Generator);
-    if (d->m_document) // still connected to document?
+    if (d->m_document) { // still connected to document?
         d->m_document->setPageBoundingBox(page, boundingBox);
+    }
 }
 
-void Generator::requestFontData(const Okular::FontInfo & /*font*/, QByteArray * /*data*/)
+QByteArray Generator::requestFontData(const Okular::FontInfo & /*font*/)
 {
+    return {};
 }
 
-void Generator::setDPI(const QSizeF &dpi) // clazy:exclude=function-args-by-value TODO remove the & when we do a BIC change elsewhere
+void Generator::setDPI(const QSizeF dpi)
 {
     Q_D(Generator);
     d->m_dpi = dpi;
@@ -644,8 +639,9 @@ bool PixmapRequest::isTile() const
 
 void PixmapRequest::setNormalizedRect(const NormalizedRect &rect)
 {
-    if (d->mNormalizedRect == rect)
+    if (d->mNormalizedRect == rect) {
         return;
+    }
 
     d->mNormalizedRect = rect;
 }
@@ -682,7 +678,7 @@ PixmapRequestPrivate *PixmapRequestPrivate::get(const PixmapRequest *req)
 
 void PixmapRequestPrivate::swap()
 {
-    qSwap(mWidth, mHeight);
+    std::swap(mWidth, mHeight);
 }
 
 class Okular::ExportFormatPrivate : public QSharedData
@@ -730,8 +726,9 @@ ExportFormat::ExportFormat(const ExportFormat &other)
 
 ExportFormat &ExportFormat::operator=(const ExportFormat &other)
 {
-    if (this == &other)
+    if (this == &other) {
         return *this;
+    }
 
     d = other.d;
 

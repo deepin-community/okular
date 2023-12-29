@@ -19,11 +19,11 @@
 >yurchor@ukr.net</email
 ></author>
 <date
->14 лютого 2019 року</date>
+>19 лютого 2022 року</date>
 <releaseinfo
->Okular 1.7</releaseinfo>
+>Okular 22.04</releaseinfo>
 <productname
->Програми KDE</productname>
+>KDE Gear</productname>
 </refentryinfo>
 
 <refmeta>
@@ -151,6 +151,21 @@
 <listitem>
 <para
 >Знайти рядок у тексті.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--editor-cmd <replaceable
+>рядок</replaceable
+></option
+></term>
+<listitem>
+<para
+>Встановлює команду зовнішнього редактора. Встановити команду редактора у вже запущеному екземплярі Okular не можна. Будь ласка, зауважте, якщо редактор визначено у командному рядку, ви не зможете скористатися параметром <option
+>--unique</option
+>.</para>
 </listitem>
 </varlistentry>
 </variablelist>

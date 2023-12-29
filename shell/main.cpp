@@ -28,6 +28,15 @@
 int main(int argc, char **argv)
 {
     /**
+     * enable dark mode for title bar on Windows
+     */
+#if defined(Q_OS_WIN)
+    if (!qEnvironmentVariableIsSet("QT_QPA_PLATFORM")) {
+        qputenv("QT_QPA_PLATFORM", "windows:darkmode=1");
+    }
+#endif
+
+    /**
      * enable high dpi support
      */
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
@@ -35,13 +44,8 @@ int main(int argc, char **argv)
 
     /**
      * allow fractional scaling
-     * we only activate this on Windows, it seems to creates problems on unices
-     * (and there the fractional scaling with the QT_... env vars as set by KScreen works)
-     * see bug 416078
      */
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0) && defined(Q_OS_WIN)
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
-#endif
 
     QCoreApplication::setAttribute(Qt::AA_CompressTabletEvents);
 
@@ -75,6 +79,7 @@ int main(int argc, char **argv)
     parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("unique"), i18n("\"Unique instance\" control")));
     parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("noraise"), i18n("Not raise window")));
     parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("find"), i18n("Find a string on the text"), QStringLiteral("string")));
+    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("editor-cmd"), i18n("sets the external editor command"), QStringLiteral("string")));
     parser.addPositionalArgument(QStringLiteral("urls"), i18n("Documents to open. Specify '-' to read from stdin."));
 
     parser.process(app);
@@ -86,8 +91,9 @@ int main(int argc, char **argv)
     } else {
         // no session.. just start up normally
         QStringList paths;
-        for (int i = 0; i < parser.positionalArguments().count(); ++i)
+        for (int i = 0; i < parser.positionalArguments().count(); ++i) {
             paths << parser.positionalArguments().at(i);
+        }
         Okular::Status status = Okular::main(paths, ShellUtils::serializeOptions(parser));
         switch (status) {
         case Okular::Error:

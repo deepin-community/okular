@@ -41,7 +41,7 @@ class CloseButton : public QPushButton
     Q_OBJECT
 
 public:
-    CloseButton(QWidget *parent = Q_NULLPTR)
+    explicit CloseButton(QWidget *parent = Q_NULLPTR)
         : QPushButton(parent)
     {
         setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -59,7 +59,7 @@ class MovableTitle : public QWidget
     Q_OBJECT
 
 public:
-    MovableTitle(AnnotWindow *parent)
+    explicit MovableTitle(AnnotWindow *parent)
         : QWidget(parent)
     {
         QVBoxLayout *mainlay = new QVBoxLayout(this);
@@ -125,8 +125,9 @@ public:
 
     bool eventFilter(QObject *obj, QEvent *e) override
     {
-        if (obj != titleLabel && obj != authorLabel && obj != dateLabel)
+        if (obj != titleLabel && obj != authorLabel && obj != dateLabel) {
             return false;
+        }
 
         QMouseEvent *me = nullptr;
         switch (e->type()) {
@@ -138,10 +139,36 @@ public:
         case QEvent::MouseButtonRelease:
             mousePressPos = QPoint();
             break;
-        case QEvent::MouseMove:
+        case QEvent::MouseMove: {
             me = (QMouseEvent *)e;
-            parentWidget()->move(me->pos() - mousePressPos + parentWidget()->pos());
+
+            // viewport info
+            const QPoint topLeftPoint = parentWidget()->parentWidget()->pos();
+            const int viewportHeight = parentWidget()->parentWidget()->height();
+            const int viewportWidth = parentWidget()->parentWidget()->width();
+
+            // annotation's popup window info
+            QPoint newPositionPoint = me->pos() - mousePressPos + parentWidget()->pos();
+            const int annotHeight = parentWidget()->height();
+            const int annotWidth = parentWidget()->width();
+
+            // make sure x is in range
+            if (newPositionPoint.x() < topLeftPoint.x()) {
+                newPositionPoint.setX(topLeftPoint.x());
+            } else if (newPositionPoint.x() + annotWidth > topLeftPoint.x() + viewportWidth) {
+                newPositionPoint.setX(topLeftPoint.x() + viewportWidth - annotWidth);
+            }
+
+            // make sure y is in range
+            if (newPositionPoint.y() < topLeftPoint.y()) {
+                newPositionPoint.setY(topLeftPoint.y());
+            } else if (newPositionPoint.y() + annotHeight > topLeftPoint.y() + viewportHeight) {
+                newPositionPoint.setY(topLeftPoint.y() + viewportHeight - annotHeight);
+            }
+
+            parentWidget()->move(newPositionPoint);
             break;
+        }
         default:
             return false;
         }
@@ -210,8 +237,9 @@ AnnotWindow::AnnotWindow(QWidget *parent, Okular::Annotation *annot, Okular::Doc
     connect(textEdit, &KTextEdit::aboutToShowContextMenu, this, &AnnotWindow::slotUpdateUndoAndRedoInContextMenu);
     connect(m_document, &Okular::Document::annotationContentsChangedByUndoRedo, this, &AnnotWindow::slotHandleContentsChangedByUndoRedo);
 
-    if (!canEditAnnotation)
+    if (!canEditAnnotation) {
         textEdit->setReadOnly(true);
+    }
 
     QVBoxLayout *mainlay = new QVBoxLayout(this);
     mainlay->setContentsMargins(2, 2, 2, 2);
@@ -226,9 +254,9 @@ AnnotWindow::AnnotWindow(QWidget *parent, Okular::Annotation *annot, Okular::Doc
     lowerlay->addWidget(sb);
 
     m_latexRenderer = new GuiUtils::LatexRenderer();
-    // The emit below is not wrong even if emitting signals from the constructor it's usually wrong
+    // The Q_EMIT below is not wrong even if emitting signals from the constructor it's usually wrong
     // in this case the signal it's connected to inside MovableTitle constructor a few lines above
-    emit containsLatex(GuiUtils::LatexRenderer::mightContainLatex(m_annot->contents())); // clazy:exclude=incorrect-emit
+    Q_EMIT containsLatex(GuiUtils::LatexRenderer::mightContainLatex(m_annot->contents())); // clazy:exclude=incorrect-emit
 
     m_title->setTitle(m_annot->window().summary());
     m_title->connectOptionButton(this, SLOT(slotOptionBtn()));
@@ -258,11 +286,13 @@ void AnnotWindow::reloadInfo()
     QColor newcolor;
     if (m_annot->subType() == Okular::Annotation::AText) {
         Okular::TextAnnotation *textAnn = static_cast<Okular::TextAnnotation *>(m_annot);
-        if (textAnn->textType() == Okular::TextAnnotation::InPlace && textAnn->inplaceIntent() == Okular::TextAnnotation::TypeWriter)
+        if (textAnn->textType() == Okular::TextAnnotation::InPlace && textAnn->inplaceIntent() == Okular::TextAnnotation::TypeWriter) {
             newcolor = QColor(0xfd, 0xfd, 0x96);
+        }
     }
-    if (!newcolor.isValid())
+    if (!newcolor.isValid()) {
         newcolor = m_annot->style().color().isValid() ? QColor(m_annot->style().color().red(), m_annot->style().color().green(), m_annot->style().color().blue(), 255) : Qt::yellow;
+    }
     if (newcolor != m_color) {
         m_color = newcolor;
         setPalette(QPalette(m_color));
@@ -315,13 +345,23 @@ bool AnnotWindow::eventFilter(QObject *o, QEvent *e)
 
 void AnnotWindow::slotUpdateUndoAndRedoInContextMenu(QMenu *menu)
 {
-    if (!menu)
+    if (!menu) {
         return;
+    }
 
     QList<QAction *> actionList = menu->actions();
     enum { UndoAct, RedoAct, CutAct, CopyAct, PasteAct, ClearAct, SelectAllAct, NCountActs };
 
-    QAction *kundo = KStandardAction::create(KStandardAction::Undo, m_document, SLOT(undo()), menu);
+    QAction *kundo = KStandardAction::create(
+        KStandardAction::Undo,
+        m_document,
+        [doc = m_document] {
+            // We need a QueuedConnection because undoing may end up destroying the menu this action is on
+            // because it will undo the addition of the annotation. If it's not queued things gets unhappy
+            // because the menu is destroyed in the middle of processing the click on the menu itself
+            QMetaObject::invokeMethod(doc, &Okular::Document::undo, Qt::QueuedConnection);
+        },
+        menu);
     QAction *kredo = KStandardAction::create(KStandardAction::Redo, m_document, SLOT(redo()), menu);
     connect(m_document, &Okular::Document::canUndoChanged, kundo, &QAction::setEnabled);
     connect(m_document, &Okular::Document::canRedoChanged, kredo, &QAction::setEnabled);
@@ -342,7 +382,7 @@ void AnnotWindow::slotUpdateUndoAndRedoInContextMenu(QMenu *menu)
 void AnnotWindow::slotOptionBtn()
 {
     // TODO: call context menu in pageview
-    // emit sig...
+    // Q_EMIT sig...
 }
 
 void AnnotWindow::slotsaveWindowText()
@@ -351,7 +391,7 @@ void AnnotWindow::slotsaveWindowText()
     const int cursorPos = textEdit->textCursor().position();
     if (contents != m_annot->contents()) {
         m_document->editPageAnnotationContents(m_page, m_annot, contents, cursorPos, m_prevCursorPos, m_prevAnchorPos);
-        emit containsLatex(GuiUtils::LatexRenderer::mightContainLatex(textEdit->toPlainText()));
+        Q_EMIT containsLatex(GuiUtils::LatexRenderer::mightContainLatex(textEdit->toPlainText()));
     }
     m_prevCursorPos = cursorPos;
     m_prevAnchorPos = textEdit->textCursor().anchor();
@@ -372,22 +412,22 @@ void AnnotWindow::renderLatex(bool render)
         GuiUtils::LatexRenderer::Error errorCode = m_latexRenderer->renderLatexInHtml(contents, fontColor, fontSize, Okular::Utils::realDpi(nullptr).width(), latexOutput);
         switch (errorCode) {
         case GuiUtils::LatexRenderer::LatexNotFound:
-            KMessageBox::sorry(this, i18n("Cannot find latex executable."), i18n("LaTeX rendering failed"));
+            KMessageBox::error(this, i18n("Cannot find latex executable."), i18n("LaTeX rendering failed"));
             m_title->uncheckLatexButton();
             renderLatex(false);
             break;
         case GuiUtils::LatexRenderer::DvipngNotFound:
-            KMessageBox::sorry(this, i18n("Cannot find dvipng executable."), i18n("LaTeX rendering failed"));
+            KMessageBox::error(this, i18n("Cannot find dvipng executable."), i18n("LaTeX rendering failed"));
             m_title->uncheckLatexButton();
             renderLatex(false);
             break;
         case GuiUtils::LatexRenderer::LatexFailed:
-            KMessageBox::detailedSorry(this, i18n("A problem occurred during the execution of the 'latex' command."), latexOutput, i18n("LaTeX rendering failed"));
+            KMessageBox::detailedError(this, i18n("A problem occurred during the execution of the 'latex' command."), latexOutput, i18n("LaTeX rendering failed"));
             m_title->uncheckLatexButton();
             renderLatex(false);
             break;
         case GuiUtils::LatexRenderer::DvipngFailed:
-            KMessageBox::sorry(this, i18n("A problem occurred during the execution of the 'dvipng' command."), i18n("LaTeX rendering failed"));
+            KMessageBox::error(this, i18n("A problem occurred during the execution of the 'dvipng' command."), i18n("LaTeX rendering failed"));
             m_title->uncheckLatexButton();
             renderLatex(false);
             break;
@@ -419,7 +459,7 @@ void AnnotWindow::slotHandleContentsChangedByUndoRedo(Okular::Annotation *annot,
     m_prevAnchorPos = anchorPos;
     textEdit->setTextCursor(c);
     textEdit->setFocus();
-    emit containsLatex(GuiUtils::LatexRenderer::mightContainLatex(m_annot->contents()));
+    Q_EMIT containsLatex(GuiUtils::LatexRenderer::mightContainLatex(m_annot->contents()));
 }
 
 #include "annotwindow.moc"

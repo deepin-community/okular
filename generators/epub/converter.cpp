@@ -48,7 +48,7 @@ QString _strPack(char **str, int size)
     return res;
 }
 
-// emit data wrap function that map between epub metadata to okular's
+// Q_EMIT data wrap function that map between epub metadata to okular's
 void Converter::_emitData(Okular::DocumentInfo::Key key, enum epub_metadata type)
 {
     int size;
@@ -57,9 +57,10 @@ void Converter::_emitData(Okular::DocumentInfo::Key key, enum epub_metadata type
     data = epub_get_metadata(mTextDocument->getEpub(), type, &size);
 
     if (data) {
-        emit addMetaData(key, _strPack((char **)data, size));
-        for (int i = 0; i < size; i++)
+        Q_EMIT addMetaData(key, _strPack((char **)data, size));
+        for (int i = 0; i < size; i++) {
             free(data[i]);
+        }
         free(data);
     }
 }
@@ -86,25 +87,27 @@ void Converter::_handle_anchors(const QTextBlock &start, const QString &name)
                 QUrl href(hrefString);
                 if (href.isValid() && !href.isEmpty()) {
                     if (href.isRelative()) { // Inside document link
-                        if (!hrefString.indexOf(QLatin1Char('#')))
+                        if (!hrefString.indexOf(QLatin1Char('#'))) {
                             hrefString = name + hrefString;
-                        else if (QFileInfo(hrefString).path() == QLatin1String(".") && curDir != QLatin1String("."))
+                        } else if (QFileInfo(hrefString).path() == QLatin1String(".") && curDir != QLatin1String(".")) {
                             hrefString = curDir + QLatin1Char('/') + hrefString;
+                        }
 
                         // QTextCharFormat sometimes splits a link in two
                         // if there's no white space between words & the first one is an anchor
                         // consider whole word to be an anchor
                         ++fit;
                         int fragLen = frag.length();
-                        if (!fit.atEnd() && ((fit.fragment().position() - frag.position()) == 1))
+                        if (!fit.atEnd() && ((fit.fragment().position() - frag.position()) == 1)) {
                             fragLen += fit.fragment().length();
+                        }
                         --fit;
 
                         _insert_local_links(hrefString, QPair<int, int>(frag.position(), frag.position() + fragLen));
                     } else { // Outside document link
                         Okular::BrowseAction *action = new Okular::BrowseAction(QUrl(href.toString()));
 
-                        emit addAction(action, frag.position(), frag.position() + frag.length());
+                        Q_EMIT addAction(action, frag.position(), frag.position() + frag.length());
                     }
                 }
 
@@ -157,7 +160,7 @@ QTextDocument *Converter::convert(const QString &fileName)
 {
     EpubDocument *newDocument = new EpubDocument(fileName, generator()->generalSettings()->font());
     if (!newDocument->isValid()) {
-        emit error(i18n("Error while opening the EPub document."), -1);
+        Q_EMIT error(i18n("Error while opening the EPub document."), -1);
         delete newDocument;
         return nullptr;
     }
@@ -179,7 +182,7 @@ QTextDocument *Converter::convert(const QString &fileName)
     _emitData(Okular::DocumentInfo::CreationDate, EPUB_DATE);
     _emitData(Okular::DocumentInfo::Category, EPUB_TYPE);
     _emitData(Okular::DocumentInfo::Copyright, EPUB_RIGHTS);
-    emit addMetaData(Okular::DocumentInfo::MimeType, QStringLiteral("application/epub+zip"));
+    Q_EMIT addMetaData(Okular::DocumentInfo::MimeType, QStringLiteral("application/epub+zip"));
 
     struct eiterator *it;
 
@@ -230,14 +233,18 @@ QTextDocument *Converter::convert(const QString &fileName)
                         int ht = images.at(i).toElement().attribute(QStringLiteral("height")).toInt();
                         int wd = images.at(i).toElement().attribute(QStringLiteral("width")).toInt();
                         QImage img = mTextDocument->loadResource(QTextDocument::ImageResource, QUrl(lnk)).value<QImage>();
-                        if (ht == 0)
+                        if (ht == 0) {
                             ht = img.height();
-                        if (wd == 0)
+                        }
+                        if (wd == 0) {
                             wd = img.width();
-                        if (ht > maxHeight)
+                        }
+                        if (ht > maxHeight) {
                             ht = maxHeight;
-                        if (wd > maxWidth)
+                        }
+                        if (wd > maxWidth) {
                             wd = maxWidth;
+                        }
                         mTextDocument->addResource(QTextDocument::ImageResource, QUrl(lnk), img);
                         QDomDocument newDoc;
                         newDoc.setContent(QStringLiteral("<img src=\"%1\" height=\"%2\" width=\"%3\" />").arg(lnk).arg(ht).arg(wd));
@@ -318,7 +325,7 @@ QTextDocument *Converter::convert(const QString &fileName)
             const int posEnd = csr.position();
             const QRect videoRect(startPoint, videoSize);
             movieAnnots[index]->setBoundingRectangle(Okular::NormalizedRect(videoRect, mTextDocument->pageSize().width(), mTextDocument->pageSize().height()));
-            emit addAnnotation(movieAnnots[index++], posStart, posEnd);
+            Q_EMIT addAnnotation(movieAnnots[index++], posStart, posEnd);
             csr.movePosition(QTextCursor::NextWord);
         }
 
@@ -332,7 +339,7 @@ QTextDocument *Converter::convert(const QString &fileName)
             const int posEnd = csr.position();
             qDebug() << posStart << posEnd;
             ;
-            emit addAction(soundActions[index++], posStart, posEnd);
+            Q_EMIT addAction(soundActions[index++], posStart, posEnd);
             csr.movePosition(QTextCursor::NextWord);
         }
 
@@ -346,8 +353,9 @@ QTextDocument *Converter::convert(const QString &fileName)
         // useful when the last line had a bullet
         _cursor->insertBlock(QTextBlockFormat());
 
-        while (mTextDocument->pageCount() == page)
+        while (mTextDocument->pageCount() == page) {
             _cursor->insertText(QStringLiteral("\n"));
+        }
 
     } while (epub_it_get_next(it));
 
@@ -358,8 +366,9 @@ QTextDocument *Converter::convert(const QString &fileName)
 
     // FIXME: support other method beside NAVMAP and GUIDE
     tit = epub_get_titerator(mTextDocument->getEpub(), TITERATOR_NAVMAP, 0);
-    if (!tit)
+    if (!tit) {
         tit = epub_get_titerator(mTextDocument->getEpub(), TITERATOR_GUIDE, 0);
+    }
 
     if (tit) {
         do {
@@ -371,48 +380,56 @@ QTextDocument *Converter::convert(const QString &fileName)
 
                 if (mSectionMap.contains(link)) {
                     block = mSectionMap.value(link);
-                } else { // load missing resource
-                    char *data = nullptr;
-                    // epub_get_data can't handle whitespace url encodings
-                    QByteArray ba = link.replace(QLatin1String("%20"), QLatin1String(" ")).toLatin1();
-                    const char *clinkClean = ba.data();
-                    int size = epub_get_data(mTextDocument->getEpub(), clinkClean, &data);
+                } else {
+                    const QString percentDecodedLink = QUrl::fromPercentEncoding(link.toUtf8());
+                    if (mSectionMap.contains(percentDecodedLink)) {
+                        block = mSectionMap.value(percentDecodedLink);
+                    } else { // load missing resource
+                        char *data = nullptr;
+                        // epub_get_data can't handle whitespace url encodings
+                        QByteArray ba = link.replace(QLatin1String("%20"), QLatin1String(" ")).toLatin1();
+                        const char *clinkClean = ba.data();
+                        int size = epub_get_data(mTextDocument->getEpub(), clinkClean, &data);
 
-                    if (data) {
-                        _cursor->insertBlock();
+                        if (data) {
+                            _cursor->insertBlock();
 
-                        // try to load as image and if not load as html
-                        block = _cursor->block();
-                        QImage image;
-                        mSectionMap.insert(link, block);
-                        if (image.loadFromData((unsigned char *)data, size)) {
-                            mTextDocument->addResource(QTextDocument::ImageResource, QUrl(link), image);
-                            _cursor->insertImage(link);
-                        } else {
-                            _cursor->insertHtml(QString::fromUtf8(data));
-                            // Add anchors to hashes
-                            _handle_anchors(block, link);
+                            // try to load as image and if not load as html
+                            block = _cursor->block();
+                            QImage image;
+                            mSectionMap.insert(link, block);
+                            if (image.loadFromData((unsigned char *)data, size)) {
+                                mTextDocument->addResource(QTextDocument::ImageResource, QUrl(link), image);
+                                _cursor->insertImage(link);
+                            } else {
+                                _cursor->insertHtml(QString::fromUtf8(data));
+                                // Add anchors to hashes
+                                _handle_anchors(block, link);
+                            }
+
+                            // Start new file in a new page
+                            int page = mTextDocument->pageCount();
+                            while (mTextDocument->pageCount() == page) {
+                                _cursor->insertText(QStringLiteral("\n"));
+                            }
                         }
 
-                        // Start new file in a new page
-                        int page = mTextDocument->pageCount();
-                        while (mTextDocument->pageCount() == page)
-                            _cursor->insertText(QStringLiteral("\n"));
+                        free(data);
                     }
-
-                    free(data);
                 }
 
                 if (block.isValid()) { // be sure we actually got a block
-                    emit addTitle(epub_tit_get_curr_depth(tit), QString::fromUtf8(label), block);
+                    Q_EMIT addTitle(epub_tit_get_curr_depth(tit), QString::fromUtf8(label), block);
                 } else {
                     qDebug() << "Error: no block found for" << link;
                 }
 
-                if (clink)
+                if (clink) {
                     free(clink);
-                if (label)
+                }
+                if (label) {
                     free(label);
+                }
             }
         } while (epub_tit_next(tit));
 
@@ -434,7 +451,7 @@ QTextDocument *Converter::convert(const QString &fileName)
 
                 Okular::GotoAction *action = new Okular::GotoAction(QString(), viewport);
 
-                emit addAction(action, hit.value()[i].first, hit.value()[i].second);
+                Q_EMIT addAction(action, hit.value()[i].first, hit.value()[i].second);
             } else {
                 qDebug() << "Error: no block found for " << hit.key();
             }

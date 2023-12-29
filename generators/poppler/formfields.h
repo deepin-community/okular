@@ -9,7 +9,6 @@
 #define _OKULAR_GENERATOR_PDF_FORMFIELDS_H_
 
 #include "core/form.h"
-#include <config-okular-poppler.h>
 #include <poppler-form.h>
 
 class PopplerFormFieldButton : public Okular::FormFieldButton
@@ -124,7 +123,7 @@ private:
 class PopplerFormFieldSignature : public Okular::FormFieldSignature
 {
 public:
-    PopplerFormFieldSignature(std::unique_ptr<Poppler::FormFieldSignature> field);
+    explicit PopplerFormFieldSignature(std::unique_ptr<Poppler::FormFieldSignature> field);
     ~PopplerFormFieldSignature() override;
 
     // inherited from Okular::FormField
@@ -138,11 +137,12 @@ public:
 
     // inherited from Okular::FormFieldSignature
     SignatureType signatureType() const override;
-    const Okular::SignatureInfo &signatureInfo() const override;
+    Okular::SignatureInfo signatureInfo() const override;
+    bool sign(const Okular::NewSignatureData &oData, const QString &newPath) const override;
 
 private:
     std::unique_ptr<Poppler::FormFieldSignature> m_field;
-    Okular::SignatureInfo *m_info;
+    Okular::SignatureInfo m_info;
     Okular::NormalizedRect m_rect;
     int m_id;
 };

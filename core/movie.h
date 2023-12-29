@@ -58,7 +58,7 @@ public:
     /**
      * Sets the size for the movie.
      */
-    void setSize(const QSize &aspect); // TODO remove the & when we do a BIC change elsewhere
+    void setSize(const QSize aspect);
 
     /**
      * Returns the size of the movie.
@@ -116,6 +116,16 @@ public:
      * Whether to play the movie automatically
      */
     bool autoPlay() const;
+
+    /**
+     * Sets whether to start the movie in paused mode
+     */
+    void setStartPaused(bool startPaused);
+
+    /**
+     * Whether to start the movie in paused mode
+     */
+    bool startPaused() const;
 
     /**
      * Sets whether to show a poster image.

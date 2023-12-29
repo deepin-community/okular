@@ -111,7 +111,7 @@ public:
 
 protected:
     /// @cond PRIVATE
-    Action(ActionPrivate &dd);
+    explicit Action(ActionPrivate &dd);
     Q_DECLARE_PRIVATE(Action)
     ActionPrivate *d_ptr;
     /// @endcond
@@ -279,8 +279,6 @@ class OKULARCORE_EXPORT DocumentAction : public Action
 public:
     /**
      * Describes the possible action types.
-     *
-     * WARNING KEEP IN SYNC WITH POPPLER!
      */
     enum DocumentActionType {
         PageFirst = 1,       ///< Jump to first page
@@ -294,7 +292,9 @@ public:
         EndPresentation = 9, ///< End presentation
         Find = 10,           ///< Open find dialog
         GoToPage = 11,       ///< Goto page
-        Close = 12           ///< Close document
+        Close = 12,          ///< Close document
+        Print = 13,          ///< Print the document @since 22.04
+        SaveAs = 14          ///< SaveAs the document @since 22.04
     };
 
     /**

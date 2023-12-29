@@ -12,10 +12,13 @@
 
 #include <poppler-annotation.h>
 #include <poppler-qt5.h>
+#include <poppler-version.h>
+#define POPPLER_VERSION_MACRO ((POPPLER_VERSION_MAJOR << 16) | (POPPLER_VERSION_MINOR << 8) | (POPPLER_VERSION_MICRO))
 
 #include <QMutex>
 
-#include "config-okular-poppler.h"
+#include <unordered_map>
+
 #include "core/annotations.h"
 
 extern Okular::Annotation *createAnnotationFromPopplerAnnotation(Poppler::Annotation *popplerAnnotation, const Poppler::Page &popplerPage, bool *doDelete);
@@ -35,6 +38,7 @@ private:
     Poppler::Document *ppl_doc;
     QMutex *mutex;
     QHash<Okular::Annotation *, Poppler::Annotation *> *annotationsOnOpenHash;
+    std::unordered_map<Okular::StampAnnotation *, std::unique_ptr<Poppler::AnnotationAppearance>> deletedStampsAnnotationAppearance;
 };
 
 #endif

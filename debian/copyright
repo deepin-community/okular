@@ -4,489 +4,106 @@ Upstream-Contact: kde-devel@kde.org
 Source: https://invent.kde.org/graphics/okular
 
 Files: *
-Copyright: 2006-2009, Pino Toscano <pino@kde.org>
-License: GPL-2+
+Copyright: 2003-2022, Albert Astals Cid <aacid@kde.org>
+           2020, Albert Astals Cid <albert.astals.cid@kdab.com>
+           2010-2018, Aleix Pol <aleixpol@kde.org>
+           2018, Aleix Pol Gonzalez <aleixpol@kde.org>
+           2007, Alex Merry <huntedhacker@tiscali.co.uk>
+           2015, Alex Richardson <arichardson.kde@gmail.com>
+           2003-2004, Andy Goossens <andygoossens@telenet.be>
+           2004, Antti Markus <antti.markus@starman.ee>
+           2013, Azat Khuzhin <a3at.mail@gmail.com>
+           2003, Benjamin Meyer <benjamin@csh.rit.edu>
+           2002, Bill Janssen
+           2006-2009, Brad Hards <bradh@frogmouth.net>
+           2019, Bubli <Katarina.Behrens@cib.de>
+           2018, Chinmoy Ranjan Pradhan <chinmoyrp65@gmail.com
+           2018, Chinmoy Ranjan Pradhan <chinmoyrp65@gmail.com>
+           2002, Chris Cheney <ccheney@cheney.cx>
+           2004, Christoph Cullmann <crossfire@babylon2k.de>
+           2003-2004, Christophe Devriese <Christophe.Devriese@student.kuleuven.ac.be>
+           2006, Chu Xiaodong <xiaodongchu@gmail.com>
+           2003, Daniel Molkentin <molkentin@kde.org>
+           2019-2021, David Hurka <david.hurka@mailbox.org>
+           2011, David Palacio <dpalacio@orbitalibre.org>
+           2003-2004, Dirk Mueller <mueller@kde.org>
+           2004, Dominique Devriese <devriese@kde.org>
+           2004, Duncan Mac-Vicar Prett <duncan@kde.org>
+           2009, Eike Hein <hein@kde.org>
+           2008, Ely Levy <elylevy@cs.huji.ac.il>
+           2004-2005, Enrico Ros <eros.kde@email.it>
+           2012-2013, Fabio D 'Urso <fabiodurso@hotmail.it>
+           1990-1995, Frank D. Cringle.
+           2014, Frederik Gladhorn <gladhorn@kde.org>
+           2005, Georgy Yunaev <tim@krasnogorsk.ru>
+           2004-2007, Georgy Yunaev gyunaev@ulduzsoft.com
+           2017, Gilbert Assaf <gassaf@gmx.de>
+           2012, Guillermo A. Amaral B. <gamaral@kde.org>
+           2008, Harri Porten <porten@kde.org>
+           2005, Helge Deller <deller@kde.org>
+           2004, Henrique Pinto <stampede@coltec.ufmg.br>
+           2018, Intevation GmbH <intevation@intevation.de>
+           2008, Jakub Stachowski <qbast@go2.pl>
+           2004, James Ots <kde@jamesots.com>
+           2013, Jaydeep Solanki <jaydp17@gmail.com>
+           2011, Jiri Baum - NICTA <jiri@baum.com.au>
+           2021, Jiří Wolker <woljiri@gmail.com>
+           2007-2010, John Layt <john@layt.net>
+           2013, Jon Mease <jon.mease@gmail.com>
+           2019, João Netto <joaonetto901@gmail.com>
+           2017, Julian Wolff <wolff@julianwolff.de>
+           2017-2018, Klarälvdalens Datakonsult AB a KDAB Group company <info@kdab.com>
+           2003, Kurt Pfeifle <kpfeifle@danka.de>
+           2003-2015, Laurent Montel <montel@kde.org>
+           2003, Luboš Luňák <l.lunak@kde.org>
+           2006-2009, Luigi Toscano <luigi.toscano@tiscali.it>
+           2012, Mailson Menezes <mailson@gmail.com>
+           2002-2003, Malcolm Hunter <malcolm.hunter@gmx.co.uk>
+           2012-2015, Marco Martin <mart@kde.org>
+           2020, Markus Brenneis <support.gulp21+kde@gmail.com>
+           2019, Michael Weghorn <m.weghorn@posteo.de>
+           2011, Michel Ludwig <michel.ludwig@kdemail.net>
+           2011, Niels Ole Salscheider
+           2019, Oliver Sander <oliver.sander@tu-dresden.de>
+           2004-2005, Olivier Goffart <ogoffart@kde.org>
+           2013, Peter Grasch <me@bedahr.org>
+           2006-2010, Pino Toscano <pino@kde.org>
+           2006, Pino Toscano <toscano.pino@tiscali.it>
+           2005, Piotr Szymanski <niedakh@gmail.com>
+           2005, Piotr Szymański <niedakh@gmail.com>
+           2003, Razvan Cojocaru <razvanco@gmx.net>
+           2015, Saheb Preet Singh <saheb.preet@gmail.com>
+           2019-2020, Simone Gaiarin <simgunz@gmail.com>
+           2001-2006, Stefan Kebekus
+           2001-2005, Stefan Kebekus <kebekus@kde.org>
+           2004-2006, Stefan Kebekus.
+           2017, Tobias Deiminger <haxtibal@t-online.de>
+           2005-2008, Tobias Koenig <tokoe@kde.org>
+           2012, Tobias Koening <tokoe@kde.org>
+           2004, Waldo Bastian <bastian@kde.org>
+           2002, Wilco Greven <greven@kde.org>
+           2004-2006, Wilfried Huss
+License: GPL-2.0-or-later
 
-Files: autotests/*
-Copyright: 2013, Jon Mease <jon.mease@gmail.com>
-License: GPL-2+
+Files: generators/dvi/dviFile.cpp
+       generators/dvi/dviRenderer_draw.cpp
+       generators/dvi/TeXFont_PK.cpp
+       generators/dvi/util.cpp
+       generators/dvi/vf.cpp
+Copyright: 1994, Paul Vojta. All rights reserved.
+License: BSD-2-Clause
 
-Files: autotests/annotationstest.cpp
-Copyright: 2013, Peter Grasch <me@bedahr.org>
-License: GPL-2+
-
-Files: autotests/documenttest.cpp
-Copyright: 2012, 2013, Fabio DUrso <fabiodurso@hotmail.it>
-License: GPL-2+
-
-Files: autotests/generatorstest.cpp
-Copyright: 2015, Alex Richardson <arichardson.kde@gmail.com>
-License: GPL-2+
-
-Files: autotests/mainshelltest.cpp
-  autotests/parttest.cpp
-  autotests/searchtest.cpp
-Copyright: 2004-2008, 2013, 2014, Albert Astals Cid <aacid@kde.org>
-License: GPL-2+
-
-Files: autotests/shelltest.cpp
-Copyright: 2006-2009, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: autotests/urldetecttest.cpp
-Copyright: 2013, Jaydeep Solanki <jaydp17@gmail.com>
-License: GPL-2+
-
-Files: part/*
-Copyright: 2006, Pino Toscano <toscano.pino@tiscali.it>
-License: GPL-2+
-
-Files: autotests/editdrawingtooldialogtest.cpp
-  autotests/editdrawingtooldialogtest.h
-Copyright: 2015, Laurent Montel <montel@kde.org>
-License: GPL-2+
-
-Files: autotests/markdowntest.cpp
-Copyright: 2020, Markus Brenneis <support.gulp21+kde@gmail.com>
-License: GPL-2+
-
-Files: part/dlgeditor.cpp
-  part/dlgeditor.h
-  part/dlgpresentation.cpp
-  part/dlgpresentation.h
-Copyright: 2006-2009, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: part/editannottooldialog.h
-  part/widgetannottools.cpp
-  part/widgetannottools.h
-Copyright: 2012, 2013, Fabio DUrso <fabiodurso@hotmail.it>
-License: GPL-2+
-
-Files: part/editdrawingtooldialog.cpp
-  part/editdrawingtooldialog.h
-  part/widgetconfigurationtoolsbase.cpp
-  part/widgetconfigurationtoolsbase.h
-  part/widgetdrawingtools.cpp
-  part/widgetdrawingtools.h
-Copyright: 2015, Laurent Montel <montel@kde.org>
-License: GPL-2+
-
-Files: part/preferencesdialog.cpp
-  part/preferencesdialog.h
-Copyright: 2004, 2005, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: core/action.cpp
-  core/action.h
-  core/annotations.cpp
-  core/annotations.h
-  core/page.cpp
-  core/page.h
-Copyright: 2004, 2005, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: core/area.cpp
-  core/area.h
-Copyright: 2005, Piotr Szymanski <niedakh@gmail.com>
-  2004, 2005, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: core/chooseenginedialog.cpp
-  core/chooseenginedialog_p.h
-Copyright: 2006, Pino Toscano <toscano.pino@tiscali.it>
-License: GPL-2+
-
-Files: core/debug.cpp
-Copyright: 2014, Frederik Gladhorn <gladhorn@kde.org>
-License: GPL-2+
-
-Files: core/debug_p.h
-Copyright: 2014, Frederik Gladhorn <gladhorn@kde.org>
-  2007, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: core/document.cpp
-  core/document.h
-  core/document_p.h
-Copyright: 2004-2008, Albert Astals Cid <aacid@kde.org>
-  2004, 2005, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: core/documentcommands.cpp
-  core/documentcommands_p.h
-Copyright: 2013, Jon Mease <jon.mease@gmail.com>
-License: GPL-2+
-
-Files: core/fileprinter.cpp
-Copyright: 2007, Alex Merry <huntedhacker@tiscali.co.uk>
-  2007, 2010, John Layt <john@layt.net>
-License: GPL-2+
-
-Files: core/fileprinter.h
-Copyright: 2007, 2010, John Layt <john@layt.net>
-License: GPL-2+
-
-Files: core/generator.cpp
+Files: cmake/modules/FindCHM.cmake
+       cmake/modules/FindDiscount.cmake
+       cmake/modules/FindEPub.cmake
+       cmake/modules/FindLibSpectre.cmake
+       cmake/modules/FindLibZip.cmake
 Copyright: 2008, Albert Astals Cid <aacid@kde.org>
-  2005, Piotr Szymanski <niedakh@gmail.com>
-License: GPL-2+
-
-Files: core/generator.h
-Copyright: 2008, Albert Astals Cid <aacid@kde.org>
-  2005, Piotr Szymanski <niedakh@gmail.com>
-  2004, 2005, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: core/generator_p.cpp
-  core/generator_p.h
-  core/global.h
-  core/pagetransition.cpp
-  core/pagetransition.h
-  core/rotationjob.cpp
-  core/rotationjob_p.h
-  core/textdocumentgenerator.cpp
-  core/textdocumentgenerator.h
-  core/textdocumentgenerator_p.h
-Copyright: 2005-2008, Tobias Koenig <tokoe@kde.org>
-License: GPL-2+
-
-Files: core/misc.cpp
-  core/misc.h
-  core/textpage.cpp
-  core/textpage.h
-Copyright: 2005, Piotr Szymanski <niedakh@gmail.com>
-License: GPL-2+
-
-Files: core/movie.cpp
-  core/movie.h
-Copyright: 2012, Guillermo A. Amaral B. <gamaral@kde.org>
-  2008, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: core/observer.cpp
-  core/observer.h
-Copyright: 2005, Enrico Ros <eros.kde@email.it>
-  2005, Albert Astals Cid <aacid@kde.org>
-License: GPL-2+
-
-Files: core/page_p.h
-Copyright: 2007, 2009, 2010, Pino Toscano <pino@kde.org>
-  2004, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: core/script/*
-Copyright: 2008, Pino Toscano <pino@kde.org>
-  2008, Harri Porten <porten@kde.org>
-License: GPL-2+
-
-Files: core/script/executor_kjs_p.h
-Copyright: 2006-2009, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: core/synctex/*
-Copyright: 2008-2011, jerome DOT laurens AT u-bourgogne DOT fr
-License: Expat
-
-Files: core/textdocumentsettings.cpp
-  core/textdocumentsettings.h
-  core/textdocumentsettings_p.h
-Copyright: 2013, Azat Khuzhin <a3at.mail@gmail.com>
-License: GPL-2+
-
-Files: core/textpage_p.h
-Copyright: 2007, Pino Toscano <pino@kde.org>
-  2006, Tobias Koenig <tokoe@kde.org>
-License: GPL-2+
-
-Files: core/tile.h
-Copyright: 2012, 2013, Fabio DUrso <fabiodurso@hotmail.it>
-License: GPL-2+
-
-Files: core/tilesmanager.cpp
-  core/tilesmanager_p.h
-Copyright: 2012, Mailson Menezes <mailson@gmail.com>
-License: GPL-2+
-
-Files: core/utils.cpp
-Copyright: 2008, Pino Toscano <pino@kde.org>
-  2006, Luigi Toscano <luigi.toscano@tiscali.it>
-License: GPL-2+
-
-Files: core/utils.h
-Copyright: 2006-2009, Luigi Toscano <luigi.toscano@tiscali.it>
-License: GPL-2+
-
-Files: part/extensions.cpp
-  part/extensions.h
-Copyright: 2008, Pino Toscano <pino@kde.org>
-  2002, Wilco Greven <greven@kde.org>
-License: GPL-2+
-
-Files: generators/*
-Copyright: 2005-2008, Tobias Koenig <tokoe@kde.org>
-License: GPL-2+
-
-Files: generators/chm/*
-Copyright: 2008, Albert Astals Cid <aacid@kde.org>
-  2005, Piotr Szymański <niedakh@gmail.com>
-License: GPL-2+
-
-Files: generators/chm/kio-msits/*
-Copyright: 2014, Laurent Montel <montel@kde.org>
-License: LGPL-2+
-
-Files: generators/chm/kio-msits/msits.cpp
-Copyright: no-info-found
-License: LGPL-2+
-
-Files: generators/chm/kio-msits/msits.h
-Copyright: 2005, Georgy Yunaev
-License: GPL-2+
-
-Files: generators/chm/lib/*
-Copyright: 2004-2007, Georgy Yunaev, gyunaev@ulduzsoft.com
-License: GPL-2+
-
-Files: generators/chm/lib/bitfiddle.h
-Copyright: 2003, Razvan Cojocaru <razvanco@gmx.net>
-License: GPL-2+
-
-Files: generators/comicbook/debug_comicbook.h
-Copyright: 2014, Frederik Gladhorn <gladhorn@kde.org>
-License: GPL-2+
-
-Files: generators/comicbook/directory.cpp
-  generators/comicbook/directory.h
-Copyright: 2011, David Palacio <dpalacio@orbitalibre.org>
-  2007, Tobias Koenig <tokoe@kde.org>
-License: GPL-2+
-
-Files: generators/comicbook/qnatsort.cpp
-  generators/comicbook/qnatsort.h
-Copyright: 2007, Tobias Koenig <tokoe@kde.org>
-License: GPL-3
-
-Files: generators/comicbook/unrarflavours.cpp
-  generators/comicbook/unrarflavours.h
-Copyright: 2006-2009, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: generators/djvu/*
-Copyright: 2006, Pino Toscano <toscano.pino@tiscali.it>
-License: GPL-2+
-
-Files: generators/dvi/*
-Copyright: 2000-2005, Stefan Kebekus
-           2004, 2005, Wilfried Huss
-License: GPL-2+
-
-Files: generators/dvi/TeXFont_PK.cpp
-  generators/dvi/dviFile.cpp
-  generators/dvi/dviRenderer_draw.cpp
-  generators/dvi/util.cpp
-  generators/dvi/vf.cpp
-Copyright: 1994, Paul Vojta.
-License: BSD-2-clause
- Please fill license BSD-2-clause from header of generators/dvi/TeXFont_PK.cpp generators/dvi/dviFile.cpp generators/dvi/dviRenderer_draw.cpp generators/dvi/util.cpp generators/dvi/vf.cpp
-
-Files: generators/dvi/bigEndianByteReader.h
-Copyright: 2001, Stefan Kebekus (kebekus@kde.org)
-License: LGPL-2+
-
-Files: generators/dvi/debug_dvi.h
-Copyright: 2014, Frederik Gladhorn <gladhorn@kde.org>
-  2006, Luigi Toscano <luigi.toscano@tiscali.it>
-License: GPL-2+
-
-Files: generators/dvi/dviPageInfo.cpp
-  generators/dvi/dviPageInfo.h
-  generators/dvi/generator_dvi.cpp
-  generators/dvi/generator_dvi.h
-Copyright: 2006-2009, Luigi Toscano <luigi.toscano@tiscali.it>
-License: GPL-2+
-
-Files: generators/epub/*
-Copyright: 2008, Ely Levy <elylevy@cs.huji.ac.il>
-License: GPL-2+
-
-Files: generators/fax/fax_debug.cpp
-  generators/fax/fax_debug.h
-Copyright: 2014, Laurent Montel <montel@kde.org>
-License: LGPL-2+
-
-Files: generators/fax/faxexpand.cpp
-  generators/fax/faxinit.cpp
-Copyright: 1990, 1995, Frank D. Cringle
-License: GPL-2+
-
-Files: generators/fax/faxexpand.h
-Copyright: 2005, Helge Deller <deller@kde.org>
-  1990, 1995, Frank D. Cringle
-License: GPL-2+
-
-Files: generators/kimgio/*
-Copyright: 2012, 2013, Fabio DUrso <fabiodurso@hotmail.it>
-License: GPL-2+
-
-Files: generators/kimgio/generator_kimgio.cpp
-Copyright: 2006, 2007, Tobias Koenig <tokoe@kde.org>
-  2006, 2007, Pino Toscano <pino@kde.org>
-  2005, Albert Astals Cid <aacid@kde.org>
-License: GPL-2+
-
-Files: generators/kimgio/generator_kimgio.h
-Copyright: 2004-2008, 2013, 2014, Albert Astals Cid <aacid@kde.org>
-License: GPL-2+
-
-Files: generators/mobipocket/*
-Copyright: 2008, Jakub Stachowski <qbast@go2.pl>
-License: GPL-2+
-
-Files: generators/mobipocket/generator_mobi.cpp
-  generators/mobipocket/generator_mobi.h
-Copyright: 2008, Ely Levy <elylevy@cs.huji.ac.il>
-License: GPL-2+
-
-Files: generators/plucker/unpluck/*
-Copyright: 2002, Bill Janssen
-License: GPL-2+
-
-Files: generators/plucker/unpluck/image.cpp
-  generators/plucker/unpluck/image.h
-  generators/plucker/unpluck/qunpluck.cpp
-  generators/plucker/unpluck/qunpluck.h
-Copyright: 2005-2008, Tobias Koenig <tokoe@kde.org>
-License: GPL-2+
-
-Files: generators/poppler/*
-Copyright: 2006-2009, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: generators/poppler/annots.cpp
-Copyright: 2012, Guillermo A. Amaral B. <gamaral@kde.org>
-  2008, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: generators/poppler/annots.h
-Copyright: 2012, 2013, Fabio DUrso <fabiodurso@hotmail.it>
-License: GPL-2+
-
-Files: generators/poppler/debug_pdf.h
-Copyright: 2014, Frederik Gladhorn <gladhorn@kde.org>
-License: GPL-2+
-
-Files: generators/poppler/generator_pdf.cpp
-Copyright: 2012, Guillermo A. Amaral B. <gamaral@kde.org>
-  2004-2008, Albert Astals Cid <aacid@kde.org>
-  2004, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: generators/poppler/generator_pdf.h
-Copyright: 2004-2008, Albert Astals Cid <aacid@kde.org>
-  2004, 2005, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: generators/poppler/popplerembeddedfile.h
-Copyright: 2004-2008, 2013, 2014, Albert Astals Cid <aacid@kde.org>
-License: GPL-2+
-
-Files: generators/spectre/*
-Copyright: 2004-2008, 2013, 2014, Albert Astals Cid <aacid@kde.org>
-License: GPL-2+
-
-Files: generators/spectre/spectre_debug.cpp
-  generators/spectre/spectre_debug.h
-Copyright: 2014, Laurent Montel <montel@kde.org>
-License: LGPL-2+
-
-Files: generators/tiff/*
-Copyright: 2006, Pino Toscano <toscano.pino@tiscali.it>
-License: GPL-2+
-
-Files: generators/txt/*
-Copyright: 2013, Azat Khuzhin <a3at.mail@gmail.com>
-License: GPL-2+
-
-Files: generators/txt/debug_txt.h
-Copyright: 2014, Frederik Gladhorn <gladhorn@kde.org>
-  2006, Luigi Toscano <luigi.toscano@tiscali.it>
-License: GPL-2+
-
-Files: generators/xps/*
-Copyright: 2006, 2007, 2009, Brad Hards <bradh@frogmouth.net>
-License: GPL-2+
-
-Files: interfaces/viewerinterface.h
-Copyright: 2011, Michel Ludwig <michel.ludwig@kdemail.net>
-License: GPL-2+
-
-Files: mobile/*
-Copyright: 2012, Marco Martin <mart@kde.org>
-License: GPL-2+
-
-Files: part/part.cpp
-Copyright: 2017, Klarälvdalens Datakonsult AB, a KDAB Group company, <info@kdab.com>
-  2004-2008, Albert Astals Cid <aacid@kde.org>
-  2004, Waldo Bastian <bastian@kde.org>
-  2004, Henrique Pinto <stampede@coltec.ufmg.br>
-  2004, Dominique Devriese <devriese@kde.org>
-  2004, Christoph Cullmann <crossfire@babylon2k.de>
-  2004, Antti Markus <antti.markus@starman.ee>
-  2003, Laurent Montel <montel@kde.org>
-  2003, Dirk Mueller <mueller@kde.org>
-  2003, Daniel Molkentin <molkentin@kde.org>
-  2003, Andy Goossens <andygoossens@telenet.be>
-  2003, 2004, Christophe Devriese
-  2002, Wilco Greven <greven@kde.org>
-  2002, Malcolm Hunter <malcolm.hunter@gmx.co.uk>
-  2002, Chris Cheney <ccheney@cheney.cx>
-License: GPL-2+
-
-Files: part/part.h
-Copyright: 2017, Klarälvdalens Datakonsult AB, a KDAB Group company, <info@kdab.com>
-  2004-2007, Albert Astals Cid <aacid@kde.org>
-  2004, Dominique Devriese <devriese@kde.org>
-  2003, Laurent Montel <montel@kde.org>
-  2003, Andy Goossens <andygoossens@telenet.be>
-  2003, 2004, Christophe Devriese
-  2002, Wilco Greven <greven@kde.org>
-License: GPL-2+
-
-Files: shell/*
-Copyright: 2004, Andy Goossens <andygoossens@telenet.be>
-  2003-2007, Albert Astals Cid <aacid@kde.org>
-  2003, Laurent Montel <montel@kde.org>
-  2003, Christophe Devriese
-  2002, Wilco Greven <greven@kde.org>
-License: GPL-2+
-
-Files: shell/shell.cpp
-Copyright: 2004, Dominique Devriese <devriese@kde.org>
-  2004, Dirk Mueller <mueller@kde.org>
-  2003, Malcolm Hunter <malcolm.hunter@gmx.co.uk>
-  2003, Luboš Luňák <l.lunak@kde.org>
-  2003, Laurent Montel <montel@kde.org>
-  2003, Benjamin Meyer <benjamin@csh.rit.edu>
-  2003, 2004, Christophe Devriese
-  2003, 2004, Albert Astals Cid <aacid@kde.org>
-  2002, Wilco Greven <greven@kde.org>
-  2002, Chris Cheney <ccheney@cheney.cx>
-License: GPL-2+
-
-Files: shell/shell.h
-Copyright: 2004, Christophe Devriese
-  2004, Albert Astals Cid <aacid@kde.org>
-  2003, Luboš Luňák <l.lunak@kde.org>
-  2003, Laurent Montel <montel@kde.org>
-  2003, Benjamin Meyer <benjamin@csh.rit.edu>
-  2002, Wilco Greven <greven@kde.org>
-License: GPL-2+
-
-Files: shell/shellutils.cpp
-  shell/shellutils.h
-Copyright: 2006-2009, Pino Toscano <pino@kde.org>
-License: GPL-2+
+           2017, Julian Wolff <wolff@julianwolff.de>
+           2006-2008, Pino Toscano <pino@kde.org>
+           2006, Pino Toscano <toscano.pino@tiscali.it>
+           2018, Sune Vuorela <sune@kde.org>
+License: BSD-3-Clause
 
 Files: generators/chm/org.kde.okular-chm.metainfo.xml
   generators/comicbook/org.kde.okular-comicbook.metainfo.xml
@@ -508,225 +125,295 @@ Files: generators/chm/org.kde.okular-chm.metainfo.xml
   shell/org.kde.okular.appdata.xml
 Copyright: no-info-found
 License: CC0-1.0
+Comment: Manually collected
 
-Files: part/annotationpopup.cpp
-  part/annotationpopup.h
-  part/annotationproxymodels.cpp
-  part/annotationproxymodels.h
-Copyright: 2005-2008, Tobias Koenig <tokoe@kde.org>
-License: GPL-2+
-
-Files: part/annotationpropertiesdialog.cpp
-  part/annotationpropertiesdialog.h
-Copyright: 2006, Chu Xiaodong <xiaodongchu@gmail.com>
-License: GPL-2+
-
-Files: part/annotationtools.cpp
-  part/annotationtools.h
-  part/pagepainter.cpp
-  part/pagepainter.h
-  part/pageviewannotator.cpp
-  part/pageviewannotator.h
-  part/pageviewutils.cpp
-  part/pageviewutils.h
-  part/presentationwidget.cpp
-  part/presentationwidget.h
-  part/searchwidget.cpp
-  part/searchwidget.h
-  part/side_reviews.cpp
-  part/side_reviews.h
-Copyright: 2004, 2005, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
-
-Files: part/annotwindow.cpp
-  part/annotwindow.h
-Copyright: 2006, Pino Toscano <pino@kde.org>
-  2006, Chu Xiaodong <xiaodongchu@gmail.com>
-License: GPL-2+
-
-Files: part/debug_ui.cpp
-Copyright: 2014, Frederik Gladhorn <gladhorn@kde.org>
-License: GPL-2+
-
-Files: part/debug_ui.h
-Copyright: 2014, Frederik Gladhorn <gladhorn@kde.org>
-  2007, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: part/drawingtoolactions.cpp
-  part/drawingtoolactions.h
-Copyright: 2015, Laurent Montel <montel@kde.org>
-  2015, Albert Astals Cid <aacid@kde.org>
-License: GPL-2+
-
-Files: part/embeddedfilesdialog.cpp
-  part/embeddedfilesdialog.h
-  part/pagesizelabel.cpp
-  part/pagesizelabel.h
-  part/priorities.h
-  part/propertiesdialog.cpp
-  part/propertiesdialog.h
-  part/thumbnaillist.cpp
-  part/thumbnaillist.h
-  part/toc.cpp
-  part/toc.h
-Copyright: 2004-2008, 2013, 2014, Albert Astals Cid <aacid@kde.org>
-License: GPL-2+
-
-Files: part/fileprinterpreview.cpp
-  part/fileprinterpreview.h
-Copyright: 2007, John Layt <john@layt.net>
-  2007, Alex Merry <huntedhacker@tiscali.co.uk>
-License: GPL-2+
-
-Files: part/ktreeviewsearchline.cpp
-  part/ktreeviewsearchline.h
-Copyright: 2007, Pino Toscano <pino@kde.org>
-  2006, Hamish Rodda <rodda@kde.org>
-  2005, Rafal Rzepecki <divide@users.sourceforge.net>
-  2003, Scott Wheeler <wheeler@kde.org>
-License: LGPL-2
-
-Files: part/latexrenderer.cpp
-  part/latexrenderer.h
-Copyright: 2011, Niels Ole Salscheider
-  2004, Duncan Mac-Vicar Prett <duncan@kde.org>
-  2004, 2005, Olivier Goffart <ogoffart@kde.org>
-License: GPL-2+
-
-Files: part/layers.cpp
-  part/layers.h
-Copyright: 2015, Saheb Preet Singh <saheb.preet@gmail.com>
-License: GPL-2+
+Files: generators/comicbook/qnatsort.cpp
+       generators/comicbook/qnatsort.h
+Copyright: 2007, Tobias Koenig <tokoe@kde.org>
+License: GPL-2.0-only OR GPL-3.0-only
 
 Files: part/magnifierview.cpp
-  part/magnifierview.h
-Copyright: no-info-found
-License: GPL-2 or GPL-3
+       part/magnifierview.h
+Copyright: None
+License: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
-Files: part/minibar.cpp
-  part/minibar.h
-Copyright: 2004-2008, Albert Astals Cid <aacid@kde.org>
-  2004, 2005, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
+Files: generators/chm/lib/ebook_chm.cpp
+       generators/chm/lib/ebook_chm_encoding.cpp
+       generators/chm/lib/ebook_chm_encoding.h
+       generators/chm/lib/ebook_chm.h
+       generators/chm/lib/ebook.cpp
+       generators/chm/lib/ebook_epub.cpp
+       generators/chm/lib/ebook_epub.h
+       generators/chm/lib/ebook.h
+       generators/chm/lib/ebook_search.cpp
+       generators/chm/lib/ebook_search.h
+       generators/chm/lib/helper_entitydecoder.cpp
+       generators/chm/lib/helper_entitydecoder.h
+       generators/chm/lib/helper_search_index.cpp
+       generators/chm/lib/helper_search_index.h
+       generators/chm/lib/helperxmlhandler_epubcontainer.cpp
+       generators/chm/lib/helperxmlhandler_epubcontainer.h
+       generators/chm/lib/helperxmlhandler_epubcontent.cpp
+       generators/chm/lib/helperxmlhandler_epubcontent.h
+       generators/chm/lib/helperxmlhandler_epubtoc.cpp
+       generators/chm/lib/helperxmlhandler_epubtoc.h
+Copyright: 2004-2014, George Yunaev gyunaev@ulduzsoft.com
+License: GPL-3.0-or-later
 
-Files: part/pageview.cpp
-Copyright: 2011, Jiri Baum - NICTA <jiri@baum.com.au>
-  2004-2006, Albert Astals Cid <aacid@kde.org>
-  2004, James Ots <kde@jamesots.com>
-  2004, 2005, Enrico Ros <eros.kde@email.it>
-  2003, Laurent Montel <montel@kde.org>
-  2003, Dirk Mueller <mueller@kde.org>
-  2003, Christophe Devriese
-  2002, Wilco Greven <greven@kde.org>
-License: GPL-2+
+Files: part/ktreeviewsearchline.cpp
+       part/ktreeviewsearchline.h
+       part/okmenutitle.cpp
+       part/okmenutitle.h
+Copyright: 2006, Hamish Rodda <rodda@kde.org>
+           2007, Pino Toscano <pino@kde.org>
+           2005, Rafal Rzepecki <divide@users.sourceforge.net>
+           2003, Scott Wheeler <wheeler@kde.org>
+License: LGPL-2.0-only
 
-Files: part/pageview.h
-Copyright: 2004, Enrico Ros <eros.kde@email.it>
-  2004, Albert Astals Cid <aacid@kde.org>
-  2003, Laurent Montel <montel@kde.org>
-  2003, Kurt Pfeifle <kpfeifle@danka.de>
-  2003, Christophe Devriese
-  2002, Wilco Greven <greven@kde.org>
-License: GPL-2+
+Files: generators/chm/kio-msits/kio_mits_debug.cpp
+       generators/chm/kio-msits/kio_mits_debug.h
+       generators/chm/kio-msits/msits.cpp
+       generators/fax/fax_debug.cpp
+       generators/fax/fax_debug.h
+       generators/spectre/spectre_debug.cpp
+       generators/spectre/spectre_debug.h
+       mobile/app/package/contents/ui/TreeItem.qml
+       mobile/app/package/contents/ui/TreeViewDecoration.qml
+Copyright: 2014, Laurent Montel <montel@kde.org>
+           2020, Marco Martin <mart@kde.org>
+License: LGPL-2.0-or-later
 
-Files: part/searchlineedit.cpp
-  part/searchlineedit.h
-Copyright: 2007, 2009, 2010, Pino Toscano <pino@kde.org>
-  2004, Enrico Ros <eros.kde@email.it>
-License: GPL-2+
+Files: core/synctex/synctex_parser_advanced.h
+       core/synctex/synctex_parser.c
+       core/synctex/synctex_parser.h
+       core/synctex/synctex_parser_local.h
+       core/synctex/synctex_parser_utils.c
+       core/synctex/synctex_parser_utils.h
+Copyright: 2008-2017, jerome DOT laurens AT u-bourgogne DOT fr
+License: X11
 
-Files: part/sidebar.cpp
-Copyright: 2009, Eike Hein <hein@kde.org>
-  2007, Pino Toscano <pino@kde.org>
-License: GPL-2+
-
-Files: part/snapshottaker.cpp
-  part/snapshottaker.h
-Copyright: 2012, Tobias Koening <tokoe@kde.org>
-License: GPL-2+
-
-Files: part/url_utils.h
-Copyright: 2013, Jaydeep Solanki <jaydp17@gmail.com>
-License: GPL-2+
-
-License: Expat
- The MIT License
+License: BSD-2-Clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
  .
- Permission is hereby granted, free of charge, to any person
- obtaining a copy of this software and associated
- documentation files (the "Software"), to deal in the Software
- without restriction, including without limitation the rights to
- use, copy, modify, merge, publish, distribute, sublicense,
- and/or sell copies of the Software, and to permit persons to
- whom the Software is furnished to do so, subject to the
- following conditions:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
  .
- The above copyright notice and this permission notice shall
- be included in all copies or substantial portions of the
- Software.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
  .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
- WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
- INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- MERCHANTABILITY, FITNESS FOR A PARTICULAR
- PURPOSE AND NONINFRINGEMENT. IN NO EVENT
- SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- CONNECTION WITH THE SOFTWARE OR THE USE OR
- OTHER DEALINGS IN THE SOFTWARE.
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
 
-License: GPL-2
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; version 2 dated June, 1991.
+License: BSD-3-Clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
  .
- On Debian systems, the complete text of version 2 of the GNU General
- Public License can be found in '/usr/share/common-licenses/GPL-2'.
-
-License: GPL-2+
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; version 2 dated June, 1991, or (at
- your option) any later version.
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
  .
- On Debian systems, the complete text of version 2 of the GNU General
- Public License can be found in '/usr/share/common-licenses/GPL-2'.
-
-License: GPL-3
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; version 3 dated June, 2007.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
  .
- On Debian systems, the complete text of version 3 of the GNU General
- Public License can be found in '/usr/share/common-licenses/GPL-3'.
-
-License: LGPL-2
- This program is free software; you can redistribute it and/or modify it
- under the terms of the GNU Library General Public License as published by the
- Free Software Foundation; version 2 of the License.
+ 3. Neither the name of the copyright holder nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
  .
- On Debian systems, the complete text of version 2 of the GNU Library
- General Public License can be found in `/usr/share/common-licenses/LGPL-2'.
-
-License: LGPL-2+
- This program is free software; you can redistribute it and/or modify it
- under the terms of the GNU Library General Public License as published by the
- Free Software Foundation; version 2 of the License, or (at
- your option) any later version.
- .
- On Debian systems, the complete text of version 2 of the GNU Library
- General Public License can be found in `/usr/share/common-licenses/LGPL-2'.
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
 
 License: CC0-1.0
- To the extent possible under law, the author(s) have dedicated all copyright
- and related and neighboring rights to this software to the public domain
- worldwide. This software is distributed without any warranty.
+ To the extent possible under law, the author(s) have dedicated all
+ copyright and related and neighboring rights to this software to the
+ public domain worldwide. This software is distributed without any
+ warranty.
  .
- You should have received a copy of the CC0 Public Domain Dedication along with
- this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+ You should have received a copy of the CC0 Public Domain Dedication
+ along with this software. If not, see
+ <https://creativecommons.org/publicdomain/zero/1.0/>.
  .
- On Debian systems, the full text of the CC0 1.0 Universal license can be found
- in the file `/usr/share/common-licenses/CC0-1.0'.
+ On Debian systems, the complete text of the CC0 Public Domain
+ Dedication can be found in `/usr/share/common-licenses/CC0-1.0’.
+
+License: GPL-2.0-only
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 02110-1301, USA. Also add information on how to contact you by
+ electronic and paper mail.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 2 can be found in
+ `/usr/share/common-licenses/GPL-2’.
+
+License: GPL-2.0-or-later
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 02110-1301, USA. Also add information on how to contact you by
+ electronic and paper mail.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 2 can be found in
+ `/usr/share/common-licenses/GPL-2’.
+
+License: GPL-3.0-only
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GPL License as published by the Free
+ Software Foundation, version 3.
+ .
+ This package is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 3 can be found in
+ `/usr/share/common-licenses/GPL-3’.
+
+License: GPL-3.0-or-later
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see
+ <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 3 can be found in
+ `/usr/share/common-licenses/GPL-3’.
+
+License: LGPL-2.0-only
+ This library is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Library General Public License version
+ 2 as published by the Free Software Foundation.
+ .
+ This library is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+ .
+ You should have received a copy of the GNU Library General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU Library General
+ Public License version 2 can be found in
+ `/usr/share/common-licenses/LGPL-2’.
+
+License: LGPL-2.0-or-later
+ This library is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Library General Public License as
+ published by the Free Software Foundation; either version 2 of the
+ License, or (at your option)  any later version.
+ .
+ This library is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+ .
+ You should have received a copy of the GNU Library General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU Library General
+ Public License version 2 can be found in
+ `/usr/share/common-licenses/LGPL-2’.
+
+License: LicenseRef-KDE-Accepted-GPL
+ This library is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the license or (at
+ your option) at any later version that is accepted by the membership
+ of KDE e.V. (or its successor approved by the membership of KDE
+ e.V.), which shall act as a proxy as defined in Section 14 of
+ version 3 of the license.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ General Public License for more details.
+
+License: X11
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation files
+ (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge,
+ publish, distribute, sublicense, and/or sell copies of the Software,
+ and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE X CONSORTIUM BE LIABLE FOR
+ ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of the X Consortium
+ shall not be used in advertising or otherwise to promote the sale,
+ use or other dealings in this Software without prior written
+ authorization from the X Consortium.
+ .
+ X Window System is a trademark of X Consortium, Inc.

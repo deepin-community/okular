@@ -19,10 +19,10 @@ namespace QtAs
 // Those characters are splitters (i.e. split the word), but added themselves into dictionary too.
 // This makes the dictionary MUCH larger, but ensure that for the piece of "window->print" both
 // search for "print" and "->print" will find it.
-static const char SPLIT_CHARACTERS[] = "!()*&^%#@[]{}':;,.?/|/?<>\\-+=~`";
+#define SPLIT_CHARACTERS QStringLiteral("!()*&^%#@[]{}':;,.?/|/?<>\\-+=~`")
 
 // Those characters are parts of word - for example, '_' is here, and search for _debug will find only _debug.
-static const char WORD_CHARACTERS[] = "$_";
+#define WORD_CHARACTERS QStringLiteral("$_")
 
 struct Term {
     Term()
@@ -72,56 +72,63 @@ void Index::setLastWinClosed()
 
 bool Index::makeIndex(const QList<QUrl> &docs, EBook *chmFile)
 {
-    if (docs.isEmpty())
+    if (docs.isEmpty()) {
         return false;
+    }
 
     docList = docs;
 
-    if (chmFile->hasFeature(EBook::FEATURE_ENCODING))
+    if (chmFile->hasFeature(EBook::FEATURE_ENCODING)) {
         entityDecoder.changeEncoding(QTextCodec::codecForName(chmFile->currentEncoding().toUtf8()));
+    }
 
     QList<QUrl>::ConstIterator it = docList.constBegin();
     int steps = docList.count() / 100;
 
-    if (!steps)
+    if (!steps) {
         steps++;
+    }
 
     int prog = 0;
 
     for (int i = 0; it != docList.constEnd(); ++it, ++i) {
-        if (lastWindowClosed)
+        if (lastWindowClosed) {
             return false;
+        }
 
-        QUrl filename = *it;
+        const QUrl &filename = *it;
         QStringList terms;
 
         if (parseDocumentToStringlist(chmFile, filename, terms)) {
-            for (QStringList::ConstIterator tit = terms.constBegin(); tit != terms.constEnd(); ++tit)
+            for (QStringList::ConstIterator tit = terms.constBegin(); tit != terms.constEnd(); ++tit) {
                 insertInDict(*tit, i);
+            }
         }
 
         if (i % steps == 0) {
             prog++;
             prog = qMin(prog, 99);
-            emit indexingProgress(prog, tr("Processing document %1").arg((*it).path()));
+            Q_EMIT indexingProgress(prog, tr("Processing document %1").arg((*it).path()));
         }
     }
 
-    emit indexingProgress(100, tr("Processing completed"));
+    Q_EMIT indexingProgress(100, tr("Processing completed"));
     return true;
 }
 
 void Index::insertInDict(const QString &str, int docNum)
 {
     Entry *e = nullptr;
-    if (!dict.isEmpty())
+    if (!dict.isEmpty()) {
         e = dict[str];
+    }
 
     if (e) {
-        if (e->documents.last().docNumber != docNum)
+        if (e->documents.last().docNumber != docNum) {
             e->documents.append(Document(docNum, 1));
-        else
+        } else {
             e->documents.last().frequency++;
+        }
     } else {
         dict.insert(str, new Entry(docNum));
     }
@@ -155,24 +162,27 @@ bool Index::parseDocumentToStringlist(EBook *chmFile, const QUrl &filename, QStr
     for (int j = 0; j < text.length(); j++) {
         QChar ch = text[j];
 
-        if ((j % 20000) == 0)
+        if ((j % 20000) == 0) {
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+        }
 
         if (state == STATE_IN_HTML_TAG) {
             // We are inside HTML tag.
             // Ignore everything until we see '>' (end of HTML tag) or quote char (quote start)
-            if (ch == '"' || ch == '\'') {
+            if (ch == QLatin1Char('"') || ch == QLatin1Char('\'')) {
                 state = STATE_IN_QUOTES;
                 QuoteChar = ch;
-            } else if (ch == '>')
+            } else if (ch == QLatin1Char('>')) {
                 state = STATE_OUTSIDE_TAGS;
+            }
 
             continue;
         } else if (state == STATE_IN_QUOTES) {
             // We are inside quoted text inside HTML tag.
             // Ignore everything until we see the quote character again
-            if (ch == QuoteChar)
+            if (ch == QuoteChar) {
                 state = STATE_IN_HTML_TAG;
+            }
 
             continue;
         } else if (state == STATE_IN_HTML_ENTITY) {
@@ -188,12 +198,13 @@ bool Index::parseDocumentToStringlist(EBook *chmFile, const QUrl &filename, QStr
             state = STATE_OUTSIDE_TAGS;
 
             // Some shitty HTML does not terminate entities correctly. Screw it.
-            if (ch != ';' && ch != '<') {
+            if (ch != QLatin1Char(';') && ch != QLatin1Char('<')) {
                 if (parseentity.isEmpty()) {
                     // straight '&' symbol. Add and continue.
                     parsedbuf += QLatin1String("&");
-                } else
+                } else {
                     qWarning("Index::parseDocument: incorrectly terminated HTML entity '&%s%c', ignoring", qPrintable(parseentity), ch.toLatin1());
+                }
 
                 j--; // parse this character again, but in different state
                 continue;
@@ -211,8 +222,9 @@ bool Index::parseDocumentToStringlist(EBook *chmFile, const QUrl &filename, QStr
 
                 parsedbuf += entity;
                 continue;
-            } else
-                ch = ' '; // We got a space, so treat it like it, and not add it to parsebuf
+            } else {
+                ch = QLatin1Char(' '); // We got a space, so treat it like it, and not add it to parsebuf
+            }
         }
 
         //
@@ -220,21 +232,22 @@ bool Index::parseDocumentToStringlist(EBook *chmFile, const QUrl &filename, QStr
         //
 
         // Check for start of HTML tag, and switch to STATE_IN_HTML_TAG if it is
-        if (ch == '<') {
+        if (ch == QLatin1Char('<')) {
             state = STATE_IN_HTML_TAG;
             goto tokenize_buf;
         }
 
         // Check for start of HTML entity
-        if (ch == '&') {
+        if (ch == QLatin1Char('&')) {
             state = STATE_IN_HTML_ENTITY;
             parseentity = QString();
             continue;
         }
 
         // Replace quote by ' - quotes are used in search window to set the phrase
-        if (ch == '"')
-            ch = '\'';
+        if (ch == QLatin1Char('"')) {
+            ch = QLatin1Char('\'');
+        }
 
         // Ok, we have a valid character outside HTML tags, and probably some in buffer already.
         // If it is char or letter, add it and continue
@@ -245,8 +258,9 @@ bool Index::parseDocumentToStringlist(EBook *chmFile, const QUrl &filename, QStr
 
         // If it is a split char, add the word to the dictionary, and then add the char itself.
         if (m_charssplit.indexOf(ch) != -1) {
-            if (!parsedbuf.isEmpty())
+            if (!parsedbuf.isEmpty()) {
                 tokenlist.push_back(parsedbuf.toLower());
+            }
 
             tokenlist.push_back(ch.toLower());
             parsedbuf = QString();
@@ -262,8 +276,9 @@ bool Index::parseDocumentToStringlist(EBook *chmFile, const QUrl &filename, QStr
     }
 
     // Add the last word if still here - for broken htmls.
-    if (!parsedbuf.isEmpty())
+    if (!parsedbuf.isEmpty()) {
         tokenlist.push_back(parsedbuf.toLower());
+    }
 
     return true;
 }
@@ -295,8 +310,9 @@ bool Index::readDict(QDataStream &stream)
 
     stream >> version;
 
-    if (version < 2)
+    if (version < 2) {
         return false;
+    }
 
     stream >> m_charssplit;
     stream >> m_charsword;
@@ -333,8 +349,9 @@ QList<QUrl> Index::query(const QStringList &terms, const QStringList &termSeq, c
         }
     }
 
-    if (termList.isEmpty())
+    if (termList.isEmpty()) {
         return QList<QUrl>();
+    }
 
     std::sort(termList.begin(), termList.end());
 
@@ -350,26 +367,29 @@ QList<QUrl> Index::query(const QStringList &terms, const QStringList &termSeq, c
                     break;
                 }
             }
-            if (!found)
+            if (!found) {
                 minDoc_it = minDocs.erase(minDoc_it);
-            else
+            } else {
                 ++minDoc_it;
+            }
         }
     }
 
     QList<QUrl> results;
     std::sort(minDocs.begin(), minDocs.end());
     if (termSeq.isEmpty()) {
-        for (const Document &doc : qAsConst(minDocs))
+        for (const Document &doc : qAsConst(minDocs)) {
             results << docList.at((int)doc.docNumber);
+        }
         return results;
     }
 
     QUrl fileName;
     for (const Document &doc : qAsConst(minDocs)) {
         fileName = docList[(int)doc.docNumber];
-        if (searchForPhrases(termSeq, seqWords, fileName, chmFile))
+        if (searchForPhrases(termSeq, seqWords, fileName, chmFile)) {
             results << fileName;
+        }
     }
 
     return results;
@@ -379,22 +399,25 @@ bool Index::searchForPhrases(const QStringList &phrases, const QStringList &word
 {
     QStringList parsed_document;
 
-    if (!parseDocumentToStringlist(chmFile, filename, parsed_document))
+    if (!parseDocumentToStringlist(chmFile, filename, parsed_document)) {
         return false;
+    }
 
     miniDict.clear();
 
     // Initialize the dictionary with the words in phrase(s)
-    for (const QString &word : words)
+    for (const QString &word : words) {
         miniDict.insert(word, new PosEntry(0));
+    }
 
     // Fill the dictionary with the words from the document
     unsigned int word_offset = 3;
     for (QStringList::ConstIterator it = parsed_document.constBegin(); it != parsed_document.constEnd(); it++, word_offset++) {
         PosEntry *entry = miniDict[*it];
 
-        if (entry)
+        if (entry) {
             entry->positions.append(word_offset);
+        }
     }
 
     // Dump it
@@ -414,7 +437,7 @@ bool Index::searchForPhrases(const QStringList &phrases, const QStringList &word
     QList<uint> first_word_positions;
 
     for (QStringList::ConstIterator phrase_it = phrases.constBegin(); phrase_it != phrases.constEnd(); phrase_it++) {
-        QStringList phrasewords = phrase_it->split(' ');
+        QStringList phrasewords = phrase_it->split(QLatin1Char(' '));
         first_word_positions = miniDict[phrasewords[0]]->positions;
 
         for (int j = 1; j < phrasewords.count(); ++j) {
@@ -425,8 +448,9 @@ bool Index::searchForPhrases(const QStringList &phrases, const QStringList &word
                 if (next_word_it.indexOf(*dict_it + 1) != -1) {
                     (*dict_it)++;
                     ++dict_it;
-                } else
+                } else {
                     dict_it = first_word_positions.erase(dict_it);
+                }
             }
         }
     }

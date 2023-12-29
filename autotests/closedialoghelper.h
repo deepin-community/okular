@@ -21,11 +21,11 @@ public:
     CloseDialogHelper(QWidget *w, QDialogButtonBox::StandardButton b);
 
     // Close a modal dialog, which may not be associated to any other widget
-    CloseDialogHelper(QDialogButtonBox::StandardButton b);
+    explicit CloseDialogHelper(QDialogButtonBox::StandardButton b);
 
     ~CloseDialogHelper() override;
 
-private slots:
+private Q_SLOTS:
     void closeDialog();
 
 private:

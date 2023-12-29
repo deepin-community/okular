@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_djvu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2007-04-15 19:05-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -27,69 +27,69 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kscanne@gmail.com"
 
-#: generator_djvu.cpp:130
+#: generator_djvu.cpp:136
 #, kde-format
 msgid "Editor"
 msgstr "Eagarthóir"
 
-#: generator_djvu.cpp:131
+#: generator_djvu.cpp:137
 #, kde-format
 msgid "Publisher"
 msgstr "Foilsitheoir"
 
-#: generator_djvu.cpp:132
+#: generator_djvu.cpp:138
 #, kde-format
 msgid "Volume"
 msgstr "Imleabhar"
 
-#: generator_djvu.cpp:133
+#: generator_djvu.cpp:139
 #, kde-format
 msgid "Type of document"
 msgstr "Cineál na cáipéise"
 
-#: generator_djvu.cpp:135
+#: generator_djvu.cpp:141
 #, kde-format
 msgctxt "Unknown number of component files"
 msgid "Unknown"
 msgstr "Anaithnid"
 
-#: generator_djvu.cpp:135
+#: generator_djvu.cpp:141
 #, kde-format
 msgid "Component Files"
 msgstr "Comhaid Chomhpháirte"
 
-#: kdjvu.cpp:662
+#: kdjvu.cpp:684
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Unknown"
 msgstr "Anaithnid"
 
-#: kdjvu.cpp:665
+#: kdjvu.cpp:687
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Single Page"
 msgstr "Leathanach Aonair"
 
 # FRTF: bundled software bogearraí mpl cuachta
-#: kdjvu.cpp:668
+#: kdjvu.cpp:690
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Bundled"
 msgstr "Cuachta"
 
-#: kdjvu.cpp:671
+#: kdjvu.cpp:693
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Indirect"
 msgstr "Indíreach"
 
-#: kdjvu.cpp:674
+#: kdjvu.cpp:696
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Bundled (old)"
 msgstr "Cuachta (sean)"
 
-#: kdjvu.cpp:677
+#: kdjvu.cpp:699
 #, kde-format
 msgctxt "Type of DjVu document"
 msgid "Indexed (old)"

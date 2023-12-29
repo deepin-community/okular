@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_poppler\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-09-25 01:38+0000\n"
-"PO-Revision-Date: 2021-07-17 11:08+0200\n"
+"POT-Creation-Date: 2023-06-29 00:44+0000\n"
+"PO-Revision-Date: 2021-12-07 16:35+0100\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.07.80\n"
+"X-Generator: Lokalize 21.11.90\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #, kde-format
@@ -28,76 +28,134 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "Richard.Fric@kdemail.net,misurel@gmail.com"
 
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_OverprintPreviewEnabled)
+#: conf/pdfsettingswidget.ui:17
+#, kde-format
+msgid "Enable overprint preview"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: conf/pdfsettingswidget.ui:19
+#: conf/pdfsettingswidget.ui:26
 #, kde-format
 msgid "Enhance thin lines:"
 msgstr "Rozšíriť tenké čiary:"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:30 generator_pdf.cpp:856
+#: conf/pdfsettingswidget.ui:37 generator_pdf.cpp:947
 #, kde-format
 msgid "No"
 msgstr "Nie"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:35
+#: conf/pdfsettingswidget.ui:42
 #, kde-format
 msgid "Solid"
 msgstr "Plný"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, kcfg_EnhanceThinLines)
-#: conf/pdfsettingswidget.ui:40
+#: conf/pdfsettingswidget.ui:47
 #, kde-format
 msgid "Shape"
 msgstr "Tvar"
 
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: conf/pdfsettingswidget.ui:72
+#, fuzzy, kde-format
+#| msgid "Scaling mode for the printed pages"
+msgid "Default scaling mode when printing:"
+msgstr "Režim škálovania pre tlačené stránky"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:80 generator_pdf.cpp:103
+#, kde-format
+msgid "Fit to printable area"
+msgstr "Umiestniť do tlačiteľnej oblasti"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:85 generator_pdf.cpp:104
+#, kde-format
+msgid "Fit to full page"
+msgstr "Umiestniť na celú stranu"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, kcfg_PrintScaleMode)
+#: conf/pdfsettingswidget.ui:90 generator_pdf.cpp:105
+#, kde-format
+msgid "None; print original size"
+msgstr "Žiadne; tlačiť pôvodnú veľkosť"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_CheckOCSPServers)
+#: conf/pdfsettingswidget.ui:113
+#, kde-format
+msgid ""
+"Enabling this option will allow Okular to contact 3rd-party OCSP servers to "
+"check if the certificates used for digital signing have been revoked since "
+"their creation."
+msgstr ""
+"Ak zapnete túto možnosť, Okular bude môcť kontaktovať servery OCSP tretích "
+"strán, aby skontroloval, či certifikáty použité na digitálne podpisovanie "
+"neboli od ich vytvorenia zrušené."
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_CheckOCSPServers)
+#: conf/pdfsettingswidget.ui:116
+#, kde-format
+msgid ""
+"Check revocation of digital signatures' certificates using 3rd-party servers"
+msgstr ""
+"Kontrola odvolania certifikátov digitálnych podpisov pomocou serverov "
+"tretích strán"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: conf/pdfsettingswidget.ui:138
+#, kde-format
+msgid "Signature backend:"
+msgstr ""
+
 #. i18n: ectx: property (title), widget (QGroupBox, certDBGroupBox)
-#: conf/pdfsettingswidget.ui:63
+#: conf/pdfsettingswidget.ui:164
 #, kde-format
 msgid "Certificate Database"
 msgstr "Databáza certifikátov"
 
 #. i18n: ectx: property (text), widget (QRadioButton, kcfg_UseDefaultCertDB)
-#: conf/pdfsettingswidget.ui:72
+#: conf/pdfsettingswidget.ui:173
 #, kde-format
 msgid "Default:"
 msgstr "Predvolené:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, customRadioButton)
-#: conf/pdfsettingswidget.ui:79
+#: conf/pdfsettingswidget.ui:180
 #, kde-format
 msgid "Custom:"
 msgstr "Vlastné:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, certificatesGroup)
-#: conf/pdfsettingswidget.ui:96
+#: conf/pdfsettingswidget.ui:197
 #, kde-format
 msgid "Available Certificates"
 msgstr "Dostupné certifikáty"
 
 #. i18n: ectx: property (text), widget (QPushButton, loadSignaturesButton)
-#: conf/pdfsettingswidget.ui:104
+#: conf/pdfsettingswidget.ui:205
 #, kde-format
 msgid "&Load Signatures"
 msgstr "Načítať podpisy"
 
-#: generator_pdf.cpp:89
+#: generator_pdf.cpp:88
 #, kde-format
 msgid "PDF Options"
 msgstr "PDF možnosti"
 
-#: generator_pdf.cpp:91
+#: generator_pdf.cpp:90
 #, kde-format
 msgid "Print annotations"
 msgstr "Tlačiť anotácie"
 
-#: generator_pdf.cpp:92
+#: generator_pdf.cpp:91
 #, kde-format
 msgid "Include annotations in the printed document"
 msgstr "Zahrnúť anotácie vo vytlačenom dokumente"
 
-#: generator_pdf.cpp:93
+#: generator_pdf.cpp:92
 #, kde-format
 msgid ""
 "Includes annotations in the printed document. You can disable this if you "
@@ -106,17 +164,17 @@ msgstr ""
 "Zahrnie anotácie vo vytlačenom dokumente. Toto môžete zakázať, ak chcete "
 "vytlačiť pôvodný neanotovaný dokument."
 
-#: generator_pdf.cpp:95
+#: generator_pdf.cpp:94
 #, kde-format
 msgid "Force rasterization"
 msgstr "Vynútiť rasterizáciu"
 
-#: generator_pdf.cpp:96
+#: generator_pdf.cpp:95
 #, kde-format
 msgid "Rasterize into an image before printing"
 msgstr "Pred tlačou rasterizovať do obrázku"
 
-#: generator_pdf.cpp:97
+#: generator_pdf.cpp:96
 #, kde-format
 msgid ""
 "Forces the rasterization of each page into an image before printing it. This "
@@ -127,94 +185,53 @@ msgstr ""
 "zvyčajne dáva o niečo horšie výsledky, ale je to užitočné pri tlači "
 "dokumentov, ktoré sa nevytlačia správne."
 
-#: generator_pdf.cpp:104
-#, kde-format
-msgid "Fit to printable area"
-msgstr "Umiestniť do tlačiteľnej oblasti"
-
-#: generator_pdf.cpp:105
-#, kde-format
-msgid "Fit to full page"
-msgstr "Umiestniť na celú stranu"
-
 #: generator_pdf.cpp:106
-#, kde-format
-msgid "None; print original size"
-msgstr "Žiadne; tlačiť pôvodnú veľkosť"
-
-#: generator_pdf.cpp:107
 #, kde-format
 msgid "Scaling mode for the printed pages"
 msgstr "Režim škálovania pre tlačené stránky"
 
-#: generator_pdf.cpp:108
+#: generator_pdf.cpp:107
 #, kde-format
 msgid "Scale mode:"
 msgstr "Režim škálovania:"
 
-#: generator_pdf.cpp:854
+#: generator_pdf.cpp:945
 #, kde-format
 msgctxt "PDF v. <version>"
 msgid "PDF v. %1.%2"
 msgstr "PDF v. %1.%2"
 
-#: generator_pdf.cpp:854
+#: generator_pdf.cpp:945
 #, kde-format
 msgid "Format"
 msgstr "Formát"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Encrypted"
 msgstr "Šifrovaný"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Unencrypted"
 msgstr "Nešifrovaný"
 
-#: generator_pdf.cpp:855
+#: generator_pdf.cpp:946
 #, kde-format
 msgid "Security"
 msgstr "Bezpečnosť"
 
-#: generator_pdf.cpp:856
+#: generator_pdf.cpp:947
 #, kde-format
 msgid "Yes"
 msgstr "Áno"
 
-#: generator_pdf.cpp:856
+#: generator_pdf.cpp:947
 #, kde-format
 msgid "Optimized"
 msgstr "Optimalizovaný"
 
-#: generator_pdf.cpp:1462
-#, kde-format
-msgid "Using Poppler %1"
-msgstr "Používam Poppler %1"
-
-#: generator_pdf.cpp:1464
-#, kde-format
-msgid ""
-"Using Poppler %1\n"
-"\n"
-"Built against Poppler %2"
-msgstr ""
-"Používam Poppler %1\n"
-"\n"
-"Skompilované s Poppler %2"
-
-#: generator_pdf.cpp:1496
-#, kde-format
-msgid "PDF"
-msgstr "PDF"
-
-#: generator_pdf.cpp:1496
-#, kde-format
-msgid "PDF Backend Configuration"
-msgstr "Nastavenie PDF backendu"
-
-#: generator_pdf.cpp:1913
+#: generator_pdf.cpp:1378
 #, kde-format
 msgid ""
 "Signed by: %1\n"
@@ -225,7 +242,33 @@ msgstr ""
 "\n"
 "Dátum: %2"
 
-#: generator_pdf.cpp:1954
+#: generator_pdf.cpp:1581
+#, kde-format
+msgid "Using Poppler %1"
+msgstr "Používam Poppler %1"
+
+#: generator_pdf.cpp:1583
+#, kde-format
+msgid ""
+"Using Poppler %1\n"
+"\n"
+"Built against Poppler %2"
+msgstr ""
+"Používam Poppler %1\n"
+"\n"
+"Skompilované s Poppler %2"
+
+#: generator_pdf.cpp:1618
+#, kde-format
+msgid "PDF"
+msgstr "PDF"
+
+#: generator_pdf.cpp:1618
+#, kde-format
+msgid "PDF Backend Configuration"
+msgstr "Nastavenie PDF backendu"
+
+#: generator_pdf.cpp:2111
 #, kde-format
 msgid ""
 "Some errors were found in the document, Okular might not be able to show the "
@@ -234,24 +277,24 @@ msgstr ""
 "V dokumente sa našli chyby, Okular nemusí byť schopný správne zobraziť obsah "
 "súboru"
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgctxt "Name of the person to whom the cerficate was issued"
 msgid "Issued to"
 msgstr "Vydané pre"
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgid "E-mail"
 msgstr "E-mail"
 
-#: pdfsettingswidget.cpp:44
+#: pdfsettingswidget.cpp:128
 #, kde-format
 msgctxt "Certificate expiration date"
 msgid "Expiration date"
 msgstr "Dátum vypršania platnosti"
 
-#: pdfsettingswidget.cpp:61
+#: pdfsettingswidget.cpp:145
 #, kde-format
 msgid ""
 "You are using a Poppler library built without NSS support.\n"
@@ -260,30 +303,28 @@ msgstr ""
 "Používate knižnicu Poppler vytvorenú bez podpory NSS.\n"
 "Pridávanie digitálnych podpisov preto nie je k dispozícii"
 
-#: pdfsettingswidget.cpp:102
+#: pdfsettingswidget.cpp:186
 #, kde-format
 msgid "Restart needed"
 msgstr "Potrebný reštart"
 
-#: pdfsettingswidget.cpp:102
+#: pdfsettingswidget.cpp:186
 #, kde-format
 msgid "You need to restart Okular after changing the NSS directory settings"
 msgstr "Po zmene nastavení adresára NSS musíte reštartovať Okular"
 
-#: pdfsignatureutils.cpp:40 pdfsignatureutils.cpp:46 pdfsignatureutils.cpp:54
-#, kde-format
-msgid "Not Available"
-msgstr "Nedostupné"
-
-#: pdfsignatureutils.cpp:267
+#: pdfsignatureutils.cpp:194
 #, kde-format
 msgid "Enter Password"
 msgstr "Zadať heslo"
 
-#: pdfsignatureutils.cpp:267
+#: pdfsignatureutils.cpp:194
 #, kde-format
 msgid "Enter password to open %1:"
 msgstr "Zadajte heslo na otvorenie %1:"
+
+#~ msgid "Not Available"
+#~ msgstr "Nedostupné"
 
 #~ msgid "Select rasterization to enable this!"
 #~ msgstr "Vyberte rasterizáciu na povolenie tejto funkcie!"

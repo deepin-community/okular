@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_dvi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-04-09 00:43+0000\n"
 "PO-Revision-Date: 2014-07-18 05:17+0300\n"
 "Last-Translator: Marek Laane <bald@smail.ee>\n"
 "Language-Team: Estonian <kde-et@linux.ee>\n"
@@ -29,7 +29,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "bald@smail.ee"
 
-#: dviexport.cpp:117
+#: dviexport.cpp:123
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvipdfm</em> on your "
@@ -50,7 +50,7 @@ msgstr ""
 "süsadminnile: Okular kasutab shelli PATH-muutujat programmide otsimisel.</"
 "p></qt>"
 
-#: dviexport.cpp:135
+#: dviexport.cpp:142
 #, kde-format
 msgid ""
 "<qt>The external program 'dvipdfm', which was used to export the file, "
@@ -62,7 +62,7 @@ msgstr ""
 "veast. Võib-olla soovid heita pilgu <strong>dokumendi info</strong> "
 "dialoogile, mille leiad menüüst Fail, nägemaks vea täpset kirjeldust.</qt>"
 
-#: dviexport.cpp:158
+#: dviexport.cpp:168
 #, kde-format
 msgid ""
 "<qt>This DVI file refers to external graphic files which are not in "
@@ -77,7 +77,7 @@ msgstr ""
 "sellesse vormingusse salvestamisel. Seepärast ei ole see funktsionaalsus, "
 "mida soovisid, Okulari praeguses versioonis lihtsalt saadaval.</qt>"
 
-#: dviexport.cpp:166
+#: dviexport.cpp:176
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvips</em> on your computer. "
@@ -89,7 +89,7 @@ msgstr ""
 "eksportimiseks hädavajalik.</p><p>Abiks algajale süsadminnile: Okular "
 "kasutab shelli PATH-muutujat programmide otsimisel.</p></qt>"
 
-#: dviexport.cpp:257
+#: dviexport.cpp:270
 #, kde-format
 msgid ""
 "<qt>The external program 'dvips', which was used to export the file, "
@@ -101,12 +101,12 @@ msgstr ""
 "veast. Võib-olla soovid sa heita pilgu <strong>dokumendi info</strong> "
 "dialoogile, mille sa leiad menüüst Fail, nägemaks vea täpset kirjeldust.</qt>"
 
-#: dviFile.cpp:90
+#: dviFile.cpp:91
 #, kde-format
 msgid "The DVI file does not start with the preamble."
 msgstr "DVI-fail ei alga preambulaga."
 
-#: dviFile.cpp:96
+#: dviFile.cpp:97
 #, kde-format
 msgid ""
 "The DVI file contains the wrong version of DVI output for this program. "
@@ -117,28 +117,28 @@ msgstr ""
 "Vihje: kui sa kasutad ladumissüsteemi Omega, siis peaksid sa kasutama ka "
 "spetsiaalset rakendust, näiteks oxdvi."
 
-#: dviFile.cpp:132
+#: dviFile.cpp:134
 #, kde-format
 msgid ""
 "The DVI file is badly corrupted. Okular was not able to find the postamble."
 msgstr "DVI-fail on täiesti katki. Okular ei suutnud leida postambulat."
 
-#: dviFile.cpp:146
+#: dviFile.cpp:148
 #, kde-format
 msgid "The postamble does not begin with the POST command."
 msgstr "Postambula ei alga käsuga POST."
 
-#: dviFile.cpp:199
+#: dviFile.cpp:202
 #, kde-format
 msgid "The postamble contained a command other than FNTDEF."
 msgstr "Postambula sisaldas muud käsku kui FNTDEF."
 
-#: dviFile.cpp:234
+#: dviFile.cpp:240
 #, kde-format
 msgid "The page %1 does not start with the BOP command."
 msgstr "Leht %1 ei alga BOP-käsuga."
 
-#: dviFile.cpp:361
+#: dviFile.cpp:351
 #, kde-format
 msgid ""
 "<qt><p>The external program <strong>pdf2ps</strong> could not be started. As "
@@ -164,7 +164,7 @@ msgstr ""
 "programmi <strong>pdf2ps</strong> käsurealt ja kontrollida, kas see ikka "
 "töötab.</p><p><em>OTSINGUTEE:</em> %2</p></qt>"
 
-#: dviFile.cpp:388
+#: dviFile.cpp:410
 #, kde-format
 msgid ""
 "<qt><p>The PDF-file %1 could not be converted to PostScript. Some graphic "
@@ -178,27 +178,27 @@ msgstr ""
 "%1 võib olla katki või ei ole see üldse PDF-fail. See on Okulari kasutatud "
 "programmi <strong>pdf2ps</strong> väljund:</p><p><strong>%2</strong></p></qt>"
 
-#: dviRenderer.cpp:199 dviRenderer.cpp:421
+#: dviRenderer.cpp:203 dviRenderer.cpp:435
 #, kde-format
 msgid "File corruption. %1"
 msgstr "Fail on riknenud. %1"
 
-#: dviRenderer.cpp:319
+#: dviRenderer.cpp:326
 #, kde-format
 msgid "Not all PostScript files could be embedded into your document. %1"
 msgstr "Sinu dokumenti ei saa põimida kõiki PostScript-faile. %1"
 
-#: dviRenderer.cpp:322
+#: dviRenderer.cpp:329
 #, kde-format
 msgid "All external PostScript files were embedded into your document."
 msgstr "Kõik välised PostScript-failid põimiti sinu dokumenti."
 
-#: dviRenderer.cpp:406
+#: dviRenderer.cpp:419
 #, kde-format
 msgid "The specified file '%1' does not exist."
 msgstr "Määratud faili '%1' ei ole olemas."
 
-#: dviRenderer.cpp:544
+#: dviRenderer.cpp:565
 #, kde-format
 msgid ""
 "You have asked Okular to locate the place in the DVI file which corresponds "
@@ -209,7 +209,7 @@ msgstr ""
 "%2. Tundub siiski, et see DVI-fail ei sisalda vajalikku infot lähtefaili "
 "kohta. "
 
-#: dviRenderer.cpp:581
+#: dviRenderer.cpp:604
 #, kde-format
 msgid ""
 "Okular was not able to locate the place in the DVI file which corresponds to "
@@ -217,47 +217,47 @@ msgid ""
 msgstr ""
 "Okular ei leidnud kohta DVI-failis, mis vastaks reale %1 TeXi failis %2."
 
-#: dviRenderer_draw.cpp:237
+#: dviRenderer_draw.cpp:243
 #, kde-format
 msgid "The DVI code set a character of an unknown font."
 msgstr "DVI kood määras tundmatu fondi sümboli."
 
-#: dviRenderer_draw.cpp:264 dviRenderer_prescan.cpp:629
+#: dviRenderer_draw.cpp:270 dviRenderer_prescan.cpp:668
 #, kde-format
 msgid "The DVI code referred to font #%1, which was not previously defined."
 msgstr "DVI koodis on viide fondile #%1, mis on eelnevalt määratlemata."
 
-#: dviRenderer_draw.cpp:345
+#: dviRenderer_draw.cpp:353
 #, kde-format
 msgid "The stack was not empty when the EOP command was encountered."
 msgstr "Pinu ei olnud tühi, kui tuvastati EOP käsk."
 
-#: dviRenderer_draw.cpp:357
+#: dviRenderer_draw.cpp:365
 #, kde-format
 msgid "The stack was empty when a POP command was encountered."
 msgstr "Pinu oli tühi, kui tuvastati POP käsk."
 
-#: dviRenderer_draw.cpp:477 dviRenderer_draw.cpp:486
+#: dviRenderer_draw.cpp:489 dviRenderer_draw.cpp:498
 #, kde-format
 msgid "The DVI code referred to a font which was not previously defined."
 msgstr "DVI koodis on viide fondile, mis on eelnevalt määratlemata."
 
-#: dviRenderer_draw.cpp:527
+#: dviRenderer_draw.cpp:539
 #, kde-format
 msgid "An illegal command was encountered."
 msgstr "Tuvastati lubamatu käsk."
 
-#: dviRenderer_draw.cpp:532
+#: dviRenderer_draw.cpp:544
 #, kde-format
 msgid "The unknown op-code %1 was encountered."
 msgstr "Tuvastati tundmatu opkood %1."
 
-#: dviRenderer_prescan.cpp:83
+#: dviRenderer_prescan.cpp:87
 #, kde-format
 msgid "Embedding %1"
 msgstr "%1 põimimine"
 
-#: dviRenderer_prescan.cpp:98
+#: dviRenderer_prescan.cpp:105
 #, kde-format
 msgid ""
 "Page %1: The PDF file <strong>%2</strong> could not be converted to "
@@ -266,18 +266,18 @@ msgstr ""
 "Lehekülg %1: PDF-faili <strong>%2</strong> ei saa teisendada PostScript-"
 "failiks.<br>"
 
-#: dviRenderer_prescan.cpp:100
+#: dviRenderer_prescan.cpp:107
 #, kde-format
 msgid ""
 "Page %1: The PostScript file <strong>%2</strong> could not be found.<br>"
 msgstr "Lehekülg %1: PostScript-faili <strong>%2</strong> ei leitud.<br>"
 
-#: dviRenderer_prescan.cpp:246
+#: dviRenderer_prescan.cpp:261
 #, kde-format
 msgid "The papersize data '%1' could not be parsed."
 msgstr "Paberisuuruse andmete '%1' parsimine nurjus."
 
-#: fontpool.cpp:203
+#: fontpool.cpp:209
 #, kde-format
 msgid ""
 "<qt><p>Okular was not able to locate all the font files which are necessary "
@@ -288,7 +288,7 @@ msgstr ""
 "faili näitamiseks. Seetõttu võib dokument olla loetamatu.</"
 "p><p><small><b>OTSINGUTEE:</b> %1</small></p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:270
+#: fontpool.cpp:284
 #, kde-format
 msgid ""
 "<qt><p>There were problems running <em>kpsewhich</em>. As a result, some "
@@ -303,7 +303,7 @@ msgstr ""
 "paigaldatud või siis ei leitud seda kehtivalt otsinguteelt.</"
 "p><p><small><b>OTSINGUTEE:</b> %1</small></p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:291
+#: fontpool.cpp:305
 #, kde-format
 msgid ""
 "<qt>The font generation by <em>kpsewhich</em> was aborted (exit code %1, "
@@ -314,32 +314,32 @@ msgstr ""
 "viga %2). Seepärast ei suudetud tuvastada mõningaid fondifaile ning dokument "
 "ei pruugi olla loetav.</qt>"
 
-#: fontpool.cpp:462
+#: fontpool.cpp:481
 #, kde-format
 msgid "Currently generating %1 at %2 dpi..."
 msgstr "Parasjagu tekitatakse %1 %2 dpi juures..."
 
-#: generator_dvi.cpp:289
+#: generator_dvi.cpp:293
 #, kde-format
 msgid "Generator/Date"
 msgstr "Autor/Kuupäev"
 
-#: generator_dvi.cpp:372
+#: generator_dvi.cpp:382
 #, kde-format
 msgid "Font file not found"
 msgstr "Fondifaili ei leitud"
 
-#: pageSize.cpp:294
+#: pageSize.cpp:318
 #, kde-format
 msgid "portrait"
 msgstr "püstpaigutus"
 
-#: pageSize.cpp:296
+#: pageSize.cpp:320
 #, kde-format
 msgid "landscape"
 msgstr "rõhtpaigutus"
 
-#: psgs.cpp:265
+#: psgs.cpp:284
 #, kde-format
 msgid ""
 "The version of Ghostview that is installed on this computer does not contain "
@@ -355,7 +355,7 @@ msgstr ""
 msgid "That makes 25 errors. Further error messages will not be printed."
 msgstr "Siin on juba 25 viga. Rohkem veateateid ei näidata."
 
-#: special.cpp:216
+#: special.cpp:232
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Color pop command issued when the color "
@@ -364,7 +364,7 @@ msgstr ""
 "Viga DVI-failis '%1' leheküljel %2. Anti värvi pop-käsk, samas kui värvipinu "
 "on tühi."
 
-#: special.cpp:297
+#: special.cpp:318
 #, kde-format
 msgid ""
 "Malformed parameter in the epsf special command.\n"
@@ -373,7 +373,7 @@ msgstr ""
 "Vigane parameeter epsf erikäsus.\n"
 "Oodati ujukomaarvu järgnemist %1-le %2-s"
 
-#: special.cpp:424
+#: special.cpp:446
 #, kde-format
 msgid ""
 "File not found: \n"
@@ -382,7 +382,7 @@ msgstr ""
 "Faili ei leitud: \n"
 " %1"
 
-#: special.cpp:664
+#: special.cpp:695
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Could not interpret angle in text rotation "
@@ -391,7 +391,7 @@ msgstr ""
 "Viga DVI-failis \"%1\" leheküljel %2. Teksti pöördenurga interpreteerimine "
 "nurjus."
 
-#: special.cpp:680
+#: special.cpp:714
 #, kde-format
 msgid "The special command '%1' is not implemented."
 msgstr "Erikäsk '%1' ei ole rakendatud."
@@ -408,83 +408,83 @@ msgstr "Fondifaili %1 võib küll avada, aga selle vorming ei ole toetatud."
 msgid "The font file %1 is broken, or it could not be opened or read."
 msgstr "Fondifail %1 on katki või ei saa seda avada ega lugeda."
 
-#: TeXFont_PFB.cpp:165
+#: TeXFont_PFB.cpp:170
 #, kde-format
 msgid ""
 "FreeType reported an error when setting the character size for font file %1."
 msgstr "FreeType andis teada veast, kui määras fondifailile %1 sümbolisuurust."
 
-#: TeXFont_PFB.cpp:181
+#: TeXFont_PFB.cpp:188
 #, kde-format
 msgid "FreeType is unable to load glyph #%1 from font file %2."
 msgstr "FreeType ei suutnud avada fondifaili %2 glüüfi #%1."
 
-#: TeXFont_PFB.cpp:193
+#: TeXFont_PFB.cpp:201
 #, kde-format
 msgid "FreeType is unable to render glyph #%1 from font file %2."
 msgstr "FreeType ei suutnud teisendada fondifaili %2 glüüfi #%1."
 
-#: TeXFont_PFB.cpp:206
+#: TeXFont_PFB.cpp:215
 #, kde-format
 msgid "Glyph #%1 is empty."
 msgstr "Glüüf #%1 on tühi."
 
-#: TeXFont_PFB.cpp:207
+#: TeXFont_PFB.cpp:217
 #, kde-format
 msgid "Glyph #%1 from font file %2 is empty."
 msgstr "Glüüf #%1 fondifailist %2 on tühi."
 
-#: TeXFont_PFB.cpp:272
+#: TeXFont_PFB.cpp:282
 #, kde-format
 msgid "FreeType is unable to load metric for glyph #%1 from font file %2."
 msgstr "FreeType ei suutnud avada fondifaili %2 glüüfi #%1 meetrikat."
 
-#: TeXFont_PK.cpp:68
+#: TeXFont_PK.cpp:69
 #, kde-format
 msgid "Cannot open font file %1."
 msgstr "Fondifaili %1 avamine nurjus."
 
-#: TeXFont_PK.cpp:114
+#: TeXFont_PK.cpp:116
 #, kde-format
 msgid "TexFont_PK::operator[]: Character %1 not defined in font %2"
 msgstr "TexFont_PK::operator[]: Sümbol %1 pole defineeritud fondis %2 "
 
-#: TeXFont_PK.cpp:398
+#: TeXFont_PK.cpp:418
 #, kde-format
 msgid "Unexpected %1 in PK file %2"
 msgstr "Ootamatu %1 PK-failis %2"
 
-#: TeXFont_PK.cpp:462
+#: TeXFont_PK.cpp:484
 #, kde-format
 msgid "The character %1 is too large in file %2"
 msgstr "Sümbol %1 on liiga suur failis %2"
 
-#: TeXFont_PK.cpp:562 TeXFont_PK.cpp:646
+#: TeXFont_PK.cpp:589 TeXFont_PK.cpp:679
 #, kde-format
 msgid "Wrong number of bits stored:  char. %1, font %2"
 msgstr "Vale arv bitte salvestatud: sümbol %1, font %2"
 
-#: TeXFont_PK.cpp:564 TeXFont_PK.cpp:648
+#: TeXFont_PK.cpp:592 TeXFont_PK.cpp:682
 #, kde-format
 msgid "Bad pk file (%1), too many bits"
 msgstr "Halb pk-fail (%1), liiga palju bitte"
 
-#: TeXFont_PK.cpp:678
+#: TeXFont_PK.cpp:713
 #, kde-format
 msgid "Font has non-square aspect ratio "
 msgstr "Fondil ei ole ruudukujuline kõrguse/laiuse suhe"
 
-#: TeXFontDefinition.cpp:105
+#: TeXFontDefinition.cpp:106
 #, kde-format
 msgid "Cannot find font %1, file %2."
 msgstr "Ei leitud fondi %1 faili %2."
 
-#: TeXFontDefinition.cpp:121
+#: TeXFontDefinition.cpp:123
 #, kde-format
 msgid "Checksum mismatch for font file %1"
 msgstr "Fondifaili %1 kontrollsumma ei klapi"
 
-#: TeXFontDefinition.cpp:169
+#: TeXFontDefinition.cpp:174
 #, kde-format
 msgid "Cannot recognize format for font file %1"
 msgstr "Fondifaili %1 vormingut ei tuntud ära"
@@ -519,7 +519,7 @@ msgstr ""
 "leidsid vea või et Okular peaks sellises olukorras paremini käituma,\n"
 "saada palun vearaport."
 
-#: vf.cpp:160
+#: vf.cpp:164
 #, kde-format
 msgid "Wrong command byte found in VF macro list: %1"
 msgstr "Vale käsubait VF makro nimekirjas: %1"

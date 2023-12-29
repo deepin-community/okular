@@ -18,6 +18,7 @@
 #ifndef _OKULAR_PAGEVIEW_H_
 #define _OKULAR_PAGEVIEW_H_
 
+#include "config-okular.h"
 #include "core/area.h"
 #include "core/observer.h"
 #include "core/view.h"
@@ -115,6 +116,10 @@ public:
 
     void highlightSignatureFormWidget(const Okular::FormFieldSignature *form);
 
+    void showNoSigningCertificatesDialog(bool nonDateValidCerts);
+
+    Okular::Document *document() const;
+
 public Q_SLOTS:
     void copyTextSelection() const;
     void selectAll();
@@ -152,6 +157,8 @@ protected:
 
     void paintEvent(QPaintEvent *e) override;
     void tabletEvent(QTabletEvent *e) override;
+    void continuousZoom(double delta);
+    void continuousZoomEnd();
     void mouseMoveEvent(QMouseEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
@@ -182,6 +189,8 @@ private:
     void updateZoom(ZoomMode newZoomMode);
     // update the text on the label using global zoom value or current page's one
     void updateZoomText();
+    // update the text enabled status of the zoom actions
+    void updateZoomActionsEnabledStatus();
     // update view mode (single, facing...)
     void updateViewMode(const int nr);
     void textSelectionClear();
@@ -214,7 +223,7 @@ private:
     // handle link clicked
     bool mouseReleaseOverLink(const Okular::ObjectRect *rect) const;
 
-    void createAnnotationsVideoWidgets(PageViewItem *item, const QLinkedList<Okular::Annotation *> &annotations);
+    void createAnnotationsVideoWidgets(PageViewItem *item, const QList<Okular::Annotation *> &annotations);
 
     // Update speed of animated smooth scroll transitions
     void updateSmoothScrollAnimationSpeed();
@@ -280,7 +289,7 @@ private Q_SLOTS:
     void slotTrimToSelectionToggled(bool);
     void slotToggleForms();
     void slotRefreshPage();
-#ifdef HAVE_SPEECH
+#if HAVE_SPEECH
     void slotSpeakDocument();
     void slotSpeakCurrentPage();
     void slotStopSpeaks();

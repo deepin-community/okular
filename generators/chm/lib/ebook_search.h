@@ -54,13 +54,13 @@ public:
     //! Returns true if a valid search index is present, and therefore search could be executed
     bool hasIndex() const;
 
-signals:
+Q_SIGNALS:
     void progressStep(int value, const QString &stepName);
 
-public slots:
+public Q_SLOTS:
     void cancelIndexGeneration();
 
-private slots:
+private Q_SLOTS:
     void updateProgress(int value, const QString &stepName);
     void processEvents();
 

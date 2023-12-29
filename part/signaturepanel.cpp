@@ -6,10 +6,10 @@
 
 #include "signaturepanel.h"
 
+#include "gui/signaturemodel.h"
 #include "pageview.h"
 #include "revisionviewer.h"
-#include "signatureguiutils.h"
-#include "signaturemodel.h"
+#include "signaturepartutils.h"
 #include "signaturepropertiesdialog.h"
 
 #include <kwidgetsaddons_version.h>
@@ -43,7 +43,7 @@ SignaturePanel::SignaturePanel(Okular::Document *document, QWidget *parent)
     Q_D(SignaturePanel);
 
     KTitleWidget *titleWidget = new KTitleWidget(this);
-    titleWidget->setLevel(2);
+    titleWidget->setLevel(4);
     titleWidget->setText(i18n("Signatures"));
 
     d->m_view = new QTreeView(this);
@@ -71,8 +71,9 @@ void SignaturePanel::activated(const QModelIndex &index)
 {
     Q_D(SignaturePanel);
     d->m_currentForm = d->m_model->data(index, SignatureModel::FormRole).value<const Okular::FormFieldSignature *>();
-    if (!d->m_currentForm)
+    if (!d->m_currentForm) {
         return;
+    }
     const Okular::NormalizedRect nr = d->m_currentForm->rect();
     Okular::DocumentViewport vp;
     vp.pageNumber = d->m_model->data(index, SignatureModel::PageRole).toInt();
@@ -87,13 +88,20 @@ void SignaturePanel::activated(const QModelIndex &index)
 void SignaturePanel::slotShowContextMenu()
 {
     Q_D(SignaturePanel);
-    if (!d->m_currentForm)
+    if (!d->m_currentForm) {
         return;
+    }
 
     QMenu *menu = new QMenu(this);
-    QAction *sigProp = new QAction(i18n("Properties"), menu);
-    connect(sigProp, &QAction::triggered, this, &SignaturePanel::slotViewProperties);
-    menu->addAction(sigProp);
+    if (d->m_currentForm->signatureType() == Okular::FormFieldSignature::UnsignedSignature) {
+        QAction *signAction = new QAction(i18n("&Sign..."), menu);
+        connect(signAction, &QAction::triggered, this, &SignaturePanel::signUnsignedSignature);
+        menu->addAction(signAction);
+    } else {
+        QAction *sigProp = new QAction(i18n("Properties"), menu);
+        connect(sigProp, &QAction::triggered, this, &SignaturePanel::slotViewProperties);
+        menu->addAction(sigProp);
+    }
     menu->exec(QCursor::pos());
     delete menu;
 }
@@ -105,14 +113,21 @@ void SignaturePanel::slotViewProperties()
     propDlg.exec();
 }
 
+void SignaturePanel::signUnsignedSignature()
+{
+    Q_D(SignaturePanel);
+    SignaturePartUtils::signUnsignedSignature(d->m_currentForm, d->m_pageView, d->m_document);
+}
+
 void SignaturePanel::notifySetup(const QVector<Okular::Page *> & /*pages*/, int setupFlags)
 {
-    if (!(setupFlags & Okular::DocumentObserver::UrlChanged))
+    if (!(setupFlags & Okular::DocumentObserver::UrlChanged)) {
         return;
+    }
 
     Q_D(SignaturePanel);
-    const QVector<const Okular::FormFieldSignature *> signatureForms = SignatureGuiUtils::getSignatureFormFields(d->m_document, true, -1);
-    emit documentHasSignatures(!signatureForms.isEmpty());
+    const QVector<const Okular::FormFieldSignature *> signatureForms = SignatureGuiUtils::getSignatureFormFields(d->m_document);
+    Q_EMIT documentHasSignatures(!signatureForms.isEmpty());
 }
 
 SignaturePanel::~SignaturePanel()

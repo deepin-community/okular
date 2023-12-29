@@ -15,6 +15,7 @@
 
 #include <QApplication>
 #include <QPainter>
+#include <QStandardPaths>
 
 #include <cmath>
 #include <math.h>
@@ -48,10 +49,11 @@ fontPool::fontPool(bool useFontHinting)
 #ifdef HAVE_FREETYPE
     // Initialize the Freetype Library
     if (FT_Init_FreeType(&FreeType_library) != 0) {
-        qCCritical(OkularDviDebug) << "Cannot load the FreeType library. KDVI proceeds without FreeType support." << endl;
+        qCCritical(OkularDviDebug) << "Cannot load the FreeType library. KDVI proceeds without FreeType support.";
         FreeType_could_be_loaded = false;
-    } else
+    } else {
         FreeType_could_be_loaded = true;
+    }
 #endif
 
     // Check if the QT library supports the alpha channel of
@@ -95,8 +97,9 @@ fontPool::~fontPool()
     fontList.clear();
 
 #ifdef HAVE_FREETYPE
-    if (FreeType_could_be_loaded == true)
+    if (FreeType_could_be_loaded == true) {
         FT_Done_FreeType(FreeType_library);
+    }
 #endif
 }
 
@@ -160,8 +163,9 @@ bool fontPool::areFontsLocated()
     QList<TeXFontDefinition *>::const_iterator cit_fontp = fontList.constBegin();
     for (; cit_fontp != fontList.constEnd(); ++cit_fontp) {
         TeXFontDefinition *fontp = *cit_fontp;
-        if (!fontp->isLocated())
+        if (!fontp->isLocated()) {
             return false;
+        }
     }
 
 #ifdef DEBUG_FONTPOOL
@@ -186,33 +190,41 @@ void fontPool::locateFonts()
 
     // If still not all fonts are found, look again, this time with
     // on-demand generation of PK fonts enabled.
-    if (!areFontsLocated())
+    if (!areFontsLocated()) {
         locateFonts(true, false);
+    }
 
     // If still not all fonts are found, we look for TFM files as a last
     // resort, so that we can at least draw filled rectangles for
     // characters.
-    if (!areFontsLocated())
+    if (!areFontsLocated()) {
         locateFonts(false, true);
+    }
 
     // If still not all fonts are found, we give up. We mark all fonts
     // as 'located', so that we won't look for them any more, and
     // present an error message to the user.
     if (!areFontsLocated()) {
         markFontsAsLocated();
-        emit error(i18n("<qt><p>Okular was not able to locate all the font files "
-                        "which are necessary to display the current DVI file. "
-                        "Your document might be unreadable.</p>"
-                        "<p><small><b>PATH:</b> %1</small></p>"
-                        "<p><small>%2</small></p></qt>",
-                        QString::fromLocal8Bit(qgetenv("PATH")),
-                        kpsewhichOutput.replace(QLatin1String("\n"), QLatin1String("<br/>"))),
-                   -1);
+        Q_EMIT error(i18n("<qt><p>Okular was not able to locate all the font files "
+                          "which are necessary to display the current DVI file. "
+                          "Your document might be unreadable.</p>"
+                          "<p><small><b>PATH:</b> %1</small></p>"
+                          "<p><small>%2</small></p></qt>",
+                          QString::fromLocal8Bit(qgetenv("PATH")),
+                          kpsewhichOutput.replace(QLatin1String("\n"), QLatin1String("<br/>"))),
+                     -1);
     }
 }
 
 void fontPool::locateFonts(bool makePK, bool locateTFMonly, bool *virtualFontsFound)
 {
+    // Make sure kpsewhich is in PATH and not just in the CWD
+    static const QString kpsewhichFullPath = QStandardPaths::findExecutable(QStringLiteral("kpsewhich"));
+    if (kpsewhichFullPath.isEmpty()) {
+        return;
+    }
+
     // Set up the kpsewhich process. If pass == 0, look for vf-fonts and
     // disable automatic font generation as vf-fonts can't be
     // generated. If pass == 0, enable font generation, if it was
@@ -234,14 +246,15 @@ void fontPool::locateFonts(bool makePK, bool locateTFMonly, bool *virtualFontsFo
         if (!fontp->isLocated()) {
             numFontsInJob++;
 
-            if (locateTFMonly == true)
+            if (locateTFMonly == true) {
                 kpsewhich_args << QStringLiteral("%1.tfm").arg(fontp->fontname);
-            else {
+            } else {
 #ifdef HAVE_FREETYPE
                 if (FreeType_could_be_loaded == true) {
                     const QString &filename = fontsByTeXName.findFileName(fontp->fontname);
-                    if (!filename.isEmpty())
+                    if (!filename.isEmpty()) {
                         kpsewhich_args << QStringLiteral("%1").arg(filename);
+                    }
                 }
 #endif
                 kpsewhich_args << QStringLiteral("%1.vf").arg(fontp->fontname) << QStringLiteral("%1.1200pk").arg(fontp->fontname);
@@ -249,8 +262,9 @@ void fontPool::locateFonts(bool makePK, bool locateTFMonly, bool *virtualFontsFo
         }
     }
 
-    if (numFontsInJob == 0)
+    if (numFontsInJob == 0) {
         return;
+    }
 
     // If PK fonts are generated, the kpsewhich command will re-route
     // the output of MetaFont into its stderr. Here we make sure this
@@ -264,18 +278,18 @@ void fontPool::locateFonts(bool makePK, bool locateTFMonly, bool *virtualFontsFo
     const QString kpsewhich_exe = QStringLiteral("kpsewhich");
     kpsewhichOutput += QStringLiteral("<b>") + kpsewhich_exe + QLatin1Char(' ') + kpsewhich_args.join(QStringLiteral(" ")) + QStringLiteral("</b>");
 
-    kpsewhich_->start(kpsewhich_exe, kpsewhich_args, QIODevice::ReadOnly | QIODevice::Text);
+    kpsewhich_->start(kpsewhichFullPath, kpsewhich_args, QIODevice::ReadOnly | QIODevice::Text);
     if (!kpsewhich_->waitForStarted()) {
         QApplication::restoreOverrideCursor();
-        emit error(i18n("<qt><p>There were problems running <em>kpsewhich</em>. As a result, "
-                        "some font files could not be located, and your document might be unreadable.<br/>"
-                        "Possible reason: the <em>kpsewhich</em> program is perhaps not installed on your system, "
-                        "or it cannot be found in the current search path.</p>"
-                        "<p><small><b>PATH:</b> %1</small></p>"
-                        "<p><small>%2</small></p></qt>",
-                        QString::fromLocal8Bit(qgetenv("PATH")),
-                        kpsewhichOutput.replace(QLatin1String("\n"), QLatin1String("<br/>"))),
-                   -1);
+        Q_EMIT error(i18n("<qt><p>There were problems running <em>kpsewhich</em>. As a result, "
+                          "some font files could not be located, and your document might be unreadable.<br/>"
+                          "Possible reason: the <em>kpsewhich</em> program is perhaps not installed on your system, "
+                          "or it cannot be found in the current search path.</p>"
+                          "<p><small><b>PATH:</b> %1</small></p>"
+                          "<p><small>%2</small></p></qt>",
+                          QString::fromLocal8Bit(qgetenv("PATH")),
+                          kpsewhichOutput.replace(QLatin1String("\n"), QLatin1String("<br/>"))),
+                     -1);
 
         // This makes sure the we don't try to run kpsewhich again
         markFontsAsLocated();
@@ -288,19 +302,20 @@ void fontPool::locateFonts(bool makePK, bool locateTFMonly, bool *virtualFontsFo
     // Handle fatal errors.
     int const kpsewhich_exit_code = kpsewhich_->exitCode();
     if (kpsewhich_exit_code < 0) {
-        emit warning(i18n("<qt>The font generation by <em>kpsewhich</em> was aborted (exit code %1, error %2). As a "
-                          "result, some font files could not be located, and your document might be unreadable.</qt>",
-                          kpsewhich_exit_code,
-                          kpsewhich_->errorString()),
-                     -1);
+        Q_EMIT warning(i18n("<qt>The font generation by <em>kpsewhich</em> was aborted (exit code %1, error %2). As a "
+                            "result, some font files could not be located, and your document might be unreadable.</qt>",
+                            kpsewhich_exit_code,
+                            kpsewhich_->errorString()),
+                       -1);
 
         // This makes sure the we don't try to run kpsewhich again
-        if (makePK == false)
+        if (makePK == false) {
             markFontsAsLocated();
+        }
     }
 
     // Create a list with all filenames found by the kpsewhich program.
-    const QStringList fileNameList = QString::fromLocal8Bit(kpsewhich_->readAll()).split(QLatin1Char('\n'), QString::SkipEmptyParts);
+    const QStringList fileNameList = QString::fromLocal8Bit(kpsewhich_->readAll()).split(QLatin1Char('\n'), Qt::SkipEmptyParts);
 
     // Now associate the file names found with the fonts
     QList<TeXFontDefinition *>::iterator it_fontp = fontList.begin();
@@ -311,11 +326,13 @@ void fontPool::locateFonts(bool makePK, bool locateTFMonly, bool *virtualFontsFo
             QStringList matchingFiles;
 #ifdef HAVE_FREETYPE
             const QString &fn = fontsByTeXName.findFileName(fontp->fontname);
-            if (!fn.isEmpty())
+            if (!fn.isEmpty()) {
                 matchingFiles = fileNameList.filter(fn);
+            }
 #endif
-            if (matchingFiles.isEmpty() == true)
+            if (matchingFiles.isEmpty() == true) {
                 matchingFiles += fileNameList.filter(QLatin1Char('/') + fontp->fontname + QLatin1Char('.'));
+            }
 
             if (matchingFiles.isEmpty() != true) {
 #ifdef DEBUG_FONTPOOL
@@ -325,8 +342,9 @@ void fontPool::locateFonts(bool makePK, bool locateTFMonly, bool *virtualFontsFo
                 fontp->fontNameReceiver(fname);
                 fontp->flags |= TeXFontDefinition::FONT_KPSE_NAME;
                 if (fname.endsWith(QLatin1String(".vf"))) {
-                    if (virtualFontsFound != nullptr)
+                    if (virtualFontsFound != nullptr) {
                         *virtualFontsFound = true;
+                    }
                     // Constructing a virtual font will most likely insert other
                     // fonts into the fontList. After that, fontList.next() will
                     // no longer work. It is therefore safer to start over.
@@ -345,8 +363,9 @@ void fontPool::setCMperDVIunit(double _CMperDVI)
     qCDebug(OkularDviDebug) << "fontPool::setCMperDVIunit( " << _CMperDVI << " )";
 #endif
 
-    if (CMperDVIunit == _CMperDVI)
+    if (CMperDVIunit == _CMperDVI) {
         return;
+    }
 
     CMperDVIunit = _CMperDVI;
 
@@ -385,7 +404,7 @@ void fontPool::setDisplayResolution(double _displayResolution_in_dpi)
 
     // Do something that causes re-rendering of the dvi-window
     /*@@@@
-    emit fonts_have_been_loaded(this);
+    Q_EMIT fonts_have_been_loaded(this);
     */
 }
 
@@ -459,7 +478,7 @@ void fontPool::mf_output_receiver()
             int secondblank = startLine.lastIndexOf(QLatin1Char(' '), lastblank - 1);
             QString dpi = startLine.mid(secondblank + 1, lastblank - secondblank - 1);
 
-            emit warning(i18n("Currently generating %1 at %2 dpi...", fontName, dpi), -1);
+            Q_EMIT warning(i18n("Currently generating %1 at %2 dpi...", fontName, dpi), -1);
         }
         MetafontOutput = MetafontOutput.remove(0, numleft + 1);
     }

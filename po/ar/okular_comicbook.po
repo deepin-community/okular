@@ -1,22 +1,22 @@
 # translation of okular_comicbook.po to Arabic
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-# zayed <zayed.alsaidi@gmail.com>, 2008.
+# zayed <zayed.alsaidi@gmail.com>, 2008, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: okular_comicbook\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-06-11 00:15+0000\n"
-"PO-Revision-Date: 2008-12-17 12:03+0400\n"
-"Last-Translator: zayed <zayed.alsaidi@gmail.com>\n"
-"Language-Team: Arabic <linuxac-kde-arabic-team@googlegroups.com>\n"
+"PO-Revision-Date: 2021-07-10 21:05+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 21.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -29,10 +29,9 @@ msgid "Your emails"
 msgstr "zayed.alsaidi@gmail.com"
 
 #: document.cpp:96
-#, fuzzy, kde-format
-#| msgid "Cannot open document, unrar was not found."
+#, kde-format
 msgid "Cannot open document, neither unrar nor unarchiver were found."
-msgstr "تعذر فتح المستند ، لم يتم العثور على برنامج unrar"
+msgstr "تعذر فتح المستند، لم يتم العثور على برنامج  unrar أو unarchiver"
 
 #: document.cpp:101
 #, kde-format

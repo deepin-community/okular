@@ -20,6 +20,7 @@ class Document;
 }
 
 class Observer;
+class SignatureModel;
 class TOCModel;
 
 class DocumentItem : public QObject
@@ -47,6 +48,11 @@ class DocumentItem : public QObject
     Q_PROPERTY(bool opened READ isOpened NOTIFY openedChanged)
 
     /**
+     * True if this DocumentItem instance needs a password to open the document
+     */
+    Q_PROPERTY(bool needsPassword READ needsPassword NOTIFY needsPasswordChanged)
+
+    /**
      * How many pages there are in the document
      */
     Q_PROPERTY(int pageCount READ pageCount NOTIFY pageCountChanged)
@@ -72,6 +78,11 @@ class DocumentItem : public QObject
     Q_PROPERTY(TOCModel *tableOfContents READ tableOfContents CONSTANT)
 
     /**
+     * Signatures model, if available
+     */
+    Q_PROPERTY(SignatureModel *signaturesModel READ signaturesModel CONSTANT)
+
+    /**
      * List of pages that contain a bookmark
      */
     Q_PROPERTY(QVariantList bookmarkedPages READ bookmarkedPages NOTIFY bookmarkedPagesChanged)
@@ -95,6 +106,11 @@ public:
 
     bool isOpened() const;
 
+    bool needsPassword() const
+    {
+        return m_needsPassword;
+    }
+
     int pageCount() const;
 
     bool supportsSearching() const;
@@ -104,6 +120,8 @@ public:
     QVariantList matchingPages() const;
 
     TOCModel *tableOfContents() const;
+
+    SignatureModel *signaturesModel() const;
 
     QVariantList bookmarkedPages() const;
 
@@ -122,6 +140,11 @@ public:
      */
     Q_INVOKABLE void resetSearch();
 
+    /**
+     * Tries to reopen the document with the given password.
+     */
+    Q_INVOKABLE void setPassword(const QString &password);
+
     // Internal, not binded to qml
     Okular::Document *document();
     Observer *pageviewObserver();
@@ -131,6 +154,7 @@ Q_SIGNALS:
     void urlChanged();
     void pageCountChanged();
     void openedChanged();
+    void needsPasswordChanged();
     void searchInProgressChanged();
     void matchingPagesChanged();
     void currentPageChanged();
@@ -139,16 +163,44 @@ Q_SIGNALS:
     void bookmarksChanged();
     void windowTitleForDocumentChanged();
 
+    /**
+     * This signal is emitted whenever an error occurred.
+     *
+     * @param text The description of the error.
+     * @param duration The time in milliseconds the message should be shown to the user.
+     */
+    void error(const QString &text, int duration);
+
+    /**
+     * This signal is emitted to signal a warning.
+     *
+     * @param text The description of the warning.
+     * @param duration The time in milliseconds the message should be shown to the user.
+     */
+    void warning(const QString &text, int duration);
+
+    /**
+     * This signal is emitted to signal a notice.
+     *
+     * @param text The description of the notice.
+     * @param duration The time in milliseconds the message should be shown to the user.
+     */
+    void notice(const QString &text, int duration);
+
 private Q_SLOTS:
     void searchFinished(int id, Okular::Document::SearchStatus endStatus);
 
 private:
+    void openUrl(const QUrl &url, const QString &password);
+
     Okular::Document *m_document;
     TOCModel *m_tocModel;
+    SignatureModel *m_signaturesModel;
     Observer *m_thumbnailObserver;
     Observer *m_pageviewObserver;
     QVariantList m_matchingPages;
     bool m_searchInProgress;
+    bool m_needsPassword = false;
 };
 
 class Observer : public QObject, public Okular::DocumentObserver

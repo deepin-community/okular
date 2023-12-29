@@ -17,6 +17,7 @@ using namespace Okular;
 FormFieldPrivate::FormFieldPrivate(FormField::FieldType type)
     : m_type(type)
     , m_activateAction(nullptr)
+    , q_ptr(nullptr)
 {
 }
 
@@ -113,6 +114,19 @@ void FormField::setAdditionalAction(Annotation::AdditionalActionType type, Actio
     Q_D(FormField);
     delete d->m_additionalAnnotActions.value(type);
     d->m_additionalAnnotActions[type] = action;
+}
+
+QList<Action *> FormField::additionalActions() const
+{
+    Q_D(const FormField);
+    // yes, calling values() is not great but it's a list of ~10 elements, we can live with that
+    return d->m_additionalAnnotActions.values() + d->m_additionalActions.values(); // clazy:exclude=container-anti-pattern
+}
+
+Page *FormField::page() const
+{
+    Q_D(const FormField);
+    return d->m_page;
 }
 
 class Okular::FormFieldButtonPrivate : public Okular::FormFieldPrivate
@@ -229,16 +243,18 @@ public:
     void setValue(const QString &v) override
     {
         Q_Q(FormFieldChoice);
-        const QStringList choices = v.split(QLatin1Char(';'), QString::SkipEmptyParts);
+        const QStringList choices = v.split(QLatin1Char(';'), Qt::SkipEmptyParts);
         QList<int> newchoices;
         for (const QString &str : choices) {
             bool ok = true;
             int val = str.toInt(&ok);
-            if (ok)
+            if (ok) {
                 newchoices.append(val);
+            }
         }
-        if (!newchoices.isEmpty())
+        if (!newchoices.isEmpty()) {
             q->setCurrentChoices(newchoices);
+        }
     }
 
     QString value() const override

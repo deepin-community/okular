@@ -19,7 +19,7 @@ BrowserExtension::BrowserExtension(Part *parent)
     : KParts::BrowserExtension(parent)
     , m_part(parent)
 {
-    emit enableAction("print", true);
+    Q_EMIT enableAction("print", true);
     setURLDropHandlingEnabled(true);
 }
 
@@ -56,8 +56,9 @@ bool OkularLiveConnectExtension::put(const unsigned long objid, const QString &f
 {
     Q_UNUSED(objid)
     if (m_inEval) {
-        if (field == QLatin1String(OKULAR_EVAL_RES_OBJ_NAME))
+        if (field == QLatin1String(OKULAR_EVAL_RES_OBJ_NAME)) {
             m_evalRes = value;
+        }
         return true;
     }
 
@@ -83,7 +84,7 @@ QString OkularLiveConnectExtension::eval(const QString &script)
     args.append(qMakePair(KParts::LiveConnectExtension::TypeString, script));
     m_evalRes.clear();
     m_inEval = true;
-    emit partEvent(0, QStringLiteral("eval"), args);
+    Q_EMIT partEvent(0, QStringLiteral("eval"), args);
     m_inEval = false;
     return m_evalRes;
 }

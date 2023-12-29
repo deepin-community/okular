@@ -58,8 +58,9 @@ void PixmapGenerationThread::run()
     if (mRequest) {
         PixmapRequestPrivate::get(mRequest)->mResultImage = mGenerator->image(mRequest);
 
-        if (mCalcBoundingBox)
+        if (mCalcBoundingBox) {
             mBoundingBox = Utils::imageBoundingBox(&PixmapRequestPrivate::get(mRequest)->mResultImage);
+        }
     }
 }
 
@@ -159,8 +160,8 @@ void FontExtractionThread::run()
     for (int i = -1; i < mNumOfPages && mGoOn; ++i) {
         const FontInfo::List list = mGenerator->fontsForPage(i);
         for (const FontInfo &fi : list) {
-            emit gotFont(fi);
+            Q_EMIT gotFont(fi);
         }
-        emit progress(i);
+        Q_EMIT progress(i);
     }
 }

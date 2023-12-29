@@ -19,11 +19,11 @@
 >yurchor@ukr.net</email
 ></author>
 <date
->2019-02-14</date>
+>2022-02-19</date>
 <releaseinfo
->Okular 1.7</releaseinfo>
+>Okular 22.04</releaseinfo>
 <productname
->Aplicaciones de KDE</productname>
+>KDE Gear</productname>
 </refentryinfo>
 
 <refmeta>
@@ -151,6 +151,21 @@
 <listitem>
 <para
 >Buscar una cadena en el texto.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--editor-cmd <replaceable
+>texto</replaceable
+></option
+></term>
+<listitem>
+<para
+>Define la orden del editor externo. No se puede definir la orden del editor externo en una instancia de Okular que ya esté en ejecución. Tenga en cuenta que no se puede usar <option
+>--unique</option
+> al definir la orden del editor externo en la línea de órdenes.</para>
 </listitem>
 </varlistentry>
 </variablelist>
