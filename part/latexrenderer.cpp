@@ -22,7 +22,7 @@
 #include <QTemporaryFile>
 #include <QTextStream>
 
-#include "debug_ui.h"
+#include "gui/debug_ui.h"
 
 namespace GuiUtils
 {
@@ -39,8 +39,9 @@ LatexRenderer::~LatexRenderer()
 
 LatexRenderer::Error LatexRenderer::renderLatexInHtml(QString &html, const QColor &textColor, int fontSize, int resolution, QString &latexOutput)
 {
-    if (!html.contains(QStringLiteral("$$")))
+    if (!html.contains(QStringLiteral("$$"))) {
         return NoError;
+    }
 
     // this searches for $$formula$$
     QRegularExpression rg(QStringLiteral("\\$\\$.+?\\$\\$"));
@@ -77,14 +78,16 @@ LatexRenderer::Error LatexRenderer::renderLatexInHtml(QString &html, const QColo
         replaceMap[matchedString] = fileName;
     }
 
-    if (replaceMap.isEmpty()) // we haven't found any LaTeX strings
+    if (replaceMap.isEmpty()) { // we haven't found any LaTeX strings
         return NoError;
+    }
 
     int imagePxWidth, imagePxHeight;
     for (QMap<QString, QString>::ConstIterator it = replaceMap.constBegin(); it != replaceMap.constEnd(); ++it) {
         QImage theImage(*it);
-        if (theImage.isNull())
+        if (theImage.isNull()) {
             continue;
+        }
         imagePxWidth = theImage.width();
         imagePxHeight = theImage.height();
         QString escapedLATEX = it.key().toHtmlEscaped().replace(QLatin1Char('"'), QLatin1String("&quot;")); // we need  the escape quotes because that string will be in a title="" argument, but not the \n
@@ -97,13 +100,15 @@ LatexRenderer::Error LatexRenderer::renderLatexInHtml(QString &html, const QColo
 
 bool LatexRenderer::mightContainLatex(const QString &text)
 {
-    if (!text.contains(QStringLiteral("$$")))
+    if (!text.contains(QStringLiteral("$$"))) {
         return false;
+    }
 
     // this searches for $$formula$$
     QRegularExpression rg(QStringLiteral("\\$\\$.+?\\$\\$"));
-    if (!rg.match(text).hasMatch())
+    if (!rg.match(text).hasMatch()) {
         return false;
+    }
 
     return true;
 }
@@ -117,7 +122,7 @@ LatexRenderer::Error LatexRenderer::handleLatex(QString &fileName, const QString
     tempFile->open();
     QString tempFileName = tempFile->fileName();
     QFileInfo *tempFileInfo = new QFileInfo(tempFileName);
-    QString tempFileNameNS = tempFileInfo->absolutePath() + '/' + tempFileInfo->baseName();
+    QString tempFileNameNS = tempFileInfo->absolutePath() + QLatin1Char('/') + tempFileInfo->baseName();
     QString tempFilePath = tempFileInfo->absolutePath();
     delete tempFileInfo;
     QTextStream tempStream(tempFile);

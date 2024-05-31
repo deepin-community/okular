@@ -4,23 +4,22 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <QtTest>
+#include <QTest>
 
 #include "../settings_core.h"
 #include "core/document.h"
 #include <QMap>
 #include <QMimeDatabase>
 #include <QMimeType>
+#include <QTemporaryFile>
 #include <core/form.h>
 #include <core/page.h>
-
-#include "../generators/poppler/config-okular-poppler.h"
 
 class VisibilityTest : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
 
@@ -57,7 +56,7 @@ void VisibilityTest::initTestCase()
     // With two radio buttons named TargetRadio.
 
     const Okular::Page *page = m_document->page(0);
-    const QLinkedList<Okular::FormField *> pageFormFields = page->formFields();
+    const QList<Okular::FormField *> pageFormFields = page->formFields();
     for (Okular::FormField *ff : pageFormFields) {
         m_fields.insert(ff->name(), ff);
     }
@@ -128,7 +127,7 @@ void VisibilityTest::testSaveLoad()
     const Okular::Page *page = newDoc->page(0);
 
     bool anyChecked = false; // Saveguard against accidental test passing here ;-)
-    const QLinkedList<Okular::FormField *> pageFormFields = page->formFields();
+    const QList<Okular::FormField *> pageFormFields = page->formFields();
     for (Okular::FormField *ff : pageFormFields) {
         if (ff->name().startsWith(QStringLiteral("Target"))) {
             QVERIFY(!ff->isVisible());

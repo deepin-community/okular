@@ -5,24 +5,59 @@
 */
 
 #include "audioplayer.h"
-#include "audioplayer_p.h"
 
 // qt/kde includes
-#include <KRandom>
+#include <KLocalizedString>
 #include <QBuffer>
 #include <QDebug>
 #include <QDir>
+#include <QRandomGenerator>
+
+#include "config-okular.h"
+
+#if HAVE_PHONON
 #include <phonon/abstractmediastream.h>
 #include <phonon/audiooutput.h>
 #include <phonon/mediaobject.h>
 #include <phonon/path.h>
+#endif
 
 // local includes
 #include "action.h"
 #include "debug_p.h"
+#include "document.h"
 #include "sound.h"
+#include <stdlib.h>
 
 using namespace Okular;
+
+#if HAVE_PHONON
+
+class PlayData;
+class SoundInfo;
+
+namespace Okular
+{
+class AudioPlayerPrivate
+{
+public:
+    explicit AudioPlayerPrivate(AudioPlayer *qq);
+
+    ~AudioPlayerPrivate();
+
+    int newId() const;
+    bool play(const SoundInfo &si);
+    void stopPlayings();
+
+    void finished(int);
+
+    AudioPlayer *q;
+
+    QHash<int, PlayData *> m_playing;
+    QUrl m_currentDocument;
+    AudioPlayer::State m_state;
+};
+}
 
 // helper class used to store info about a sound to be played
 class SoundInfo
@@ -98,11 +133,12 @@ AudioPlayerPrivate::~AudioPlayerPrivate()
 
 int AudioPlayerPrivate::newId() const
 {
+    auto random = QRandomGenerator::global();
     int newid = 0;
     QHash<int, PlayData *>::const_iterator it;
     QHash<int, PlayData *>::const_iterator itEnd = m_playing.constEnd();
     do {
-        newid = KRandom::random();
+        newid = random->bounded(RAND_MAX);
         it = m_playing.constFind(newid);
     } while (it != itEnd);
     return newid;
@@ -126,13 +162,7 @@ bool AudioPlayerPrivate::play(const SoundInfo &si)
         if (!url.isEmpty()) {
             int newid = newId();
             QObject::connect(data->m_mediaobject, &Phonon::MediaObject::finished, q, [this, newid]() { finished(newid); });
-            QUrl newurl;
-            if (QUrl::fromUserInput(url).isRelative()) {
-                newurl = m_currentDocument.adjusted(QUrl::RemoveFilename);
-                newurl.setPath(newurl.path() + url);
-            } else {
-                newurl = QUrl::fromLocalFile(url);
-            }
+            const QUrl newurl = QUrl::fromUserInput(url, m_currentDocument.adjusted(QUrl::RemoveFilename).toLocalFile());
             data->m_mediaobject->setCurrentSource(newurl);
             m_playing.insert(newid, data);
             valid = true;
@@ -177,8 +207,9 @@ void AudioPlayerPrivate::stopPlayings()
 void AudioPlayerPrivate::finished(int id)
 {
     QHash<int, PlayData *>::iterator it = m_playing.find(id);
-    if (it == m_playing.end())
+    if (it == m_playing.end()) {
         return;
+    }
 
     SoundInfo si = it.value()->m_info;
     // if the sound must be repeated indefinitely, then start the playback
@@ -213,20 +244,23 @@ AudioPlayer *AudioPlayer::instance()
 void AudioPlayer::playSound(const Sound *sound, const SoundAction *linksound)
 {
     // we can't play null pointers ;)
-    if (!sound)
+    if (!sound) {
         return;
+    }
 
     // we don't play external sounds for remote documents
-    if (sound->soundType() == Sound::External && !d->m_currentDocument.isLocalFile())
+    if (sound->soundType() == Sound::External && !d->m_currentDocument.isLocalFile()) {
         return;
+    }
 
     qCDebug(OkularCoreDebug);
     SoundInfo si(sound, linksound);
 
     // if the mix flag of the new sound is false, then the currently playing
     // sounds must be stopped.
-    if (!si.mix)
+    if (!si.mix) {
         d->stopPlayings();
+    }
 
     d->play(si);
 }
@@ -240,5 +274,71 @@ AudioPlayer::State AudioPlayer::state() const
 {
     return d->m_state;
 }
+
+void AudioPlayer::resetDocument()
+{
+    d->m_currentDocument = {};
+}
+
+void AudioPlayer::setDocument(const QUrl &url, Okular::Document *document)
+{
+    Q_UNUSED(document);
+    d->m_currentDocument = url;
+}
+
+#else
+
+namespace Okular
+{
+class AudioPlayerPrivate
+{
+public:
+    Document *document;
+};
+}
+
+AudioPlayer::AudioPlayer()
+    : d(new AudioPlayerPrivate())
+{
+}
+
+AudioPlayer *AudioPlayer::instance()
+{
+    static AudioPlayer ap;
+    return &ap;
+}
+
+void AudioPlayer::playSound(const Sound *sound, const SoundAction *linksound)
+{
+    Q_UNUSED(sound);
+    Q_UNUSED(linksound);
+    Q_EMIT d->document->warning(i18n("This Okular is built without audio support"), 2000);
+}
+
+AudioPlayer::State Okular::AudioPlayer::state() const
+{
+    return State::StoppedState;
+}
+
+void AudioPlayer::stopPlaybacks()
+{
+}
+
+AudioPlayer::~AudioPlayer() noexcept
+{
+}
+
+void AudioPlayer::resetDocument()
+{
+    d->document = nullptr;
+}
+
+void AudioPlayer::setDocument(const QUrl &url, Okular::Document *document)
+{
+    Q_UNUSED(url);
+    d->document = document;
+}
+
+#endif
 
 #include "moc_audioplayer.cpp"

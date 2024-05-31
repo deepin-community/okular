@@ -24,6 +24,7 @@
 #include <QLoggingCategory>
 #include <QPainter>
 #include <QPixmap>
+#include <QStandardPaths>
 #include <QTextStream>
 #include <QTimer>
 
@@ -40,8 +41,9 @@ pageInfo::pageInfo(const QString &_PostScriptString)
 
 pageInfo::~pageInfo()
 {
-    if (PostScriptString != nullptr)
+    if (PostScriptString != nullptr) {
         delete PostScriptString;
+    }
 }
 
 // ======================================================
@@ -59,12 +61,13 @@ ghostscript_interface::ghostscript_interface()
 
 ghostscript_interface::~ghostscript_interface()
 {
-    if (PostScriptHeaderString != nullptr)
+    if (PostScriptHeaderString != nullptr) {
         delete PostScriptHeaderString;
+    }
     qDeleteAll(pageList);
 }
 
-void ghostscript_interface::setPostScript(const PageNumber page, const QString &PostScript)
+void ghostscript_interface::setPostScript(const quint16 page, const QString &PostScript)
 {
 #ifdef DEBUG_PSGS
     qCDebug(OkularDviDebug) << "ghostscript_interface::setPostScript( " << page << ", ... )";
@@ -73,22 +76,25 @@ void ghostscript_interface::setPostScript(const PageNumber page, const QString &
     if (pageList.value(page) == nullptr) {
         pageInfo *info = new pageInfo(PostScript);
         // Check if dict is big enough
-        if (pageList.count() > pageList.capacity() - 2)
+        if (pageList.count() > pageList.capacity() - 2) {
             pageList.reserve(pageList.capacity() * 2);
+        }
         pageList.insert(page, info);
-    } else
+    } else {
         *(pageList.value(page)->PostScriptString) = PostScript;
+    }
 }
 
 void ghostscript_interface::setIncludePath(const QString &_includePath)
 {
-    if (_includePath.isEmpty())
+    if (_includePath.isEmpty()) {
         includePath = QLatin1Char('*'); // Allow all files
-    else
+    } else {
         includePath = _includePath + QStringLiteral("/*");
+    }
 }
 
-void ghostscript_interface::setBackgroundColor(const PageNumber page, const QColor &background_color, bool permanent)
+void ghostscript_interface::setBackgroundColor(const quint16 page, const QColor &background_color, bool permanent)
 {
 #ifdef DEBUG_PSGS
     qCDebug(OkularDviDebug) << "ghostscript_interface::setBackgroundColor( " << page << ", " << background_color << " )";
@@ -97,26 +103,30 @@ void ghostscript_interface::setBackgroundColor(const PageNumber page, const QCol
     if (pageList.value(page) == nullptr) {
         pageInfo *info = new pageInfo(QString());
         info->background = background_color;
-        if (permanent)
+        if (permanent) {
             info->permanentBackground = background_color;
+        }
         // Check if dict is big enough
-        if (pageList.count() > pageList.capacity() - 2)
+        if (pageList.count() > pageList.capacity() - 2) {
             pageList.reserve(pageList.capacity() * 2);
+        }
         pageList.insert(page, info);
     } else {
         pageList.value(page)->background = background_color;
-        if (permanent)
+        if (permanent) {
             pageList.value(page)->permanentBackground = background_color;
+        }
     }
 }
 
-void ghostscript_interface::restoreBackgroundColor(const PageNumber page)
+void ghostscript_interface::restoreBackgroundColor(const quint16 page)
 {
 #ifdef DEBUG_PSGS
     qCDebug(OkularDviDebug) << "ghostscript_interface::restoreBackgroundColor( " << page << " )";
 #endif
-    if (pageList.value(page) == nullptr)
+    if (pageList.value(page) == nullptr) {
         return;
+    }
 
     pageInfo *info = pageList.value(page);
     info->background = info->permanentBackground;
@@ -125,16 +135,17 @@ void ghostscript_interface::restoreBackgroundColor(const PageNumber page)
 // Returns the background color for a certain page. This color is
 // always guaranteed to be valid
 
-QColor ghostscript_interface::getBackgroundColor(const PageNumber page) const
+QColor ghostscript_interface::getBackgroundColor(const quint16 page) const
 {
 #ifdef DEBUG_PSGS
     qCDebug(OkularDviDebug) << "ghostscript_interface::getBackgroundColor( " << page << " )";
 #endif
 
-    if (pageList.value(page) == nullptr)
+    if (pageList.value(page) == nullptr) {
         return Qt::white;
-    else
+    } else {
         return pageList.value(page)->background;
+    }
 }
 
 void ghostscript_interface::clear()
@@ -146,14 +157,21 @@ void ghostscript_interface::clear()
     pageList.clear();
 }
 
-void ghostscript_interface::gs_generate_graphics_file(const PageNumber page, const QString &filename, long magnification)
+void ghostscript_interface::gs_generate_graphics_file(const quint16 page, const QString &filename, long magnification)
 {
 #ifdef DEBUG_PSGS
     qCDebug(OkularDviDebug) << "ghostscript_interface::gs_generate_graphics_file( " << page << ", " << filename << " )";
 #endif
 
     if (knownDevices.isEmpty()) {
-        qCCritical(OkularDviDebug) << "No known devices found" << endl;
+        qCCritical(OkularDviDebug) << "No known devices found";
+        return;
+    }
+
+    // Make sure gs is in PATH and not just in the CWD
+    static const QString gsFullPath = QStandardPaths::findExecutable(QStringLiteral("gs"));
+    if (gsFullPath.isEmpty()) {
+        qCCritical(OkularDviDebug) << "gs is not in path";
         return;
     }
 
@@ -195,16 +213,18 @@ void ghostscript_interface::gs_generate_graphics_file(const PageNumber page, con
        // Start page
        << "1 0 bop 0 0 a \n";
 
-    if (!PostScriptHeaderString->toLatin1().isNull())
+    if (!PostScriptHeaderString->toLatin1().isNull()) {
         os << PostScriptHeaderString->toLatin1();
+    }
 
     if (info->background != Qt::white) {
         QString colorCommand = QStringLiteral("gsave %1 %2 %3 setrgbcolor clippath fill grestore\n").arg(info->background.red() / 255.0).arg(info->background.green() / 255.0).arg(info->background.blue() / 255.0);
         os << colorCommand.toLatin1();
     }
 
-    if (!info->PostScriptString->isNull())
+    if (!info->PostScriptString->isNull()) {
         os << *(info->PostScriptString);
+    }
 
     os << "end\n"
        << "showpage \n";
@@ -216,7 +236,7 @@ void ghostscript_interface::gs_generate_graphics_file(const PageNumber page, con
     KProcess proc;
     proc.setOutputChannelMode(KProcess::SeparateChannels);
     QStringList argus;
-    argus << QStringLiteral("gs");
+    argus << gsFullPath;
     argus << QStringLiteral("-dSAFER") << QStringLiteral("-dPARANOIDSAFER") << QStringLiteral("-dDELAYSAFER") << QStringLiteral("-dNOPAUSE") << QStringLiteral("-dBATCH");
     argus << QStringLiteral("-sDEVICE=%1").arg(*gsDevice);
     argus << QStringLiteral("-sOutputFile=%1").arg(filename);
@@ -237,14 +257,14 @@ void ghostscript_interface::gs_generate_graphics_file(const PageNumber page, con
     if (res) {
         // Starting ghostscript did not work.
         // TODO: Issue error message, switch PS support off.
-        qCCritical(OkularDviDebug) << "ghostview could not be started" << endl;
+        qCCritical(OkularDviDebug) << "ghostview could not be started";
     }
 
     PSfile.remove();
 
     // Check if gs has indeed produced a file.
     if (QFile::exists(filename) == false) {
-        qCCritical(OkularDviDebug) << "GS did not produce output." << endl;
+        qCCritical(OkularDviDebug) << "GS did not produce output.";
 
         // No. Check is the reason is that the device is not compiled into
         // ghostscript. If so, try again with another device.
@@ -256,17 +276,16 @@ void ghostscript_interface::gs_generate_graphics_file(const PageNumber page, con
                 qCDebug(OkularDviDebug) << QString::fromLatin1(
                                                "The version of ghostview installed on this computer does not support "
                                                "the '%1' ghostview device driver.")
-                                               .arg(*gsDevice)
-                                        << endl;
+                                               .arg(*gsDevice);
                 knownDevices.erase(gsDevice);
                 gsDevice = knownDevices.begin();
-                if (knownDevices.isEmpty())
+                if (knownDevices.isEmpty()) {
                     // TODO: show a requestor of some sort.
-                    emit error(i18n("The version of Ghostview that is installed on this computer does not contain "
-                                    "any of the Ghostview device drivers that are known to Okular. PostScript "
-                                    "support has therefore been turned off in Okular."),
-                               -1);
-                else {
+                    Q_EMIT error(i18n("The version of Ghostview that is installed on this computer does not contain "
+                                      "any of the Ghostview device drivers that are known to Okular. PostScript "
+                                      "support has therefore been turned off in Okular."),
+                                 -1);
+                } else {
                     qCDebug(OkularDviDebug) << QStringLiteral("Okular will now try to use the '%1' device driver.").arg(*gsDevice);
                     gs_generate_graphics_file(page, filename, magnification);
                 }
@@ -276,14 +295,14 @@ void ghostscript_interface::gs_generate_graphics_file(const PageNumber page, con
     }
 }
 
-void ghostscript_interface::graphics(const PageNumber page, double dpi, long magnification, QPainter *paint)
+void ghostscript_interface::graphics(const quint16 page, double dpi, long magnification, QPainter *paint)
 {
 #ifdef DEBUG_PSGS
     qCDebug(OkularDviDebug) << "ghostscript_interface::graphics( " << page << ", " << dpi << ", ... ) called.";
 #endif
 
     if (paint == nullptr) {
-        qCCritical(OkularDviDebug) << "ghostscript_interface::graphics(PageNumber page, double dpi, long magnification, QPainter *paint) called with paint == 0" << endl;
+        qCCritical(OkularDviDebug) << "ghostscript_interface::graphics(PageNumber page, double dpi, long magnification, QPainter *paint) called with paint == 0";
         return;
     }
 
@@ -323,13 +342,20 @@ QString ghostscript_interface::locateEPSfile(const QString &filename, const QUrl
         QString path = base.path(); // -> "/bar/foo.dvi"
         QFileInfo fi1(path);
         QFileInfo fi2(fi1.dir(), filename);
-        if (fi2.exists())
+        if (fi2.exists()) {
             return fi2.absoluteFilePath();
+        }
     }
 
     // Otherwise, use kpsewhich to find the eps file.
+    // Make sure kpsewhich is in PATH and not just in the CWD
+    static const QString fullPath = QStandardPaths::findExecutable(QStringLiteral("kpsewhich"));
+    if (fullPath.isEmpty()) {
+        return {};
+    }
+
     KProcess proc;
-    proc << QStringLiteral("kpsewhich") << filename;
+    proc << fullPath << filename;
     proc.execute();
     return QString::fromLocal8Bit(proc.readLine().trimmed());
 }

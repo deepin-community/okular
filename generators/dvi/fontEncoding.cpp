@@ -16,6 +16,7 @@
 #include <QFile>
 #include <QLoggingCategory>
 #include <QProcess>
+#include <QStandardPaths>
 #include <QTextStream>
 
 //#define DEBUG_FONTENC
@@ -31,10 +32,17 @@ fontEncoding::fontEncoding(const QString &encName)
     QProcess kpsewhich;
     kpsewhich.setProcessChannelMode(QProcess::MergedChannels);
 
-    kpsewhich.start(QStringLiteral("kpsewhich"), QStringList() << encName, QIODevice::ReadOnly | QIODevice::Text);
+    // Make sure kpsewhich is in PATH and not just in the CWD
+    static const QString fullPath = QStandardPaths::findExecutable(QStringLiteral("kpsewhich"));
+    if (fullPath.isEmpty()) {
+        qCCritical(OkularDviDebug) << "fontEncoding::fontEncoding(...): kpsewhich is not in path.";
+        return;
+    }
+
+    kpsewhich.start(fullPath, QStringList() << encName, QIODevice::ReadOnly | QIODevice::Text);
 
     if (!kpsewhich.waitForStarted()) {
-        qCCritical(OkularDviDebug) << "fontEncoding::fontEncoding(...): kpsewhich could not be started." << endl;
+        qCCritical(OkularDviDebug) << "fontEncoding::fontEncoding(...): kpsewhich could not be started.";
         return;
     }
 
@@ -43,7 +51,7 @@ fontEncoding::fontEncoding(const QString &encName)
 
     const QString encFileName = QString::fromLocal8Bit(kpsewhich.readAll()).trimmed();
     if (encFileName.isEmpty()) {
-        qCCritical(OkularDviDebug) << QStringLiteral("fontEncoding::fontEncoding(...): The file '%1' could not be found by kpsewhich.").arg(encName) << endl;
+        qCCritical(OkularDviDebug) << QStringLiteral("fontEncoding::fontEncoding(...): The file '%1' could not be found by kpsewhich.").arg(encName);
         return;
     }
 
@@ -57,8 +65,9 @@ fontEncoding::fontEncoding(const QString &encName)
         // 'fileContent'
         QTextStream stream(&file);
         QString fileContent;
-        while (!stream.atEnd())
+        while (!stream.atEnd()) {
             fileContent += stream.readLine().section(QLatin1Char('%'), 0, 0); // line of text excluding '\n' until first '%'-sign
+        }
         file.close();
 
         fileContent = fileContent.trimmed();
@@ -70,7 +79,7 @@ fontEncoding::fontEncoding(const QString &encName)
 #endif
 
         fileContent = fileContent.section(QLatin1Char('['), 1, 1).section(QLatin1Char(']'), 0, 0).simplified();
-        const QStringList glyphNameList = fileContent.split(QLatin1Char('/'), QString::SkipEmptyParts);
+        const QStringList glyphNameList = fileContent.split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
         int i = 0;
         for (QStringList::ConstIterator it = glyphNameList.constBegin(); (it != glyphNameList.constEnd()) && (i < 256); ++it) {
@@ -80,10 +89,11 @@ fontEncoding::fontEncoding(const QString &encName)
 #endif
             i++;
         }
-        for (; i < 256; i++)
+        for (; i < 256; i++) {
             glyphNameVector[i] = QStringLiteral(".notdef");
+        }
     } else {
-        qCCritical(OkularDviDebug) << QStringLiteral("fontEncoding::fontEncoding(...): The file '%1' could not be opened.").arg(encFileName) << endl;
+        qCCritical(OkularDviDebug) << QStringLiteral("fontEncoding::fontEncoding(...): The file '%1' could not be opened.").arg(encFileName);
         return;
     }
 

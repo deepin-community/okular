@@ -59,9 +59,9 @@ Context menu actions like Rename Bookmarks etc.)
 		<legalnotice
 >&FDLNotice;</legalnotice>
 		<date
->2021-01-02</date>
+>2021-05-31</date>
 		<releaseinfo
->1.13 (Applications 21.04)</releaseinfo>
+>21.08</releaseinfo>
 		<!-- Abstract about this handbook -->
 		<abstract>
 			<para
@@ -143,11 +143,11 @@ Context menu actions like Rename Bookmarks etc.)
 >. Ihre Datei wird nun im Hauptfenster angezeigt. </para>
 			<important>
 			  <para
->The new document will be opened in a new tab should the <guilabel
->Open new files in tabs</guilabel
-> option on the <link linkend="configgeneral"
->General configuration page</link
-> is checked. </para>
+>Das neue Dokument wird in einem neuen Unterfenster geöffnet, wenn <guilabel
+>Neue Dateien in neuen Unterfenstern öffnen</guilabel
+> im <link linkend="configgeneral"
+>Einrichtungsdialog auf der Seite Allgemein</link
+> aktiviert ist. </para>
                           <para
 >Sie können ein Unterfenster durch Klicken mit der &MMBn; darauf schließen. </para>
                           <para
@@ -613,7 +613,7 @@ Context menu actions like Rename Bookmarks etc.)
 >PKCS</acronym
 >-Signaturzertifikat auf Ihrem System vorhanden sein. &okular; kann solche Zertifikate nicht erstellen, da sie von Zertifizierungsstellen ausgestellt werden müssen, um die Gültigkeitsprüfung &etc; zu ermöglichen. </para>
 				<para
->We use the Poppler library to handle signing of &PDF; documents and Poppler is using the NSS library to handle certificates. At the point of writing, Poppler will try to use the following NSS certificate stores in order (if they exist): </para>
+>Es wird die Poppler-Bibliothek für das Signieren von &PDF; Dokumenten benutzt. Poppler verwendet die NSS-Bibliothek zur Verarbeitung von Zertifikaten. Zurzeit versucht Poppler, einen der folgenden NSS-Zertifikatsspeicher der Reihe nach zu benutzen und verwendet den ersten gefundenen Zertifikatsspeicher: </para>
 				<itemizedlist>
 					<listitem
 ><para
@@ -3550,6 +3550,16 @@ Context menu actions like Rename Bookmarks etc.)
 				<varlistentry>
 					<term
 ><guilabel
+>Benachrichtigung über eingebettete Dateien, Formulare oder Signaturen</guilabel
+></term>
+					<listitem>
+						<para
+>Ob Informationen über über eingebettete Dateien, Formulare oder Signaturen &etc; angezeigt werden.</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term
+><guilabel
 >Dokumenttitel in der Titelleiste anzeigen, falls verfügbar</guilabel
 ></term>
 					<listitem>
@@ -3666,6 +3676,16 @@ Context menu actions like Rename Bookmarks etc.)
 				<varlistentry>
 					<term
 ><guilabel
+>Im fortlaufenden Modus als Standard öffnen</guilabel
+></term>
+					<listitem>
+						<para
+>Hier können Sie den fortlaufenden Modus als Standardanzeige einstellen. In diesem Modus werden alle Seiten des Dokuments fortlaufend angezeigt und Sie können ohne Sprünge durch das Dokument blättern. Ansonsten wird immer nur eine Seite oder eine Reihe von Seiten auf einmal gezeigt. </para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term
+><guilabel
 >Übersichtsspalten:</guilabel
 ></term>
 					<listitem>
@@ -3724,121 +3744,145 @@ Context menu actions like Rename Bookmarks etc.)
 				<varlistentry>
 					<term
 ><guilabel
->Farben umkehren</guilabel
+>Farbmodus</guilabel
 ></term>
 					<listitem>
 						<para
+><action
+>Definiert</action
+> den Modus zur Änderung der Farben.</para>
+						<variablelist>
+						<varlistentry>
+							<term
+><guilabel
+>Farben umkehren</guilabel
+></term>
+							<listitem>
+								<para
 ><action
 >Vertauscht</action
 > die Farben der Anzeige, &ie; schwarz wird als weiß dargestellt.</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term
 ><guilabel
 >Papierfarbe ändern</guilabel
 ></term>
-					<listitem>
-						<para
+								<listitem>
+									<para
 ><action
 >Ändert</action
 > die Papierfarbe, &ie; den Hintergrund des Dokuments.</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term
+                                                                        <para
+>Die Farbe kann im Auswahlfeld <guilabel
+>Papierfarbe</guilabel
+> ausgewählt werden. </para>
+								</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term
 ><guilabel
 >Helle und dunkle Farben ändern</guilabel
 ></term>
-					<listitem>
-						<para
+							<listitem>
+								<para
 ><action
 >Ändert</action
 > die helle und dunkle Farbe, das heißt schwarz wird nicht schwarz, sondern als dunkle Farbe und weiß als helle Farbe angezeigt.</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term
 ><guilabel
 >In Schwarzweiß umwandeln</guilabel
 ></term>
-					<listitem>
-						<para
+							<listitem>
+								<para
 ><action
 >Wandelt die Farben</action
 > im Dokument in Schwarzweiß um. Sie können Schwellwert und Kontrast einstellen. Mit einem höheren Schwellwert (rechts auf dem Schieberegler)wird ein helleres Grau verwendet.</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term
+								</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term
 ><guilabel
 >Helligkeit invertieren</guilabel
 ></term>
-					<listitem>
-						<para
+							<listitem>
+									<para
 ><action
 >Invertiert</action
 > die Helligkeit aller Farben. Helle und dunkle Farben werden vertauscht, aber Farbton und Sättigung bleiben unverändert. Der Kontrast in Bildern ist mit dieser Einstellung normalerweise schlechter als mit <guilabel
 >Luma invertieren (sRGB-Linear)</guilabel
 >.</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term
 ><guilabel
 >Luma invertieren (sRGB-Linear)</guilabel
 ></term>
-					<listitem>
-						<para
+							<listitem>
+								<para
 ><action
 >Invertiert</action
 > die Luma (Luminanz) aller Farben. Helle und dunkle Farben werden vertauscht, aber Farbton und Sättigung bleiben unverändert. Der Kontrast in Bildern bleibt mit dieser Einstellung normalerweise besser erhalten als mit <guilabel
 >Helligkeit invertieren</guilabel
 >, aber bei farbenfrohen Grafiken oder Texten ist der Kontrast normalerweise schlechter.  sRGB-Luma-Koeffizienten werden hier benutzt, aber keine Gamma-Korrektur.</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term
 ><guilabel
 >Luma invertieren (Symmetrisch)</guilabel
 ></term>
-					<listitem>
-						<para
+							<listitem>
+								<para
 ><action
 >Invertiert</action
 > die Luma (Luminanz) aller Farben und benutzt symmetrische Luma-Koeffizienten. Helle und dunkle Farben werden vertauscht, aber Farbton und Sättigung bleiben unverändert. Der Effekt ist ähnlich wie mit <guilabel
 >Helligkeit invertieren</guilabel
 >, aber der Kontrast bleibt in manchen Fällen besser erhalten.</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term
+								</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term
 ><guilabel
 >Farbton verstärken</guilabel
 ></term>
-					<listitem>
-						<para
+							<listitem>
+								<para
 ><action
 >Verstärkt</action
 > den Farbton aller Farben um 120 Grad. Das kann Kontrast-Probleme in farbenfrohen Bildern mildern.</para>
-					</listitem>
-				</varlistentry>
-				<varlistentry>
-					<term
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term
 ><guilabel
 >Farbton abschwächen</guilabel
 ></term>
-					<listitem>
-						<para
+							<listitem>
+								<para
 ><action
 >Schwächt</action
 > den Farbton aller Farben um 240 Grad. Das kann Kontrast-Probleme in farbenfrohen Bildern mildern.</para>
+								</listitem>
+						</varlistentry>
+						</variablelist>
+                                                <note
+><para
+>Sie können Kurzbefehle und Aktionen in der Werkzeugleiste über die Einträge im Menü <guimenu
+>Einstellungen</guimenu
+> des &okular;-Hauptfensters für die Farbmodi einrichten.</para
+></note>
 					</listitem>
 				</varlistentry>
 				<varlistentry>
 					<term
 ><guilabel
->Engine</guilabel
+>Sprachausgabe-Modul</guilabel
 ></term>
 					<listitem>
 						<para

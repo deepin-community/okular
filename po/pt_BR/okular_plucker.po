@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: okular_plucker\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2009-07-26 23:19-0300\n"
 "Last-Translator: André Marcelo Alvarenga <andrealvarenga@gmx.net>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@mail.kde.org>\n"
@@ -29,7 +29,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "andrealvarenga@gmx.net"
 
-#: generator_plucker.cpp:72
+#: generator_plucker.cpp:73
 #, kde-format
 msgid "Name"
 msgstr "Nome"

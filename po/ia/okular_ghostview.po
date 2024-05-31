@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
+"POT-Creation-Date: 2022-03-10 00:43+0000\n"
 "PO-Revision-Date: 2013-02-07 10:39+0100\n"
 "Last-Translator: Giovanni Sora <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-l10n-ia@kde.org>\n"
@@ -56,22 +56,22 @@ msgstr "Preferentias General"
 msgid "&Use platform fonts"
 msgstr "&Usa fonts de platteforma"
 
-#: generator_ghostview.cpp:81
+#: generator_ghostview.cpp:82
 #, kde-format
 msgid "Ghostscript"
 msgstr "Ghostscript"
 
-#: generator_ghostview.cpp:81
+#: generator_ghostview.cpp:82
 #, kde-format
 msgid "Ghostscript Backend Configuration"
 msgstr "Configuration de retro-administration de Ghostscript"
 
-#: generator_ghostview.cpp:245
+#: generator_ghostview.cpp:253
 #, kde-format
 msgid "Document version"
 msgstr "Version de documento"
 
-#: generator_ghostview.cpp:250
+#: generator_ghostview.cpp:259
 #, kde-format
 msgid "Language Level"
 msgstr "Nivello de linguage"

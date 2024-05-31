@@ -7,7 +7,6 @@
 #ifndef _OKULAR_ANNOTATIONTOOLS_H_
 #define _OKULAR_ANNOTATIONTOOLS_H_
 
-#include <QLinkedList>
 #include <QPainter>
 #include <QPen>
 #include <QRect>
@@ -41,7 +40,7 @@ public:
     enum Button { None, Left, Right };
     /** To tell the annotator engine about modifier keys and other special wishes */
     struct Modifiers {
-        bool constrainRatioAndAngle; ///< Whether the engine shall snap to certain angles, if supported.
+        bool constrainRatioAndAngle = false; ///< Whether the engine shall snap to certain angles, if supported.
     };
 
     // perform operations
@@ -86,11 +85,11 @@ private:
 class SmoothPath
 {
 public:
-    SmoothPath(const QLinkedList<Okular::NormalizedPoint> &points, const QPen &pen, qreal opacity = 1.0, QPainter::CompositionMode compositionMode = QPainter::CompositionMode_SourceOver);
+    SmoothPath(const QList<Okular::NormalizedPoint> &points, const QPen &pen, qreal opacity = 1.0, QPainter::CompositionMode compositionMode = QPainter::CompositionMode_SourceOver);
     void paint(QPainter *painter, double xScale, double yScale) const;
 
 private:
-    const QLinkedList<Okular::NormalizedPoint> points;
+    const QList<Okular::NormalizedPoint> points;
     const QPen pen;
     const qreal opacity;
     const QPainter::CompositionMode compositionMode;
@@ -112,7 +111,7 @@ public:
 
 private:
     // data
-    QLinkedList<Okular::NormalizedPoint> points;
+    QList<Okular::NormalizedPoint> points;
     Okular::NormalizedRect totalRect;
     Okular::NormalizedPoint lastPoint;
     QPainter::CompositionMode compositionMode;

@@ -19,8 +19,12 @@
 #include <kparts/mainwindow.h>
 #include <kparts/readwritepart.h>
 
-#include <QtDBus> // krazy:exclude=includes
+#include <QDBusAbstractAdaptor> // for Q_NOREPLY
+#include <QStackedWidget>
 
+#include "welcomescreen.h"
+
+class Sidebar;
 class KRecentFilesAction;
 class KToggleAction;
 class QTabWidget;
@@ -70,7 +74,7 @@ public:
     bool openDocument(const QUrl &url, const QString &serializedOptions);
 
 public Q_SLOTS:
-    Q_SCRIPTABLE Q_NOREPLY void tryRaise();
+    Q_SCRIPTABLE Q_NOREPLY void tryRaise(const QString &startupId);
     Q_SCRIPTABLE bool openDocument(const QString &urlString, const QString &serializedOptions = QString());
     Q_SCRIPTABLE bool canOpenDocs(int numDocs, int desktop);
 
@@ -137,15 +141,22 @@ private Q_SLOTS:
 
     void slotFitWindowToPage(const QSize pageViewSize, const QSize pageSize);
 
+    void hideWelcomeScreen();
+    void showWelcomeScreen();
+    void refreshRecentsOnWelcomeScreen();
+
+    void forgetRecentItem(QUrl const &url);
+
 Q_SIGNALS:
     void moveSplitter(int sideWidgetSize);
 
 private:
+    void saveRecents();
     void setupAccel();
     void setupActions();
     void openNewTab(const QUrl &url, const QString &serializedOptions);
     void applyOptionsToPart(QObject *part, const QString &serializedOptions);
-    void connectPart(QObject *part);
+    void connectPart(const KParts::ReadWritePart *part);
     int findTabIndex(QObject *sender) const;
     int findTabIndex(const QUrl &url) const;
 
@@ -165,9 +176,12 @@ private:
     bool m_unique;
     QTabWidget *m_tabWidget;
     KToggleAction *m_openInTab;
+    WelcomeScreen *m_welcomeScreen;
+    QStackedWidget *m_centralStackedWidget;
+    Sidebar *m_sidebar = nullptr;
 
     struct TabState {
-        TabState(KParts::ReadWritePart *p)
+        explicit TabState(KParts::ReadWritePart *p)
             : part(p)
             , printEnabled(false)
             , closeEnabled(false)
@@ -182,6 +196,8 @@ private:
     QAction *m_nextTabAction;
     QAction *m_prevTabAction;
     QAction *m_undoCloseTab;
+    QAction *m_showSidebarAction = nullptr;
+    QAction *m_lockSidebarAction = nullptr;
 
 #ifndef Q_OS_WIN
     KActivities::ResourceInstance *m_activityResource;

@@ -18,7 +18,11 @@ EpubDocument::EpubDocument(const QString &fileName, const QFont &font)
     , padding(20)
     , mFont(font)
 {
+#ifdef Q_OS_WIN
+    mEpub = epub_open(qUtf8Printable(fileName), 2);
+#else
     mEpub = epub_open(qPrintable(fileName), 2);
+#endif
 
     setPageSize(QSizeF(600, 800));
 }
@@ -30,8 +34,9 @@ bool EpubDocument::isValid()
 
 EpubDocument::~EpubDocument()
 {
-    if (mEpub)
+    if (mEpub) {
         epub_close(mEpub);
+    }
 
     epub_cleanup();
 }
@@ -44,7 +49,7 @@ struct epub *EpubDocument::getEpub()
 void EpubDocument::setCurrentSubDocument(const QString &doc)
 {
     mCurrentSubDocument.clear();
-    int index = doc.indexOf('/');
+    int index = doc.indexOf(QLatin1Char('/'));
     if (index > 0) {
         mCurrentSubDocument = QUrl::fromLocalFile(doc.left(index + 1));
     }
@@ -74,7 +79,7 @@ QString EpubDocument::checkCSS(const QString &c)
     std::size_t i = 0;
     const QRegularExpression re(QStringLiteral("(([0-9]+)(\\.[0-9]+)?)r?em(.*)"));
     while (i < cssArrayCount) {
-        auto item = cssArray[i];
+        const auto &item = cssArray[i];
         QRegularExpressionMatch match = re.match(item);
         if (match.hasMatch()) {
             double em = match.captured(1).toDouble();
@@ -106,10 +111,12 @@ QVariant EpubDocument::loadResource(int type, const QUrl &name)
             QImage img = QImage::fromData((unsigned char *)data, size);
             const int maxHeight = maxContentHeight();
             const int maxWidth = maxContentWidth();
-            if (img.height() > maxHeight)
+            if (img.height() > maxHeight) {
                 img = img.scaledToHeight(maxHeight, Qt::SmoothTransformation);
-            if (img.width() > maxWidth)
+            }
+            if (img.width() > maxWidth) {
                 img = img.scaledToWidth(maxWidth, Qt::SmoothTransformation);
+            }
             resource.setValue(img);
             break;
         }
@@ -120,10 +127,12 @@ QVariant EpubDocument::loadResource(int type, const QUrl &name)
         }
         case EpubDocument::MovieResource: {
             QTemporaryFile *tmp = new QTemporaryFile(QStringLiteral("%1/okrXXXXXX").arg(QDir::tempPath()), this);
-            if (!tmp->open())
+            if (!tmp->open()) {
                 qCWarning(OkularEpuDebug) << "EPUB : error creating temporary video file";
-            if (tmp->write(data, size) == -1)
+            }
+            if (tmp->write(data, size) == -1) {
                 qCWarning(OkularEpuDebug) << "EPUB : error writing data" << tmp->errorString();
+            }
             tmp->flush();
             resource.setValue(tmp->fileName());
             break;

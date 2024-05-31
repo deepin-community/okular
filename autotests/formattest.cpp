@@ -4,7 +4,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <QtTest>
+#include <QTest>
 
 #include "../settings_core.h"
 #include <QLocale>
@@ -15,13 +15,11 @@
 #include <core/form.h>
 #include <core/page.h>
 
-#include "../generators/poppler/config-okular-poppler.h"
-
 class FormatTest : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void testTimeFormat();
@@ -55,12 +53,13 @@ void FormatTest::initTestCase()
 
     connect(m_document, &Okular::Document::refreshFormWidget, this, [this](Okular::FormField *form) {
         Okular::FormFieldText *fft = reinterpret_cast<Okular::FormFieldText *>(form);
-        if (fft)
+        if (fft) {
             m_formattedText = fft->text();
+        }
     });
 
     const Okular::Page *page = m_document->page(0);
-    const QLinkedList<Okular::FormField *> pageFormFields = page->formFields();
+    const QList<Okular::FormField *> pageFormFields = page->formFields();
     for (Okular::FormField *ff : pageFormFields) {
         m_fields.insert(ff->name(), ff);
     }
@@ -105,35 +104,30 @@ void FormatTest::testSpecialFormat()
     m_formattedText = QLatin1String("");
     QFETCH(QString, fieldName);
     QFETCH(QString, text);
-    QFETCH(bool, edited);
     QFETCH(QString, result);
 
     Okular::FormFieldText *fft = reinterpret_cast<Okular::FormFieldText *>(m_fields[fieldName]);
     fft->setText(text);
-    bool ok = false;
     m_document->processFormatAction(fft->additionalAction(Okular::FormField::FormatField), fft);
-    m_document->processKeystrokeAction(fft->additionalAction(Okular::FormField::FieldModified), fft, ok);
 
     QCOMPARE(m_formattedText, result);
-    QCOMPARE(ok, edited);
 }
 
 void FormatTest::testSpecialFormat_data()
 {
     QTest::addColumn<QString>("fieldName");
     QTest::addColumn<QString>("text");
-    QTest::addColumn<bool>("edited");
     QTest::addColumn<QString>("result");
 
     // The tests which have invalid edited, keep the same value as when it was formatted before.
-    QTest::newRow("field validated but not changed") << QStringLiteral("CEP") << QStringLiteral("12345") << true << QString(QLatin1String(""));
-    QTest::newRow("field invalid but not changed") << QStringLiteral("CEP") << QStringLiteral("123456") << false << QString(QLatin1String(""));
-    QTest::newRow("field formatted and changed") << QStringLiteral("8Digits") << QStringLiteral("123456789") << true << QStringLiteral("12345-6789");
-    QTest::newRow("field invalid 10 digits") << QStringLiteral("8Digits") << QStringLiteral("1234567890") << false << QStringLiteral("12345-6789");
-    QTest::newRow("field formatted telephone") << QStringLiteral("telefone") << QStringLiteral("1234567890") << true << QStringLiteral("(123) 456-7890");
-    QTest::newRow("field invalid telephone") << QStringLiteral("telefone") << QStringLiteral("12345678900") << false << QStringLiteral("(123) 456-7890");
-    QTest::newRow("field formatted SSN") << QStringLiteral("CPF") << QStringLiteral("123456789") << true << QStringLiteral("123-45-6789");
-    QTest::newRow("field invalid SSN") << QStringLiteral("CPF") << QStringLiteral("1234567890") << false << QStringLiteral("123-45-6789");
+    QTest::newRow("field validated but not changed") << QStringLiteral("CEP") << QStringLiteral("12345") << QString(QLatin1String(""));
+    QTest::newRow("field invalid but not changed") << QStringLiteral("CEP") << QStringLiteral("123456") << QString(QLatin1String(""));
+    QTest::newRow("field formatted and changed") << QStringLiteral("8Digits") << QStringLiteral("123456789") << QStringLiteral("12345-6789");
+    QTest::newRow("field invalid 10 digits") << QStringLiteral("8Digits") << QStringLiteral("1234567890") << QStringLiteral("12345-6789");
+    QTest::newRow("field formatted telephone") << QStringLiteral("telefone") << QStringLiteral("1234567890") << QStringLiteral("(123) 456-7890");
+    QTest::newRow("field invalid telephone") << QStringLiteral("telefone") << QStringLiteral("12345678900") << QStringLiteral("(123) 456-7890");
+    QTest::newRow("field formatted SSN") << QStringLiteral("CPF") << QStringLiteral("123456789") << QStringLiteral("123-45-6789");
+    QTest::newRow("field invalid SSN") << QStringLiteral("CPF") << QStringLiteral("1234567890") << QStringLiteral("123-45-6789");
 }
 
 void FormatTest::testFocusAction()

@@ -10,8 +10,6 @@
 #ifndef _OKULAR_PAGE_H_
 #define _OKULAR_PAGE_H_
 
-#include <QLinkedList>
-
 #include "area.h"
 #include "global.h"
 #include "okularcore_export.h"
@@ -144,6 +142,11 @@ public:
     bool hasPixmap(DocumentObserver *observer, int width = -1, int height = -1, const NormalizedRect &rect = NormalizedRect()) const;
 
     /**
+     * Sets the size of the page (in screen pixels) if there is a TilesManager.
+     */
+    void setPageSize(DocumentObserver *observer, int width, int height);
+
+    /**
      * Returns whether the page provides a text page (@ref TextPage).
      */
     bool hasTextPage() const;
@@ -228,7 +231,7 @@ public:
      * Returns all object rects of the given @p type which are at point (@p x, @p y) at scale (@p xScale, @p yScale).
      * @since 0.16 (KDE 4.10)
      */
-    QLinkedList<const ObjectRect *> objectRects(ObjectRect::ObjectType type, double x, double y, double xScale, double yScale) const;
+    QList<const ObjectRect *> objectRects(ObjectRect::ObjectType type, double x, double y, double xScale, double yScale) const;
 
     /**
      * Returns the object rect of the given @p type which is nearest to the point (@p x, @p y) at scale (@p xScale, @p yScale).
@@ -246,7 +249,7 @@ public:
     /**
      * Returns the list of annotations of the page.
      */
-    QLinkedList<Annotation *> annotations() const;
+    QList<Annotation *> annotations() const;
 
     /**
      * Returns the annotation with the given unique name.
@@ -263,7 +266,7 @@ public:
     /**
      * Returns the list of FormField of the page.
      */
-    QLinkedList<FormField *> formFields() const;
+    QList<FormField *> formFields() const;
 
     /**
      * Sets the region described by @p rect with @p pixmap for the
@@ -281,12 +284,19 @@ public:
     /**
      * Sets the list of object @p rects of the page.
      */
-    void setObjectRects(const QLinkedList<ObjectRect *> &rects);
+    void setObjectRects(const QList<ObjectRect *> &rects);
+
+    /**
+     * Gets the list of object rects of the page.
+     *
+     * @since 22.04
+     */
+    const QList<ObjectRect *> &objectRects() const;
 
     /**
      * Sets the list of source reference objects @p rects.
      */
-    void setSourceReferences(const QLinkedList<SourceRefObjectRect *> &rects);
+    void setSourceReferences(const QList<SourceRefObjectRect *> &rects);
 
     /**
      * Sets the duration of the page to @p seconds when displayed in presentation mode.
@@ -346,7 +356,7 @@ public:
     /**
      * Sets @p fields as list of FormField of the page.
      */
-    void setFormFields(const QLinkedList<FormField *> &fields);
+    void setFormFields(const QList<FormField *> &fields);
 
     /**
      * Deletes the pixmap for the given @p observer
@@ -407,9 +417,9 @@ private:
 
     const QPixmap *_o_nearestPixmap(DocumentObserver *, int, int) const;
 
-    QLinkedList<ObjectRect *> m_rects;
-    QLinkedList<HighlightAreaRect *> m_highlights;
-    QLinkedList<Annotation *> m_annotations;
+    QList<ObjectRect *> m_rects;
+    QList<HighlightAreaRect *> m_highlights;
+    QList<Annotation *> m_annotations;
 
     Q_DISABLE_COPY(Page)
 };
