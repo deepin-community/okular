@@ -1,14 +1,14 @@
 # Translation of okular_dvi.po to Korean.
 # Copyright (C) 2007 This_file_is_part_of_KDE
 # This file is distributed under the same license as the kdegraphics package.
-# Shinjo Park <kde@peremen.name>, 2007, 2009, 2013, 2014, 2020.
+# Shinjo Park <kde@peremen.name>, 2007, 2009, 2013, 2014, 2020, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: okular_dvi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-06-11 00:15+0000\n"
-"PO-Revision-Date: 2020-04-05 14:35+0200\n"
+"POT-Creation-Date: 2022-04-09 00:43+0000\n"
+"PO-Revision-Date: 2022-05-07 02:17+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 19.04.3\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -28,7 +28,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kde@peremen.name"
 
-#: dviexport.cpp:117
+#: dviexport.cpp:123
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvipdfm</em> on your "
@@ -47,7 +47,7 @@ msgstr ""
 "로 업그레이드하십시오.</p><p>시스템 관리자에게: PATH 환경 변수에 프로그램의 "
 "경로를 추가하십시오.</p></qt>"
 
-#: dviexport.cpp:135
+#: dviexport.cpp:142
 #, kde-format
 msgid ""
 "<qt>The external program 'dvipdfm', which was used to export the file, "
@@ -59,7 +59,7 @@ msgstr ""
 "일 메뉴에 있는 <strong>문서 정보 대화 상자</strong>에서 자세한 오류를 확인할 "
 "수 있습니다.</qt>"
 
-#: dviexport.cpp:158
+#: dviexport.cpp:168
 #, kde-format
 msgid ""
 "<qt>This DVI file refers to external graphic files which are not in "
@@ -73,7 +73,7 @@ msgstr ""
 "em> 프로그램에서 처리할 수 없습니다. 따라서 이 버전의 Okular에서는 요청한 기"
 "능을 사용할 수 없습니다.</qt>"
 
-#: dviexport.cpp:166
+#: dviexport.cpp:176
 #, kde-format
 msgid ""
 "<qt><p>Okular could not locate the program <em>dvips</em> on your computer. "
@@ -85,7 +85,7 @@ msgstr ""
 "을 사용하려면 이 프로그램이 필요합니다.</p><p>시스템 관리자에게: PATH 환경 변"
 "수에 프로그램의 경로를 추가하십시오.</p></qt>"
 
-#: dviexport.cpp:257
+#: dviexport.cpp:270
 #, kde-format
 msgid ""
 "<qt>The external program 'dvips', which was used to export the file, "
@@ -96,12 +96,12 @@ msgstr ""
 "<qt>외부 프로그램 dvips에서 오류가 발생했습니다. 파일 메뉴에 있는 <strong>문"
 "서 정보 대화 상자</strong>에서 자세한 오류를 알 수 있습니다.</qt>"
 
-#: dviFile.cpp:90
+#: dviFile.cpp:91
 #, kde-format
 msgid "The DVI file does not start with the preamble."
 msgstr "DVI 파일이 머리말로 시작하지 않습니다."
 
-#: dviFile.cpp:96
+#: dviFile.cpp:97
 #, kde-format
 msgid ""
 "The DVI file contains the wrong version of DVI output for this program. "
@@ -111,28 +111,28 @@ msgstr ""
 "DVI 파일이 이 프로그램으로 처리할 수 없는 버전입니다. 만약 Omega 조판 프로그"
 "램을 사용한다면 oxdvi와 같은 특별한 프로그램을 사용해야 합니다."
 
-#: dviFile.cpp:132
+#: dviFile.cpp:134
 #, kde-format
 msgid ""
 "The DVI file is badly corrupted. Okular was not able to find the postamble."
 msgstr "DVI 파일이 심하게 손상되어서 꼬리말 부분을 찾을 수 없습니다."
 
-#: dviFile.cpp:146
+#: dviFile.cpp:148
 #, kde-format
 msgid "The postamble does not begin with the POST command."
 msgstr "꼬리말이 POST 명령으로 시작하지 않습니다."
 
-#: dviFile.cpp:199
+#: dviFile.cpp:202
 #, kde-format
 msgid "The postamble contained a command other than FNTDEF."
 msgstr "꼬리말에 FNTDEF 이외의 명령이 들어 있습니다."
 
-#: dviFile.cpp:234
+#: dviFile.cpp:240
 #, kde-format
 msgid "The page %1 does not start with the BOP command."
 msgstr "%1쪽이 BOP 명령으로 시작하지 않습니다."
 
-#: dviFile.cpp:361
+#: dviFile.cpp:351
 #, kde-format
 msgid ""
 "<qt><p>The external program <strong>pdf2ps</strong> could not be started. As "
@@ -157,7 +157,7 @@ msgstr ""
 "strong> 프로그램을 명령행에서 실행시켜서 작동하는가 확인해 주십시오.</"
 "p><p><em>PATH: </em> %2</p></qt>"
 
-#: dviFile.cpp:388
+#: dviFile.cpp:410
 #, kde-format
 msgid ""
 "<qt><p>The PDF-file %1 could not be converted to PostScript. Some graphic "
@@ -172,27 +172,27 @@ msgstr ""
 "<strong>pdf2ps</strong> 프로그램의 출력입니다:</p><p><strong>%2</strong></"
 "p></qt>"
 
-#: dviRenderer.cpp:199 dviRenderer.cpp:421
+#: dviRenderer.cpp:203 dviRenderer.cpp:435
 #, kde-format
 msgid "File corruption. %1"
 msgstr "파일 잘못됨: %1"
 
-#: dviRenderer.cpp:319
+#: dviRenderer.cpp:326
 #, kde-format
 msgid "Not all PostScript files could be embedded into your document. %1"
 msgstr "모든 포스트스크립트 파일을 문서에 첨부할 수 없습니다. %1"
 
-#: dviRenderer.cpp:322
+#: dviRenderer.cpp:329
 #, kde-format
 msgid "All external PostScript files were embedded into your document."
 msgstr "모든 외부 포스트스크립트 파일을 문서에 첨부했습니다."
 
-#: dviRenderer.cpp:406
+#: dviRenderer.cpp:419
 #, kde-format
 msgid "The specified file '%1' does not exist."
 msgstr "지정한 파일 '%1'이(가) 없습니다."
 
-#: dviRenderer.cpp:544
+#: dviRenderer.cpp:565
 #, kde-format
 msgid ""
 "You have asked Okular to locate the place in the DVI file which corresponds "
@@ -202,7 +202,7 @@ msgstr ""
 "Okular에서 TeX 파일 %2의 %1줄에 해당하는 DVI 파일의 위치를 찾을 것을 요청했습"
 "니다. DVI 파일에 올바른 원본 파일 정보가 없는 것 같습니다."
 
-#: dviRenderer.cpp:581
+#: dviRenderer.cpp:604
 #, kde-format
 msgid ""
 "Okular was not able to locate the place in the DVI file which corresponds to "
@@ -211,47 +211,47 @@ msgstr ""
 "Okular에서 TeX 파일 %2의 %1번째 줄에 해당하는 DVI 파일의 위치를 찾을 수 없습"
 "니다."
 
-#: dviRenderer_draw.cpp:237
+#: dviRenderer_draw.cpp:243
 #, kde-format
 msgid "The DVI code set a character of an unknown font."
 msgstr "DVI 코드에서 알 수 없는 글꼴의 문자를 설정했습니다."
 
-#: dviRenderer_draw.cpp:264 dviRenderer_prescan.cpp:629
+#: dviRenderer_draw.cpp:270 dviRenderer_prescan.cpp:668
 #, kde-format
 msgid "The DVI code referred to font #%1, which was not previously defined."
 msgstr "DVI 코드에서 정의되지 않은 글꼴 #%1을(를) 참조했습니다."
 
-#: dviRenderer_draw.cpp:345
+#: dviRenderer_draw.cpp:353
 #, kde-format
 msgid "The stack was not empty when the EOP command was encountered."
 msgstr "EOP 명령을 실행했을 때 스택이 비어 있지 않습니다."
 
-#: dviRenderer_draw.cpp:357
+#: dviRenderer_draw.cpp:365
 #, kde-format
 msgid "The stack was empty when a POP command was encountered."
 msgstr "POP 명령을 실행했을 때 스택이 비었습니다."
 
-#: dviRenderer_draw.cpp:477 dviRenderer_draw.cpp:486
+#: dviRenderer_draw.cpp:489 dviRenderer_draw.cpp:498
 #, kde-format
 msgid "The DVI code referred to a font which was not previously defined."
 msgstr "DVI 코드에서 정의되지 않은 글꼴을 참고합니다."
 
-#: dviRenderer_draw.cpp:527
+#: dviRenderer_draw.cpp:539
 #, kde-format
 msgid "An illegal command was encountered."
 msgstr "잘못된 명령어를 만났습니다."
 
-#: dviRenderer_draw.cpp:532
+#: dviRenderer_draw.cpp:544
 #, kde-format
 msgid "The unknown op-code %1 was encountered."
 msgstr "알 수 없는 OP 코드 %1을(를) 만났습니다."
 
-#: dviRenderer_prescan.cpp:83
+#: dviRenderer_prescan.cpp:87
 #, kde-format
 msgid "Embedding %1"
 msgstr "%1 임베드 중"
 
-#: dviRenderer_prescan.cpp:98
+#: dviRenderer_prescan.cpp:105
 #, kde-format
 msgid ""
 "Page %1: The PDF file <strong>%2</strong> could not be converted to "
@@ -260,18 +260,18 @@ msgstr ""
 "%1쪽: PDF 파일 <strong>%2</strong>을(를) 포스트스크립트 파일로 변환할 수 없습"
 "니다."
 
-#: dviRenderer_prescan.cpp:100
+#: dviRenderer_prescan.cpp:107
 #, kde-format
 msgid ""
 "Page %1: The PostScript file <strong>%2</strong> could not be found.<br>"
 msgstr "%1쪽: 포스트스크립트 파일 <strong>%2</strong>을(를) 찾을 수 없습니다."
 
-#: dviRenderer_prescan.cpp:246
+#: dviRenderer_prescan.cpp:261
 #, kde-format
 msgid "The papersize data '%1' could not be parsed."
-msgstr "종이 크기 데이터 '%1'을(를) 처리할 수 없습니다."
+msgstr "종이 크기 데이터 '%1'을(를) 해석할 수 없습니다."
 
-#: fontpool.cpp:203
+#: fontpool.cpp:209
 #, kde-format
 msgid ""
 "<qt><p>Okular was not able to locate all the font files which are necessary "
@@ -282,7 +282,7 @@ msgstr ""
 "다. 문서가 제대로 보이지 않을 수도 있습니다.</p><p><small><b>PATH:</b> %1</"
 "small></p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:270
+#: fontpool.cpp:284
 #, kde-format
 msgid ""
 "<qt><p>There were problems running <em>kpsewhich</em>. As a result, some "
@@ -297,7 +297,7 @@ msgstr ""
 "포함되어 있지 않을 수도 있습니다.</p><p><small><b>PATH:</b> %1</small></"
 "p><p><small>%2</small></p></qt>"
 
-#: fontpool.cpp:291
+#: fontpool.cpp:305
 #, kde-format
 msgid ""
 "<qt>The font generation by <em>kpsewhich</em> was aborted (exit code %1, "
@@ -308,32 +308,32 @@ msgstr ""
 "드 %1, 오류 %2) 일부 글꼴 파일을 찾을 수 없으므로 문서의 일부분을 읽지 못할 "
 "수도 있습니다.</qt>"
 
-#: fontpool.cpp:462
+#: fontpool.cpp:481
 #, kde-format
 msgid "Currently generating %1 at %2 dpi..."
 msgstr "%1을(를) %2 dpi로 생성 중..."
 
-#: generator_dvi.cpp:289
+#: generator_dvi.cpp:293
 #, kde-format
 msgid "Generator/Date"
 msgstr "작성자/일자"
 
-#: generator_dvi.cpp:372
+#: generator_dvi.cpp:382
 #, kde-format
 msgid "Font file not found"
 msgstr "글꼴 파일을 찾을 수 없음"
 
-#: pageSize.cpp:294
+#: pageSize.cpp:318
 #, kde-format
 msgid "portrait"
 msgstr "세로"
 
-#: pageSize.cpp:296
+#: pageSize.cpp:320
 #, kde-format
 msgid "landscape"
 msgstr "가로"
 
-#: psgs.cpp:265
+#: psgs.cpp:284
 #, kde-format
 msgid ""
 "The version of Ghostview that is installed on this computer does not contain "
@@ -348,7 +348,7 @@ msgstr ""
 msgid "That makes 25 errors. Further error messages will not be printed."
 msgstr "오류 25개가 발생했습니다. 더 이상의 메시지는 표시되지 않습니다."
 
-#: special.cpp:216
+#: special.cpp:232
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Color pop command issued when the color "
@@ -357,7 +357,7 @@ msgstr ""
 "DVI 파일 '%1'의 %2쪽에서 오류 발생. 색상 스택이 비어 있을 때 색상 pop 명령 실"
 "행됨."
 
-#: special.cpp:297
+#: special.cpp:318
 #, kde-format
 msgid ""
 "Malformed parameter in the epsf special command.\n"
@@ -366,7 +366,7 @@ msgstr ""
 "epsf 특수 명령의 인자가 잘못되었습니다.\n"
 "%2에서 %1 다음에 실수가 나오는 것을 예상했습니다"
 
-#: special.cpp:424
+#: special.cpp:446
 #, kde-format
 msgid ""
 "File not found: \n"
@@ -375,14 +375,14 @@ msgstr ""
 "파일을 찾을 수 없음: \n"
 " %1"
 
-#: special.cpp:664
+#: special.cpp:695
 #, kde-format
 msgid ""
 "Error in DVIfile '%1', page %2. Could not interpret angle in text rotation "
 "special."
 msgstr "DVI 파일 '%1'의 %2쪽에서 오류 발생. 텍스트 회전 각도를 처리할 수 없음."
 
-#: special.cpp:680
+#: special.cpp:714
 #, kde-format
 msgid "The special command '%1' is not implemented."
 msgstr "특수 명령 '%1'은(는) 구현되지 않았습니다."
@@ -400,84 +400,84 @@ msgstr ""
 msgid "The font file %1 is broken, or it could not be opened or read."
 msgstr "글꼴 파일 %1이(가) 깨졌거나, 읽거나 열 수 없습니다."
 
-#: TeXFont_PFB.cpp:165
+#: TeXFont_PFB.cpp:170
 #, kde-format
 msgid ""
 "FreeType reported an error when setting the character size for font file %1."
 msgstr ""
 "FreeType에서 글꼴 파일 %1의 글자 크기를 설정하는 중 오류가 발생했습니다."
 
-#: TeXFont_PFB.cpp:181
+#: TeXFont_PFB.cpp:188
 #, kde-format
 msgid "FreeType is unable to load glyph #%1 from font file %2."
 msgstr "FreeType에서 글꼴 파일 %2의 문자 #%1을(를) 불러올 수 없습니다."
 
-#: TeXFont_PFB.cpp:193
+#: TeXFont_PFB.cpp:201
 #, kde-format
 msgid "FreeType is unable to render glyph #%1 from font file %2."
 msgstr "FreeType에서 글꼴 파일 %2의 문자 #%1을(를) 그릴 수 없습니다."
 
-#: TeXFont_PFB.cpp:206
+#: TeXFont_PFB.cpp:215
 #, kde-format
 msgid "Glyph #%1 is empty."
 msgstr "문자 #%1이(가) 비어 있습니다."
 
-#: TeXFont_PFB.cpp:207
+#: TeXFont_PFB.cpp:217
 #, kde-format
 msgid "Glyph #%1 from font file %2 is empty."
 msgstr "글꼴 파일 %2의 문자 #%1이(가) 비어 있습니다."
 
-#: TeXFont_PFB.cpp:272
+#: TeXFont_PFB.cpp:282
 #, kde-format
 msgid "FreeType is unable to load metric for glyph #%1 from font file %2."
 msgstr "FreeType에서 글꼴 파일 %2의 문자 #%1의 크기를 불러올 수 없습니다."
 
-#: TeXFont_PK.cpp:68
+#: TeXFont_PK.cpp:69
 #, kde-format
 msgid "Cannot open font file %1."
 msgstr "글꼴 파일 %1을(를) 열 수 없음."
 
-#: TeXFont_PK.cpp:114
+#: TeXFont_PK.cpp:116
 #, kde-format
 msgid "TexFont_PK::operator[]: Character %1 not defined in font %2"
 msgstr "TexFont_PK::operator[]: 글자 %1이(가) 글꼴 %2에 정의되어 있지 않음"
 
-#: TeXFont_PK.cpp:398
+#: TeXFont_PK.cpp:418
 #, kde-format
 msgid "Unexpected %1 in PK file %2"
 msgstr "PK 파일 %2의 예상하지 않은 %1"
 
-#: TeXFont_PK.cpp:462
+#: TeXFont_PK.cpp:484
 #, kde-format
 msgid "The character %1 is too large in file %2"
 msgstr "파일 %2의 문자 %1이(가) 너무 큼"
 
-#: TeXFont_PK.cpp:562 TeXFont_PK.cpp:646
+#: TeXFont_PK.cpp:589 TeXFont_PK.cpp:679
 #, kde-format
 msgid "Wrong number of bits stored:  char. %1, font %2"
 msgstr "잘못된 비트 수만큼 저장됨: 글자 %1, 글꼴 %2"
 
-#: TeXFont_PK.cpp:564 TeXFont_PK.cpp:648
+#: TeXFont_PK.cpp:592 TeXFont_PK.cpp:682
 #, kde-format
 msgid "Bad pk file (%1), too many bits"
 msgstr "잘못된 pk 파일 (%1), 비트가 너무 많음"
 
-#: TeXFont_PK.cpp:678
+#: TeXFont_PK.cpp:713
 #, kde-format
 msgid "Font has non-square aspect ratio "
 msgstr "글꼴이 정사각형이 아닌 비율을 가지고 있음 "
 
-#: TeXFontDefinition.cpp:105
+#: TeXFontDefinition.cpp:106
 #, kde-format
 msgid "Cannot find font %1, file %2."
 msgstr "글꼴 %1, 파일 %2을(를) 찾을 수 없습니다."
 
-#: TeXFontDefinition.cpp:121
+#: TeXFontDefinition.cpp:123
 #, kde-format
 msgid "Checksum mismatch for font file %1"
 msgstr "글꼴 파일 %1의 합계가 맞지 않음"
 
-#: TeXFontDefinition.cpp:169
+#: TeXFontDefinition.cpp:174
 #, kde-format
 msgid "Cannot recognize format for font file %1"
 msgstr "글꼴 파일 %1의 형식을 알 수 없음"
@@ -510,7 +510,7 @@ msgstr ""
 "이 메시지가 출력된 후 중단합니다. 버그를 찾았거나, 이 상황에서\n"
 "좀 더 좋게 대처해야 한다면 문제를 보고해 주십시오."
 
-#: vf.cpp:160
+#: vf.cpp:164
 #, kde-format
 msgid "Wrong command byte found in VF macro list: %1"
 msgstr "VF 매크로 목록에서 잘못된 명령 바이트: %1"

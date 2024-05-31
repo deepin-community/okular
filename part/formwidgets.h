@@ -26,6 +26,7 @@ class ComboEdit;
 class QMenu;
 class QButtonGroup;
 class FormWidgetIface;
+class PageView;
 class PageViewItem;
 class RadioButtonEdit;
 class QEvent;
@@ -67,6 +68,8 @@ public:
     bool canUndo();
     bool canRedo();
 
+    Okular::Document *document() const;
+
     static bool shouldFormWidgetBeShown(Okular::FormField *form);
 
 Q_SIGNALS:
@@ -91,14 +94,6 @@ Q_SIGNALS:
 
     void action(Okular::Action *action);
 
-    void focusAction(const Okular::Action *action, Okular::FormFieldText *ff);
-
-    void formatAction(const Okular::Action *action, Okular::FormFieldText *ff);
-
-    void keystrokeAction(const Okular::Action *action, Okular::FormFieldText *ff, bool &ok);
-
-    void validateAction(const Okular::Action *action, Okular::FormFieldText *ff, bool &ok);
-
     void refreshFormWidget(Okular::FormField *form);
 
 private Q_SLOTS:
@@ -121,7 +116,7 @@ private:
 class FormWidgetFactory
 {
 public:
-    static FormWidgetIface *createWidget(Okular::FormField *ff, QWidget *parent = nullptr);
+    static FormWidgetIface *createWidget(Okular::FormField *ff, PageView *pageView);
 };
 
 class FormWidgetIface
@@ -171,7 +166,7 @@ class PushButtonEdit : public QPushButton, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit PushButtonEdit(Okular::FormFieldButton *button, QWidget *parent = nullptr);
+    explicit PushButtonEdit(Okular::FormFieldButton *button, PageView *pageView);
 
     DECLARE_ADDITIONAL_ACTIONS
 };
@@ -181,7 +176,7 @@ class CheckBoxEdit : public QCheckBox, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit CheckBoxEdit(Okular::FormFieldButton *button, QWidget *parent = nullptr);
+    explicit CheckBoxEdit(Okular::FormFieldButton *button, PageView *pageView);
 
     // reimplemented from FormWidgetIface
     void setFormWidgetsController(FormWidgetsController *controller) override;
@@ -198,7 +193,7 @@ class RadioButtonEdit : public QRadioButton, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit RadioButtonEdit(Okular::FormFieldButton *button, QWidget *parent = nullptr);
+    explicit RadioButtonEdit(Okular::FormFieldButton *button, PageView *pageView);
 
     // reimplemented from FormWidgetIface
     void setFormWidgetsController(FormWidgetsController *controller) override;
@@ -210,7 +205,7 @@ class FormLineEdit : public QLineEdit, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit FormLineEdit(Okular::FormFieldText *text, QWidget *parent = nullptr);
+    explicit FormLineEdit(Okular::FormFieldText *text, PageView *pageView);
     void setFormWidgetsController(FormWidgetsController *controller) override;
     bool event(QEvent *e) override;
     void contextMenuEvent(QContextMenuEvent *event) override;
@@ -235,7 +230,7 @@ class TextAreaEdit : public KTextEdit, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit TextAreaEdit(Okular::FormFieldText *text, QWidget *parent = nullptr);
+    explicit TextAreaEdit(Okular::FormFieldText *text, PageView *pageView);
     ~TextAreaEdit() override;
     void setFormWidgetsController(FormWidgetsController *controller) override;
     bool event(QEvent *e) override;
@@ -262,7 +257,7 @@ class FileEdit : public KUrlRequester, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit FileEdit(Okular::FormFieldText *text, QWidget *parent = nullptr);
+    explicit FileEdit(Okular::FormFieldText *text, PageView *pageView);
     void setFormWidgetsController(FormWidgetsController *controller) override;
 
 protected:
@@ -283,7 +278,7 @@ class ListEdit : public QListWidget, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit ListEdit(Okular::FormFieldChoice *choice, QWidget *parent = nullptr);
+    explicit ListEdit(Okular::FormFieldChoice *choice, PageView *pageView);
     void setFormWidgetsController(FormWidgetsController *controller) override;
 
 private Q_SLOTS:
@@ -297,7 +292,7 @@ class ComboEdit : public QComboBox, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit ComboEdit(Okular::FormFieldChoice *choice, QWidget *parent = nullptr);
+    explicit ComboEdit(Okular::FormFieldChoice *choice, PageView *pageView);
     void setFormWidgetsController(FormWidgetsController *controller) override;
     bool event(QEvent *e) override;
     void contextMenuEvent(QContextMenuEvent *event) override;
@@ -317,7 +312,7 @@ class SignatureEdit : public QAbstractButton, public FormWidgetIface
     Q_OBJECT
 
 public:
-    explicit SignatureEdit(Okular::FormFieldSignature *signature, QWidget *parent = nullptr);
+    explicit SignatureEdit(Okular::FormFieldSignature *signature, PageView *pageView);
 
     // This will be called when an item in signature panel is clicked. Calling it changes the
     // widget state. If this widget was visible prior to calling this then background
@@ -332,6 +327,7 @@ protected:
 
 private Q_SLOTS:
     void slotViewProperties();
+    void signUnsignedSignature();
 
 private:
     bool m_widgetPressed;

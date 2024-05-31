@@ -9,7 +9,8 @@
 
 // clazy:excludeall=qstring-allocations
 
-#include <QtTest>
+#include <QSignalSpy>
+#include <QTest>
 
 #include "../core/annotations.h"
 #include "../core/document_p.h"
@@ -24,8 +25,6 @@
 #include "../settings.h"
 #include "closedialoghelper.h"
 
-#include "../generators/poppler/config-okular-poppler.h"
-
 #include <KActionCollection>
 #include <KConfigDialog>
 #include <KParts/OpenUrlArguments>
@@ -33,13 +32,16 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QDesktopServices>
+#include <QLineEdit>
 #include <QMenu>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QScrollBar>
 #include <QTabletEvent>
 #include <QTemporaryDir>
+#include <QTemporaryFile>
 #include <QTextEdit>
+#include <QTimer>
 #include <QToolBar>
 #include <QTreeView>
 #include <QUrl>
@@ -52,10 +54,10 @@ class PartTest : public QObject
 
     static bool openDocument(Okular::Part *part, const QString &filePath);
 
-signals:
+Q_SIGNALS:
     void urlHandler(const QUrl &url); // NOLINT(readability-inconsistent-declaration-parameter-name)
 
-private slots:
+private Q_SLOTS:
     void init();
 
     void testZoomWithCrop();
@@ -105,6 +107,7 @@ private slots:
     void testFullScreenRequest();
     void testZoomInFacingPages();
     void testLinkWithCrop();
+    void testFieldFormatting();
 
 private:
     void simulateMouseSelection(double startX, double startY, double endX, double endY, QWidget *target);
@@ -129,10 +132,11 @@ public:
 
     bool queryClose() override
     {
-        if (behavior == PassThru)
+        if (behavior == PassThru) {
             return Okular::Part::queryClose();
-        else // ReturnTrue or ReturnFalse
+        } else { // ReturnTrue or ReturnFalse
             return (behavior == ReturnTrue);
+        }
     }
 
 private:
@@ -216,35 +220,10 @@ void PartTest::testForwardPDF()
     const QDir workDir(QDir(tempDir.path()).filePath(dir));
     workDir.mkpath(QStringLiteral("."));
 
-    QFile f(QStringLiteral(KDESRCDIR "data/synctextest.tex"));
-    const QString texDestination = workDir.path() + QStringLiteral("/synctextest.tex");
-    QVERIFY(f.copy(texDestination));
-    QProcess process;
-    process.setWorkingDirectory(workDir.path());
-
-    const QString pdflatexPath(QStandardPaths::findExecutable(QStringLiteral("pdflatex")));
-    if (pdflatexPath.isEmpty()) {
-        QFAIL("pdflatex executable not found, but needed for the test. Try installing the respective TeXLive packages.");
-    }
-    process.start(pdflatexPath, QStringList() << QStringLiteral("-synctex=1") << QStringLiteral("-interaction=nonstopmode") << texDestination);
-    bool started = process.waitForStarted();
-    if (!started) {
-        qDebug() << "start error:" << process.error();
-        qDebug() << "start stdout:" << process.readAllStandardOutput();
-        qDebug() << "start stderr:" << process.readAllStandardError();
-    }
-    QVERIFY(started);
-
-    process.waitForFinished();
-    if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
-        qDebug() << "exit error:" << process.error() << "status" << process.exitStatus() << "code" << process.exitCode();
-        qDebug() << "exit stdout:" << process.readAllStandardOutput();
-        qDebug() << "exit stderr:" << process.readAllStandardError();
-    }
-
     const QString pdfResult = workDir.path() + QStringLiteral("/synctextest.pdf");
-
-    QVERIFY(QFile::exists(pdfResult));
+    QVERIFY(QFile::copy(QStringLiteral(KDESRCDIR "data/synctextest.pdf"), pdfResult));
+    const QString gzDestination = workDir.path() + QStringLiteral("/synctextest.synctex.gz");
+    QVERIFY(QFile::copy(QStringLiteral(KDESRCDIR "data/synctextest.synctex.gz"), gzDestination));
 
     QVERIFY(openDocument(&part, pdfResult));
     part.m_document->setViewportPage(0);
@@ -252,7 +231,8 @@ void PartTest::testForwardPDF()
     part.closeUrl();
 
     QUrl u(QUrl::fromLocalFile(pdfResult));
-    u.setFragment(QStringLiteral("src:100") + texDestination);
+    // Update this if you regenerate the synctextest.pdf somewhere else
+    u.setFragment(QStringLiteral("src:100/home/tsdgeos/devel/kde/okular/autotests/data/synctextest.tex"));
     part.openUrl(u);
     QCOMPARE(part.m_document->currentPage(), 1u);
 }
@@ -443,7 +423,7 @@ void PartTest::testClickUrlLinkWhileInSelectionMode()
     // expect that the urlHandler signal was called
     QTRY_COMPARE(openUrlSignalSpy.count(), 1);
     QList<QVariant> arguments = openUrlSignalSpy.takeFirst();
-    QCOMPARE(arguments.at(0).value<QUrl>(), QUrl("mailto:foo@foo.bar"));
+    QCOMPARE(arguments.at(0).value<QUrl>(), QUrl(QStringLiteral("mailto:foo@foo.bar")));
 }
 
 void PartTest::testeTextSelectionOverAndAcrossLinks_data()
@@ -540,7 +520,7 @@ void PartTest::testClickUrlLinkWhileLinkTextIsSelected()
     // expect that the urlHandler signal was called
     QTRY_COMPARE(openUrlSignalSpy.count(), 1);
     QList<QVariant> arguments = openUrlSignalSpy.takeFirst();
-    QCOMPARE(arguments.at(0).value<QUrl>(), QUrl("mailto:foo@foo.bar"));
+    QCOMPARE(arguments.at(0).value<QUrl>(), QUrl(QStringLiteral("mailto:foo@foo.bar")));
 }
 
 // r-click on the selected text gives the "Go To:" content menu option
@@ -845,7 +825,7 @@ void PartTest::simulateMouseSelection(double startX, double startY, double endX,
 void PartTest::testSaveAsToNonExistingPath()
 {
     Okular::Part part(nullptr, nullptr, QVariantList());
-    part.openDocument(KDESRCDIR "data/file1.pdf");
+    part.openDocument(QStringLiteral(KDESRCDIR "data/file1.pdf"));
 
     QString saveFilePath;
     {
@@ -866,7 +846,7 @@ void PartTest::testSaveAsToSymlink()
 {
 #ifdef Q_OS_UNIX
     Okular::Part part(nullptr, nullptr, QVariantList());
-    part.openDocument(KDESRCDIR "data/file1.pdf");
+    part.openDocument(QStringLiteral(KDESRCDIR "data/file1.pdf"));
 
     QTemporaryFile newFile(QStringLiteral("%1/okrXXXXXX.pdf").arg(QDir::tempPath()));
     newFile.open();
@@ -904,7 +884,7 @@ void PartTest::testSaveIsSymlink()
         // QTemporaryFile is destroyed and the file it created is gone, this is a TOCTOU but who cares
     }
 
-    QFile::copy(KDESRCDIR "data/file1.pdf", newFilePath);
+    QFile::copy(QStringLiteral(KDESRCDIR "data/file1.pdf"), newFilePath);
 
     QString linkFilePath;
     {
@@ -1020,8 +1000,9 @@ void PartTest::testSaveAs()
         part.openDocument(nativeDirectSave.fileName());
 
         QCOMPARE(part.m_document->page(0)->annotations().size(), nativelySupportsAnnotations ? 1 : 0);
-        if (nativelySupportsAnnotations)
+        if (nativelySupportsAnnotations) {
             QCOMPARE(part.m_document->page(0)->annotations().first()->uniqueName(), annotName);
+        }
 
         part.closeUrl();
     }
@@ -1033,8 +1014,9 @@ void PartTest::testSaveAs()
         part.openDocument(nativeFromArchiveFile.fileName());
 
         QCOMPARE(part.m_document->page(0)->annotations().size(), nativelySupportsAnnotations ? 1 : 0);
-        if (nativelySupportsAnnotations)
+        if (nativelySupportsAnnotations) {
             QCOMPARE(part.m_document->page(0)->annotations().first()->uniqueName(), annotName);
+        }
 
         part.closeUrl();
     }
@@ -1314,7 +1296,7 @@ void PartTest::testSaveAsUndoStackForms()
     Okular::Part part(nullptr, nullptr, QVariantList());
     part.openDocument(file);
 
-    const QLinkedList<Okular::FormField *> pageFormFields = part.m_document->page(0)->formFields();
+    const QList<Okular::FormField *> pageFormFields = part.m_document->page(0)->formFields();
     for (FormField *ff : pageFormFields) {
         if (ff->id() == 65537) {
             QCOMPARE(ff->type(), FormField::FormText);
@@ -1471,7 +1453,7 @@ void PartTest::testCheckBoxReadOnly()
     // Field names in test document are:
     // CBMakeRW, CBMakeRO, TargetDefaultRO, TargetDefaultRW
 
-    const QLinkedList<Okular::FormField *> pageFormFields = page->formFields();
+    const QList<Okular::FormField *> pageFormFields = page->formFields();
     for (Okular::FormField *ff : pageFormFields) {
         fields.insert(ff->name(), static_cast<Okular::FormField *>(ff));
     }
@@ -1547,7 +1529,7 @@ void PartTest::testCheckBoxReadOnly()
     fields.clear();
 
     {
-        const QLinkedList<Okular::FormField *> pageFormFields = page->formFields();
+        const QList<Okular::FormField *> pageFormFields = page->formFields();
         for (Okular::FormField *ff : pageFormFields) {
             fields.insert(ff->name(), static_cast<Okular::FormField *>(ff));
         }
@@ -1606,7 +1588,7 @@ void PartTest::testAnnotWindow()
     part.m_document->addPageAnnotation(0, annot2);
     QVERIFY(part.m_document->page(0)->annotations().size() == 2);
 
-    QTimer *delayResizeEventTimer = part.m_pageView->findChildren<QTimer *>("delayResizeEventTimer").at(0);
+    QTimer *delayResizeEventTimer = part.m_pageView->findChildren<QTimer *>(QStringLiteral("delayResizeEventTimer")).at(0);
     QVERIFY(delayResizeEventTimer->isActive());
     QTest::qWait(delayResizeEventTimer->interval() * 2);
 
@@ -1620,7 +1602,7 @@ void PartTest::testAnnotWindow()
     const NormalizedPoint annot1pt = annot1->boundingRectangle().center();
     QTest::mouseMove(part.m_pageView->viewport(), QPoint(width * annot1pt.x, height * annot1pt.y));
     QTest::mouseDClick(part.m_pageView->viewport(), Qt::LeftButton, Qt::NoModifier, QPoint(width * annot1pt.x, height * annot1pt.y));
-    QTRY_COMPARE(part.m_pageView->findChildren<QFrame *>("AnnotWindow").size(), 1);
+    QTRY_COMPARE(part.m_pageView->findChildren<QFrame *>(QStringLiteral("AnnotWindow")).size(), 1);
     // Verify that the window is visible
     QFrame *win1 = part.m_pageView->findChild<QFrame *>(QStringLiteral("AnnotWindow"));
     QVERIFY(!win1->visibleRegion().isEmpty());
@@ -1629,7 +1611,7 @@ void PartTest::testAnnotWindow()
     const NormalizedPoint annot2pt = annot2->boundingRectangle().center();
     QTest::mouseMove(part.m_pageView->viewport(), QPoint(width * annot2pt.x, height * annot2pt.y));
     QTest::mouseDClick(part.m_pageView->viewport(), Qt::LeftButton, Qt::NoModifier, QPoint(width * annot2pt.x, height * annot2pt.y));
-    QTRY_COMPARE(part.m_pageView->findChildren<QFrame *>("AnnotWindow").size(), 2);
+    QTRY_COMPARE(part.m_pageView->findChildren<QFrame *>(QStringLiteral("AnnotWindow")).size(), 2);
     // Verify that the first window is hidden covered by the second, which is visible
     QList<QFrame *> lstWin = part.m_pageView->findChildren<QFrame *>(QStringLiteral("AnnotWindow"));
     QFrame *win2;
@@ -1688,7 +1670,7 @@ void PartTest::testAdditionalActionTriggers()
     part.widget()->show();
     QVERIFY(QTest::qWaitForWindowExposed(part.widget()));
 
-    QTimer *delayResizeEventTimer = part.m_pageView->findChildren<QTimer *>("delayResizeEventTimer").at(0);
+    QTimer *delayResizeEventTimer = part.m_pageView->findChildren<QTimer *>(QStringLiteral("delayResizeEventTimer")).at(0);
     QVERIFY(delayResizeEventTimer->isActive());
     QTest::qWait(delayResizeEventTimer->interval() * 2);
 
@@ -1703,7 +1685,7 @@ void PartTest::testAdditionalActionTriggers()
     // For target fields: <trigger_name>_focus_target, <trigger_name>_cursor_target,
     // <trigger_name>_mouse_target
     const Okular::Page *page = part.m_document->page(0);
-    const QLinkedList<Okular::FormField *> pageFormFields = page->formFields();
+    const QList<Okular::FormField *> pageFormFields = page->formFields();
     for (Okular::FormField *ff : pageFormFields) {
         fields.insert(ff->name(), static_cast<Okular::FormField *>(ff));
     }
@@ -1870,7 +1852,7 @@ void PartTest::testOpenAtPage()
     // 'page=<pagenum>' param as specified in RFC 3778
     const uint targetPageNumB = 15;
     const uint expectedPageB = targetPageNumB - 1;
-    url.setFragment("page=" + QString::number(targetPageNumB));
+    url.setFragment(QStringLiteral("page=") + QString::number(targetPageNumB));
     part.openUrl(url);
     QCOMPARE(part.m_document->currentPage(), expectedPageB);
 }
@@ -1888,12 +1870,12 @@ void PartTest::testForwardBackwardNavigation()
     const int targetPageA = 15;
     part.m_document->setViewportPage(targetPageA);
 
-    QVERIFY(part.m_document->viewport() == targetPageA);
+    QVERIFY(part.m_document->viewport() == DocumentViewport(targetPageA));
 
     // Go to some other page
     const int targetPageB = 25;
     part.m_document->setViewportPage(targetPageB);
-    QVERIFY(part.m_document->viewport() == targetPageB);
+    QVERIFY(part.m_document->viewport() == DocumentViewport(targetPageB));
 
     // Go back to page A
     QVERIFY(QMetaObject::invokeMethod(&part, "slotHistoryBack"));
@@ -2044,7 +2026,7 @@ void PartTest::testZoomInFacingPages()
     part.widget()->show();
     QVERIFY(QTest::qWaitForWindowExposed(part.widget()));
     facingAction->trigger();
-    while (zoomSelectAction->currentText() != "12%") {
+    while (zoomSelectAction->currentText() != QStringLiteral("12%")) {
         QVERIFY(QMetaObject::invokeMethod(part.m_pageView, "slotZoomOut"));
     }
     QTRY_VERIFY(part.m_document->page(0)->hasPixmap(part.m_pageView));
@@ -2088,10 +2070,25 @@ void PartTest::testZoomWithCrop()
     for (int i = 0; i < 20; i++) {
         QVERIFY(QMetaObject::invokeMethod(part.m_pageView, "slotZoomOut"));
     }
-    QCOMPARE(zoomSelectAction->currentText(), "12%");
+    QCOMPARE(zoomSelectAction->currentText(), QStringLiteral("12%"));
 
     // Zoom in and out and check that all zoom levels appear
-    QSet<QString> zooms_ref {"12%", "25%", "33%", "50%", "66%", "75%", "100%", "125%", "150%", "200%", "400%", "800%", "1,600%", "2,500%", "5,000%", "10,000%"};
+    QSet<QString> zooms_ref {QStringLiteral("12%"),
+                             QStringLiteral("25%"),
+                             QStringLiteral("33%"),
+                             QStringLiteral("50%"),
+                             QStringLiteral("66%"),
+                             QStringLiteral("75%"),
+                             QStringLiteral("100%"),
+                             QStringLiteral("125%"),
+                             QStringLiteral("150%"),
+                             QStringLiteral("200%"),
+                             QStringLiteral("400%"),
+                             QStringLiteral("800%"),
+                             QStringLiteral("1,600%"),
+                             QStringLiteral("2,500%"),
+                             QStringLiteral("5,000%"),
+                             QStringLiteral("10,000%")};
 
     for (int j = 0; j < 2; j++) {
         QSet<QString> zooms;
@@ -2158,10 +2155,126 @@ void PartTest::testLinkWithCrop()
     QTest::mouseMove(part.m_pageView->viewport(), click);
     QTest::mouseClick(part.m_pageView->viewport(), Qt::LeftButton, Qt::NoModifier, click);
 
-    QTRY_VERIFY2_WITH_TIMEOUT(qAbs(part.m_document->viewport().rePos.normalizedY - 0.167102333237) < 0.01, qPrintable(QString("We are at %1").arg(part.m_document->viewport().rePos.normalizedY)), 500);
+    QTRY_VERIFY2_WITH_TIMEOUT(qAbs(part.m_document->viewport().rePos.normalizedY - 0.167102333237) < 0.01, qPrintable(QStringLiteral("We are at %1").arg(part.m_document->viewport().rePos.normalizedY)), 500);
 
     // Deactivate "Trim Margins"
     cropAction->trigger();
+}
+
+void PartTest::testFieldFormatting()
+{
+    // Test field formatting. This has to be a parttest so that we
+    // can properly test focus in / out which triggers formatting.
+    const QString testFile = QStringLiteral(KDESRCDIR "data/fieldFormat.pdf");
+    Okular::Part part(nullptr, nullptr, QVariantList());
+    part.openDocument(testFile);
+    part.widget()->resize(800, 600);
+
+    part.widget()->show();
+    QVERIFY(QTest::qWaitForWindowExposed(part.widget()));
+
+    // Field names in test document are:
+    //
+    // us_currency_fmt for formatting like "$ 1,234.56"
+    // de_currency_fmt for formatting like "1.234,56 €"
+    // de_simple_sum for calculation test and formatting like "1.234,56€"
+    // date_mm_dd_yyyy for dates like "18/06/2018"
+    // date_dd_mm_yyyy for dates like "06/18/2018"
+    // percent_fmt for percent format like "100,00%" if you enter 1
+    // time_HH_MM_fmt for times like "23:12"
+    // time_HH_MM_ss_fmt for times like "23:12:34"
+    // special_phone_number for an example of a special format selectable in Acrobat.
+    QMap<QString, Okular::FormField *> fields;
+    const Okular::Page *page = part.m_document->page(0);
+    const auto formFields = page->formFields();
+    for (Okular::FormField *ff : formFields) {
+        fields.insert(ff->name(), static_cast<Okular::FormField *>(ff));
+    }
+
+    const int width = part.m_pageView->horizontalScrollBar()->maximum() + part.m_pageView->viewport()->width();
+    const int height = part.m_pageView->verticalScrollBar()->maximum() + part.m_pageView->viewport()->height();
+
+    part.m_document->setViewportPage(0);
+
+    // wait for pixmap
+    QTRY_VERIFY(part.m_document->page(0)->hasPixmap(part.m_pageView));
+
+    part.actionCollection()->action(QStringLiteral("view_toggle_forms"))->trigger();
+
+    // Note as of version 1.5:
+    // The test document is prepared for future extensions to formatting for dates etc.
+    // Currently we only have the number format to test.
+    const auto ff_us = dynamic_cast<Okular::FormFieldText *>(fields.value(QStringLiteral("us_currency_fmt")));
+    const auto ff_de = dynamic_cast<Okular::FormFieldText *>(fields.value(QStringLiteral("de_currency_fmt")));
+    const auto ff_sum = dynamic_cast<Okular::FormFieldText *>(fields.value(QStringLiteral("de_simple_sum")));
+
+    const QPoint usPos(width * 0.25, height * 0.025);
+    const QPoint dePos(width * 0.25, height * 0.05);
+    const QPoint deSumPos(width * 0.25, height * 0.075);
+
+    const auto viewport = part.m_pageView->viewport();
+
+    QVERIFY(viewport);
+
+    auto usCurrencyWidget = dynamic_cast<QLineEdit *>(viewport->childAt(usPos));
+    auto deCurrencyWidget = dynamic_cast<QLineEdit *>(viewport->childAt(dePos));
+    auto sumCurrencyWidget = dynamic_cast<QLineEdit *>(viewport->childAt(deSumPos));
+
+    // Check that the widgets were found at the right position
+    QVERIFY(usCurrencyWidget);
+    QVERIFY(deCurrencyWidget);
+    QVERIFY(sumCurrencyWidget);
+
+    QTest::mousePress(usCurrencyWidget, Qt::LeftButton, Qt::NoModifier, QPoint(5, 5));
+    QTRY_VERIFY(usCurrencyWidget->hasFocus());
+    // locale is en_US for this test. Enter a value and check it.
+    usCurrencyWidget->setText(QStringLiteral("1234.56"));
+    // Check that the internal text matches
+    QCOMPARE(ff_us->text(), QStringLiteral("1234.56"));
+
+    // Now move the focus to trigger formatting.
+    QTest::mousePress(deCurrencyWidget, Qt::LeftButton, Qt::NoModifier, QPoint(5, 5));
+    QTRY_VERIFY(deCurrencyWidget->hasFocus());
+
+    QCOMPARE(usCurrencyWidget->text(), QStringLiteral("$ 1,234.56"));
+    QCOMPARE(ff_us->text(), QStringLiteral("1234.56"));
+
+    // And again with an invalid number
+    QTest::mousePress(usCurrencyWidget, Qt::LeftButton, Qt::NoModifier, QPoint(5, 5));
+    QTRY_VERIFY(usCurrencyWidget->hasFocus());
+
+    usCurrencyWidget->setText(QStringLiteral("131.234,567"));
+    QTest::mousePress(deCurrencyWidget, Qt::LeftButton, Qt::NoModifier, QPoint(5, 5));
+    QTRY_VERIFY(deCurrencyWidget->hasFocus());
+    // Check that the internal text still contains it.
+    QCOMPARE(ff_us->text(), QStringLiteral("131.234,567"));
+
+    // Just check that the text does not match the internal text.
+    // We don't check for a concrete value to keep NaN handling flexible
+    QVERIFY(ff_us->text() != usCurrencyWidget->text());
+
+    // Move the focus back and modify it a bit more
+    QTest::mousePress(usCurrencyWidget, Qt::LeftButton, Qt::NoModifier, QPoint(5, 5));
+    QTRY_VERIFY(usCurrencyWidget->hasFocus());
+
+    usCurrencyWidget->setText(QStringLiteral("1,234.567"));
+    QTest::mousePress(deCurrencyWidget, Qt::LeftButton, Qt::NoModifier, QPoint(5, 5));
+    QTRY_VERIFY(deCurrencyWidget->hasFocus());
+
+    QCOMPARE(usCurrencyWidget->text(), QStringLiteral("$ 1,234.57"));
+
+    // Sum should already match
+    QCOMPARE(sumCurrencyWidget->text(), QStringLiteral("1.234,57€"));
+
+    // Set a text in the de field
+    deCurrencyWidget->setText(QStringLiteral("1,123,234.567"));
+    QTest::mousePress(usCurrencyWidget, Qt::LeftButton, Qt::NoModifier, QPoint(5, 5));
+    QTRY_VERIFY(usCurrencyWidget->hasFocus());
+
+    QCOMPARE(deCurrencyWidget->text(), QStringLiteral("1.123.234,57 €"));
+    QCOMPARE(ff_de->text(), QStringLiteral("1,123,234.567"));
+    QCOMPARE(sumCurrencyWidget->text(), QStringLiteral("1.124.469,13€"));
+    QCOMPARE(ff_sum->text(), QStringLiteral("1,124,469.1340000000782310962677002"));
 }
 
 } // namespace Okular

@@ -21,10 +21,10 @@
 
 // local includes
 #include "core/action.h"
+#include "gui/tocmodel.h"
 #include "ktreeviewsearchline.h"
 #include "pageitemdelegate.h"
 #include "settings.h"
-#include "tocmodel.h"
 
 TOC::TOC(QWidget *parent, Okular::Document *document)
     : QWidget(parent)
@@ -34,7 +34,7 @@ TOC::TOC(QWidget *parent, Okular::Document *document)
     mainlay->setSpacing(6);
 
     KTitleWidget *titleWidget = new KTitleWidget(this);
-    titleWidget->setLevel(2);
+    titleWidget->setLevel(4);
     titleWidget->setText(i18n("Contents"));
     mainlay->addWidget(titleWidget);
     mainlay->setAlignment(titleWidget, Qt::AlignHCenter);
@@ -67,8 +67,9 @@ TOC::~TOC()
 
 void TOC::notifySetup(const QVector<Okular::Page *> & /*pages*/, int setupFlags)
 {
-    if (!(setupFlags & Okular::DocumentObserver::DocumentChanged))
+    if (!(setupFlags & Okular::DocumentObserver::DocumentChanged)) {
         return;
+    }
 
     // clear contents
     m_model->clear();
@@ -80,12 +81,12 @@ void TOC::notifySetup(const QVector<Okular::Page *> & /*pages*/, int setupFlags)
             // Make sure we clear the reload old model data
             m_model->setOldModelData(nullptr, QVector<QModelIndex>());
         }
-        emit hasTOC(false);
+        Q_EMIT hasTOC(false);
         return;
     }
 
     m_model->fill(syn);
-    emit hasTOC(!m_model->isEmpty());
+    Q_EMIT hasTOC(!m_model->isEmpty());
 }
 
 void TOC::notifyCurrentPageChanged(int, int)
@@ -95,8 +96,9 @@ void TOC::notifyCurrentPageChanged(int, int)
 
 void TOC::prepareForReload()
 {
-    if (m_model->isEmpty())
+    if (m_model->isEmpty()) {
         return;
+    }
 
     const QVector<QModelIndex> list = expandedNodes();
     TOCModel *m = m_model;
@@ -107,8 +109,9 @@ void TOC::prepareForReload()
 
 void TOC::rollbackReload()
 {
-    if (!m_model->hasOldModelData())
+    if (!m_model->hasOldModelData()) {
         return;
+    }
 
     TOCModel *m = m_model;
     m_model = m->clearOldModelData();
@@ -146,8 +149,9 @@ void TOC::reparseConfig()
 
 void TOC::slotExecuted(const QModelIndex &index)
 {
-    if (!index.isValid())
+    if (!index.isValid()) {
         return;
+    }
 
     QString url = m_model->urlForIndex(index);
     if (!url.isEmpty()) {
@@ -176,12 +180,13 @@ void TOC::saveSearchOptions()
 void TOC::contextMenuEvent(QContextMenuEvent *e)
 {
     QModelIndex index = m_treeView->currentIndex();
-    if (!index.isValid())
+    if (!index.isValid()) {
         return;
+    }
 
     Okular::DocumentViewport viewport = m_model->viewportForIndex(index);
 
-    emit rightClick(viewport, e->globalPos(), m_model->data(index).toString());
+    Q_EMIT rightClick(viewport, e->globalPos(), m_model->data(index).toString());
 }
 
 void TOC::expandRecursively()

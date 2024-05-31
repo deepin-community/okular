@@ -19,11 +19,11 @@
 >yurchor@ukr.net</email
 ></author>
 <date
->14 февраля 2019 г.</date>
+>19 февраля 2022 г.</date>
 <releaseinfo
->Okular 1.7</releaseinfo>
+>Okular 22.04</releaseinfo>
 <productname
->Приложения KDE</productname>
+>KDE Gear</productname>
 </refentryinfo>
 
 <refmeta>
@@ -115,7 +115,7 @@
 ></term>
 <listitem>
 <para
->Запустить с открытым диалогом печати и выйти по завершению печати.</para>
+>Сразу открыть диалог печати и выйти из приложения после печати.</para>
 </listitem>
 </varlistentry>
 
@@ -150,7 +150,22 @@
 ></term>
 <listitem>
 <para
->Найти строку в тексте документа.</para>
+>Запустить поиск заданной строки.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--editor-cmd <replaceable
+>строка</replaceable
+></option
+></term>
+<listitem>
+<para
+>Указывает команду внешнего редактора. Команду редактора нельзя указать в уже запущенном экземпляре Okular. Обратите внимание, что опция <option
+>--unique</option
+> не поддерживается при указании команды редактора в командной строке.</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -183,9 +198,9 @@
 ><title
 >Обратная связь</title>
 <para
->Оставить отзыв можно с помощью IRC: irc.freenode.net #okular, либо по электронной почте: okular-devel@kde.org, либо на веб-сайте: &lt;<ulink url="http://okular.kde.org/"
->http://okular.kde.org/</ulink
->&gt;</para>
+>Оставить отзыв можно с помощью IRC: irc.libera.chat #okular, либо по электронной почте: okular-devel@kde.org, либо на веб-сайте: &lt;<ulink url="https://okular.kde.org/"
+>https://okular.kde.org/</ulink
+>&gt;.</para>
 </refsect1>
 
 <refsect1>
@@ -209,8 +224,8 @@
 <member
 >qt5options(7)</member>
 <member
->Дополнительная информация находится на веб-сайте <ulink url="http://okular.kde.org/"
->http://okular.kde.org/</ulink
+>Дополнительная информация находится на веб-сайте <ulink url="https://okular.kde.org/"
+>https://okular.kde.org/</ulink
 >.</member>
 </simplelist>
 </refsect1>
@@ -229,8 +244,8 @@
 <para
 >&copy; Pino Toscano, 2006-2009</para>
 <para
->Лицензия: GNU General Public License, версия 2 &lt;<ulink url="http://www.gnu.org/licenses/gpl-2.0.html"
->http://www.gnu.org/licenses/gpl-2.0.html</ulink
+>Лицензия: GNU General Public License, версия 2 &lt;<ulink url="https://www.gnu.org/licenses/gpl-2.0.html"
+>https://www.gnu.org/licenses/gpl-2.0.html</ulink
 >&gt;</para>
 </refsect1>
 </refentry>

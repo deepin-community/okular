@@ -25,7 +25,7 @@ class Page;
  *
  * The implementation is currently limited. To implement support
  * for a new event create the according data fields / getters
- * and setters and update the handling in kjs_event
+ * and setters and update the handling in js_event
  * accordingly.
  *
  * See Acrobat JavaScript Scripting Reference for the meaning
@@ -104,6 +104,12 @@ public:
     // Checks if the shift key was down when creating the event.
     bool shiftModifier() const;
     void setShiftModifier(bool shiftModifier);
+
+    bool willCommit() const;
+    void setWillCommit(bool willCommit);
+
+    QString change() const;
+    void setChange(const QString &change);
 
     static std::shared_ptr<Event> createFormCalculateEvent(FormField *target, Page *targetPage, FormField *source = nullptr, Page *sourcePage = nullptr, const QString &targetName = QString());
     static std::shared_ptr<Event> createFormatEvent(FormField *target, Page *targetPage, const QString &targetName = QString());

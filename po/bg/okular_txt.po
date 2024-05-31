@@ -36,15 +36,3 @@ msgstr "Txt"
 #, kde-format
 msgid "Txt Backend Configuration"
 msgstr "Настройки на ядро Txt"
-
-#~ msgid "Txt Backend"
-#~ msgstr "Текстово ядро"
-
-#~ msgid "Txt backend."
-#~ msgstr "Текстово ядро."
-
-#~ msgid "© 2013 Azat Khuzhin"
-#~ msgstr "© 2013 Azat Khuzhin"
-
-#~ msgid "Azat Khuzhin"
-#~ msgstr "Azat Khuzhin"

@@ -49,7 +49,7 @@ msgstr "El document no és un arxiu ZIP vàlid"
 #: document.cpp:42
 #, kde-format
 msgid "Invalid document structure (main directory is missing)"
-msgstr "Estructura no vàlida del document (el directori principal no existeix)"
+msgstr "Estructura no vàlida del document (el directori principal no existix)"
 
 #: document.cpp:57
 #, kde-format
@@ -69,4 +69,4 @@ msgstr "FictionBook"
 #: generator_fb.cpp:26
 #, kde-format
 msgid "FictionBook Backend Configuration"
-msgstr "Configuració del dorsal de FictionBook"
+msgstr "Configureu el dorsal de FictionBook"

@@ -6,7 +6,7 @@ libpkgs_gen_strict_local_shlibs = $(libpkgs_all_packages)
 include /usr/share/pkg-kde-tools/qt-kde-team/3/library-packages.mk
 
 %:
-	dh $@ --with kf5
+	dh $@
 
 override_dh_auto_configure:
 	dh_auto_configure -Skf5 -- -DBUILD_TESTING=OFF -DOKULAR_UI=both
@@ -14,9 +14,6 @@ override_dh_auto_configure:
 override_dh_auto_test:
 	# Disable dh_auto_test at build time
 	:
-
-override_dh_strip:
-	dh_strip --dbgsym-migration='okular-dbg (<= 16.08.90-1~~)'
 
 override_dh_gencontrol: libpkgs_gen_strict_local_shlibs
 	dh_gencontrol

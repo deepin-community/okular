@@ -19,11 +19,11 @@
 >yurchor@ukr.net</email
 ></author>
 <date
->2019-02-14</date>
+>2022-02-19</date>
 <releaseinfo
->Okular 1.7</releaseinfo>
+>Okular 22.04</releaseinfo>
 <productname
->KDE Applications</productname>
+>KDE Gear</productname>
 </refentryinfo>
 
 <refmeta>
@@ -151,6 +151,21 @@
 <listitem>
 <para
 >Trova una stringa nel testo.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--editor-cmd <replaceable
+>stringa</replaceable
+></option
+></term>
+<listitem>
+<para
+>Imposta il comando dell'editor esterno. Non puoi impostare il comando dell'editor in un'istanza di Okular già in esecuzione. Nota come l'opzione <option
+>--unique</option
+> non è supportata quando si imposta il comando dell'editor tramite riga di comando.</para>
 </listitem>
 </varlistentry>
 </variablelist>

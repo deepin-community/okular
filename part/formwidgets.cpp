@@ -9,8 +9,10 @@
 */
 
 #include "formwidgets.h"
+#include "pageview.h"
 #include "pageviewutils.h"
 #include "revisionviewer.h"
+#include "signaturepartutils.h"
 #include "signaturepropertiesdialog.h"
 
 #include <KLineEdit>
@@ -27,13 +29,13 @@
 // local includes
 #include "core/action.h"
 #include "core/document.h"
-#include "debug_ui.h"
+#include "gui/debug_ui.h"
 
 FormWidgetsController::FormWidgetsController(Okular::Document *doc)
     : QObject(doc)
     , m_doc(doc)
 {
-    // emit changed signal when a form has changed
+    // Q_EMIT changed signal when a form has changed
     connect(this, &FormWidgetsController::formTextChangedByUndoRedo, this, &FormWidgetsController::changed);
     connect(this, &FormWidgetsController::formListChangedByUndoRedo, this, &FormWidgetsController::changed);
     connect(this, &FormWidgetsController::formComboChangedByUndoRedo, this, &FormWidgetsController::changed);
@@ -68,14 +70,14 @@ FormWidgetsController::~FormWidgetsController()
 
 void FormWidgetsController::signalAction(Okular::Action *a)
 {
-    emit action(a);
+    Q_EMIT action(a);
 }
 
 void FormWidgetsController::processScriptAction(Okular::Action *a, Okular::FormField *field, Okular::Annotation::AdditionalActionType type)
 {
     // If it's not a Action Script or if the field is not a FormText, handle it normally
     if (a->actionType() != Okular::Action::Script || field->type() != Okular::FormField::FormText) {
-        emit action(a);
+        Q_EMIT action(a);
         return;
     }
     switch (type) {
@@ -89,14 +91,15 @@ void FormWidgetsController::processScriptAction(Okular::Action *a, Okular::FormF
     case Okular::Annotation::CursorLeaving:
     case Okular::Annotation::MousePressed:
     case Okular::Annotation::MouseReleased:
-        emit action(a);
+        Q_EMIT action(a);
     }
 }
 
 void FormWidgetsController::registerRadioButton(FormWidgetIface *fwButton, Okular::FormFieldButton *formButton)
 {
-    if (!fwButton)
+    if (!fwButton) {
         return;
+    }
 
     QAbstractButton *button = dynamic_cast<QAbstractButton *>(fwButton);
     if (!button) {
@@ -128,8 +131,9 @@ void FormWidgetsController::registerRadioButton(FormWidgetIface *fwButton, Okula
     newdata.group->setId(button, id);
 
     // Groups of 1 (like checkboxes) can't be exclusive
-    if (siblings.isEmpty())
+    if (siblings.isEmpty()) {
         newdata.group->setExclusive(false);
+    }
 
     connect(newdata.group, QOverload<QAbstractButton *>::of(&QButtonGroup::buttonClicked), this, &FormWidgetsController::slotButtonClicked);
     m_radios.append(newdata);
@@ -190,8 +194,9 @@ void FormWidgetsController::slotButtonClicked(QAbstractButton *button)
         formButtons.append(formButton);
         prevChecked.append(formButton->state());
     }
-    if (checked != prevChecked)
-        emit formButtonsChangedByWidget(pageNumber, formButtons, checked);
+    if (checked != prevChecked) {
+        Q_EMIT formButtonsChangedByWidget(pageNumber, formButtons, checked);
+    }
     if (check) {
         // The formButtonsChangedByWidget signal changes the value of the underlying
         // Okular::FormField of the checkbox. We need to execute the activation
@@ -207,7 +212,7 @@ void FormWidgetsController::slotFormButtonsChangedByUndoRedo(int pageNumber, con
         QAbstractButton *button = m_buttons[id];
         CheckBoxEdit *check = qobject_cast<CheckBoxEdit *>(button);
         if (check) {
-            emit refreshFormWidget(check->formField());
+            Q_EMIT refreshFormWidget(check->formField());
         }
         // temporarily disable exclusiveness of the button group
         // since it breaks doing/redoing steps into which all the checkboxes
@@ -219,10 +224,15 @@ void FormWidgetsController::slotFormButtonsChangedByUndoRedo(int pageNumber, con
         button->group()->setExclusive(wasExclusive);
         button->setFocus();
     }
-    emit changed(pageNumber);
+    Q_EMIT changed(pageNumber);
 }
 
-FormWidgetIface *FormWidgetFactory::createWidget(Okular::FormField *ff, QWidget *parent)
+Okular::Document *FormWidgetsController::document() const
+{
+    return m_doc;
+}
+
+FormWidgetIface *FormWidgetFactory::createWidget(Okular::FormField *ff, PageView *pageView)
 {
     FormWidgetIface *widget = nullptr;
 
@@ -231,13 +241,13 @@ FormWidgetIface *FormWidgetFactory::createWidget(Okular::FormField *ff, QWidget 
         Okular::FormFieldButton *ffb = static_cast<Okular::FormFieldButton *>(ff);
         switch (ffb->buttonType()) {
         case Okular::FormFieldButton::Push:
-            widget = new PushButtonEdit(ffb, parent);
+            widget = new PushButtonEdit(ffb, pageView);
             break;
         case Okular::FormFieldButton::CheckBox:
-            widget = new CheckBoxEdit(ffb, parent);
+            widget = new CheckBoxEdit(ffb, pageView);
             break;
         case Okular::FormFieldButton::Radio:
-            widget = new RadioButtonEdit(ffb, parent);
+            widget = new RadioButtonEdit(ffb, pageView);
             break;
         default:;
         }
@@ -247,13 +257,13 @@ FormWidgetIface *FormWidgetFactory::createWidget(Okular::FormField *ff, QWidget 
         Okular::FormFieldText *fft = static_cast<Okular::FormFieldText *>(ff);
         switch (fft->textType()) {
         case Okular::FormFieldText::Multiline:
-            widget = new TextAreaEdit(fft, parent);
+            widget = new TextAreaEdit(fft, pageView);
             break;
         case Okular::FormFieldText::Normal:
-            widget = new FormLineEdit(fft, parent);
+            widget = new FormLineEdit(fft, pageView);
             break;
         case Okular::FormFieldText::FileSelect:
-            widget = new FileEdit(fft, parent);
+            widget = new FileEdit(fft, pageView);
             break;
         }
         break;
@@ -262,25 +272,27 @@ FormWidgetIface *FormWidgetFactory::createWidget(Okular::FormField *ff, QWidget 
         Okular::FormFieldChoice *ffc = static_cast<Okular::FormFieldChoice *>(ff);
         switch (ffc->choiceType()) {
         case Okular::FormFieldChoice::ListBox:
-            widget = new ListEdit(ffc, parent);
+            widget = new ListEdit(ffc, pageView);
             break;
         case Okular::FormFieldChoice::ComboBox:
-            widget = new ComboEdit(ffc, parent);
+            widget = new ComboEdit(ffc, pageView);
             break;
         }
         break;
     }
     case Okular::FormField::FormSignature: {
         Okular::FormFieldSignature *ffs = static_cast<Okular::FormFieldSignature *>(ff);
-        if (ffs->isVisible() && ffs->signatureType() != Okular::FormFieldSignature::UnknownType)
-            widget = new SignatureEdit(ffs, parent);
+        if (ffs->isVisible() && ffs->signatureType() != Okular::FormFieldSignature::UnknownType) {
+            widget = new SignatureEdit(ffs, pageView);
+        }
         break;
     }
     default:;
     }
 
-    if (!FormWidgetsController::shouldFormWidgetBeShown(ff))
+    if (!FormWidgetsController::shouldFormWidgetBeShown(ff)) {
         widget->setVisibility(false);
+    }
 
     return widget;
 }
@@ -315,8 +327,9 @@ void FormWidgetIface::moveTo(int x, int y)
 bool FormWidgetIface::setVisibility(bool visible)
 {
     bool hadfocus = m_widget->hasFocus();
-    if (hadfocus)
+    if (hadfocus && !visible) {
         m_widget->clearFocus();
+    }
     m_widget->setVisible(visible);
     return hadfocus;
 }
@@ -363,8 +376,8 @@ void FormWidgetIface::slotRefresh(Okular::FormField *form)
     m_widget->setEnabled(!form->isReadOnly());
 }
 
-PushButtonEdit::PushButtonEdit(Okular::FormFieldButton *button, QWidget *parent)
-    : QPushButton(parent)
+PushButtonEdit::PushButtonEdit(Okular::FormFieldButton *button, PageView *pageView)
+    : QPushButton(pageView->viewport())
     , FormWidgetIface(this, button)
 {
     setText(button->caption());
@@ -377,8 +390,8 @@ PushButtonEdit::PushButtonEdit(Okular::FormFieldButton *button, QWidget *parent)
     setCursor(Qt::ArrowCursor);
 }
 
-CheckBoxEdit::CheckBoxEdit(Okular::FormFieldButton *button, QWidget *parent)
-    : QCheckBox(parent)
+CheckBoxEdit::CheckBoxEdit(Okular::FormFieldButton *button, PageView *pageView)
+    : QCheckBox(pageView->viewport())
     , FormWidgetIface(this, button)
 {
     setText(button->caption());
@@ -398,8 +411,9 @@ void CheckBoxEdit::setFormWidgetsController(FormWidgetsController *controller)
 void CheckBoxEdit::doActivateAction()
 {
     Okular::FormFieldButton *form = static_cast<Okular::FormFieldButton *>(m_ff);
-    if (form->activationAction())
+    if (form->activationAction()) {
         m_controller->signalAction(form->activationAction());
+    }
 }
 
 void CheckBoxEdit::slotRefresh(Okular::FormField *form)
@@ -418,8 +432,8 @@ void CheckBoxEdit::slotRefresh(Okular::FormField *form)
     }
 }
 
-RadioButtonEdit::RadioButtonEdit(Okular::FormFieldButton *button, QWidget *parent)
-    : QRadioButton(parent)
+RadioButtonEdit::RadioButtonEdit(Okular::FormFieldButton *button, PageView *pageView)
+    : QRadioButton(pageView->viewport())
     , FormWidgetIface(this, button)
 {
     setText(button->caption());
@@ -436,17 +450,19 @@ void RadioButtonEdit::setFormWidgetsController(FormWidgetsController *controller
     setChecked(form->state());
 }
 
-FormLineEdit::FormLineEdit(Okular::FormFieldText *text, QWidget *parent)
-    : QLineEdit(parent)
+FormLineEdit::FormLineEdit(Okular::FormFieldText *text, PageView *pageView)
+    : QLineEdit(pageView->viewport())
     , FormWidgetIface(this, text)
 {
     int maxlen = text->maximumLength();
-    if (maxlen >= 0)
+    if (maxlen >= 0) {
         setMaxLength(maxlen);
+    }
     setAlignment(text->textAlignment());
     setText(text->text());
-    if (text->isPassword())
+    if (text->isPassword()) {
         setEchoMode(QLineEdit::Password);
+    }
 
     m_prevCursorPos = cursorPosition();
     m_prevAnchorPos = cursorPosition();
@@ -469,22 +485,24 @@ bool FormLineEdit::event(QEvent *e)
     if (e->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
         if (keyEvent == QKeySequence::Undo) {
-            emit m_controller->requestUndo();
+            Q_EMIT m_controller->requestUndo();
             return true;
         } else if (keyEvent == QKeySequence::Redo) {
-            emit m_controller->requestRedo();
+            Q_EMIT m_controller->requestRedo();
             return true;
         }
     } else if (e->type() == QEvent::FocusIn) {
         const auto fft = static_cast<Okular::FormFieldText *>(m_ff);
-        if (text() != fft->text())
+        if (text() != fft->text()) {
             setText(fft->text());
+        }
         m_editing = true;
 
         QFocusEvent *focusEvent = static_cast<QFocusEvent *>(e);
         if (focusEvent->reason() != Qt::ActiveWindowFocusReason) {
-            if (const Okular::Action *action = m_ff->additionalAction(Okular::Annotation::FocusIn))
-                emit m_controller->focusAction(action, fft);
+            if (const Okular::Action *action = m_ff->additionalAction(Okular::Annotation::FocusIn)) {
+                m_controller->document()->processFocusAction(action, fft);
+            }
         }
         setFocus();
     } else if (e->type() == QEvent::FocusOut) {
@@ -492,15 +510,21 @@ bool FormLineEdit::event(QEvent *e)
 
         // Don't worry about focus events from other sources than the user FocusEvent to edit the field
         QFocusEvent *focusEvent = static_cast<QFocusEvent *>(e);
-        if (focusEvent->reason() == Qt::OtherFocusReason || focusEvent->reason() == Qt::ActiveWindowFocusReason)
+        if (focusEvent->reason() == Qt::OtherFocusReason || focusEvent->reason() == Qt::ActiveWindowFocusReason) {
             return true;
+        }
+
+        if (m_ff->additionalAction(Okular::FormField::FieldModified) && !m_ff->isReadOnly()) {
+            Okular::FormFieldText *form = static_cast<Okular::FormFieldText *>(m_ff);
+            m_controller->document()->processKeystrokeCommitAction(m_ff->additionalAction(Okular::FormField::FieldModified), form);
+        }
 
         if (const Okular::Action *action = m_ff->additionalAction(Okular::Annotation::FocusOut)) {
             bool ok = false;
-            emit m_controller->validateAction(action, static_cast<Okular::FormFieldText *>(m_ff), ok);
+            m_controller->document()->processValidateAction(action, static_cast<Okular::FormFieldText *>(m_ff), ok);
         }
         if (const Okular::Action *action = m_ff->additionalAction(Okular::FormField::FormatField)) {
-            emit m_controller->formatAction(action, static_cast<Okular::FormFieldText *>(m_ff));
+            m_controller->document()->processFormatAction(action, static_cast<Okular::FormFieldText *>(m_ff));
         }
     }
     return QLineEdit::event(e);
@@ -537,23 +561,14 @@ void FormLineEdit::contextMenuEvent(QContextMenuEvent *event)
 void FormLineEdit::slotChanged()
 {
     Okular::FormFieldText *form = static_cast<Okular::FormFieldText *>(m_ff);
-    QString contents = text();
     int cursorPos = cursorPosition();
 
-    if (form->additionalAction(Okular::FormField::FieldModified) && m_editing && !form->isReadOnly()) {
-        bool ok = false;
-        QString oldInputText = form->text();
-        form->setText(text());
-        emit m_controller->keystrokeAction(form->additionalAction(Okular::FormField::FieldModified), form, ok);
-        form->setText(oldInputText);
-        if (!ok) {
-            setText(oldInputText);
-            return;
+    if (text() != form->text()) {
+        if (form->additionalAction(Okular::FormField::FieldModified) && m_editing && !form->isReadOnly()) {
+            m_controller->document()->processKeystrokeAction(form->additionalAction(Okular::FormField::FieldModified), form, text());
         }
-    }
 
-    if (contents != form->text()) {
-        emit m_controller->formTextChangedByWidget(pageItem()->pageNumber(), form, contents, cursorPos, m_prevCursorPos, m_prevAnchorPos);
+        Q_EMIT m_controller->formTextChangedByWidget(pageItem()->pageNumber(), form, text(), cursorPos, m_prevCursorPos, m_prevAnchorPos);
     }
 
     m_prevCursorPos = cursorPos;
@@ -594,8 +609,8 @@ void FormLineEdit::slotRefresh(Okular::FormField *form)
     setText(text->text());
 }
 
-TextAreaEdit::TextAreaEdit(Okular::FormFieldText *text, QWidget *parent)
-    : KTextEdit(parent)
+TextAreaEdit::TextAreaEdit(Okular::FormFieldText *text, PageView *pageView)
+    : KTextEdit(pageView->viewport())
     , FormWidgetIface(this, text)
 {
     setAcceptRichText(text->isRichText());
@@ -626,21 +641,27 @@ bool TextAreaEdit::event(QEvent *e)
     if (e->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
         if (keyEvent == QKeySequence::Undo) {
-            emit m_controller->requestUndo();
+            Q_EMIT m_controller->requestUndo();
             return true;
         } else if (keyEvent == QKeySequence::Redo) {
-            emit m_controller->requestRedo();
+            Q_EMIT m_controller->requestRedo();
             return true;
         }
     } else if (e->type() == QEvent::FocusIn) {
         const auto fft = static_cast<Okular::FormFieldText *>(m_ff);
-        if (toPlainText() != fft->text())
+        if (toPlainText() != fft->text()) {
             setText(fft->text());
+        }
         m_editing = true;
     } else if (e->type() == QEvent::FocusOut) {
         m_editing = false;
+
+        if (m_ff->additionalAction(Okular::FormField::FieldModified) && !m_ff->isReadOnly()) {
+            m_controller->document()->processKeystrokeCommitAction(m_ff->additionalAction(Okular::FormField::FieldModified), static_cast<Okular::FormFieldText *>(m_ff));
+        }
+
         if (const Okular::Action *action = m_ff->additionalAction(Okular::FormField::FormatField)) {
-            emit m_controller->formatAction(action, static_cast<Okular::FormFieldText *>(m_ff));
+            m_controller->document()->processFormatAction(action, static_cast<Okular::FormFieldText *>(m_ff));
         }
     }
     return KTextEdit::event(e);
@@ -648,8 +669,9 @@ bool TextAreaEdit::event(QEvent *e)
 
 void TextAreaEdit::slotUpdateUndoAndRedoInContextMenu(QMenu *menu)
 {
-    if (!menu)
+    if (!menu) {
         return;
+    }
 
     QList<QAction *> actionList = menu->actions();
     enum { UndoAct, RedoAct, CutAct, CopyAct, PasteAct, ClearAct, SelectAllAct, NCountActs };
@@ -697,23 +719,14 @@ void TextAreaEdit::slotHandleTextChangedByUndoRedo(int pageNumber, Okular::FormF
 void TextAreaEdit::slotChanged()
 {
     Okular::FormFieldText *form = static_cast<Okular::FormFieldText *>(m_ff);
-    QString contents = toPlainText();
     int cursorPos = textCursor().position();
 
-    if (form->additionalAction(Okular::FormField::FieldModified) && m_editing && !form->isReadOnly()) {
-        bool ok = false;
-        QString oldInputText = form->text();
-        form->setText(toPlainText());
-        emit m_controller->keystrokeAction(form->additionalAction(Okular::FormField::FieldModified), form, ok);
-        form->setText(oldInputText);
-        if (!ok) {
-            setText(oldInputText);
-            return;
+    if (toPlainText() != form->text()) {
+        if (form->additionalAction(Okular::FormField::FieldModified) && m_editing && !form->isReadOnly()) {
+            m_controller->document()->processKeystrokeAction(form->additionalAction(Okular::FormField::FieldModified), form, toPlainText());
         }
-    }
 
-    if (contents != form->text()) {
-        emit m_controller->formTextChangedByWidget(pageItem()->pageNumber(), form, contents, cursorPos, m_prevCursorPos, m_prevAnchorPos);
+        Q_EMIT m_controller->formTextChangedByWidget(pageItem()->pageNumber(), form, toPlainText(), cursorPos, m_prevCursorPos, m_prevAnchorPos);
     }
     m_prevCursorPos = cursorPos;
     m_prevAnchorPos = textCursor().anchor();
@@ -730,8 +743,8 @@ void TextAreaEdit::slotRefresh(Okular::FormField *form)
     setPlainText(text->text());
 }
 
-FileEdit::FileEdit(Okular::FormFieldText *text, QWidget *parent)
-    : KUrlRequester(parent)
+FileEdit::FileEdit(Okular::FormFieldText *text, PageView *pageView)
+    : KUrlRequester(pageView->viewport())
     , FormWidgetIface(this, text)
 {
     setMode(KFile::File | KFile::ExistingOnly | KFile::LocalOnly);
@@ -759,10 +772,10 @@ bool FileEdit::eventFilter(QObject *obj, QEvent *event)
         if (event->type() == QEvent::KeyPress) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
             if (keyEvent == QKeySequence::Undo) {
-                emit m_controller->requestUndo();
+                Q_EMIT m_controller->requestUndo();
                 return true;
             } else if (keyEvent == QKeySequence::Redo) {
-                emit m_controller->requestRedo();
+                Q_EMIT m_controller->requestRedo();
                 return true;
             }
         } else if (event->type() == QEvent::ContextMenu) {
@@ -801,15 +814,16 @@ bool FileEdit::eventFilter(QObject *obj, QEvent *event)
 void FileEdit::slotChanged()
 {
     // Make sure line edit's text matches url expansion
-    if (text() != url().toLocalFile())
+    if (text() != url().toLocalFile()) {
         this->setText(url().toLocalFile());
+    }
 
     Okular::FormFieldText *form = static_cast<Okular::FormFieldText *>(m_ff);
 
     QString contents = text();
     int cursorPos = lineEdit()->cursorPosition();
     if (contents != form->text()) {
-        emit m_controller->formTextChangedByWidget(pageItem()->pageNumber(), form, contents, cursorPos, m_prevCursorPos, m_prevAnchorPos);
+        Q_EMIT m_controller->formTextChangedByWidget(pageItem()->pageNumber(), form, contents, cursorPos, m_prevCursorPos, m_prevAnchorPos);
     }
 
     m_prevCursorPos = cursorPos;
@@ -839,8 +853,8 @@ void FileEdit::slotHandleFileChangedByUndoRedo(int pageNumber, Okular::FormField
     setFocus();
 }
 
-ListEdit::ListEdit(Okular::FormFieldChoice *choice, QWidget *parent)
-    : QListWidget(parent)
+ListEdit::ListEdit(Okular::FormFieldChoice *choice, PageView *pageView)
+    : QListWidget(pageView->viewport())
     , FormWidgetIface(this, choice)
 {
     addItems(choice->choices());
@@ -848,9 +862,11 @@ ListEdit::ListEdit(Okular::FormFieldChoice *choice, QWidget *parent)
     setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     const QList<int> selectedItems = choice->currentChoices();
     if (choice->multiSelect()) {
-        for (const int index : selectedItems)
-            if (index >= 0 && index < count())
+        for (const int index : selectedItems) {
+            if (index >= 0 && index < count()) {
                 item(index)->setSelected(true);
+            }
+        }
     } else {
         if (selectedItems.count() == 1 && selectedItems.at(0) >= 0 && selectedItems.at(0) < count()) {
             setCurrentRow(selectedItems.at(0));
@@ -879,7 +895,7 @@ void ListEdit::slotSelectionChanged()
     }
     Okular::FormFieldChoice *form = static_cast<Okular::FormFieldChoice *>(m_ff);
     if (rows != form->currentChoices()) {
-        emit m_controller->formListChangedByWidget(pageItem()->pageNumber(), form, rows);
+        Q_EMIT m_controller->formListChangedByWidget(pageItem()->pageNumber(), form, rows);
     }
 }
 
@@ -900,8 +916,8 @@ void ListEdit::slotHandleFormListChangedByUndoRedo(int pageNumber, Okular::FormF
     setFocus();
 }
 
-ComboEdit::ComboEdit(Okular::FormFieldChoice *choice, QWidget *parent)
-    : QComboBox(parent)
+ComboEdit::ComboEdit(Okular::FormFieldChoice *choice, PageView *pageView)
+    : QComboBox(pageView->viewport())
     , FormWidgetIface(this, choice)
 {
     addItems(choice->choices());
@@ -909,11 +925,13 @@ ComboEdit::ComboEdit(Okular::FormFieldChoice *choice, QWidget *parent)
     setInsertPolicy(NoInsert);
     lineEdit()->setReadOnly(!choice->isEditable());
     QList<int> selectedItems = choice->currentChoices();
-    if (selectedItems.count() == 1 && selectedItems.at(0) >= 0 && selectedItems.at(0) < count())
+    if (selectedItems.count() == 1 && selectedItems.at(0) >= 0 && selectedItems.at(0) < count()) {
         setCurrentIndex(selectedItems.at(0));
+    }
 
-    if (choice->isEditable() && !choice->editChoice().isEmpty())
+    if (choice->isEditable() && !choice->editChoice().isEmpty()) {
         lineEdit()->setText(choice->editChoice());
+    }
 
     connect(this, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ComboEdit::slotValueChanged);
     connect(this, &QComboBox::editTextChanged, this, &ComboEdit::slotValueChanged);
@@ -946,7 +964,7 @@ void ComboEdit::slotValueChanged()
 
     int cursorPos = lineEdit()->cursorPosition();
     if (text != prevText) {
-        emit m_controller->formComboChangedByWidget(pageItem()->pageNumber(), form, currentText(), cursorPos, m_prevCursorPos, m_prevAnchorPos);
+        Q_EMIT m_controller->formComboChangedByWidget(pageItem()->pageNumber(), form, currentText(), cursorPos, m_prevCursorPos, m_prevAnchorPos);
     }
     prevText = text;
     m_prevCursorPos = cursorPos;
@@ -1025,25 +1043,30 @@ bool ComboEdit::event(QEvent *e)
     if (e->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
         if (keyEvent == QKeySequence::Undo) {
-            emit m_controller->requestUndo();
+            Q_EMIT m_controller->requestUndo();
             return true;
         } else if (keyEvent == QKeySequence::Redo) {
-            emit m_controller->requestRedo();
+            Q_EMIT m_controller->requestRedo();
             return true;
         }
     }
     return QComboBox::event(e);
 }
 
-SignatureEdit::SignatureEdit(Okular::FormFieldSignature *signature, QWidget *parent)
-    : QAbstractButton(parent)
+SignatureEdit::SignatureEdit(Okular::FormFieldSignature *signature, PageView *pageView)
+    : QAbstractButton(pageView->viewport())
     , FormWidgetIface(this, signature)
     , m_widgetPressed(false)
     , m_dummyMode(false)
     , m_wasVisible(false)
 {
     setCursor(Qt::PointingHandCursor);
-    connect(this, &SignatureEdit::clicked, this, &SignatureEdit::slotViewProperties);
+    if (signature->signatureType() == Okular::FormFieldSignature::UnsignedSignature) {
+        setToolTip(i18n("Unsigned Signature Field (Click to Sign)"));
+        connect(this, &SignatureEdit::clicked, this, &SignatureEdit::signUnsignedSignature);
+    } else {
+        connect(this, &SignatureEdit::clicked, this, &SignatureEdit::slotViewProperties);
+    }
 }
 
 void SignatureEdit::setDummyMode(bool set)
@@ -1056,11 +1079,12 @@ void SignatureEdit::setDummyMode(bool set)
         setVisibility(true);
     } else {
         // forms were not visible before this call so hide this widget.
-        if (!m_wasVisible)
+        if (!m_wasVisible) {
             setVisibility(false);
-        // forms were visible even before this call so only update the background color.
-        else
+        } else {
+            // forms were visible even before this call so only update the background color.
             update();
+        }
     }
 }
 
@@ -1102,9 +1126,16 @@ bool SignatureEdit::event(QEvent *e)
 void SignatureEdit::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu(this);
-    QAction *signatureProperties = new QAction(i18n("Signature Properties"), menu);
-    connect(signatureProperties, &QAction::triggered, this, &SignatureEdit::slotViewProperties);
-    menu->addAction(signatureProperties);
+    Okular::FormFieldSignature *formSignature = static_cast<Okular::FormFieldSignature *>(formField());
+    if (formSignature->signatureType() == Okular::FormFieldSignature::UnsignedSignature) {
+        QAction *signAction = new QAction(i18n("&Sign..."), menu);
+        connect(signAction, &QAction::triggered, this, &SignatureEdit::signUnsignedSignature);
+        menu->addAction(signAction);
+    } else {
+        QAction *signatureProperties = new QAction(i18n("Signature Properties"), menu);
+        connect(signatureProperties, &QAction::triggered, this, &SignatureEdit::slotViewProperties);
+        menu->addAction(signatureProperties);
+    }
     menu->exec(event->globalPos());
     delete menu;
 }
@@ -1131,12 +1162,24 @@ void SignatureEdit::paintEvent(QPaintEvent *)
 
 void SignatureEdit::slotViewProperties()
 {
-    if (m_dummyMode)
+    if (m_dummyMode) {
         return;
+    }
 
     Okular::FormFieldSignature *formSignature = static_cast<Okular::FormFieldSignature *>(formField());
     SignaturePropertiesDialog propDlg(m_controller->m_doc, formSignature, this);
     propDlg.exec();
+}
+
+void SignatureEdit::signUnsignedSignature()
+{
+    if (m_dummyMode) {
+        return;
+    }
+
+    Okular::FormFieldSignature *formSignature = static_cast<Okular::FormFieldSignature *>(formField());
+    PageView *pageView = static_cast<PageView *>(parent()->parent());
+    SignaturePartUtils::signUnsignedSignature(formSignature, pageView, pageView->document());
 }
 
 // Code for additional action handling.
@@ -1177,7 +1220,7 @@ void SignatureEdit::slotViewProperties()
     void FormClass::focusInEvent(QFocusEvent *event)                                                                                                                                                                                           \
     {                                                                                                                                                                                                                                          \
         Okular::Action *act = m_ff->additionalAction(Okular::Annotation::FocusIn);                                                                                                                                                             \
-        if (act) {                                                                                                                                                                                                                             \
+        if (act && event->reason() != Qt::ActiveWindowFocusReason) {                                                                                                                                                                           \
             m_controller->processScriptAction(act, m_ff, Okular::Annotation::FocusIn);                                                                                                                                                         \
         }                                                                                                                                                                                                                                      \
         BaseClass::focusInEvent(event);                                                                                                                                                                                                        \

@@ -34,15 +34,14 @@ msgstr "txemaq@gmail.com"
 #, kde-format
 msgid "Cannot open document, neither unrar nor unarchiver were found."
 msgstr ""
-"No s'ha pogut obrir el document, no s'ha trobat el «unrar» ni el "
-"«unarchiver»."
+"No s'ha pogut obrir el document, no s'ha trobat «unrar» ni «unarchiver»."
 
 #: document.cpp:101
 #, kde-format
 msgid ""
 "The version of unrar on your system is not suitable for opening comicbooks."
 msgstr ""
-"La versió del «unrar» en el vostre sistema no és adequada per a obrir "
+"La versió de «unrar» en el vostre sistema no és adequada per a obrir "
 "ComicBooks."
 
 #: document.cpp:130

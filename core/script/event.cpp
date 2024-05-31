@@ -14,7 +14,7 @@ using namespace Okular;
 class Event::Private
 {
 public:
-    Private(EventType eventType)
+    explicit Private(EventType eventType)
         : m_target(nullptr)
         , m_targetPage(nullptr)
         , m_source(nullptr)
@@ -22,6 +22,7 @@ public:
         , m_eventType(eventType)
         , m_returnCode(false)
         , m_shiftModifier(false)
+        , m_willCommit(false)
     {
     }
 
@@ -34,6 +35,8 @@ public:
     QVariant m_value;
     bool m_returnCode;
     bool m_shiftModifier;
+    bool m_willCommit;
+    QString m_change;
 };
 
 Event::Event()
@@ -167,6 +170,26 @@ bool Event::shiftModifier() const
 void Event::setShiftModifier(bool shiftModifier)
 {
     d->m_shiftModifier = shiftModifier;
+}
+
+bool Event::willCommit() const
+{
+    return d->m_willCommit;
+}
+
+void Event::setWillCommit(bool willCommit)
+{
+    d->m_willCommit = willCommit;
+}
+
+QString Event::change() const
+{
+    return d->m_change;
+}
+
+void Event::setChange(const QString &change)
+{
+    d->m_change = change;
 }
 
 // static

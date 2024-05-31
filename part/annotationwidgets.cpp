@@ -30,9 +30,13 @@
 #include <QSpinBox>
 #include <QVariant>
 
+#include "core/annotations.h"
+#include "core/annotations_p.h"
 #include "core/document.h"
-#include "guiutils.h"
-#include "pagepainter.h"
+#include "core/document_p.h"
+#include "core/page_p.h"
+#include "gui/guiutils.h"
+#include "gui/pagepainter.h"
 
 #define FILEATTACH_ICONSIZE 48
 
@@ -81,8 +85,9 @@ PixmapPreviewSelector::~PixmapPreviewSelector()
 void PixmapPreviewSelector::setIcon(const QString &icon)
 {
     int id = m_comboItems->findData(QVariant(icon), Qt::UserRole, Qt::MatchFixedString);
-    if (id == -1)
+    if (id == -1) {
         id = m_comboItems->findText(icon, Qt::MatchFixedString);
+    }
     if (id > -1) {
         m_comboItems->setCurrentIndex(id);
     } else if (m_comboItems->isEditable()) {
@@ -136,22 +141,23 @@ void PixmapPreviewSelector::iconComboChanged(const QString &icon)
         m_icon = icon;
     }
 
-    QPixmap pixmap = GuiUtils::loadStamp(m_icon, m_previewSize);
+    QPixmap pixmap = Okular::AnnotationUtils::loadStamp(m_icon, m_previewSize);
     const QRect cr = m_iconLabel->contentsRect();
-    if (pixmap.width() > cr.width() || pixmap.height() > cr.height())
+    if (pixmap.width() > cr.width() || pixmap.height() > cr.height()) {
         pixmap = pixmap.scaled(cr.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
     m_iconLabel->setPixmap(pixmap);
 
-    emit iconChanged(m_icon);
+    Q_EMIT iconChanged(m_icon);
 }
 
 void PixmapPreviewSelector::selectCustomStamp()
 {
     const QString customStampFile = QFileDialog::getOpenFileName(this, i18nc("@title:window file chooser", "Select custom stamp symbol"), QString(), i18n("*.ico *.png *.xpm *.svg *.svgz | Icon Files (*.ico *.png *.xpm *.svg *.svgz)"));
     if (!customStampFile.isEmpty()) {
-        QPixmap pixmap = GuiUtils::loadStamp(customStampFile, m_previewSize);
+        QPixmap pixmap = Okular::AnnotationUtils::loadStamp(customStampFile, m_previewSize);
         if (pixmap.isNull()) {
-            KMessageBox::sorry(this, xi18nc("@info", "Could not load the file <filename>%1</filename>", customStampFile), i18nc("@title:window", "Invalid file"));
+            KMessageBox::error(this, xi18nc("@info", "Could not load the file <filename>%1</filename>", customStampFile), i18nc("@title:window", "Invalid file"));
         } else {
             m_comboItems->setEditText(customStampFile);
         }
@@ -209,8 +215,9 @@ Okular::Annotation::SubType AnnotationWidget::annotationType() const
 
 QWidget *AnnotationWidget::appearanceWidget()
 {
-    if (m_appearanceWidget)
+    if (m_appearanceWidget) {
         return m_appearanceWidget;
+    }
 
     m_appearanceWidget = createAppearanceWidget();
     return m_appearanceWidget;
@@ -218,8 +225,9 @@ QWidget *AnnotationWidget::appearanceWidget()
 
 QWidget *AnnotationWidget::extraWidget()
 {
-    if (m_extraWidget)
+    if (m_extraWidget) {
         return m_extraWidget;
+    }
 
     m_extraWidget = createExtraWidget();
     return m_extraWidget;
@@ -227,10 +235,12 @@ QWidget *AnnotationWidget::extraWidget()
 
 void AnnotationWidget::applyChanges()
 {
-    if (m_colorBn)
+    if (m_colorBn) {
         m_ann->style().setColor(m_colorBn->color());
-    if (m_opacity)
+    }
+    if (m_opacity) {
         m_ann->style().setOpacity((double)m_opacity->value() / 100.0);
+    }
 }
 
 QWidget *AnnotationWidget::createAppearanceWidget()
@@ -291,10 +301,11 @@ void TextAnnotationWidget::createStyleWidget(QFormLayout *formlayout)
     if (m_textAnn->textType() == Okular::TextAnnotation::Linked) {
         createPopupNoteStyleUi(widget, formlayout);
     } else if (m_textAnn->textType() == Okular::TextAnnotation::InPlace) {
-        if (isTypewriter())
+        if (isTypewriter()) {
             createTypewriterStyleUi(widget, formlayout);
-        else
+        } else {
             createInlineNoteStyleUi(widget, formlayout);
+        }
     }
 }
 
@@ -408,6 +419,7 @@ const QList<QPair<QString, QString>> &StampAnnotationWidget::defaultStamps()
                                                                      {i18n("Departmental"), QStringLiteral("Departmental")},
                                                                      {i18n("Draft"), QStringLiteral("Draft")},
                                                                      {i18n("Experimental"), QStringLiteral("Experimental")},
+                                                                     {i18n("Expired"), QStringLiteral("Expired")},
                                                                      {i18n("Final"), QStringLiteral("Final")},
                                                                      {i18n("For Comment"), QStringLiteral("ForComment")},
                                                                      {i18n("For Public Release"), QStringLiteral("ForPublicRelease")},
@@ -434,15 +446,6 @@ void StampAnnotationWidget::createStyleWidget(QFormLayout *formlayout)
 {
     QWidget *widget = qobject_cast<QWidget *>(formlayout->parent());
 
-    KMessageWidget *brokenStampSupportWarning = new KMessageWidget(widget);
-    brokenStampSupportWarning->setText(xi18nc("@info",
-                                              "<warning>experimental feature.<nl/>"
-                                              "Stamps inserted in PDF documents are not visible in PDF readers other than Okular.</warning>"));
-    brokenStampSupportWarning->setMessageType(KMessageWidget::Warning);
-    brokenStampSupportWarning->setWordWrap(true);
-    brokenStampSupportWarning->setCloseButtonVisible(false);
-    formlayout->insertRow(0, brokenStampSupportWarning);
-
     addOpacitySpinBox(widget, formlayout);
     addVerticalSpacer(formlayout);
 
@@ -450,8 +453,7 @@ void StampAnnotationWidget::createStyleWidget(QFormLayout *formlayout)
     formlayout->addRow(i18n("Stamp symbol:"), m_pixmapSelector);
     m_pixmapSelector->setEditable(true);
 
-    QPair<QString, QString> pair;
-    foreach (pair, defaultStamps()) {
+    for (const QPair<QString, QString> &pair : defaultStamps()) {
         m_pixmapSelector->addItem(pair.first, pair.second);
     }
 
@@ -471,12 +473,13 @@ LineAnnotationWidget::LineAnnotationWidget(Okular::Annotation *ann)
     : AnnotationWidget(ann)
 {
     m_lineAnn = static_cast<Okular::LineAnnotation *>(ann);
-    if (m_lineAnn->linePoints().count() == 2)
+    if (m_lineAnn->linePoints().count() == 2) {
         m_lineType = 0; // line
-    else if (m_lineAnn->lineClosed())
+    } else if (m_lineAnn->lineClosed()) {
         m_lineType = 1; // polygon
-    else
+    } else {
         m_lineType = 2; // polyline
+    }
 }
 
 void LineAnnotationWidget::createStyleWidget(QFormLayout *formlayout)
@@ -816,10 +819,11 @@ static QString caretSymbolToIcon(Okular::CaretAnnotation::CaretSymbol symbol)
 
 static Okular::CaretAnnotation::CaretSymbol caretSymbolFromIcon(const QString &icon)
 {
-    if (icon == QLatin1String("caret-none"))
+    if (icon == QLatin1String("caret-none")) {
         return Okular::CaretAnnotation::None;
-    else if (icon == QLatin1String("caret-p"))
+    } else if (icon == QLatin1String("caret-p")) {
         return Okular::CaretAnnotation::P;
+    }
     return Okular::CaretAnnotation::None;
 }
 

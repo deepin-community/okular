@@ -7,7 +7,7 @@
 
 #include "drawingtoolactions.h"
 
-#include "debug_ui.h"
+#include "gui/debug_ui.h"
 #include "settings.h"
 
 #include <KActionCollection>
@@ -122,9 +122,9 @@ void DrawingToolActions::actionTriggered()
                 }
             }
 
-            emit changeEngine(action->property("__document").value<QDomElement>());
+            Q_EMIT changeEngine(action->property("__document").value<QDomElement>());
         } else {
-            emit changeEngine(QDomElement());
+            Q_EMIT changeEngine(QDomElement());
         }
     }
 }
@@ -137,10 +137,11 @@ void DrawingToolActions::loadTools()
     QDomElement drawingDefinition = doc.createElement(QStringLiteral("drawingTools"));
     for (const QString &drawingXml : drawingTools) {
         QDomDocument entryParser;
-        if (entryParser.setContent(drawingXml))
+        if (entryParser.setContent(drawingXml)) {
             drawingDefinition.appendChild(doc.importNode(entryParser.documentElement(), true));
-        else
+        } else {
             qCWarning(OkularUiDebug) << "Skipping malformed quick selection XML in QuickSelectionTools setting";
+        }
     }
 
     // Create the AnnotationToolItems from the XML dom tree

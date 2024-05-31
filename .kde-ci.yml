@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: None
+# SPDX-License-Identifier: CC0-1.0
+
+Dependencies:
+- 'on': ['@all']
+  'require':
+    'frameworks/kbookmarks': '@stable'
+    'frameworks/threadweaver': '@stable'
+    'frameworks/ki18n': '@stable'
+    'frameworks/kio': '@stable'
+    'frameworks/karchive': '@stable'
+    'libraries/phonon': '@stable'
+    'graphics/kdegraphics-mobipocket': '@same'
+
+- 'on': ['Linux', 'FreeBSD', 'Windows']
+  'require':
+    'frameworks/khtml': '@stable'
+    'frameworks/purpose': '@stable'
+    'graphics/libkexiv2': '@same'
+
+- 'on': ['Linux', 'FreeBSD']
+  'require':
+    'frameworks/kactivities': '@stable'
+    'frameworks/kpty': '@stable'
+
+- 'on': ['Android']
+  'require':
+    'frameworks/kirigami': '@stable'

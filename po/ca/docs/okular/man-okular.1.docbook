@@ -19,11 +19,11 @@
 >yurchor@ukr.net</email
 ></author>
 <date
->14 de febrer de 2019</date>
+>19 de febrer de 2022</date>
 <releaseinfo
->Okular 1.7</releaseinfo>
+>Okular 22.04</releaseinfo>
 <productname
->Aplicacions del KDE</productname>
+>KDE Gear</productname>
 </refentryinfo>
 
 <refmeta>
@@ -39,7 +39,7 @@
 <refname
 >okular</refname>
 <refpurpose
->un visor universal de documents</refpurpose>
+>un visualitzador universal de documents</refpurpose>
 </refnamediv>
 <!-- body begins here -->
 <refsynopsisdiv id='synopsis'>
@@ -151,6 +151,21 @@
 <listitem>
 <para
 >Cerca una cadena al text.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--editor-cmd <replaceable
+>cadena</replaceable
+></option
+></term>
+<listitem>
+<para
+>Defineix l'ordre de l'editor extern. No es pot definir l'ordre de l'editor en una instància en execució de l'Okular. Tingueu en compte que no es permet <option
+>--unique</option
+> quan es defineix l'ordre de l'editor a la línia d'ordres.</para>
 </listitem>
 </varlistentry>
 </variablelist>

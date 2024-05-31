@@ -25,7 +25,9 @@
 #include <QAction>
 #include <QIcon>
 
+#ifdef WITH_KEXIV
 #include <kexiv2/kexiv2.h>
+#endif
 
 #include <core/page.h>
 
@@ -50,7 +52,7 @@ bool KIMGIOGenerator::loadDocument(const QString &fileName, QVector<Okular::Page
 {
     QFile f(fileName);
     if (!f.open(QFile::ReadOnly)) {
-        emit error(i18n("Unable to load document: %1", f.errorString()), -1);
+        Q_EMIT error(i18n("Unable to load document: %1", f.errorString()), -1);
         return false;
     }
     return loadDocumentInternal(f.readAll(), fileName, pagesVector);
@@ -71,9 +73,9 @@ bool KIMGIOGenerator::loadDocumentInternal(const QByteArray &fileData, const QSt
     reader.setAutoDetectImageFormat(true);
     if (!reader.read(&m_img)) {
         if (!m_img.isNull()) {
-            emit warning(i18n("This document appears malformed. Here is a best approximation of the document's intended appearance."), -1);
+            Q_EMIT warning(i18n("This document appears malformed. Here is a best approximation of the document's intended appearance."), -1);
         } else {
-            emit error(i18n("Unable to load document: %1", reader.errorString()), -1);
+            Q_EMIT error(i18n("Unable to load document: %1", reader.errorString()), -1);
             return false;
         }
     }
@@ -81,11 +83,13 @@ bool KIMGIOGenerator::loadDocumentInternal(const QByteArray &fileData, const QSt
     auto mime = db.mimeTypeForFileNameAndData(fileName, fileData);
     docInfo.set(Okular::DocumentInfo::MimeType, mime.name());
 
+#ifdef WITH_KEXIV
     // Apply transformations dictated by Exif metadata
     KExiv2Iface::KExiv2 exifMetadata;
     if (exifMetadata.loadFromData(fileData)) {
         exifMetadata.rotateExifQImage(m_img, exifMetadata.getImageOrientation());
     }
+#endif
 
     pagesVector.resize(1);
 
@@ -127,26 +131,27 @@ QImage KIMGIOGenerator::image(Okular::PixmapRequest *request)
     } else {
         int width = request->width();
         int height = request->height();
-        if (request->page()->rotation() % 2 == 1)
+        if (request->page()->rotation() % 2 == 1) {
             qSwap(width, height);
+        }
 
         return m_img.scaled(width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     }
 }
 
-bool KIMGIOGenerator::print(QPrinter &printer)
+Okular::Document::PrintError KIMGIOGenerator::print(QPrinter &printer)
 {
     QPainter p(&printer);
 
     QImage image(m_img);
 
-    if ((image.width() > printer.width()) || (image.height() > printer.height()))
-
+    if ((image.width() > printer.width()) || (image.height() > printer.height())) {
         image = image.scaled(printer.width(), printer.height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
 
     p.drawImage(0, 0, image);
 
-    return true;
+    return Okular::Document::NoPrintError;
 }
 
 Okular::DocumentInfo KIMGIOGenerator::generateDocumentInfo(const QSet<Okular::DocumentInfo::Key> &keys) const

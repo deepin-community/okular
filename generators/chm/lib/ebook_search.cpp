@@ -42,8 +42,9 @@ public:
         if (!term.isEmpty()) {
             terms.push_back(term);
 
-            if (m_inPhrase)
+            if (m_inPhrase) {
                 phrase_terms.push_back(term);
+            }
         }
     }
 
@@ -84,15 +85,17 @@ bool EBookSearch::generateIndex(EBook *ebookFile, QDataStream &stream)
     QList<QUrl> documents;
     QList<QUrl> alldocuments;
 
-    emit progressStep(0, QStringLiteral("Generating the list of documents"));
+    Q_EMIT progressStep(0, QStringLiteral("Generating the list of documents"));
     processEvents();
 
     // Enumerate the documents
-    if (!ebookFile->enumerateFiles(alldocuments))
+    if (!ebookFile->enumerateFiles(alldocuments)) {
         return false;
+    }
 
-    if (m_Index)
+    if (m_Index) {
         delete m_Index;
+    }
 
     m_Index = new QtAs::Index();
     connect(m_Index, &QtAs::Index::indexingProgress, this, &EBookSearch::updateProgress);
@@ -101,8 +104,9 @@ bool EBookSearch::generateIndex(EBook *ebookFile, QDataStream &stream)
     for (const QUrl &allDocumentsI : qAsConst(alldocuments)) {
         const QString docpath = allDocumentsI.path();
 
-        if (docpath.endsWith(QLatin1String(".html"), Qt::CaseInsensitive) || docpath.endsWith(QLatin1String(".htm"), Qt::CaseInsensitive) || docpath.endsWith(QLatin1String(".xhtml"), Qt::CaseInsensitive))
+        if (docpath.endsWith(QLatin1String(".html"), Qt::CaseInsensitive) || docpath.endsWith(QLatin1String(".htm"), Qt::CaseInsensitive) || docpath.endsWith(QLatin1String(".xhtml"), Qt::CaseInsensitive)) {
             documents.push_back(allDocumentsI);
+        }
     }
 
     if (!m_Index->makeIndex(documents, ebookFile)) {
@@ -124,21 +128,23 @@ void EBookSearch::cancelIndexGeneration()
 
 void EBookSearch::updateProgress(int value, const QString &stepName)
 {
-    emit progressStep(value, stepName);
+    Q_EMIT progressStep(value, stepName);
 }
 
 void EBookSearch::processEvents()
 {
     // Do it up to ten times; some events generate other events
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i++) {
         qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
+    }
 }
 
 bool EBookSearch::searchQuery(const QString &query, QList<QUrl> *results, EBook *ebookFile, unsigned int limit)
 {
     // We should have index
-    if (!m_Index)
+    if (!m_Index) {
         return false;
+    }
 
     // Characters which split the words. We need to make them separate tokens
     QString splitChars = m_Index->getCharsSplit();
@@ -154,13 +160,14 @@ bool EBookSearch::searchQuery(const QString &query, QList<QUrl> *results, EBook 
         const QChar ch = iChar.toLower();
 
         // a quote either begins or ends the phrase
-        if (ch == '"') {
+        if (ch == QLatin1Char('"')) {
             keeper.addTerm(term);
 
-            if (keeper.isInPhrase())
+            if (keeper.isInPhrase()) {
                 keeper.endPhrase();
-            else
+            } else {
                 keeper.beginPhrase();
+            }
 
             continue;
         }
@@ -187,13 +194,15 @@ bool EBookSearch::searchQuery(const QString &query, QList<QUrl> *results, EBook 
 
     keeper.addTerm(term);
 
-    if (keeper.isInPhrase())
+    if (keeper.isInPhrase()) {
         return false;
+    }
 
     QList<QUrl> foundDocs = m_Index->query(keeper.terms, keeper.phrases, keeper.phrasewords, ebookFile);
 
-    for (QList<QUrl>::iterator it = foundDocs.begin(); it != foundDocs.end() && limit > 0; ++it, limit--)
+    for (QList<QUrl>::iterator it = foundDocs.begin(); it != foundDocs.end() && limit > 0; ++it, limit--) {
         results->push_back(*it);
+    }
 
     return true;
 }
